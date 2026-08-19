@@ -556,6 +556,13 @@
   body[data-view="marketing"] #ekyc-strategy,
   body[data-view="marketing"] #infra{display:none;}
 
+  body[data-view="total"] #ekyc-strategy,
+  body[data-view="total"] #infra,
+  body[data-view="total"] #marketing{display:none;}
+
+  body[data-view] #totalCostSection{display:none;}
+  body[data-view="total"] #totalCostSection{display:block;}
+
   body[data-view="wise1"] #vendorCardGrid,
   body[data-view="wise2"] #vendorCardGrid,
   body[data-view="innov8tif"] #vendorCardGrid{grid-template-columns:1fr;}
@@ -616,6 +623,150 @@
     #infra .tier-grid{grid-template-columns:repeat(2,1fr);}
   }
 
+  /* ---------- Total cost view ---------- */
+  .total-cost-shell{
+    display:grid;
+    grid-template-columns:minmax(0,1.3fr) minmax(330px,.7fr);
+    gap:20px;
+    align-items:start;
+  }
+  .total-cost-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .total-cost-card-head{
+    padding:17px 18px;
+    border-bottom:1px solid var(--border);
+    background:#F8FAF9;
+  }
+  .total-cost-card-title{
+    font-family:'Fraunces',serif;
+    font-size:17px;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .total-cost-card-sub{
+    margin-top:4px;
+    font-size:12px;
+    line-height:1.45;
+    color:var(--muted);
+  }
+  .total-plan-options{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:16px;
+  }
+  .total-plan-option{
+    appearance:none;
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    text-align:left;
+    cursor:pointer;
+    transition:border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+  .total-plan-option:hover{border-color:#9BA9B4;}
+  .total-plan-option.active{
+    border:2px solid var(--teal);
+    background:#F2F9F7;
+    box-shadow:0 3px 12px rgba(15,118,110,.08);
+    padding:14px;
+  }
+  .total-plan-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:23px;
+    height:23px;
+    border-radius:7px;
+    background:#E7ECEF;
+    color:var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .total-plan-option.active .total-plan-number{background:var(--teal);color:#fff;}
+  .total-plan-name{display:block;font-size:13px;font-weight:700;color:var(--ink);line-height:1.35;}
+  .total-plan-cost{display:block;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);}
+  .total-control-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+    padding:0 16px 16px;
+  }
+  .total-control{
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#FBFCFB;
+  }
+  .total-control.hidden{display:none;}
+  .total-control label{
+    display:block;
+    margin-bottom:7px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .total-control select{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:7px;
+    background:#fff;
+    color:var(--ink);
+    padding:8px 9px;
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
+  }
+  .total-summary-table tbody td{padding:15px 18px;vertical-align:middle;}
+  .total-summary-label{font-weight:600;color:var(--ink);}
+  .total-summary-note{display:block;margin-top:3px;font-size:11.5px;font-weight:400;color:var(--muted);line-height:1.4;}
+  .total-summary-table .num{white-space:nowrap;}
+  .total-grand-card{
+    position:sticky;
+    top:18px;
+    padding:24px;
+    border-radius:14px;
+    color:#fff;
+    background:linear-gradient(145deg,#10233F 0%,#173A5E 100%);
+    box-shadow:0 12px 28px rgba(16,35,63,.14);
+  }
+  .total-grand-eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#9DB6CA;
+  }
+  .total-grand-label{margin-top:10px;font-family:'Fraunces',serif;font-size:20px;font-weight:600;}
+  .total-grand-value{margin-top:13px;font-family:'IBM Plex Mono',monospace;font-size:clamp(20px,2.2vw,29px);font-weight:700;line-height:1.35;color:#fff;}
+  .total-grand-rule{height:1px;background:rgba(255,255,255,.15);margin:20px 0;}
+  .total-grand-meta{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:12px;color:#BFD0DD;}
+  .total-grand-meta strong{color:#fff;text-align:right;font-weight:600;}
+  .total-assumption{
+    margin-top:16px;
+    padding:12px 13px;
+    border-radius:9px;
+    background:rgba(255,255,255,.07);
+    font-size:11.5px;
+    line-height:1.55;
+    color:#C9D7E1;
+  }
+  @media(max-width:980px){
+    .total-cost-shell{grid-template-columns:1fr;}
+    .total-grand-card{position:static;}
+  }
+  @media(max-width:700px){
+    .total-plan-options,.total-control-grid{grid-template-columns:1fr;}
+  }
+
 </style>
 </head>
 <body data-view="wise1">
@@ -639,6 +790,7 @@
       <button class="dashboard-tab" type="button" data-view="fullcomparison">5. Full Vendor Comparison (All 4)</button>
       <button class="dashboard-tab" type="button" data-view="aws">6. AWS Infrastructure Cost</button>
       <button class="dashboard-tab" type="button" data-view="marketing">7. Marketing Launch Budget</button>
+      <button class="dashboard-tab" type="button" data-view="total">8. Total Cost</button>
     </div>
   </div>
   <!-- KPI Overview -->
@@ -903,6 +1055,100 @@
       </div>
     </div>
   </section>
+
+  <!-- ================= Section 8: Total Cost ================= -->
+  <section class="block" id="totalCostSection">
+    <div class="block-head">
+      <span class="block-index">08</span>
+      <span class="block-title">Total Cost</span>
+      <span class="block-desc">eKYC + 12-Month AWS + Launch Budget</span>
+    </div>
+
+    <div class="total-cost-shell">
+      <div>
+        <div class="total-cost-card margin-b-24">
+          <div class="total-cost-card-head">
+            <div class="total-cost-card-title">1. Select One eKYC Plan</div>
+            <div class="total-cost-card-sub">Choose one of the three commercial plans to include in the Year 1 total.</div>
+          </div>
+          <div class="total-plan-options" id="totalPlanOptions">
+            <button class="total-plan-option active" type="button" data-total-plan="wise1">
+              <span class="total-plan-number">1</span>
+              <span class="total-plan-name">WISE AI · Plan 1</span>
+              <span class="total-plan-cost" id="totalWise1OptionCost">RM 38,880.00</span>
+            </button>
+            <button class="total-plan-option" type="button" data-total-plan="wise2">
+              <span class="total-plan-number">2</span>
+              <span class="total-plan-name">WISE AI · Plan 2</span>
+              <span class="total-plan-cost">RM 32,400.00</span>
+            </button>
+            <button class="total-plan-option" type="button" data-total-plan="innov8tif">
+              <span class="total-plan-number">3</span>
+              <span class="total-plan-name">Innov8tif · EMAS eKYC</span>
+              <span class="total-plan-cost" id="totalInnovOptionCost">RM 56,160.00</span>
+            </button>
+          </div>
+          <div class="total-control-grid">
+            <div class="total-control">
+              <label for="totalAwsTier">AWS MAU Scenario</label>
+              <select id="totalAwsTier">
+                <option value="1k">1K MAU</option>
+                <option value="5k">5K MAU</option>
+                <option value="10k">10K MAU</option>
+                <option value="50k">50K MAU</option>
+              </select>
+            </div>
+            <div class="total-control hidden" id="totalInnovTierControl">
+              <label for="totalInnovTier">Innov8tif Credit Tier</label>
+              <select id="totalInnovTier">
+                <option value="10k">10,000 Credits</option>
+                <option value="20k">20,000 Credits</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="total-cost-card">
+          <div class="total-cost-card-head">
+            <div class="total-cost-card-title">2. Year 1 Cost Breakdown</div>
+            <div class="total-cost-card-sub">AWS is calculated for 12 months. Launch Budget is treated as a one-time cost.</div>
+          </div>
+          <table class="total-summary-table">
+            <thead><tr><th>Cost Component</th><th class="num">Year 1 Amount (RM)</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="total-summary-label" id="totalEkycName">WISE AI · Plan 1</span><span class="total-summary-note" id="totalEkycNote">Year 1 total including 8% SST</span></td>
+                <td class="num mono" id="totalEkycAmount">RM 38,880.00</td>
+              </tr>
+              <tr>
+                <td><span class="total-summary-label">AWS Infrastructure</span><span class="total-summary-note" id="totalAwsNote">1K MAU · Front-End fixed + Back-End range · 12 months</span></td>
+                <td class="num mono" id="totalAwsAmount">RM 10,995.88 – RM 30,137.08</td>
+              </tr>
+              <tr>
+                <td><span class="total-summary-label">Marketing Launch Budget</span><span class="total-summary-note">One-time budget from Dashboard View 7</span></td>
+                <td class="num mono" id="totalMarketingAmount">RM 0.00</td>
+              </tr>
+              <tr class="grand-row">
+                <td>Estimated Year 1 Total</td>
+                <td class="num mono" id="totalBreakdownGrand">RM 49,875.88 – RM 69,017.08</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <aside class="total-grand-card" aria-live="polite">
+        <div class="total-grand-eyebrow">Estimated Year 1 Budget</div>
+        <div class="total-grand-label">Total Cost Range</div>
+        <div class="total-grand-value" id="totalGrandValue">RM 49,875.88<br>– RM 69,017.08</div>
+        <div class="total-grand-rule"></div>
+        <div class="total-grand-meta"><span>Selected Plan</span><strong id="totalGrandPlan">WISE AI · Plan 1</strong></div>
+        <div class="total-grand-meta"><span>AWS Scenario</span><strong id="totalGrandAws">1K MAU</strong></div>
+        <div class="total-grand-meta"><span>FX Rate</span><strong id="totalGrandFx">USD 1 = RM 4.09</strong></div>
+        <div class="total-assumption">Includes one selected eKYC plan, 12 months of AWS infrastructure, and the Marketing Launch Budget. AWS is shown as a range because back-end usage varies.</div>
+      </aside>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -1000,6 +1246,8 @@
     document.getElementById('kpiInfra').textContent = `RM ${infraLowMYR} – RM ${infraHighMYR}${m.plus?'++':''}`;
     document.getElementById('kpiInfraSub').textContent = `($${Number(infraLowUSD).toLocaleString('en-US',{minimumFractionDigits:2})} – $${Number(infraHighUSD).toLocaleString('en-US',{minimumFractionDigits:2})} USD) · Front-End Fixed + Back-End`;
     document.getElementById('kpiInfraLabel').textContent = `AWS Infra (${currentMau.toUpperCase()} MAU)`;
+    const totalAwsTierEl = document.getElementById('totalAwsTier');
+    if (totalAwsTierEl) totalAwsTierEl.value = currentMau;
   }
 
   // FX Rate dynamic changes listener
@@ -1034,8 +1282,15 @@
 
   function newRowId(){ rowSeq += 1; return 'row_custom_' + Date.now() + '_' + rowSeq; }
 
+  function getMarketingTotalMYR(){
+    return mktRows.reduce((sum, r) => {
+      const amount = parseFloat(r.amount) || 0;
+      return sum + (r.currency === 'USD' ? amount * fxRate : amount);
+    }, 0);
+  }
+
   function computeTotal(){
-    const total = mktRows.reduce((sum, r) => sum + (parseFloat(r.amount) || 0), 0);
+    const total = getMarketingTotalMYR();
     mktTotalEl.textContent = "RM " + total.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
   }
 
@@ -1082,6 +1337,7 @@
     if (e.target.classList.contains('f-notes')) row.notes = e.target.value;
     if (e.target.classList.contains('f-currency')) row.currency = e.target.value;
     computeTotal();
+    renderTotalCost();
   });
   mktBody.addEventListener('change', saveMkt);
   mktBody.addEventListener('click', e => {
@@ -1090,6 +1346,7 @@
       mktRows = mktRows.filter(r => r.id !== tr.dataset.id);
       renderMkt();
       saveMkt();
+      renderTotalCost();
     }
   });
   document.getElementById('addMktRow').addEventListener('click', () => {
@@ -1107,6 +1364,104 @@
     renderMkt();
   })();
 
+  // ---------------- Total Cost (eKYC + 12-Month AWS + Launch Budget) ----------------
+  const totalPlanOptions = Array.from(document.querySelectorAll('.total-plan-option'));
+  const totalAwsTierEl = document.getElementById('totalAwsTier');
+  const totalInnovTierEl = document.getElementById('totalInnovTier');
+  const totalInnovTierControlEl = document.getElementById('totalInnovTierControl');
+  let totalSelectedPlan = 'wise1';
+
+  try {
+    const storedPlan = localStorage.getItem('total-cost-selected-plan');
+    if (['wise1','wise2','innov8tif'].includes(storedPlan)) totalSelectedPlan = storedPlan;
+    const storedInnovTier = localStorage.getItem('total-cost-innov-tier');
+    if (['10k','20k'].includes(storedInnovTier)) totalInnovTierEl.value = storedInnovTier;
+  } catch(err){}
+
+  function fmtRMWithPrefix(n){
+    return 'RM ' + Number(n).toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+
+  function getWisePlan1Y1Gross(){
+    const actual = Math.max(0, Math.floor(parseFloat(wiseMonthlyTxnEl.value) || 0));
+    const billed = Math.max(actual, 100);
+    const tier = wisePostpaidRate(actual);
+    return (18000 + (billed * tier.rate * 12)) * 1.08;
+  }
+
+  function getSelectedEkyc(){
+    if (totalSelectedPlan === 'wise2') {
+      return { name:'WISE AI · Plan 2', amount:32400, note:'Year 1 prepaid package total including 8% SST' };
+    }
+    if (totalSelectedPlan === 'innov8tif') {
+      const is20k = totalInnovTierEl.value === '20k';
+      return {
+        name:'Innov8tif · EMAS eKYC',
+        amount:is20k ? 84240 : 56160,
+        note:`Year 1 ${is20k ? '20,000' : '10,000'}-credit tier including 8% SST`
+      };
+    }
+    return { name:'WISE AI · Plan 1', amount:getWisePlan1Y1Gross(), note:'Year 1 postpaid total including 8% SST' };
+  }
+
+  function renderTotalCost(){
+    if (!document.getElementById('totalGrandValue')) return;
+
+    const ekyc = getSelectedEkyc();
+    const awsTier = totalAwsTierEl.value;
+    const aws = mauData[awsTier];
+    const awsLowAnnual = (aws.front + aws.low) * fxRate * 12;
+    const awsHighAnnual = (aws.front + aws.high) * fxRate * 12;
+    const marketing = getMarketingTotalMYR();
+    const totalLow = ekyc.amount + awsLowAnnual + marketing;
+    const totalHigh = ekyc.amount + awsHighAnnual + marketing;
+    const rangeText = `${fmtRMWithPrefix(totalLow)} – ${fmtRMWithPrefix(totalHigh)}`;
+
+    totalPlanOptions.forEach(btn => btn.classList.toggle('active', btn.dataset.totalPlan === totalSelectedPlan));
+    totalInnovTierControlEl.classList.toggle('hidden', totalSelectedPlan !== 'innov8tif');
+
+    document.getElementById('totalWise1OptionCost').textContent = fmtRMWithPrefix(getWisePlan1Y1Gross());
+    document.getElementById('totalInnovOptionCost').textContent = totalInnovTierEl.value === '20k' ? 'RM 84,240.00' : 'RM 56,160.00';
+    document.getElementById('totalEkycName').textContent = ekyc.name;
+    document.getElementById('totalEkycNote').textContent = ekyc.note;
+    document.getElementById('totalEkycAmount').textContent = fmtRMWithPrefix(ekyc.amount);
+    document.getElementById('totalAwsNote').textContent = `${awsTier.toUpperCase()} MAU · Front-End fixed + Back-End range · 12 months`;
+    document.getElementById('totalAwsAmount').textContent = `${fmtRMWithPrefix(awsLowAnnual)} – ${fmtRMWithPrefix(awsHighAnnual)}${aws.plus?'++':''}`;
+    document.getElementById('totalMarketingAmount').textContent = fmtRMWithPrefix(marketing);
+    document.getElementById('totalBreakdownGrand').textContent = rangeText + (aws.plus?'++':'');
+    document.getElementById('totalGrandValue').innerHTML = `${fmtRMWithPrefix(totalLow)}<br>– ${fmtRMWithPrefix(totalHigh)}${aws.plus?'++':''}`;
+    document.getElementById('totalGrandPlan').textContent = ekyc.name;
+    document.getElementById('totalGrandAws').textContent = `${awsTier.toUpperCase()} MAU`;
+    document.getElementById('totalGrandFx').textContent = `USD 1 = RM ${fxRate.toFixed(2)}`;
+  }
+
+  totalPlanOptions.forEach(btn => {
+    btn.addEventListener('click', () => {
+      totalSelectedPlan = btn.dataset.totalPlan;
+      try { localStorage.setItem('total-cost-selected-plan', totalSelectedPlan); } catch(err){}
+      renderTotalCost();
+    });
+  });
+
+  totalAwsTierEl.addEventListener('change', () => {
+    currentMau = totalAwsTierEl.value;
+    renderMau();
+    renderTotalCost();
+  });
+
+  totalInnovTierEl.addEventListener('change', () => {
+    try { localStorage.setItem('total-cost-innov-tier', totalInnovTierEl.value); } catch(err){}
+    renderTotalCost();
+  });
+
+  wiseMonthlyTxnEl.addEventListener('input', renderTotalCost);
+  fxInputEl.addEventListener('input', renderTotalCost);
+  document.getElementById('tierGrid').addEventListener('click', () => {
+    totalAwsTierEl.value = currentMau;
+    renderTotalCost();
+  });
+  renderTotalCost();
+
   // ---------------- Executive tabbed views ----------------
   const dashboardTabs = Array.from(document.querySelectorAll('.dashboard-tab'));
   const viewStorageKey = 'financial-dashboard-active-view';
@@ -1119,6 +1474,7 @@
       btn.setAttribute('aria-selected', active ? 'true' : 'false');
     });
     try { localStorage.setItem(viewStorageKey, view); } catch(err){}
+    if (view === 'total') renderTotalCost();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
