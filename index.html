@@ -747,6 +747,8 @@
   }
   .total-grand-label{margin-top:10px;font-family:'Fraunces',serif;font-size:20px;font-weight:600;}
   .total-grand-value{margin-top:13px;font-family:'IBM Plex Mono',monospace;font-size:clamp(20px,2.2vw,29px);font-weight:700;line-height:1.35;color:#fff;}
+  .total-year-block + .total-year-block{margin-top:0;}
+  .total-year-caption{margin-top:9px;font-size:11.5px;line-height:1.5;color:#AFC3D2;}
   .total-grand-rule{height:1px;background:rgba(255,255,255,.15);margin:20px 0;}
   .total-grand-meta{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:12px;color:#BFD0DD;}
   .total-grand-meta strong{color:#fff;text-align:right;font-weight:600;}
@@ -783,14 +785,14 @@
   <div class="dashboard-nav view-spacer">
     <div class="dashboard-nav-label">Select Executive Dashboard View</div>
     <div class="dashboard-tabs" role="tablist" aria-label="Executive dashboard views">
-      <button class="dashboard-tab active" type="button" data-view="wise1">1. WISE AI · Plan 1</button>
-      <button class="dashboard-tab" type="button" data-view="wise2">2. WISE AI · Plan 2</button>
-      <button class="dashboard-tab" type="button" data-view="innov8tif">3. Innov8tif · EMAS eKYC</button>
-      <button class="dashboard-tab" type="button" data-view="mydigitalid">4. MyDigital ID · Free</button>
-      <button class="dashboard-tab" type="button" data-view="fullcomparison">5. Full Vendor Comparison (All 4)</button>
-      <button class="dashboard-tab" type="button" data-view="aws">6. AWS Infrastructure Cost</button>
-      <button class="dashboard-tab" type="button" data-view="marketing">7. Marketing Launch Budget</button>
-      <button class="dashboard-tab" type="button" data-view="total">8. Total Cost</button>
+      <button class="dashboard-tab active" type="button" role="tab" aria-selected="true" tabindex="0" data-view="wise1">1. WISE AI · Plan 1</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="wise2">2. WISE AI · Plan 2</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="innov8tif">3. Innov8tif · EMAS eKYC</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="mydigitalid">4. MyDigital ID · Free</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="fullcomparison">5. Full Vendor Comparison (All 4)</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="aws">6. AWS Infrastructure Cost</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="marketing">7. Marketing Launch Budget</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="total">8. Total Cost</button>
     </div>
   </div>
   <!-- KPI Overview -->
@@ -1138,14 +1140,24 @@
       </div>
 
       <aside class="total-grand-card" aria-live="polite">
-        <div class="total-grand-eyebrow">Estimated Year 1 Budget</div>
-        <div class="total-grand-label">Total Cost Range</div>
-        <div class="total-grand-value" id="totalGrandValue">RM 49,875.88<br>– RM 69,017.08</div>
+        <div class="total-year-block">
+          <div class="total-grand-eyebrow">Estimated Year 1 Budget</div>
+          <div class="total-grand-label">Year 1 Total Cost Range</div>
+          <div class="total-grand-value" id="totalGrandValue">RM 49,875.88<br>– RM 69,017.08</div>
+          <div class="total-year-caption">eKYC Year 1 + 12-month AWS + one-time Launch Budget</div>
+        </div>
+        <div class="total-grand-rule"></div>
+        <div class="total-year-block">
+          <div class="total-grand-eyebrow">Estimated Year 2 Budget</div>
+          <div class="total-grand-label">Year 2 Total Cost Range</div>
+          <div class="total-grand-value" id="totalGrandY2Value">RM 35,835.88<br>– RM 54,977.08</div>
+          <div class="total-year-caption">eKYC renewal + 12-month AWS · Launch Budget excluded</div>
+        </div>
         <div class="total-grand-rule"></div>
         <div class="total-grand-meta"><span>Selected Plan</span><strong id="totalGrandPlan">WISE AI · Plan 1</strong></div>
         <div class="total-grand-meta"><span>AWS Scenario</span><strong id="totalGrandAws">1K MAU</strong></div>
         <div class="total-grand-meta"><span>FX Rate</span><strong id="totalGrandFx">USD 1 = RM 4.09</strong></div>
-        <div class="total-assumption">Includes one selected eKYC plan, 12 months of AWS infrastructure, and the Marketing Launch Budget. AWS is shown as a range because back-end usage varies.</div>
+        <div class="total-assumption">Year 1 includes one selected eKYC plan, 12 months of AWS infrastructure, and the Marketing Launch Budget. Year 2 uses the eKYC renewal cost plus another 12 months of AWS and excludes the one-time Launch Budget.</div>
       </aside>
     </div>
   </section>
@@ -1389,19 +1401,27 @@
     return (18000 + (billed * tier.rate * 12)) * 1.08;
   }
 
+  function getWisePlan1Y2Gross(){
+    const actual = Math.max(0, Math.floor(parseFloat(wiseMonthlyTxnEl.value) || 0));
+    const billed = Math.max(actual, 100);
+    const tier = wisePostpaidRate(actual);
+    return (5000 + (billed * tier.rate * 12)) * 1.08;
+  }
+
   function getSelectedEkyc(){
     if (totalSelectedPlan === 'wise2') {
-      return { name:'WISE AI · Plan 2', amount:32400, note:'Year 1 prepaid package total including 8% SST' };
+      return { name:'WISE AI · Plan 2', y1Amount:32400, y2Amount:18360, note:'Year 1 prepaid package total including 8% SST' };
     }
     if (totalSelectedPlan === 'innov8tif') {
       const is20k = totalInnovTierEl.value === '20k';
       return {
         name:'Innov8tif · EMAS eKYC',
-        amount:is20k ? 84240 : 56160,
+        y1Amount:is20k ? 84240 : 56160,
+        y2Amount:is20k ? 63720 : 35640,
         note:`Year 1 ${is20k ? '20,000' : '10,000'}-credit tier including 8% SST`
       };
     }
-    return { name:'WISE AI · Plan 1', amount:getWisePlan1Y1Gross(), note:'Year 1 postpaid total including 8% SST' };
+    return { name:'WISE AI · Plan 1', y1Amount:getWisePlan1Y1Gross(), y2Amount:getWisePlan1Y2Gross(), note:'Year 1 postpaid total including 8% SST' };
   }
 
   function renderTotalCost(){
@@ -1413,8 +1433,10 @@
     const awsLowAnnual = (aws.front + aws.low) * fxRate * 12;
     const awsHighAnnual = (aws.front + aws.high) * fxRate * 12;
     const marketing = getMarketingTotalMYR();
-    const totalLow = ekyc.amount + awsLowAnnual + marketing;
-    const totalHigh = ekyc.amount + awsHighAnnual + marketing;
+    const totalLow = ekyc.y1Amount + awsLowAnnual + marketing;
+    const totalHigh = ekyc.y1Amount + awsHighAnnual + marketing;
+    const totalY2Low = ekyc.y2Amount + awsLowAnnual;
+    const totalY2High = ekyc.y2Amount + awsHighAnnual;
     const rangeText = `${fmtRMWithPrefix(totalLow)} – ${fmtRMWithPrefix(totalHigh)}`;
 
     totalPlanOptions.forEach(btn => btn.classList.toggle('active', btn.dataset.totalPlan === totalSelectedPlan));
@@ -1424,12 +1446,13 @@
     document.getElementById('totalInnovOptionCost').textContent = totalInnovTierEl.value === '20k' ? 'RM 84,240.00' : 'RM 56,160.00';
     document.getElementById('totalEkycName').textContent = ekyc.name;
     document.getElementById('totalEkycNote').textContent = ekyc.note;
-    document.getElementById('totalEkycAmount').textContent = fmtRMWithPrefix(ekyc.amount);
+    document.getElementById('totalEkycAmount').textContent = fmtRMWithPrefix(ekyc.y1Amount);
     document.getElementById('totalAwsNote').textContent = `${awsTier.toUpperCase()} MAU · Front-End fixed + Back-End range · 12 months`;
     document.getElementById('totalAwsAmount').textContent = `${fmtRMWithPrefix(awsLowAnnual)} – ${fmtRMWithPrefix(awsHighAnnual)}${aws.plus?'++':''}`;
     document.getElementById('totalMarketingAmount').textContent = fmtRMWithPrefix(marketing);
     document.getElementById('totalBreakdownGrand').textContent = rangeText + (aws.plus?'++':'');
     document.getElementById('totalGrandValue').innerHTML = `${fmtRMWithPrefix(totalLow)}<br>– ${fmtRMWithPrefix(totalHigh)}${aws.plus?'++':''}`;
+    document.getElementById('totalGrandY2Value').innerHTML = `${fmtRMWithPrefix(totalY2Low)}<br>– ${fmtRMWithPrefix(totalY2High)}${aws.plus?'++':''}`;
     document.getElementById('totalGrandPlan').textContent = ekyc.name;
     document.getElementById('totalGrandAws').textContent = `${awsTier.toUpperCase()} MAU`;
     document.getElementById('totalGrandFx').textContent = `USD 1 = RM ${fxRate.toFixed(2)}`;
@@ -1472,6 +1495,7 @@
       const active = btn.dataset.view === view;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-selected', active ? 'true' : 'false');
+      btn.tabIndex = active ? 0 : -1;
     });
     try { localStorage.setItem(viewStorageKey, view); } catch(err){}
     if (view === 'total') renderTotalCost();
@@ -1480,6 +1504,18 @@
 
   dashboardTabs.forEach(btn => {
     btn.addEventListener('click', () => setDashboardView(btn.dataset.view));
+    btn.addEventListener('keydown', e => {
+      if (!['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
+      e.preventDefault();
+      const currentIndex = dashboardTabs.indexOf(btn);
+      let nextIndex = currentIndex;
+      if (e.key === 'ArrowRight') nextIndex = (currentIndex + 1) % dashboardTabs.length;
+      if (e.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + dashboardTabs.length) % dashboardTabs.length;
+      if (e.key === 'Home') nextIndex = 0;
+      if (e.key === 'End') nextIndex = dashboardTabs.length - 1;
+      dashboardTabs[nextIndex].focus();
+      setDashboardView(dashboardTabs[nextIndex].dataset.view);
+    });
   });
 
   let initialView = 'wise1';
