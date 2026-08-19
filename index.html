@@ -769,6 +769,366 @@
     .total-plan-options,.total-control-grid{grid-template-columns:1fr;}
   }
 
+  /* ---------- Total cost: Executive polish ---------- */
+  body[data-view="total"] main{
+    max-width:1800px;
+    margin:0 auto;
+  }
+  #totalCostSection{
+    position:relative;
+  }
+  #totalCostSection > .block-head{
+    position:relative;
+    overflow:hidden;
+    min-height:94px;
+    margin-bottom:24px;
+    padding:22px 24px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:18px;
+    background:
+      radial-gradient(circle at 88% 20%,rgba(15,118,110,.38),transparent 28%),
+      linear-gradient(135deg,#10233F 0%,#173A5E 62%,#164E53 130%);
+    box-shadow:0 14px 34px rgba(16,35,63,.13);
+  }
+  #totalCostSection > .block-head::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    right:-52px;
+    top:-90px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:50%;
+    box-shadow:0 0 0 28px rgba(255,255,255,.035),0 0 0 58px rgba(255,255,255,.02);
+  }
+  #totalCostSection > .block-head .block-index{
+    position:relative;
+    z-index:1;
+    padding:6px 10px;
+    color:#F2D2A0;
+    background:rgba(194,121,43,.20);
+    border:1px solid rgba(242,210,160,.25);
+  }
+  #totalCostSection > .block-head .block-title{
+    position:relative;
+    z-index:1;
+    color:#fff;
+    font-size:27px;
+    letter-spacing:-.01em;
+  }
+  #totalCostSection > .block-head .block-desc{
+    position:relative;
+    z-index:1;
+    color:#CAD8E3;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .total-status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#69C9BA;
+    box-shadow:0 0 0 5px rgba(105,201,186,.12);
+    flex:none;
+  }
+  .total-cost-shell{
+    grid-template-columns:minmax(0,1.48fr) minmax(370px,.72fr);
+    gap:24px;
+  }
+  .total-cost-card{
+    border-color:#DCE2DF;
+    border-radius:18px;
+    box-shadow:0 8px 24px rgba(16,35,63,.055);
+  }
+  .total-cost-card-head{
+    padding:20px 22px;
+    border-bottom-color:#DCE2DF;
+    background:linear-gradient(180deg,#FFFFFF 0%,#F7F9F8 100%);
+  }
+  .total-cost-card-title{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-size:19px;
+  }
+  .total-step{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:31px;
+    height:31px;
+    border-radius:9px;
+    color:#fff;
+    background:var(--ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:.04em;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.10);
+    flex:none;
+  }
+  .total-cost-card-sub{
+    margin-top:7px;
+    padding-left:42px;
+    font-size:12.5px;
+  }
+  .total-plan-options{
+    gap:14px;
+    padding:20px 20px 18px;
+  }
+  .total-plan-option{
+    position:relative;
+    min-height:150px;
+    padding:18px;
+    border-color:#D9E0DD;
+    border-radius:15px;
+    background:linear-gradient(155deg,#FFFFFF 0%,#FAFBFA 100%);
+    box-shadow:0 3px 10px rgba(16,35,63,.025);
+    transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease;
+  }
+  .total-plan-option:hover{
+    transform:translateY(-2px);
+    border-color:#9DB4B0;
+    box-shadow:0 9px 20px rgba(16,35,63,.08);
+  }
+  .total-plan-option:focus-visible{
+    outline:3px solid rgba(15,118,110,.23);
+    outline-offset:2px;
+  }
+  .total-plan-option.active{
+    padding:17px;
+    transform:translateY(-2px);
+    border:2px solid #1A706B;
+    background:
+      radial-gradient(circle at 100% 0%,rgba(74,167,155,.22),transparent 35%),
+      linear-gradient(145deg,#10233F 0%,#173A5E 100%);
+    box-shadow:0 13px 26px rgba(16,35,63,.18);
+  }
+  .total-plan-option.active::after{
+    content:"SELECTED";
+    position:absolute;
+    top:14px;
+    right:14px;
+    padding:4px 7px;
+    border-radius:999px;
+    color:#F6E0BC;
+    background:rgba(194,121,43,.18);
+    border:1px solid rgba(246,224,188,.25);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:.08em;
+  }
+  .total-plan-number{
+    width:28px;
+    height:28px;
+    margin-bottom:20px;
+    border-radius:8px;
+    color:#24405F;
+    background:#EDF1F3;
+  }
+  .total-plan-option.active .total-plan-number{
+    color:#10233F;
+    background:#F0D1A4;
+  }
+  .total-plan-name{
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    font-weight:600;
+  }
+  .total-plan-option.active .total-plan-name{color:#fff;}
+  .total-plan-cost{
+    margin-top:12px;
+    font-size:13px;
+    font-weight:600;
+    color:#294A68;
+  }
+  .total-plan-cost::before{
+    content:"YEAR 1 · INCL. SST";
+    display:block;
+    margin-bottom:4px;
+    color:#8997A5;
+    font-size:8.5px;
+    font-weight:600;
+    letter-spacing:.08em;
+  }
+  .total-plan-option.active .total-plan-cost{color:#F3F7FA;}
+  .total-plan-option.active .total-plan-cost::before{color:#9EB7CA;}
+  .total-control-grid{
+    gap:14px;
+    padding:16px 20px 20px;
+    border-top:1px solid #E5E9E7;
+    background:#F7F9F8;
+  }
+  .total-control{
+    padding:14px;
+    border-color:#D9E0DD;
+    border-radius:12px;
+    background:#fff;
+    box-shadow:0 2px 7px rgba(16,35,63,.025);
+  }
+  .total-control label{
+    margin-bottom:9px;
+    color:#50657D;
+    font-weight:600;
+  }
+  .total-control select{
+    min-height:40px;
+    border-color:#CBD5D1;
+    border-radius:9px;
+    padding:8px 11px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .total-control select:focus{
+    outline:none;
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(15,118,110,.12);
+  }
+  .total-summary-table thead th{
+    padding:13px 20px;
+    color:#536A80;
+    background:#EFF3F1;
+  }
+  .total-summary-table tbody td{
+    padding:18px 20px;
+  }
+  .total-summary-table tbody tr:not(.grand-row):hover td{background:#FAFCFB;}
+  .total-summary-label{
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    font-weight:600;
+  }
+  .total-summary-note{margin-top:5px;}
+  .total-summary-table tbody tr:not(.grand-row) td:first-child{
+    position:relative;
+    padding-left:34px;
+  }
+  .total-summary-table tbody tr:not(.grand-row) td:first-child::before{
+    content:"";
+    position:absolute;
+    left:20px;
+    top:22px;
+    width:4px;
+    height:28px;
+    border-radius:99px;
+    background:#B5C9C5;
+  }
+  .total-summary-table tbody tr:nth-child(1) td:first-child::before{background:#19766F;}
+  .total-summary-table tbody tr:nth-child(2) td:first-child::before{background:#244E78;}
+  .total-summary-table tbody tr:nth-child(3) td:first-child::before{background:#C2792B;}
+  .total-summary-table .grand-row td{
+    padding-top:18px;
+    padding-bottom:18px;
+    color:#fff;
+    background:linear-gradient(90deg,#10233F 0%,#1A4268 100%);
+    border-bottom:none;
+  }
+  .total-summary-table .grand-row td:first-child{
+    font-family:'Fraunces',serif;
+    font-size:16px;
+  }
+  .total-summary-table .grand-row .num{
+    color:#F4D5A7;
+    font-size:14px;
+  }
+  .total-grand-card{
+    top:18px;
+    padding:18px;
+    border:1px solid rgba(255,255,255,.10);
+    border-top:3px solid #C98A43;
+    border-radius:18px;
+    background:
+      radial-gradient(circle at 100% 0%,rgba(15,118,110,.28),transparent 30%),
+      linear-gradient(150deg,#0C203A 0%,#153557 100%);
+    box-shadow:0 18px 40px rgba(16,35,63,.19);
+  }
+  .total-year-block{
+    position:relative;
+    overflow:hidden;
+    padding:20px;
+    border:1px solid rgba(255,255,255,.11);
+    border-radius:14px;
+    background:rgba(255,255,255,.045);
+  }
+  .total-year-block::after{
+    content:"";
+    position:absolute;
+    width:90px;
+    height:90px;
+    right:-44px;
+    top:-44px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 0 0 18px rgba(255,255,255,.025);
+  }
+  .total-year-block.year-one{
+    background:linear-gradient(145deg,rgba(194,121,43,.12),rgba(255,255,255,.035));
+  }
+  .total-year-block.year-two{
+    background:linear-gradient(145deg,rgba(15,118,110,.16),rgba(255,255,255,.035));
+  }
+  .total-year-block.year-one .total-grand-eyebrow{color:#F0CC98;}
+  .total-year-block.year-two .total-grand-eyebrow{color:#89D1C6;}
+  .total-grand-label{
+    margin-top:8px;
+    font-size:18px;
+    color:#EAF0F5;
+  }
+  .total-grand-value{
+    margin-top:13px;
+    font-size:clamp(21px,2vw,28px);
+    letter-spacing:-.025em;
+  }
+  .total-year-block.year-one .total-grand-value{color:#FFF8EC;}
+  .total-year-block.year-two .total-grand-value{color:#E8FFFA;}
+  .total-year-caption{
+    max-width:90%;
+    margin-top:10px;
+    color:#AFC2D0;
+  }
+  .total-grand-rule{margin:14px 2px;}
+  .total-grand-meta{
+    margin-top:0;
+    padding:10px 7px;
+    border-bottom:1px solid rgba(255,255,255,.075);
+    color:#AFC2D0;
+  }
+  .total-grand-meta strong{max-width:60%;}
+  .total-assumption{
+    margin-top:14px;
+    padding:13px 14px;
+    border-left:3px solid #C98A43;
+    border-radius:5px 10px 10px 5px;
+    background:rgba(255,255,255,.055);
+    color:#C5D3DD;
+  }
+  @media(max-width:1120px){
+    .total-cost-shell{grid-template-columns:minmax(0,1fr) 360px;}
+    .total-plan-name{font-size:14px;}
+  }
+  @media(max-width:980px){
+    .total-cost-shell{grid-template-columns:1fr;}
+    .total-grand-card{position:static;}
+  }
+  @media(max-width:700px){
+    #totalCostSection > .block-head{
+      min-height:0;
+      padding:19px;
+      flex-wrap:wrap;
+    }
+    #totalCostSection > .block-head .block-desc{
+      width:100%;
+      margin:2px 0 0 46px;
+      justify-content:flex-start;
+      text-align:left;
+    }
+    .total-cost-card-sub{padding-left:0;}
+    .total-plan-option{min-height:132px;}
+    .total-summary-table .num{white-space:normal;}
+  }
+
 </style>
 </head>
 <body data-view="wise1">
@@ -1063,28 +1423,28 @@
     <div class="block-head">
       <span class="block-index">08</span>
       <span class="block-title">Total Cost</span>
-      <span class="block-desc">eKYC + 12-Month AWS + Launch Budget</span>
+      <span class="block-desc"><span class="total-status-dot"></span> Live Budget Model · Year 1–2 Outlook</span>
     </div>
 
     <div class="total-cost-shell">
       <div>
         <div class="total-cost-card margin-b-24">
           <div class="total-cost-card-head">
-            <div class="total-cost-card-title">1. Select One eKYC Plan</div>
+            <div class="total-cost-card-title"><span class="total-step">01</span><span>Select One eKYC Plan</span></div>
             <div class="total-cost-card-sub">Choose one of the three commercial plans to include in the Year 1 total.</div>
           </div>
           <div class="total-plan-options" id="totalPlanOptions">
-            <button class="total-plan-option active" type="button" data-total-plan="wise1">
+            <button class="total-plan-option active" type="button" aria-pressed="true" data-total-plan="wise1">
               <span class="total-plan-number">1</span>
               <span class="total-plan-name">WISE AI · Plan 1</span>
               <span class="total-plan-cost" id="totalWise1OptionCost">RM 38,880.00</span>
             </button>
-            <button class="total-plan-option" type="button" data-total-plan="wise2">
+            <button class="total-plan-option" type="button" aria-pressed="false" data-total-plan="wise2">
               <span class="total-plan-number">2</span>
               <span class="total-plan-name">WISE AI · Plan 2</span>
               <span class="total-plan-cost">RM 32,400.00</span>
             </button>
-            <button class="total-plan-option" type="button" data-total-plan="innov8tif">
+            <button class="total-plan-option" type="button" aria-pressed="false" data-total-plan="innov8tif">
               <span class="total-plan-number">3</span>
               <span class="total-plan-name">Innov8tif · EMAS eKYC</span>
               <span class="total-plan-cost" id="totalInnovOptionCost">RM 56,160.00</span>
@@ -1112,7 +1472,7 @@
 
         <div class="total-cost-card">
           <div class="total-cost-card-head">
-            <div class="total-cost-card-title">2. Year 1 Cost Breakdown</div>
+            <div class="total-cost-card-title"><span class="total-step">02</span><span>Year 1 Cost Breakdown</span></div>
             <div class="total-cost-card-sub">AWS is calculated for 12 months. Launch Budget is treated as a one-time cost.</div>
           </div>
           <table class="total-summary-table">
@@ -1140,14 +1500,14 @@
       </div>
 
       <aside class="total-grand-card" aria-live="polite">
-        <div class="total-year-block">
+        <div class="total-year-block year-one">
           <div class="total-grand-eyebrow">Estimated Year 1 Budget</div>
           <div class="total-grand-label">Year 1 Total Cost Range</div>
           <div class="total-grand-value" id="totalGrandValue">RM 49,875.88<br>– RM 69,017.08</div>
           <div class="total-year-caption">eKYC Year 1 + 12-month AWS + one-time Launch Budget</div>
         </div>
         <div class="total-grand-rule"></div>
-        <div class="total-year-block">
+        <div class="total-year-block year-two">
           <div class="total-grand-eyebrow">Estimated Year 2 Budget</div>
           <div class="total-grand-label">Year 2 Total Cost Range</div>
           <div class="total-grand-value" id="totalGrandY2Value">RM 35,835.88<br>– RM 54,977.08</div>
@@ -1439,7 +1799,11 @@
     const totalY2High = ekyc.y2Amount + awsHighAnnual;
     const rangeText = `${fmtRMWithPrefix(totalLow)} – ${fmtRMWithPrefix(totalHigh)}`;
 
-    totalPlanOptions.forEach(btn => btn.classList.toggle('active', btn.dataset.totalPlan === totalSelectedPlan));
+    totalPlanOptions.forEach(btn => {
+      const active = btn.dataset.totalPlan === totalSelectedPlan;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
     totalInnovTierControlEl.classList.toggle('hidden', totalSelectedPlan !== 'innov8tif');
 
     document.getElementById('totalWise1OptionCost').textContent = fmtRMWithPrefix(getWisePlan1Y1Gross());
