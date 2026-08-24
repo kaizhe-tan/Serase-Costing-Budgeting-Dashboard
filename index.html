@@ -566,10 +566,22 @@
   body[data-view="analysis"] #ekyc-strategy,
   body[data-view="analysis"] #infra,
   body[data-view="analysis"] #marketing,
-  body[data-view="analysis"] #totalCostSection{display:none;}
+  body[data-view="analysis"] #totalCostSection,
+  body[data-view="ai"] #ekyc-strategy,
+  body[data-view="ai"] #infra,
+  body[data-view="ai"] #marketing,
+  body[data-view="ai"] #totalCostSection,
+  body[data-view="business"] #ekyc-strategy,
+  body[data-view="business"] #infra,
+  body[data-view="business"] #marketing,
+  body[data-view="business"] #totalCostSection{display:none;}
 
   body[data-view] #costingAnalysisSection{display:none;}
   body[data-view="analysis"] #costingAnalysisSection{display:block;}
+  body[data-view] #aiDecisionSection{display:none;}
+  body[data-view="ai"] #aiDecisionSection{display:block;}
+  body[data-view] #businessSummarySection{display:none;}
+  body[data-view="business"] #businessSummarySection{display:block;}
 
   body[data-view="wise1"] #vendorCardGrid,
   body[data-view="wise2"] #vendorCardGrid,
@@ -1758,19 +1770,63 @@
   .analysis-list li{margin:0 0 10px;color:#4D6279;font-size:13px;line-height:1.55;}
   .analysis-list li:last-child{margin-bottom:0;}
   .analysis-decisions{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:decision;}
+  .analysis-decisions.six{grid-template-columns:repeat(3,minmax(0,1fr));}
   .analysis-decision{position:relative;min-height:155px;padding:48px 17px 18px;border-radius:15px;color:#fff;background:#102846;counter-increment:decision;}
   .analysis-decision::before{content:"0" counter(decision);position:absolute;top:16px;left:17px;color:#F2D3A5;font:700 12px 'IBM Plex Mono',monospace;}
   .analysis-decision strong{display:block;margin-bottom:7px;font:600 16px/1.25 'Fraunces',serif;}
   .analysis-decision span{color:#C9D7E5;font-size:11px;line-height:1.55;}
   .analysis-source{margin:20px 0 0;padding:15px 18px;border:1px solid #DDE5E2;border-radius:13px;background:#F7F9F8;color:#66788C;font-size:11px;line-height:1.6;}
+  .analysis-assumptions{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:22px;}
+  .analysis-assumption{padding:14px 15px;border:1px solid #DDE5E2;border-radius:13px;background:#F8FAF9;}
+  .analysis-assumption span{display:block;color:#718196;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+  .analysis-assumption strong{display:block;margin-top:6px;color:#102846;font-size:13px;line-height:1.35;}
+  .analysis-scenarios{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:24px;}
+  .analysis-scenario{position:relative;padding:21px;border:1px solid #DDE5E2;border-radius:16px;background:#fff;box-shadow:0 7px 19px rgba(14,42,68,.045);}
+  .analysis-scenario.recommended{border-color:#63AFA6;background:#F2F9F7;}
+  .analysis-scenario.warning{border-color:#D8B887;background:#FFF9F0;}
+  .analysis-scenario.danger{border-color:#D8A8B2;background:#FCF5F6;}
+  .analysis-scenario-tag{display:inline-block;margin-bottom:13px;padding:5px 8px;border-radius:999px;background:#E9EEF2;color:#52667C;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;}
+  .analysis-scenario.recommended .analysis-scenario-tag{background:#DDEFEA;color:#0F766E;}
+  .analysis-scenario.warning .analysis-scenario-tag{background:#F5E7CF;color:#8A5B1C;}
+  .analysis-scenario.danger .analysis-scenario-tag{background:#F2DDE2;color:#8B2D43;}
+  .analysis-scenario h4{margin:0 0 14px;color:#102846;font:600 17px/1.25 'Fraunces',serif;}
+  .analysis-scenario dl{display:grid;gap:8px;margin:0;}
+  .analysis-scenario dl div{display:flex;justify-content:space-between;gap:12px;padding-top:8px;border-top:1px solid rgba(33,58,83,.09);}
+  .analysis-scenario dt{color:#718196;font-size:11px;}
+  .analysis-scenario dd{margin:0;color:#233A53;font:700 11px 'IBM Plex Mono',monospace;text-align:right;}
+  .analysis-cost-stack{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;}
+  .analysis-cost-item{padding:20px;border-radius:15px;background:#102846;color:#fff;}
+  .analysis-cost-item:nth-child(2){background:#173A60;}
+  .analysis-cost-item:nth-child(3){background:#0F766E;}
+  .analysis-cost-item:nth-child(4){background:#6D2437;}
+  .analysis-cost-item span{display:block;color:#C8D5E2;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+  .analysis-cost-item strong{display:block;margin:10px 0 6px;font:700 18px/1.25 'IBM Plex Mono',monospace;}
+  .analysis-cost-item small{display:block;color:#D8E2EB;font-size:11px;line-height:1.5;}
+  .analysis-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:24px;}
+  .analysis-time{padding:18px;border-radius:14px;background:#F3F6F5;text-align:center;}
+  .analysis-time strong{display:block;color:#102846;font:700 23px/1.2 'IBM Plex Mono',monospace;}
+  .analysis-time span{display:block;margin-top:7px;color:#68798C;font-size:11px;line-height:1.45;}
+  .analysis-time.never{background:#F6E8EB;}
+  .analysis-time.never strong{color:#8B2D43;}
+  .analysis-levers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;counter-reset:lever;}
+  .analysis-lever{position:relative;min-height:138px;padding:44px 18px 17px;border:1px solid #DDE5E2;border-radius:15px;background:#fff;counter-increment:lever;}
+  .analysis-lever::before{content:"0" counter(lever);position:absolute;top:15px;left:18px;color:#0F766E;font:800 11px 'IBM Plex Mono',monospace;}
+  .analysis-lever strong{display:block;margin-bottom:6px;color:#102846;font:600 16px/1.25 'Fraunces',serif;}
+  .analysis-lever span{color:#68798C;font-size:11px;line-height:1.55;}
+  .analysis-market-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .analysis-market-note{padding:21px;border-radius:15px;background:#F7F0E7;color:#60441F;font-size:13px;line-height:1.65;}
+  .analysis-market-note strong{color:#8A5B1C;}
+  .analysis-status{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:#E4F2EF;color:#0F766E;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
+  .analysis-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#0F766E;box-shadow:0 0 0 4px rgba(15,118,110,.12);}
   @media(max-width:1100px){
     .analysis-hero,.analysis-grid{grid-template-columns:1fr;}
-    .analysis-kpis,.analysis-sensitivities{grid-template-columns:repeat(2,minmax(0,1fr));}
-    .analysis-decisions{grid-template-columns:repeat(3,minmax(0,1fr));}
+    .analysis-kpis,.analysis-sensitivities,.analysis-scenarios,.analysis-cost-stack{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .analysis-assumptions{grid-template-columns:repeat(3,minmax(0,1fr));}
+    .analysis-decisions,.analysis-decisions.six{grid-template-columns:repeat(3,minmax(0,1fr));}
   }
   @media(max-width:760px){
     .analysis-hero{padding:28px 24px;}
-    .analysis-kpis,.analysis-drivers,.analysis-sensitivities,.analysis-dual,.analysis-decisions{grid-template-columns:1fr;}
+    .analysis-kpis,.analysis-drivers,.analysis-sensitivities,.analysis-dual,.analysis-decisions,.analysis-scenarios,.analysis-cost-stack,.analysis-assumptions,.analysis-timeline,.analysis-levers,.analysis-market-grid{grid-template-columns:1fr;}
     .analysis-table{min-width:680px;}
     .analysis-table-wrap{overflow-x:auto;}
     .analysis-section-title{align-items:flex-start;flex-direction:column;}
@@ -1801,7 +1857,9 @@
       <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="aws">6. AWS Infrastructure Cost</button>
       <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="marketing">7. Marketing Launch Budget</button>
       <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="total">8. Total Cost</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="analysis">9. Costing Analysis</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="analysis">9. Executive Cost Overview</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="ai">10. AI Decision Analysis</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="business">11. Pricing &amp; Business Summary</button>
     </div>
   </div>
   <!-- KPI Overview -->
@@ -2171,177 +2229,284 @@
     </div>
   </section>
 
-  <!-- ================= Section 9: Costing Analysis ================= -->
+  <!-- ================= Section 9: Executive Cost Overview ================= -->
   <section class="block" id="costingAnalysisSection">
     <div class="block-head">
       <span class="block-index">09</span>
-      <span class="block-title">Costing Analysis</span>
-      <span class="block-desc">Three-year affordability, unit economics and funding implications</span>
+      <span class="block-title">Executive Cost Overview</span>
+      <span class="block-desc">Latest model · three-year revenue, cost and scenario range</span>
     </div>
 
     <div class="analysis-hero">
       <div>
-        <span class="analysis-kicker">Executive Financial Assessment · 3-Year View</span>
-        <h2>Growth is achievable, but the current cost structure is not yet self-funding.</h2>
-        <p>The model projects meaningful subscriber growth and RM 4.10 million in net subscription revenue. However, eKYC, infrastructure and acquisition costs create a material funding gap, while Year 3 unit economics remain below the 3.0x LTV:CAC target.</p>
+        <span class="analysis-kicker">Executive Financial Overview · Model v6</span>
+        <h2>The base business is viable; AI cost determines how much value remains.</h2>
+        <p>Net subscription revenue remains RM 4.10 million in every scenario. Total cost ranges from RM 2.45 million without AI on the low AWS band to RM 5.04 million with full-cost AI on the high band.</p>
       </div>
       <div class="analysis-hero-verdict">
-        <span class="analysis-card-kicker">Board-level verdict</span>
-        <strong>Proceed as a funded growth investment</strong>
-        <span>Do not treat Year 1 as a break-even launch. Lock down AI costs, improve acquisition efficiency and raise monetisation or retention before scale.</span>
+        <span class="analysis-card-kicker">Management view</span>
+        <strong>Protect the viable base case</strong>
+        <span>Lock WISE Postpaid and CPA at USD 1.50. Keep AI only if procurement and architecture can hold it inside the low-cost band.</span>
+      </div>
+    </div>
+
+    <div class="analysis-assumptions">
+      <div class="analysis-assumption"><span>eKYC</span><strong>WISE Postpaid</strong></div>
+      <div class="analysis-assumption"><span>Marketing CPA</span><strong>USD 1.50</strong></div>
+      <div class="analysis-assumption"><span>FX Rate</span><strong>USD 1 = RM 4.09</strong></div>
+      <div class="analysis-assumption"><span>3-Year Revenue</span><strong>RM 4.10m</strong></div>
+      <div class="analysis-assumption"><span>Salaries</span><strong>Excluded</strong></div>
+      <div class="analysis-assumption"><span>AI Cost Scenarios</span><strong>No AI · Low · High</strong></div>
+    </div>
+
+    <div class="analysis-kpis">
+      <article class="analysis-kpi navy"><span class="analysis-kpi-label">3-Year Revenue</span><strong>RM 4.10m</strong><small>Held constant across all modelled scenarios.</small></article>
+      <article class="analysis-kpi danger"><span class="analysis-kpi-label">3-Year Cost Range</span><strong>RM 2.45m–5.04m</strong><small>No AI · AWS low through full AI · AWS high.</small></article>
+      <article class="analysis-kpi gold"><span class="analysis-kpi-label">Contribution Range</span><strong>−RM 0.94m to +RM 1.65m</strong><small>The high AI case destroys the available contribution.</small></article>
+      <article class="analysis-kpi teal"><span class="analysis-kpi-label">Year 3 LTV:CAC</span><strong>1.07x–3.01x</strong><small>Compared with the 3.0x operating target.</small></article>
+    </div>
+
+    <div class="analysis-section-title"><h3>Scenario overview</h3><p>Four decision anchors from the complete six-scenario model.</p></div>
+    <div class="analysis-scenarios">
+      <article class="analysis-scenario recommended">
+        <span class="analysis-scenario-tag">Strongest case</span><h4>No AI · AWS Low</h4>
+        <dl><div><dt>3-Year Cost</dt><dd>RM 2.45m</dd></div><div><dt>Contribution</dt><dd>+RM 1.65m</dd></div><div><dt>Breakeven</dt><dd>Month 24</dd></div><div><dt>Year 3 LTV:CAC</dt><dd>3.01x</dd></div></dl>
+      </article>
+      <article class="analysis-scenario recommended">
+        <span class="analysis-scenario-tag">Conservative base</span><h4>No AI · AWS High</h4>
+        <dl><div><dt>3-Year Cost</dt><dd>RM 2.66m</dd></div><div><dt>Contribution</dt><dd>+RM 1.44m</dd></div><div><dt>Breakeven</dt><dd>Month 26</dd></div><div><dt>Year 3 LTV:CAC</dt><dd>2.76x</dd></div></dl>
+      </article>
+      <article class="analysis-scenario warning">
+        <span class="analysis-scenario-tag">Conditional</span><h4>Full AI · AWS Low</h4>
+        <dl><div><dt>3-Year Cost</dt><dd>RM 2.93m</dd></div><div><dt>Contribution</dt><dd>+RM 1.17m</dd></div><div><dt>Breakeven</dt><dd>Month 27</dd></div><div><dt>Year 3 LTV:CAC</dt><dd>2.46x</dd></div></dl>
+      </article>
+      <article class="analysis-scenario danger">
+        <span class="analysis-scenario-tag">Not viable</span><h4>Full AI · AWS High</h4>
+        <dl><div><dt>3-Year Cost</dt><dd>RM 5.04m</dd></div><div><dt>Contribution</dt><dd>−RM 0.94m</dd></div><div><dt>Breakeven</dt><dd>Never</dd></div><div><dt>Year 3 LTV:CAC</dt><dd>1.07x</dd></div></dl>
+      </article>
+    </div>
+
+    <div class="analysis-section-title"><h3>Three-year cost composition</h3><p>AI is the largest source of uncertainty, not eKYC or base AWS.</p></div>
+    <div class="analysis-cost-stack">
+      <article class="analysis-cost-item"><span>WISE Postpaid eKYC</span><strong>RM 541,486</strong><small>Three years, including SST where applicable.</small></article>
+      <article class="analysis-cost-item"><span>Marketing @ USD 1.50</span><strong>RM 1,572,207</strong><small>Modelled paid acquisition across Years 1–3.</small></article>
+      <article class="analysis-cost-item"><span>AWS · No AI</span><strong>RM 338,109–549,456</strong><small>Low and high infrastructure bands.</small></article>
+      <article class="analysis-cost-item"><span>Incremental AI</span><strong>RM 238,283–2,374,402</strong><small>Fivefold quoted inference range drives the outcome.</small></article>
+    </div>
+
+    <div class="analysis-grid" style="margin-top:24px;">
+      <article class="analysis-panel">
+        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Executive summary</span><h3>What the overview means</h3></div><span class="analysis-status">Decision-ready base</span></div>
+        <ul class="analysis-list">
+          <li>The No AI scenario is the most stable, reaching profitability by Year 2.</li>
+          <li>The AI Low Cost scenario is viable but must be strictly limited to paid tiers.</li>
+          <li>The AI High Cost scenario cannot be supported by the current business model.</li>
+        </ul>
+      </article>
+      <aside class="analysis-panel analysis-recommendation">
+        <span class="analysis-card-kicker">eKYC recommendation</span><h3>WISE Postpaid</h3><span class="analysis-price">RM 541,486</span><p>Three-year modelled total.</p>
+        <ul class="analysis-reasons"><li>Cheapest modelled eKYC option.</li><li>Only plan without an unpriced quota in the model.</li><li>Confirm there is no volume cap before commitment.</li></ul>
+      </aside>
+    </div>
+
+    <p class="analysis-source"><strong>Analysis basis:</strong> Serase_Costing_Budget_v6.xlsx and Serase_Pricing_Model.xlsx. Revenue is held constant across scenarios; contribution is revenue less modelled eKYC, AWS and marketing costs. Salaries are excluded.</p>
+  </section>
+
+  <!-- ================= Section 10: AI Decision Analysis ================= -->
+  <section class="block" id="aiDecisionSection">
+    <div class="block-head">
+      <span class="block-index">10</span>
+      <span class="block-title">AI Decision Analysis</span>
+      <span class="block-desc">Inference cost, payback hurdle and control actions</span>
+    </div>
+
+    <div class="analysis-hero">
+      <div>
+        <span class="analysis-kicker">With AI, or Without · Decision Model</span>
+        <h2>Keep AI only if it can be gated and engineered into the low-cost band.</h2>
+        <p>The same feature produces opposite financial outcomes depending on inference cost. Low-cost AI can pay for itself with a modest performance uplift; high-cost AI cannot be justified by credible conversion gains.</p>
+      </div>
+      <div class="analysis-hero-verdict">
+        <span class="analysis-card-kicker">Recommendation</span>
+        <strong>Paid tiers · low-cost architecture</strong>
+        <span>Obtain a real inference estimate, remove free-tier exposure, cap monthly spend and design graceful degradation before launch.</span>
       </div>
     </div>
 
     <div class="analysis-kpis">
-      <article class="analysis-kpi danger">
-        <span class="analysis-kpi-label">3-Year Total Cost</span>
-        <strong>RM 4.5m–6.6m</strong>
-        <small>eKYC + AWS + marketing; salaries excluded.</small>
-      </article>
-      <article class="analysis-kpi navy">
-        <span class="analysis-kpi-label">Net Subscription Revenue</span>
-        <strong>RM 4.10m</strong>
-        <small>Projected aggregate across Years 1–3.</small>
-      </article>
-      <article class="analysis-kpi gold">
-        <span class="analysis-kpi-label">Approx. Funding Gap</span>
-        <strong>RM 0.4m–2.5m</strong>
-        <small>Derived from the rounded total-cost range.</small>
-      </article>
-      <article class="analysis-kpi teal">
-        <span class="analysis-kpi-label">Year 3 LTV:CAC</span>
-        <strong>1.62x / 1.07x</strong>
-        <small>AWS low / AWS high scenarios versus a 3.0x target.</small>
-      </article>
+      <article class="analysis-kpi teal"><span class="analysis-kpi-label">Low-Band AI Contribution</span><strong>+RM 1.17m</strong><small>Full AI cost · AWS low over three years.</small></article>
+      <article class="analysis-kpi danger"><span class="analysis-kpi-label">High-Band AI Contribution</span><strong>−RM 0.94m</strong><small>Full AI cost · AWS high; never breaks even.</small></article>
+      <article class="analysis-kpi gold"><span class="analysis-kpi-label">Low-Band Payback Hurdle</span><strong>+7.1%</strong><small>Relative paid-conversion uplift required in Year 3.</small></article>
+      <article class="analysis-kpi navy"><span class="analysis-kpi-label">Quoted Monthly Range</span><strong>USD 3k–15k</strong><small>A fivefold range that must be narrowed.</small></article>
     </div>
 
-    <div class="analysis-grid">
+    <div class="analysis-section-title"><h3>What AI actually costs</h3><p>Incremental three-year spend on top of the no-AI base.</p></div>
+    <div class="analysis-cost-stack">
+      <article class="analysis-cost-item"><span>Half Cost · AWS Low</span><strong>RM 238,283</strong><small>Lowest modelled incremental AI cost.</small></article>
+      <article class="analysis-cost-item"><span>Full Cost · AWS Low</span><strong>RM 476,566</strong><small>Still supportable with measurable product uplift.</small></article>
+      <article class="analysis-cost-item"><span>Half Cost · AWS High</span><strong>RM 1,187,201</strong><small>Requires a demanding commercial uplift.</small></article>
+      <article class="analysis-cost-item"><span>Full Cost · AWS High</span><strong>RM 2,374,402</strong><small>Not supportable under current pricing and churn.</small></article>
+    </div>
+
+    <div class="analysis-section-title"><h3>What AI must deliver to pay for itself</h3><p>Year 3 uplift required over the no-AI case.</p></div>
+    <article class="analysis-panel">
+      <div class="analysis-table-wrap">
+        <table class="analysis-table">
+          <thead><tr><th>Scenario</th><th>Year 3 AI Cost</th><th>Conversion Uplift</th><th>Churn Down To</th><th>Verdict</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Half Cost · AWS Low</strong></td><td>RM 178,727</td><td>+3.6%</td><td>15.45%</td><td class="ratio best">Very Achievable</td></tr>
+            <tr><td><strong>Full Cost · AWS Low</strong></td><td>RM 357,454</td><td>+7.1%</td><td>14.94%</td><td class="ratio best">Achievable</td></tr>
+            <tr><td><strong>Half Cost · AWS High</strong></td><td>RM 893,635</td><td>+17.8%</td><td>13.58%</td><td class="ratio">Demanding</td></tr>
+            <tr><td><strong>Full Cost · AWS High</strong></td><td>RM 1,787,270</td><td>+35.6%</td><td>11.80%</td><td class="ratio">Not Credible</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="analysis-verdict"><strong>Read the low-band case:</strong> a move from 10.0% paid penetration to approximately 10.7%, or monthly churn from 16% to 14.94%, is enough for full-cost AI to pay for itself under AWS low.</div>
+    </article>
+
+    <div class="analysis-section-title"><h3>Breakeven timeline</h3><p>Month when cumulative contribution first turns positive.</p></div>
+    <article class="analysis-panel"><div class="analysis-timeline">
+      <div class="analysis-time"><strong>Month 24</strong><span>No AI · AWS Low</span></div>
+      <div class="analysis-time"><strong>Month 26</strong><span>Half AI Cost · AWS Low</span></div>
+      <div class="analysis-time"><strong>Month 27</strong><span>Full AI Cost · AWS Low</span></div>
+      <div class="analysis-time never"><strong>Never</strong><span>Full AI Cost · AWS High</span></div>
+    </div></article>
+
+    <div class="analysis-section-title"><h3>Six cost-control levers</h3><p>Roughly ordered by impact per unit of effort.</p></div>
+    <div class="analysis-levers">
+      <article class="analysis-lever"><strong>Remove AI from Core</strong><span>Free users hold about half of the prompt allowance. Paid-only access cuts the ceiling and strengthens the paywall.</span></article>
+      <article class="analysis-lever"><strong>Use a smaller model</strong><span>One- or two-sentence icebreakers do not require a frontier model.</span></article>
+      <article class="analysis-lever"><strong>Cache and template</strong><span>Precompute profile openers and vary them instead of generating on every tap.</span></article>
+      <article class="analysis-lever"><strong>Drop image analysis</strong><span>Outfit-check vision calls are expensive and are not core to the product proposition.</span></article>
+      <article class="analysis-lever"><strong>Enforce daily caps</strong><span>Apply the existing prompt limits server-side so they operate as real cost controls.</span></article>
+      <article class="analysis-lever"><strong>Set a spend ceiling</strong><span>Use graceful degradation to templated suggestions when the monthly cap is reached.</span></article>
+    </div>
+
+    <div class="analysis-section-title"><h3>Management decisions required</h3><p>Complete these before committing AI to launch scope.</p></div>
+    <div class="analysis-decisions">
+      <article class="analysis-decision"><strong>Lock inference pricing</strong><span>Obtain a precise, locked-in AI inference quotation.</span></article>
+      <article class="analysis-decision"><strong>Confirm Core access</strong><span>Decide whether Core users will have any access to AI.</span></article>
+      <article class="analysis-decision"><strong>Set the ceiling</strong><span>Establish a hard monthly spend ceiling for AI operations.</span></article>
+      <article class="analysis-decision"><strong>Design degradation</strong><span>Define the product fallback when the budget ceiling is reached.</span></article>
+      <article class="analysis-decision"><strong>Recalculate</strong><span>Re-run the financial model once formal AI pricing is received.</span></article>
+    </div>
+
+    <p class="analysis-source"><strong>Analysis basis:</strong> Serase_AI_Decision_Deck.pptx · Serase_Costing_Budget_v6.xlsx. Revenue is intentionally held constant so AI is credited with no unproven uplift.</p>
+  </section>
+
+  <!-- ================= Section 11: Pricing & Business Summary ================= -->
+  <section class="block" id="businessSummarySection">
+    <div class="block-head">
+      <span class="block-index">11</span>
+      <span class="block-title">Pricing &amp; Business Summary</span>
+      <span class="block-desc">No-AI baseline · pricing ladder, cost base and unit economics</span>
+    </div>
+
+    <div class="analysis-hero">
+      <div>
+        <span class="analysis-kicker">Malaysian Market · Commercial Baseline</span>
+        <h2>Without AI cost, the model reaches a credible Year 3 position.</h2>
+        <p>The current price ladder supports a three-year contribution of RM 1.44–1.65 million. Year 2 becomes the first profitable year and the AWS-low Year 3 LTV:CAC reaches 3.01x.</p>
+      </div>
+      <div class="analysis-hero-verdict">
+        <span class="analysis-card-kicker">Commercial status</span>
+        <strong>Viable, with two dependencies</strong>
+        <span>WISE Postpaid must remain uncapped and paid acquisition must stay near the USD 1.50 CPA target.</span>
+      </div>
+    </div>
+
+    <div class="analysis-kpis">
+      <article class="analysis-kpi teal"><span class="analysis-kpi-label">Year 3 LTV:CAC</span><strong>3.01x</strong><small>AWS-low baseline; AWS-high reaches 2.76x.</small></article>
+      <article class="analysis-kpi navy"><span class="analysis-kpi-label">3-Year Contribution</span><strong>RM 1.44m–1.65m</strong><small>Contribution is not profit; salaries are excluded.</small></article>
+      <article class="analysis-kpi gold"><span class="analysis-kpi-label">First Profitable Year</span><strong>Year 2</strong><small>Year 1 is intentionally treated as investment.</small></article>
+      <article class="analysis-kpi danger"><span class="analysis-kpi-label">3-Year Cost</span><strong>RM 2.45m–2.66m</strong><small>eKYC + AWS + marketing, without AI.</small></article>
+    </div>
+
+    <div class="analysis-section-title"><h3>Subscription price ladder</h3><p>MYR, gross of app-store commission.</p></div>
+    <article class="analysis-panel">
+      <div class="analysis-table-wrap"><table class="analysis-table">
+        <thead><tr><th>Tier</th><th>Weekly</th><th>Monthly</th><th>3-Month</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Core</strong></td><td>Free</td><td>Free</td><td>Free</td></tr>
+          <tr><td><strong>Select</strong></td><td>RM 9.90</td><td>RM 19.90</td><td>RM 44.90</td></tr>
+          <tr><td><strong>Elite</strong></td><td>RM 19.90</td><td>RM 39.90</td><td>RM 89.90</td></tr>
+          <tr><td><strong>Signature</strong></td><td>RM 39.90</td><td>RM 79.90</td><td>RM 179.90</td></tr>
+        </tbody>
+      </table></div>
+      <div class="analysis-verdict"><strong>Pricing position:</strong> Elite at RM 39.90 is at parity with Bumble Premium and near the top of Tinder Gold's monthly range. Signature at RM 79.90 needs stronger value justification if the AI suite does not launch.</div>
+    </article>
+
+    <div class="analysis-section-title"><h3>Malaysian market position</h3><p>Current Serasé monthly pricing against the competitor benchmark.</p></div>
+    <div class="analysis-market-grid">
       <article class="analysis-panel">
-        <div class="analysis-panel-head">
-          <div><span class="analysis-card-kicker">Unit economics</span><h3>LTV:CAC improves, but never reaches target</h3></div>
-          <span class="analysis-chip">Target ≥ 3.0x</span>
-        </div>
-        <div class="analysis-table-wrap">
-          <table class="analysis-table">
-            <thead>
-              <tr><th>Year</th><th>Net LTV</th><th>CAC · AWS Low</th><th>CAC · AWS High</th><th>LTV:CAC Low</th><th>LTV:CAC High</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>Year 1</strong></td><td>RM 120.99</td><td>RM 308.54</td><td>RM 380.71</td><td class="ratio">0.39x</td><td class="ratio">0.32x</td></tr>
-              <tr><td><strong>Year 2</strong></td><td>RM 134.44</td><td>RM 124.58</td><td>RM 177.38</td><td class="ratio">1.08x</td><td class="ratio">0.76x</td></tr>
-              <tr><td><strong>Year 3</strong></td><td>RM 151.24</td><td>RM 93.18</td><td>RM 140.81</td><td class="ratio best">1.62x</td><td class="ratio">1.07x</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="analysis-verdict"><strong>Interpretation:</strong> cost-to-revenue falls from approximately 421%–520% in Year 1 to 94%–142% in Year 3, but the business remains short of a defensible 3.0x LTV:CAC benchmark.</div>
+        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Monthly benchmark</span><h3>Where Serasé sits</h3></div></div>
+        <div class="analysis-table-wrap"><table class="analysis-table">
+          <thead><tr><th>Product</th><th>RM / Month</th></tr></thead>
+          <tbody><tr><td><strong>Serasé Select</strong></td><td><strong>19.90</strong></td></tr><tr><td><strong>Serasé Elite</strong></td><td><strong>39.90</strong></td></tr><tr><td><strong>Serasé Signature</strong></td><td><strong>79.90</strong></td></tr></tbody>
+        </table></div>
       </article>
-
-      <aside class="analysis-panel analysis-recommendation">
-        <span class="analysis-card-kicker">eKYC recommendation</span>
-        <h3>WISE Postpaid</h3>
-        <span class="analysis-price">RM 541,486</span>
-        <p>Estimated three-year total including SST.</p>
-        <ul class="analysis-reasons">
-          <li>Best fit for scaling without a large prepaid commitment.</li>
-          <li>Commercially simpler for a growth-stage rollout.</li>
-          <li>Confirm that there is no hidden volume cap or step-up pricing.</li>
-          <li>Obtain written confirmation of renewal and overage terms.</li>
+      <article class="analysis-panel">
+        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Strategic implication</span><h3>Value proposition to re-evaluate</h3></div></div>
+        <ul class="analysis-list">
+          <li>Serasé Select is priced at RM 19.90 per month.</li>
+          <li>Serasé Elite at RM 39.90 is priced at exact parity with Bumble Premium.</li>
+          <li>Signature at RM 79.90 is significantly higher than standard competitor tiers.</li>
+          <li>With AI removed, the value proposition of Signature must be urgently re-evaluated.</li>
+          <li>Voice and video calls are not considered competitive advantages because they have been descoped.</li>
         </ul>
-      </aside>
-    </div>
-
-    <div class="analysis-section-title">
-      <h3>Where the money goes</h3>
-      <p>The three dominant cost pools explain the funding requirement.</p>
-    </div>
-    <div class="analysis-drivers">
-      <article class="analysis-driver">
-        <span class="analysis-driver-number">01</span>
-        <h4>Marketing acquisition</h4>
-        <strong>RM 3.14m</strong>
-        <p>Largest modelled spend: 256,268 billable verified registrations at CPA USD 3 and FX RM 4.09.</p>
-      </article>
-      <article class="analysis-driver">
-        <span class="analysis-driver-number">02</span>
-        <h4>AWS infrastructure</h4>
-        <strong>≈ RM 0.82m–2.92m</strong>
-        <p>Implied three-year range. Year 3 should be treated as a floor because usage beyond 50k MAU is extrapolated.</p>
-      </article>
-      <article class="analysis-driver">
-        <span class="analysis-driver-number">03</span>
-        <h4>eKYC verification</h4>
-        <strong>RM 541,486</strong>
-        <p>WISE Postpaid recommendation across three years, including SST and modelled volume growth.</p>
       </article>
     </div>
 
-    <div class="analysis-section-title">
-      <h3>What must change to reach 3.0x</h3>
-      <p>No single practical lever closes the gap in both AWS scenarios.</p>
-    </div>
-    <div class="analysis-sensitivities">
-      <article class="analysis-sensitivity">
-        <span class="analysis-card-kicker">Price only</span>
-        <h4>Elite price</h4>
-        <strong>RM 73.75</strong>
-        <p>Required if price alone carries the improvement burden.</p>
-      </article>
-      <article class="analysis-sensitivity">
-        <span class="analysis-card-kicker">Retention only</span>
-        <h4>Average lifetime</h4>
-        <strong>11.55 months</strong>
-        <p>Equivalent to 8.66% churn versus the current 16% assumption.</p>
-      </article>
-      <article class="analysis-sensitivity">
-        <span class="analysis-card-kicker">CPA only</span>
-        <h4>Paid acquisition</h4>
-        <strong>USD 1.01</strong>
-        <p>Reaches 3.0x only under AWS-low; AWS-high does not reach target even at zero CPA.</p>
-      </article>
-      <article class="analysis-sensitivity">
-        <span class="analysis-card-kicker">Defensible pair</span>
-        <h4>Price + retention</h4>
-        <strong>RM 47.88 · 9.63 mo.</strong>
-        <p>Still requires lower CPA, better conversion and tight infrastructure control.</p>
-      </article>
-    </div>
+    <div class="analysis-section-title"><h3>Three-year cost base</h3><p>WISE Postpaid selected; marketing modelled at USD 1.50 CPA.</p></div>
+    <article class="analysis-panel">
+      <div class="analysis-table-wrap"><table class="analysis-table">
+        <thead><tr><th>Cost Component</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>3-Year</th></tr></thead>
+        <tbody>
+          <tr><td><strong>eKYC · WISE Postpaid</strong></td><td>RM 68,759</td><td>RM 129,019</td><td>RM 343,708</td><td>RM 541,486</td></tr>
+          <tr><td><strong>AWS · Low</strong></td><td>RM 14,569</td><td>RM 69,568</td><td>RM 253,973</td><td>RM 338,109</td></tr>
+          <tr><td><strong>AWS · High</strong></td><td>RM 28,147</td><td>RM 117,378</td><td>RM 403,931</td><td>RM 549,456</td></tr>
+          <tr><td><strong>Marketing · USD 1.50</strong></td><td>RM 128,045</td><td>RM 376,497</td><td>RM 1,067,664</td><td>RM 1,572,207</td></tr>
+        </tbody>
+      </table></div>
+    </article>
+
+    <div class="analysis-section-title"><h3>Unit economics</h3><p>Fully loaded cost per paying subscriber against net lifetime value.</p></div>
+    <article class="analysis-panel">
+      <div class="analysis-table-wrap"><table class="analysis-table">
+        <thead><tr><th>Metric</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Net LTV</strong></td><td>RM 120.99</td><td>RM 134.44</td><td>RM 151.24</td></tr>
+          <tr><td><strong>Fully Loaded CAC · Low</strong></td><td>RM 181.59</td><td>RM 68.17</td><td>RM 50.21</td></tr>
+          <tr><td><strong>Fully Loaded CAC · High</strong></td><td>RM 193.26</td><td>RM 73.84</td><td>RM 54.73</td></tr>
+          <tr><td><strong>LTV:CAC · Low</strong></td><td class="ratio">0.67x</td><td>1.97x</td><td class="ratio best">3.01x</td></tr>
+          <tr><td><strong>LTV:CAC · High</strong></td><td class="ratio">0.63x</td><td>1.82x</td><td>2.76x</td></tr>
+        </tbody>
+      </table></div>
+      <div class="analysis-verdict"><strong>Operating interpretation:</strong> Year 1 stays negative because setup costs are spread across only 1,164 paying subscribers. Year 2 turns positive and Year 3 reaches the 3.0x target only under AWS low.</div>
+    </article>
 
     <div class="analysis-dual">
       <article class="analysis-panel">
-        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Core assumptions</span><h3>Model basis</h3></div></div>
-        <ul class="analysis-list">
-          <li>256,268 paid verifications over three years; monthly volume rises from 1,739 to 14,502.</li>
-          <li>MAU grows from approximately 1k to 179k; AWS costs above 50k MAU are extrapolated.</li>
-          <li>FX rate is USD 1 = RM 4.09 and paid acquisition CPA is USD 3.</li>
-          <li>Quota overage is extended at the quoted plan rate for like-for-like comparison.</li>
-          <li>Salaries and Innov8tif optional modules are excluded.</li>
-        </ul>
+        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Open risks</span><h3>What can still move the model</h3></div></div>
+        <ul class="analysis-list"><li>CPA USD 1.50 is a target, not a vendor quote; at USD 3.00 Year 3 falls to roughly 2.0x.</li><li>Monthly churn of 20% / 18% / 16% is an estimate rather than measured behaviour.</li><li>WISE Prepaid top-up, Innov8tif reload and implementation treatment remain TBC.</li><li>Salaries are excluded, so contribution should not be read as profit.</li><li>Any future AI reintroduction brings the related inference cost back.</li></ul>
       </article>
       <article class="analysis-panel">
-        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Open commercial risks</span><h3>Items to confirm</h3></div></div>
-        <ul class="analysis-list">
-          <li>AI Companion may add USD 3k–15k per month at 50k MAU.</li>
-          <li>WISE prepaid top-up pricing remains TBC.</li>
-          <li>Innov8tif reload pricing and credit-expiry terms remain TBC.</li>
-          <li>Resolve the RM 68,400 versus RM 19,000 implementation-cost discrepancy.</li>
-          <li>Year 3 AWS should be treated as a floor until a scaled architecture is priced.</li>
-        </ul>
+        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Signature risk</span><h3>Revalidate the top tier</h3></div></div>
+        <div class="analysis-market-note"><strong>Without the Advanced AI Suite, Signature is the most exposed tier.</strong><br><br>At RM 79.90, its remaining proposition relies on VIP support, the Signature badge and incognito mode. Management should decide whether it launches immediately, is reworked, or is deferred.</div>
       </article>
     </div>
 
-    <div class="analysis-section-title">
-      <h3>Executive decisions required</h3>
-      <p>Five actions before committing to scaled rollout.</p>
-    </div>
-    <div class="analysis-decisions">
-      <article class="analysis-decision"><strong>Pin down AI cost</strong><span>Secure a usable commercial schedule for the AI Companion at scale.</span></article>
-      <article class="analysis-decision"><strong>Select WISE Postpaid</strong><span>Proceed subject to confirmation of volume caps, overage and renewal terms.</span></article>
-      <article class="analysis-decision"><strong>Close all TBCs</strong><span>Get top-up, expiry, reload and implementation charges in writing.</span></article>
-      <article class="analysis-decision"><strong>Move every lever</strong><span>Improve CPA, conversion, pricing and retention together.</span></article>
-      <article class="analysis-decision"><strong>Fund Year 1 deliberately</strong><span>Treat launch year as an investment phase, not a break-even year.</span></article>
+    <div class="analysis-section-title"><h3>Final business decisions</h3><p>Six approvals needed before launch economics are locked.</p></div>
+    <div class="analysis-decisions six">
+      <article class="analysis-decision"><strong>Determine AI status</strong><span>Confirm whether AI is permanently removed or temporarily deferred.</span></article>
+      <article class="analysis-decision"><strong>Lock WISE Postpaid</strong><span>Select WISE Postpaid as the primary eKYC vendor and confirm there is no hidden cap.</span></article>
+      <article class="analysis-decision"><strong>Decide Signature</strong><span>Determine whether Signature should launch initially without AI.</span></article>
+      <article class="analysis-decision"><strong>Enhance Elite</strong><span>Review additions such as unlimited swipes to compensate for the lack of AI.</span></article>
+      <article class="analysis-decision"><strong>Control CPA</strong><span>Maintain Marketing CPA at or below USD 1.50.</span></article>
+      <article class="analysis-decision"><strong>Lock future AI quotes</strong><span>Obtain precise quotations before any future AI integration.</span></article>
     </div>
 
-    <p class="analysis-source"><strong>Analysis basis:</strong> Serase_Costing_Budget_v5.xlsx and Serase_Pricing_Model.xlsx; snapshot dated 19 Aug 2026. Rounded totals may create small differences in derived ranges.</p>
+    <p class="analysis-source"><strong>Analysis basis:</strong> Serase_Summary_Deck.pptx · Serase_Pricing_Model.xlsx · Serase_Costing_Budget_v6.xlsx · market snapshot 19 Aug 2026. No voice-call or video-call benefit is included.</p>
   </section>
 </main>
 
