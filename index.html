@@ -563,6 +563,14 @@
   body[data-view] #totalCostSection{display:none;}
   body[data-view="total"] #totalCostSection{display:block;}
 
+  body[data-view="analysis"] #ekyc-strategy,
+  body[data-view="analysis"] #infra,
+  body[data-view="analysis"] #marketing,
+  body[data-view="analysis"] #totalCostSection{display:none;}
+
+  body[data-view] #costingAnalysisSection{display:none;}
+  body[data-view="analysis"] #costingAnalysisSection{display:block;}
+
   body[data-view="wise1"] #vendorCardGrid,
   body[data-view="wise2"] #vendorCardGrid,
   body[data-view="innov8tif"] #vendorCardGrid{grid-template-columns:1fr;}
@@ -1633,6 +1641,142 @@
     .currency-note{align-items:flex-start;border-radius:14px;line-height:1.5;}
   }
 
+  /* ---------- Page 9: Costing Analysis ---------- */
+  #costingAnalysisSection{padding-bottom:12px;}
+  .analysis-hero{
+    position:relative;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:minmax(0,1.4fr) minmax(300px,.6fr);
+    gap:34px;
+    padding:42px;
+    margin-bottom:24px;
+    border-radius:22px;
+    color:#fff;
+    background:linear-gradient(120deg,#0B203D 0%,#173A60 58%,#6D2437 100%);
+    box-shadow:0 18px 45px rgba(12,34,62,.18);
+  }
+  .analysis-hero::after{
+    content:"";
+    position:absolute;
+    width:330px;
+    height:330px;
+    right:-120px;
+    top:-170px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:50%;
+    box-shadow:0 0 0 55px rgba(255,255,255,.035),0 0 0 110px rgba(255,255,255,.025);
+  }
+  .analysis-kicker,.analysis-card-kicker{
+    display:block;
+    font:700 11px/1.35 'IBM Plex Mono',monospace;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+  .analysis-kicker{color:#F2D3A5;margin-bottom:13px;}
+  .analysis-hero h2{
+    max-width:760px;
+    margin:0 0 14px;
+    font:600 clamp(30px,3.1vw,48px)/1.05 'Fraunces',serif;
+    letter-spacing:-.025em;
+  }
+  .analysis-hero p{max-width:760px;margin:0;color:#D6E1EC;font-size:15px;line-height:1.75;}
+  .analysis-hero-verdict{
+    position:relative;
+    z-index:1;
+    align-self:stretch;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:25px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:17px;
+    background:rgba(255,255,255,.09);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+  }
+  .analysis-hero-verdict strong{font:600 23px/1.25 'Fraunces',serif;margin:10px 0;color:#fff;}
+  .analysis-hero-verdict span:last-child{color:#D6E1EC;font-size:13px;line-height:1.55;}
+  .analysis-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:24px;}
+  .analysis-kpi{
+    min-height:154px;
+    padding:21px;
+    border:1px solid #DDE5E2;
+    border-radius:16px;
+    background:#fff;
+    box-shadow:0 8px 22px rgba(14,42,68,.055);
+  }
+  .analysis-kpi-label{display:block;color:#60738A;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+  .analysis-kpi strong{display:block;margin:13px 0 8px;color:#102846;font:600 25px/1.15 'Fraunces',serif;}
+  .analysis-kpi small{display:block;color:#68798C;font-size:12px;line-height:1.5;}
+  .analysis-kpi.danger{border-top:4px solid #8B2D43;}
+  .analysis-kpi.gold{border-top:4px solid #C48A43;}
+  .analysis-kpi.teal{border-top:4px solid #0F766E;}
+  .analysis-kpi.navy{border-top:4px solid #173A60;}
+  .analysis-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(310px,.55fr);gap:22px;margin-bottom:24px;}
+  .analysis-panel{
+    overflow:hidden;
+    border:1px solid #DDE5E2;
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 8px 24px rgba(14,42,68,.055);
+  }
+  .analysis-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:23px 24px 19px;border-bottom:1px solid #E5EBE8;background:#FBFCFC;}
+  .analysis-panel-head h3{margin:4px 0 0;color:#102846;font:600 22px/1.2 'Fraunces',serif;}
+  .analysis-card-kicker{color:#0F766E;}
+  .analysis-chip{white-space:nowrap;padding:7px 10px;border-radius:999px;background:#E7F3F1;color:#0F766E;font-size:11px;font-weight:800;}
+  .analysis-table{width:100%;border-collapse:collapse;}
+  .analysis-table th{padding:12px 16px;background:#F4F7F6;color:#5C6F84;font-size:10px;letter-spacing:.07em;text-transform:uppercase;text-align:right;}
+  .analysis-table th:first-child,.analysis-table td:first-child{text-align:left;}
+  .analysis-table td{padding:15px 16px;border-top:1px solid #EDF1EF;text-align:right;color:#263B53;font-size:13px;}
+  .analysis-table .ratio{font-weight:800;color:#8B2D43;}
+  .analysis-table .best{color:#0F766E;}
+  .analysis-verdict{margin:18px 20px 20px;padding:16px 18px;border-left:4px solid #8B2D43;border-radius:0 12px 12px 0;background:#F9F1F3;color:#4A2A34;font-size:13px;line-height:1.65;}
+  .analysis-recommendation{padding:26px;color:#fff;background:linear-gradient(145deg,#102846,#173A60);}
+  .analysis-recommendation .analysis-card-kicker{color:#F2D3A5;}
+  .analysis-recommendation h3{margin:10px 0 5px;font:600 27px/1.15 'Fraunces',serif;}
+  .analysis-price{display:block;margin:18px 0 4px;color:#fff;font:700 29px/1.2 'IBM Plex Mono',monospace;}
+  .analysis-recommendation p{margin:0;color:#C9D7E5;font-size:13px;line-height:1.65;}
+  .analysis-reasons{margin:21px 0 0;padding:0;list-style:none;}
+  .analysis-reasons li{position:relative;margin-top:11px;padding-left:20px;color:#E6EDF4;font-size:13px;line-height:1.5;}
+  .analysis-reasons li::before{content:"✓";position:absolute;left:0;color:#8AD1C8;font-weight:900;}
+  .analysis-section-title{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:31px 0 15px;}
+  .analysis-section-title h3{margin:0;color:#102846;font:600 24px/1.2 'Fraunces',serif;}
+  .analysis-section-title p{margin:0;color:#68798C;font-size:12px;text-align:right;}
+  .analysis-drivers,.analysis-sensitivities{display:grid;gap:15px;}
+  .analysis-drivers{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .analysis-driver,.analysis-sensitivity{padding:21px;border:1px solid #DDE5E2;border-radius:16px;background:#fff;}
+  .analysis-driver-number{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:9px;background:#E7F3F1;color:#0F766E;font:700 12px 'IBM Plex Mono',monospace;}
+  .analysis-driver h4,.analysis-sensitivity h4{margin:14px 0 7px;color:#102846;font:600 18px/1.25 'Fraunces',serif;}
+  .analysis-driver strong{display:block;margin:8px 0;color:#8B2D43;font-size:16px;}
+  .analysis-driver p,.analysis-sensitivity p{margin:0;color:#68798C;font-size:12px;line-height:1.6;}
+  .analysis-sensitivities{grid-template-columns:repeat(4,minmax(0,1fr));}
+  .analysis-sensitivity{border-top:4px solid #C48A43;}
+  .analysis-sensitivity strong{display:block;margin:11px 0 5px;color:#102846;font:700 20px/1.2 'IBM Plex Mono',monospace;}
+  .analysis-dual{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:24px;}
+  .analysis-list{margin:0;padding:22px 25px 24px 43px;}
+  .analysis-list li{margin:0 0 10px;color:#4D6279;font-size:13px;line-height:1.55;}
+  .analysis-list li:last-child{margin-bottom:0;}
+  .analysis-decisions{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:decision;}
+  .analysis-decision{position:relative;min-height:155px;padding:48px 17px 18px;border-radius:15px;color:#fff;background:#102846;counter-increment:decision;}
+  .analysis-decision::before{content:"0" counter(decision);position:absolute;top:16px;left:17px;color:#F2D3A5;font:700 12px 'IBM Plex Mono',monospace;}
+  .analysis-decision strong{display:block;margin-bottom:7px;font:600 16px/1.25 'Fraunces',serif;}
+  .analysis-decision span{color:#C9D7E5;font-size:11px;line-height:1.55;}
+  .analysis-source{margin:20px 0 0;padding:15px 18px;border:1px solid #DDE5E2;border-radius:13px;background:#F7F9F8;color:#66788C;font-size:11px;line-height:1.6;}
+  @media(max-width:1100px){
+    .analysis-hero,.analysis-grid{grid-template-columns:1fr;}
+    .analysis-kpis,.analysis-sensitivities{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .analysis-decisions{grid-template-columns:repeat(3,minmax(0,1fr));}
+  }
+  @media(max-width:760px){
+    .analysis-hero{padding:28px 24px;}
+    .analysis-kpis,.analysis-drivers,.analysis-sensitivities,.analysis-dual,.analysis-decisions{grid-template-columns:1fr;}
+    .analysis-table{min-width:680px;}
+    .analysis-table-wrap{overflow-x:auto;}
+    .analysis-section-title{align-items:flex-start;flex-direction:column;}
+    .analysis-section-title p{text-align:left;}
+  }
+
 </style>
 </head>
 <body data-view="wise1">
@@ -1657,6 +1801,7 @@
       <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="aws">6. AWS Infrastructure Cost</button>
       <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="marketing">7. Marketing Launch Budget</button>
       <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="total">8. Total Cost</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="analysis">9. Costing Analysis</button>
     </div>
   </div>
   <!-- KPI Overview -->
@@ -2024,6 +2169,179 @@
         <div class="total-assumption">Year 1 includes one selected eKYC plan, 12 months of AWS infrastructure, and the Marketing Launch Budget. Year 2 uses the eKYC renewal cost plus another 12 months of AWS and excludes the one-time Launch Budget.</div>
       </aside>
     </div>
+  </section>
+
+  <!-- ================= Section 9: Costing Analysis ================= -->
+  <section class="block" id="costingAnalysisSection">
+    <div class="block-head">
+      <span class="block-index">09</span>
+      <span class="block-title">Costing Analysis</span>
+      <span class="block-desc">Three-year affordability, unit economics and funding implications</span>
+    </div>
+
+    <div class="analysis-hero">
+      <div>
+        <span class="analysis-kicker">Executive Financial Assessment · 3-Year View</span>
+        <h2>Growth is achievable, but the current cost structure is not yet self-funding.</h2>
+        <p>The model projects meaningful subscriber growth and RM 4.10 million in net subscription revenue. However, eKYC, infrastructure and acquisition costs create a material funding gap, while Year 3 unit economics remain below the 3.0x LTV:CAC target.</p>
+      </div>
+      <div class="analysis-hero-verdict">
+        <span class="analysis-card-kicker">Board-level verdict</span>
+        <strong>Proceed as a funded growth investment</strong>
+        <span>Do not treat Year 1 as a break-even launch. Lock down AI costs, improve acquisition efficiency and raise monetisation or retention before scale.</span>
+      </div>
+    </div>
+
+    <div class="analysis-kpis">
+      <article class="analysis-kpi danger">
+        <span class="analysis-kpi-label">3-Year Total Cost</span>
+        <strong>RM 4.5m–6.6m</strong>
+        <small>eKYC + AWS + marketing; salaries excluded.</small>
+      </article>
+      <article class="analysis-kpi navy">
+        <span class="analysis-kpi-label">Net Subscription Revenue</span>
+        <strong>RM 4.10m</strong>
+        <small>Projected aggregate across Years 1–3.</small>
+      </article>
+      <article class="analysis-kpi gold">
+        <span class="analysis-kpi-label">Approx. Funding Gap</span>
+        <strong>RM 0.4m–2.5m</strong>
+        <small>Derived from the rounded total-cost range.</small>
+      </article>
+      <article class="analysis-kpi teal">
+        <span class="analysis-kpi-label">Year 3 LTV:CAC</span>
+        <strong>1.62x / 1.07x</strong>
+        <small>AWS low / AWS high scenarios versus a 3.0x target.</small>
+      </article>
+    </div>
+
+    <div class="analysis-grid">
+      <article class="analysis-panel">
+        <div class="analysis-panel-head">
+          <div><span class="analysis-card-kicker">Unit economics</span><h3>LTV:CAC improves, but never reaches target</h3></div>
+          <span class="analysis-chip">Target ≥ 3.0x</span>
+        </div>
+        <div class="analysis-table-wrap">
+          <table class="analysis-table">
+            <thead>
+              <tr><th>Year</th><th>Net LTV</th><th>CAC · AWS Low</th><th>CAC · AWS High</th><th>LTV:CAC Low</th><th>LTV:CAC High</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Year 1</strong></td><td>RM 120.99</td><td>RM 308.54</td><td>RM 380.71</td><td class="ratio">0.39x</td><td class="ratio">0.32x</td></tr>
+              <tr><td><strong>Year 2</strong></td><td>RM 134.44</td><td>RM 124.58</td><td>RM 177.38</td><td class="ratio">1.08x</td><td class="ratio">0.76x</td></tr>
+              <tr><td><strong>Year 3</strong></td><td>RM 151.24</td><td>RM 93.18</td><td>RM 140.81</td><td class="ratio best">1.62x</td><td class="ratio">1.07x</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="analysis-verdict"><strong>Interpretation:</strong> cost-to-revenue falls from approximately 421%–520% in Year 1 to 94%–142% in Year 3, but the business remains short of a defensible 3.0x LTV:CAC benchmark.</div>
+      </article>
+
+      <aside class="analysis-panel analysis-recommendation">
+        <span class="analysis-card-kicker">eKYC recommendation</span>
+        <h3>WISE Postpaid</h3>
+        <span class="analysis-price">RM 541,486</span>
+        <p>Estimated three-year total including SST.</p>
+        <ul class="analysis-reasons">
+          <li>Best fit for scaling without a large prepaid commitment.</li>
+          <li>Commercially simpler for a growth-stage rollout.</li>
+          <li>Confirm that there is no hidden volume cap or step-up pricing.</li>
+          <li>Obtain written confirmation of renewal and overage terms.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="analysis-section-title">
+      <h3>Where the money goes</h3>
+      <p>The three dominant cost pools explain the funding requirement.</p>
+    </div>
+    <div class="analysis-drivers">
+      <article class="analysis-driver">
+        <span class="analysis-driver-number">01</span>
+        <h4>Marketing acquisition</h4>
+        <strong>RM 3.14m</strong>
+        <p>Largest modelled spend: 256,268 billable verified registrations at CPA USD 3 and FX RM 4.09.</p>
+      </article>
+      <article class="analysis-driver">
+        <span class="analysis-driver-number">02</span>
+        <h4>AWS infrastructure</h4>
+        <strong>≈ RM 0.82m–2.92m</strong>
+        <p>Implied three-year range. Year 3 should be treated as a floor because usage beyond 50k MAU is extrapolated.</p>
+      </article>
+      <article class="analysis-driver">
+        <span class="analysis-driver-number">03</span>
+        <h4>eKYC verification</h4>
+        <strong>RM 541,486</strong>
+        <p>WISE Postpaid recommendation across three years, including SST and modelled volume growth.</p>
+      </article>
+    </div>
+
+    <div class="analysis-section-title">
+      <h3>What must change to reach 3.0x</h3>
+      <p>No single practical lever closes the gap in both AWS scenarios.</p>
+    </div>
+    <div class="analysis-sensitivities">
+      <article class="analysis-sensitivity">
+        <span class="analysis-card-kicker">Price only</span>
+        <h4>Elite price</h4>
+        <strong>RM 73.75</strong>
+        <p>Required if price alone carries the improvement burden.</p>
+      </article>
+      <article class="analysis-sensitivity">
+        <span class="analysis-card-kicker">Retention only</span>
+        <h4>Average lifetime</h4>
+        <strong>11.55 months</strong>
+        <p>Equivalent to 8.66% churn versus the current 16% assumption.</p>
+      </article>
+      <article class="analysis-sensitivity">
+        <span class="analysis-card-kicker">CPA only</span>
+        <h4>Paid acquisition</h4>
+        <strong>USD 1.01</strong>
+        <p>Reaches 3.0x only under AWS-low; AWS-high does not reach target even at zero CPA.</p>
+      </article>
+      <article class="analysis-sensitivity">
+        <span class="analysis-card-kicker">Defensible pair</span>
+        <h4>Price + retention</h4>
+        <strong>RM 47.88 · 9.63 mo.</strong>
+        <p>Still requires lower CPA, better conversion and tight infrastructure control.</p>
+      </article>
+    </div>
+
+    <div class="analysis-dual">
+      <article class="analysis-panel">
+        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Core assumptions</span><h3>Model basis</h3></div></div>
+        <ul class="analysis-list">
+          <li>256,268 paid verifications over three years; monthly volume rises from 1,739 to 14,502.</li>
+          <li>MAU grows from approximately 1k to 179k; AWS costs above 50k MAU are extrapolated.</li>
+          <li>FX rate is USD 1 = RM 4.09 and paid acquisition CPA is USD 3.</li>
+          <li>Quota overage is extended at the quoted plan rate for like-for-like comparison.</li>
+          <li>Salaries and Innov8tif optional modules are excluded.</li>
+        </ul>
+      </article>
+      <article class="analysis-panel">
+        <div class="analysis-panel-head"><div><span class="analysis-card-kicker">Open commercial risks</span><h3>Items to confirm</h3></div></div>
+        <ul class="analysis-list">
+          <li>AI Companion may add USD 3k–15k per month at 50k MAU.</li>
+          <li>WISE prepaid top-up pricing remains TBC.</li>
+          <li>Innov8tif reload pricing and credit-expiry terms remain TBC.</li>
+          <li>Resolve the RM 68,400 versus RM 19,000 implementation-cost discrepancy.</li>
+          <li>Year 3 AWS should be treated as a floor until a scaled architecture is priced.</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="analysis-section-title">
+      <h3>Executive decisions required</h3>
+      <p>Five actions before committing to scaled rollout.</p>
+    </div>
+    <div class="analysis-decisions">
+      <article class="analysis-decision"><strong>Pin down AI cost</strong><span>Secure a usable commercial schedule for the AI Companion at scale.</span></article>
+      <article class="analysis-decision"><strong>Select WISE Postpaid</strong><span>Proceed subject to confirmation of volume caps, overage and renewal terms.</span></article>
+      <article class="analysis-decision"><strong>Close all TBCs</strong><span>Get top-up, expiry, reload and implementation charges in writing.</span></article>
+      <article class="analysis-decision"><strong>Move every lever</strong><span>Improve CPA, conversion, pricing and retention together.</span></article>
+      <article class="analysis-decision"><strong>Fund Year 1 deliberately</strong><span>Treat launch year as an investment phase, not a break-even year.</span></article>
+    </div>
+
+    <p class="analysis-source"><strong>Analysis basis:</strong> Serase_Costing_Budget_v5.xlsx and Serase_Pricing_Model.xlsx; snapshot dated 19 Aug 2026. Rounded totals may create small differences in derived ranges.</p>
   </section>
 </main>
 
