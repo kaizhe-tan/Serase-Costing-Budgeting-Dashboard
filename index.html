@@ -1925,8 +1925,8 @@
     </div>
 
     <div class="audit-strip" id="auditStrip">
-      <div class="audit-item"><b>WISE Postpaid:</b> monthly actual usage determines one rate for that month. Minimum billing = 100 transactions/month.</div>
-      <div class="audit-item"><b>WISE Prepaid:</b> RM12,000/year includes 5,000 transactions. Any usage above 5,000 is <span class="tbc">TBC</span>, not assumed.</div>
+      <div class="audit-item"><b>WISE Postpaid:</b> one monthly tier rate applies to all completed eKYC transactions for that month. Minimum billing = 100 transactions/month.</div>
+      <div class="audit-item"><b>WISE Prepaid:</b> choose a 5k / 10k / 20k / 50k / 100k transaction block upfront. Blocks are valid for 1 year and larger commitments reduce the unit rate.</div>
       <div class="audit-item"><b>Innov8tif:</b> prepaid credits + annual cloud + implementation. Credits valid 1 year and non-refundable.</div>
     </div>
 
@@ -1946,7 +1946,7 @@
           <thead><tr><th>Cost Item</th><th class="num">Amount (RM)</th></tr></thead>
           <tbody>
             <tr><td>Setup & Implementation (Y1 only)</td><td class="num mono">18,000.00</td></tr>
-            <tr><td>Selected Monthly Tier</td><td class="num mono" id="wiseTierLabel">0–500 @ 3.00</td></tr>
+            <tr><td>Selected Monthly Tier</td><td class="num mono" id="wiseTierLabel">1–500 @ RM3.00</td></tr>
             <tr><td>Billed Transactions / Month</td><td class="num mono" id="wiseBilledTxn">500</td></tr>
             <tr><td>Monthly Usage (before SST)</td><td class="num mono" id="wiseMonthlyNet">1,500.00</td></tr>
             <tr><td>Monthly Usage (incl. 8% SST)</td><td class="num mono" id="wiseMonthlyGross">1,620.00</td></tr>
@@ -1957,29 +1957,43 @@
             <tr class="y2-row"><td>Year 2+ Total incl. 8% SST</td><td class="num mono" id="wiseY2Gross">24,840.00</td></tr>
           </tbody>
         </table>
-        <div class="formula-note">Monthly rate is NOT progressive. Example: 800 txn → all 800 × RM2.80. Minimum charge: max(actual txn, 100).</div>
+        <div class="formula-note">Monthly rate is NOT progressive. Example: 800 completed verifications → all 800 × RM2.80. Minimum charge: max(actual completed txn, 100). Incomplete verification attempts are not charged.</div>
       </div>
 
-      <!-- WISE AI PLAN 2 (Prepaid Package) -->
+      <!-- WISE AI PLAN 2 (Prepaid Transaction Block) -->
       <div class="card" id="wisePrepaidCard">
         <div class="vendor-header bg-ink">WISE AI - Plan 2 (Prepaid)</div>
+        <div class="calc-panel">
+          <div class="calc-row">
+            <label for="wisePrepaidTier">Annual prepaid transaction block</label>
+            <select id="wisePrepaidTier" class="fx-input" style="width:auto;min-width:180px;padding:7px 10px;text-align:left;">
+              <option value="5k">5,000 transactions</option>
+              <option value="10k">10,000 transactions</option>
+              <option value="20k">20,000 transactions</option>
+              <option value="50k">50,000 transactions</option>
+              <option value="100k">100,000 transactions</option>
+            </select>
+            <span class="confirmed">QUOTED</span>
+          </div>
+          <div class="calc-hint">Select the annual block quoted in the June 2026 WISE AI Commercial Proposal. Larger blocks have a lower vendor unit rate.</div>
+        </div>
         <table>
           <thead><tr><th>Cost Item</th><th class="num">Amount (RM)</th></tr></thead>
           <tbody>
             <tr><td>Setup & Implementation (Y1 only)</td><td class="num mono">18,000.00</td></tr>
-            <tr><td>Annual SaaS Package</td><td class="num mono">12,000.00</td></tr>
-            <tr><td>Included Transactions</td><td class="num mono">5,000 / year</td></tr>
+            <tr><td>Selected Prepaid Block</td><td class="num mono" id="wisePrepaidIncluded">5,000 / year</td></tr>
+            <tr><td>Vendor Unit Rate</td><td class="num mono" id="wisePrepaidUnitRate">RM 2.40 / txn</td></tr>
+            <tr><td>Annual Package Price</td><td class="num mono" id="wisePrepaidPackage">12,000.00</td></tr>
             <tr><td>Package Validity</td><td class="num mono">1 year</td></tr>
-            <tr class="total-row"><td>Year 1 Net Total</td><td class="num mono">30,000.00</td></tr>
-            <tr class="grand-row"><td>Year 1 Total incl. 8% SST</td><td class="num mono">32,400.00</td></tr>
-            <tr class="y2-row"><td>Year 2+ Net (SaaS + RM5k maintenance)</td><td class="num mono">17,000.00</td></tr>
-            <tr class="y2-row"><td>Year 2+ Total incl. 8% SST</td><td class="num mono">18,360.00</td></tr>
-            <tr><td>Usage above 5,000</td><td class="num"><span class="tbc">VENDOR TBC</span></td></tr>
+            <tr class="total-row"><td>Year 1 Net Total</td><td class="num mono" id="wisePrepaidY1Net">30,000.00</td></tr>
+            <tr class="grand-row"><td>Year 1 Total incl. 8% SST</td><td class="num mono" id="wisePrepaidY1Gross">32,400.00</td></tr>
+            <tr class="y2-row"><td>Year 2+ Net (Package + RM5k support)</td><td class="num mono" id="wisePrepaidY2Net">17,000.00</td></tr>
+            <tr class="y2-row"><td>Year 2+ Total incl. 8% SST</td><td class="num mono" id="wisePrepaidY2Gross">18,360.00</td></tr>
             <tr><td>Unused quota carry-forward</td><td class="num"><span class="tbc">VENDOR TBC</span></td></tr>
           </tbody>
         </table>
-        <div class="formula-note">Effective cost if all 5,000 are used: Y1 RM32,400 ÷ 5,000 = RM6.48/txn; Y2 RM18,360 ÷ 5,000 = RM3.672/txn. These are blended costs, not vendor unit prices.</div>
-        <div class="warning-box"><b>Do not assume</b> an extra 5,000 transactions costs another RM12,000. The quotation summary provided does not state top-up quantity, rate, or expiry treatment.</div>
+        <div class="formula-note" id="wisePrepaidFormula">Effective blended cost if all 5,000 transactions are used: Y1 RM32,400 ÷ 5,000 = RM6.48/txn; Y2 RM18,360 ÷ 5,000 = RM3.67/txn. Vendor unit rate = RM2.40/txn before setup/support and SST.</div>
+        <div class="warning-box"><b>Carry-forward remains TBC:</b> the commercial proposal states each prepaid block is valid for 1 year, but does not state that unused transactions roll into the next year.</div>
       </div>
 
       <!-- INNOV8TIF (Modular Prepaid) -->
@@ -2032,8 +2046,7 @@
       <table>
         <thead><tr><th>Vendor</th><th>Question to Confirm</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>WISE Prepaid</td><td>Price and minimum quantity for top-up after 5,000 included transactions</td><td><span class="tbc">TBC</span></td></tr>
-          <tr><td>WISE Prepaid</td><td>Whether unused transactions can carry forward</td><td><span class="tbc">TBC</span></td></tr>
+          <tr><td>WISE Prepaid</td><td>Whether unused transactions can carry forward beyond the 1-year block validity</td><td><span class="tbc">TBC</span></td></tr>
           <tr><td>Innov8tif</td><td>Minimum reload quantity and reload unit rate</td><td><span class="tbc">TBC</span></td></tr>
           <tr><td>Innov8tif</td><td>Whether reloaded credits keep original expiry or receive a new validity period</td><td><span class="tbc">TBC</span></td></tr>
           <tr><td>Innov8tif</td><td>Scope of “double charges” for Blacklist + De-duplication</td><td><span class="tbc">TBC</span></td></tr>
@@ -2149,7 +2162,7 @@
             <button class="total-plan-option" type="button" aria-pressed="false" data-total-plan="wise2">
               <span class="total-plan-number">2</span>
               <span class="total-plan-name">WISE AI · Plan 2</span>
-              <span class="total-plan-cost">RM 32,400.00</span>
+              <span class="total-plan-cost" id="totalWise2OptionCost">RM 32,400.00</span>
             </button>
             <button class="total-plan-option" type="button" aria-pressed="false" data-total-plan="innov8tif">
               <span class="total-plan-number">3</span>
@@ -2165,6 +2178,16 @@
                 <option value="5k">5K MAU</option>
                 <option value="10k">10K MAU</option>
                 <option value="50k">50K MAU</option>
+              </select>
+            </div>
+            <div class="total-control hidden" id="totalWise2TierControl">
+              <label for="totalWise2Tier">WISE Prepaid Block</label>
+              <select id="totalWise2Tier">
+                <option value="5k">5,000 Transactions</option>
+                <option value="10k">10,000 Transactions</option>
+                <option value="20k">20,000 Transactions</option>
+                <option value="50k">50,000 Transactions</option>
+                <option value="100k">100,000 Transactions</option>
               </select>
             </div>
             <div class="total-control hidden" id="totalInnovTierControl">
@@ -2511,7 +2534,7 @@
 </main>
 
 <footer>
-  <div><b>Sources:</b> [1] WISE AI Proposal Q-NLSB-CSS-260622-1/2 ; [2] Innov8tif Commercial Proposal ; [3] AWS Cost Specs.</div>
+  <div><b>Sources:</b> [1] WISE AI Commercial Proposal (June 2026) + Q-NLSB-CSS-260622-1/2 ; [2] Innov8tif Commercial Proposal ; [3] AWS Cost Specs.</div>
   <div class="footer-margin">Based on vendor quotation figures supplied for this dashboard. Items marked TBC require vendor confirmation before final budgeting.</div>
 </footer>
 
@@ -2525,11 +2548,61 @@
   const wiseMonthlyTxnEl = document.getElementById('wiseMonthlyTxn');
 
   function wisePostpaidRate(txn){
-    if (txn <= 500) return { rate: 3.00, label: '0–500 @ 3.00' };
-    if (txn <= 1000) return { rate: 2.80, label: '501–1,000 @ 2.80' };
-    if (txn <= 1500) return { rate: 2.50, label: '1,001–1,500 @ 2.50' };
-    if (txn <= 4000) return { rate: 2.10, label: '1,501–4,000 @ 2.10' };
-    return { rate: 1.80, label: '>4,000 @ 1.80' };
+    if (txn <= 500) return { rate: 3.00, label: '1–500 @ RM3.00' };
+    if (txn <= 1000) return { rate: 2.80, label: '501–1,000 @ RM2.80' };
+    if (txn <= 1500) return { rate: 2.50, label: '1,001–1,500 @ RM2.50' };
+    if (txn <= 4000) return { rate: 2.10, label: '1,501–4,000 @ RM2.10' };
+    return { rate: 1.80, label: '>4,000 @ RM1.80' };
+  }
+
+  // ---------------- WISE Prepaid Transaction Block Calculator ----------------
+  const wisePrepaidTierEl = document.getElementById('wisePrepaidTier');
+  const wisePrepaidData = {
+    '5k':   { transactions:5000,   packagePrice:12000,  unitRate:2.40 },
+    '10k':  { transactions:10000,  packagePrice:22000,  unitRate:2.20 },
+    '20k':  { transactions:20000,  packagePrice:40000,  unitRate:2.00 },
+    '50k':  { transactions:50000,  packagePrice:85000,  unitRate:1.70 },
+    '100k': { transactions:100000, packagePrice:150000, unitRate:1.50 },
+  };
+
+  try {
+    const storedWisePrepaidTier = localStorage.getItem('wise-prepaid-tier');
+    if (storedWisePrepaidTier && wisePrepaidData[storedWisePrepaidTier]) wisePrepaidTierEl.value = storedWisePrepaidTier;
+  } catch(err){}
+
+  function getWisePrepaidCosts(tierKey){
+    const data = wisePrepaidData[tierKey] || wisePrepaidData['5k'];
+    const y1Net = 18000 + data.packagePrice;
+    const y1Gross = y1Net * 1.08;
+    const y2Net = 5000 + data.packagePrice;
+    const y2Gross = y2Net * 1.08;
+    return { ...data, y1Net, y1Gross, y2Net, y2Gross };
+  }
+
+  function renderWisePrepaid(){
+    if (!wisePrepaidTierEl) return;
+    const costs = getWisePrepaidCosts(wisePrepaidTierEl.value);
+    document.getElementById('wisePrepaidIncluded').textContent = `${costs.transactions.toLocaleString('en-MY')} / year`;
+    document.getElementById('wisePrepaidUnitRate').textContent = `RM ${costs.unitRate.toFixed(2)} / txn`;
+    document.getElementById('wisePrepaidPackage').textContent = fmtRM(costs.packagePrice);
+    document.getElementById('wisePrepaidY1Net').textContent = fmtRM(costs.y1Net);
+    document.getElementById('wisePrepaidY1Gross').textContent = fmtRM(costs.y1Gross);
+    document.getElementById('wisePrepaidY2Net').textContent = fmtRM(costs.y2Net);
+    document.getElementById('wisePrepaidY2Gross').textContent = fmtRM(costs.y2Gross);
+    document.getElementById('wisePrepaidFormula').textContent = `Effective blended cost if all ${costs.transactions.toLocaleString('en-MY')} transactions are used: Y1 RM${fmtRM(costs.y1Gross)} ÷ ${costs.transactions.toLocaleString('en-MY')} = RM${(costs.y1Gross / costs.transactions).toFixed(2)}/txn; Y2 RM${fmtRM(costs.y2Gross)} ÷ ${costs.transactions.toLocaleString('en-MY')} = RM${(costs.y2Gross / costs.transactions).toFixed(2)}/txn. Vendor unit rate = RM${costs.unitRate.toFixed(2)}/txn before setup/support and SST.`;
+  }
+
+  if (wisePrepaidTierEl) {
+    wisePrepaidTierEl.addEventListener('change', () => {
+      try { localStorage.setItem('wise-prepaid-tier', wisePrepaidTierEl.value); } catch(err){}
+      renderWisePrepaid();
+      const totalWise2Tier = document.getElementById('totalWise2Tier');
+      if (totalWise2Tier) {
+        totalWise2Tier.value = wisePrepaidTierEl.value;
+        try { localStorage.setItem('total-cost-wise2-tier', totalWise2Tier.value); } catch(err){}
+        renderTotalCost();
+      }
+    });
   }
 
   function fmtRM(n){
@@ -2562,6 +2635,7 @@
 
   if (wiseMonthlyTxnEl) wiseMonthlyTxnEl.addEventListener('input', renderWisePostpaid);
   renderWisePostpaid();
+  renderWisePrepaid();
 
   // ---------------- AWS MAU Data ----------------
   const mauData = {
@@ -2726,6 +2800,8 @@
   // ---------------- Total Cost (eKYC + 12-Month AWS + Launch Budget) ----------------
   const totalPlanOptions = Array.from(document.querySelectorAll('.total-plan-option'));
   const totalAwsTierEl = document.getElementById('totalAwsTier');
+  const totalWise2TierEl = document.getElementById('totalWise2Tier');
+  const totalWise2TierControlEl = document.getElementById('totalWise2TierControl');
   const totalInnovTierEl = document.getElementById('totalInnovTier');
   const totalInnovTierControlEl = document.getElementById('totalInnovTierControl');
   let totalSelectedPlan = 'wise1';
@@ -2733,6 +2809,9 @@
   try {
     const storedPlan = localStorage.getItem('total-cost-selected-plan');
     if (['wise1','wise2','innov8tif'].includes(storedPlan)) totalSelectedPlan = storedPlan;
+    const storedWise2Tier = localStorage.getItem('total-cost-wise2-tier');
+    if (storedWise2Tier && wisePrepaidData[storedWise2Tier]) totalWise2TierEl.value = storedWise2Tier;
+    else if (wisePrepaidTierEl && wisePrepaidData[wisePrepaidTierEl.value]) totalWise2TierEl.value = wisePrepaidTierEl.value;
     const storedInnovTier = localStorage.getItem('total-cost-innov-tier');
     if (['10k','20k'].includes(storedInnovTier)) totalInnovTierEl.value = storedInnovTier;
   } catch(err){}
@@ -2757,7 +2836,13 @@
 
   function getSelectedEkyc(){
     if (totalSelectedPlan === 'wise2') {
-      return { name:'WISE AI · Plan 2', y1Amount:32400, y2Amount:18360, note:'Year 1 prepaid package total including 8% SST' };
+      const costs = getWisePrepaidCosts(totalWise2TierEl.value);
+      return {
+        name:'WISE AI · Plan 2',
+        y1Amount:costs.y1Gross,
+        y2Amount:costs.y2Gross,
+        note:`Year 1 ${costs.transactions.toLocaleString('en-MY')}-transaction prepaid block including 8% SST`
+      };
     }
     if (totalSelectedPlan === 'innov8tif') {
       const is20k = totalInnovTierEl.value === '20k';
@@ -2791,9 +2876,11 @@
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
+    totalWise2TierControlEl.classList.toggle('hidden', totalSelectedPlan !== 'wise2');
     totalInnovTierControlEl.classList.toggle('hidden', totalSelectedPlan !== 'innov8tif');
 
     document.getElementById('totalWise1OptionCost').textContent = fmtRMWithPrefix(getWisePlan1Y1Gross());
+    document.getElementById('totalWise2OptionCost').textContent = fmtRMWithPrefix(getWisePrepaidCosts(totalWise2TierEl.value).y1Gross);
     document.getElementById('totalInnovOptionCost').textContent = totalInnovTierEl.value === '20k' ? 'RM 84,240.00' : 'RM 56,160.00';
     document.getElementById('totalEkycName').textContent = ekyc.name;
     document.getElementById('totalEkycNote').textContent = ekyc.note;
@@ -2820,6 +2907,16 @@
   totalAwsTierEl.addEventListener('change', () => {
     currentMau = totalAwsTierEl.value;
     renderMau();
+    renderTotalCost();
+  });
+
+  totalWise2TierEl.addEventListener('change', () => {
+    try { localStorage.setItem('total-cost-wise2-tier', totalWise2TierEl.value); } catch(err){}
+    if (wisePrepaidTierEl) {
+      wisePrepaidTierEl.value = totalWise2TierEl.value;
+      try { localStorage.setItem('wise-prepaid-tier', wisePrepaidTierEl.value); } catch(err){}
+      renderWisePrepaid();
+    }
     renderTotalCost();
   });
 
