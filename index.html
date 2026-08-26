@@ -1577,6 +1577,47 @@
   #marketing .card{
     overflow:visible;
   }
+  .marketing-quote-meta{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:1px;
+    background:#DCE2DF;
+    border-bottom:1px solid #DCE2DF;
+  }
+  .marketing-quote-meta-item{
+    padding:14px 16px;
+    background:linear-gradient(180deg,#FFFFFF 0%,#F7F9F8 100%);
+  }
+  .marketing-quote-meta-label{
+    display:block;
+    margin-bottom:5px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .marketing-quote-meta-value{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.35;
+  }
+  .marketing-quote-note{
+    padding:11px 16px;
+    border-bottom:1px solid #E2E7E5;
+    background:#FBFCFB;
+    font-size:11.5px;
+    line-height:1.5;
+    color:var(--muted);
+  }
+  @media(max-width:900px){
+    .marketing-quote-meta{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media(max-width:560px){
+    .marketing-quote-meta{grid-template-columns:1fr;}
+  }
   .mkt-table thead th:first-child{border-radius:16px 0 0 0;}
   .mkt-table thead th:last-child{border-radius:0 16px 0 0;}
   .mkt-table input,.mkt-table select{
@@ -2111,9 +2152,28 @@
     <div class="block-head">
       <span class="block-index">04</span>
       <span class="block-title">Marketing Launch Budget</span>
-      <span class="block-desc">Dynamic Calculation Table</span>
+      <span class="block-desc">Pixel Pro Quote 0088 · 17 Aug 2026</span>
     </div>
     <div class="card">
+      <div class="marketing-quote-meta">
+        <div class="marketing-quote-meta-item">
+          <span class="marketing-quote-meta-label">Vendor</span>
+          <span class="marketing-quote-meta-value">PIXEL PRO RESOURCES</span>
+        </div>
+        <div class="marketing-quote-meta-item">
+          <span class="marketing-quote-meta-label">Quote</span>
+          <span class="marketing-quote-meta-value mono">0088 · 17/Aug/2026</span>
+        </div>
+        <div class="marketing-quote-meta-item">
+          <span class="marketing-quote-meta-label">Quote Title</span>
+          <span class="marketing-quote-meta-value">SERASI Event Launching</span>
+        </div>
+        <div class="marketing-quote-meta-item">
+          <span class="marketing-quote-meta-label">Quoted Total</span>
+          <span class="marketing-quote-meta-value mono">RM 394,250.00</span>
+        </div>
+      </div>
+      <div class="marketing-quote-note">Quotation basis: 10 line items, quantity 1 each. Payment term stated in the quotation: due within seven (7) days of the invoice date.</div>
       <table class="mkt-table">
         <thead>
           <tr>
@@ -2702,10 +2762,16 @@
 
   // ---------------- Marketing budget (persisted) ----------------
   const defaultRows = [
-    { id: 'row_ads',   item: 'Digital Ads / Performance Marketing', amount: '', currency: 'RM', owner: '', notes: '' },
-    { id: 'row_content',item: 'Content & Creative Production',      amount: '', currency: 'RM', owner: '', notes: '' },
-    { id: 'row_launch', item: 'Launch Event / PR',                  amount: '', currency: 'RM', owner: '', notes: '' },
-    { id: 'row_kol',    item: 'Influencer / KOL Partnerships',      amount: '', currency: 'RM', owner: '', notes: '' },
+    { id: 'row_pixelpro_concept', item: 'Concept & Idea Development', amount: '15000', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: 'Master key visual; visual design; main E-Backdrop; adaptation to other collaterals; photo wall; entrance arch; LED display; presentation.' },
+    { id: 'row_pixelpro_av', item: 'Public Address (PA) System & Audio Visual System', amount: '29500', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: '2x top speaker; 2x front field speaker; 1x monitor; 2x sub woofer; 4x cordless mic; 1x digital mixer; lighting setup & LED (3m x 2.5m).' },
+    { id: 'row_pixelpro_foyer', item: 'Foyer Activities & Press Conferences', amount: '14000', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: 'Installation & dismantle; custom entrance arch 12ft x 8ft (printing); photo wall 12ft x 8ft (printing, lighting + carpet); TV & stand outside hall.' },
+    { id: 'row_pixelpro_photo', item: 'Photography & Videography', amount: '15000', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: '2x professional photographer; 1x professional videographer; 1x MCP: Luar Dewan (2500 - 3000).' },
+    { id: 'row_pixelpro_emcee', item: 'Emcee', amount: '8000', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: 'Emcee (Perempuan: Anim Ezati); rehearsal & event day; script.' },
+    { id: 'row_pixelpro_performance', item: 'Performance', amount: '12000', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: '1x Fireshow; 1x Jazz Band / DJ.' },
+    { id: 'row_pixelpro_registration', item: 'Guest Registration', amount: '4500', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: 'System Invitation & RSVP.' },
+    { id: 'row_pixelpro_management', item: 'Event Management', amount: '249000', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: 'Venue rental (indoor & outdoor) in Damansara; gimmick launch (Plasma Ball); usherettes; KOL Ambassador; KOL Event Attendance; catering 250 pax; Photo Wall 360.' },
+    { id: 'row_pixelpro_management_fee', item: 'Event Management Fee', amount: '45750', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: 'Pre, during & post event coordination & management; 15%; contingency.' },
+    { id: 'row_pixelpro_license', item: 'License', amount: '1500', currency: 'RM', owner: 'PIXEL PRO RESOURCES', notes: 'Public Liability.' },
   ];
   let mktRows = [];
   let rowSeq = 0;
@@ -2751,7 +2817,7 @@
   async function saveMkt(){
     saveStateEl.textContent = 'saving…';
     try {
-      localStorage.setItem('marketing-budget-rows', JSON.stringify(mktRows));
+      localStorage.setItem('marketing-budget-rows-pixelpro-0088', JSON.stringify(mktRows));
       saveStateEl.textContent = 'saved';
     } catch (err) {
       saveStateEl.textContent = 'save failed';
@@ -2789,7 +2855,7 @@
 
   (function loadMkt(){
     try {
-      const result = localStorage.getItem('marketing-budget-rows');
+      const result = localStorage.getItem('marketing-budget-rows-pixelpro-0088');
       mktRows = result ? JSON.parse(result) : defaultRows;
     } catch (err) {
       mktRows = defaultRows;
