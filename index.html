@@ -591,6 +591,7 @@
   /* ---------- Refined AWS section ---------- */
   .infra-grid{align-items:start;}
   .infra-card{border-radius:14px; overflow:hidden; align-self:start;}
+  .infra-summary-full{grid-column:1 / -1;}
   .infra-card-header{
     padding:14px 16px;
     color:#fff;
@@ -1881,7 +1882,7 @@
 <header class="topbar">
   <div class="eyebrow">Executive Report · Financial Dashboard</div>
   <h1 class="title">Serase Costing &amp; Budgeting Dashboard</h1>
-  <div class="subline">Interactive executive dashboard for eKYC vendors, AWS cloud infrastructure, and marketing budget.</div>
+  <div class="subline">Interactive executive dashboard for eKYC vendors, fixed AWS front-end infrastructure, AWS v2.0 scalable infrastructure, and marketing launch budget.</div>
   <div class="currency-note"><span class="dot"></span> Currencies: AWS Infrastructure in USD, eKYC Quotations in MYR (RM) | All vendor prices subject to 8% SST</div>
 </header>
 
@@ -2116,7 +2117,7 @@
       <div class="card infra-card">
         <div class="infra-card-header fixed">AWS Front-End Infrastructure (Fixed)</div>
         <table class="infra-table">
-          <thead><tr><th>Services Item</th><th class="num">Cost / Month</th></tr></thead>
+          <thead><tr><th>Service Item</th><th class="num">Cost / Month</th></tr></thead>
           <tbody>
             <tr><td>AWS EC2</td><td class="num mono">$40.00</td></tr>
             <tr><td>AWS EBS</td><td class="num mono">$6.00</td></tr>
@@ -2126,23 +2127,44 @@
             <tr><td>AWS Snapshots</td><td class="num mono">$8.00</td></tr>
             <tr><td>AWS CloudWatch</td><td class="num mono">$12.00</td></tr>
             <tr><td>Domain</td><td class="num mono">$1.54</td></tr>
-            <tr class="total-row"><td>Total (USD)</td><td class="num mono">$84.04</td></tr>
-            <tr class="grand-row"><td>Total (MYR / RM)</td><td class="num mono" id="frontEndMYR">RM 343.72</td></tr>
+            <tr class="total-row"><td>Front-End Total (USD)</td><td class="num mono">$84.04</td></tr>
+            <tr class="grand-row"><td>Front-End Total (MYR)</td><td class="num mono" id="frontEndMYR">RM 343.72</td></tr>
           </tbody>
         </table>
       </div>
+
       <div class="card infra-card">
-        <div class="infra-card-header variable">AWS Back-End Dynamic Scale (Variable)</div>
+        <div class="infra-card-header variable">AWS v2.0 — Scalable Infrastructure Estimate</div>
         <div class="tier-grid" id="tierGrid">
-          <div class="tier-cell active" data-mau="1k"><div class="tier-name">1k MAU</div><div class="tier-range mono">$140–$530</div></div>
-          <div class="tier-cell" data-mau="5k"><div class="tier-name">5k MAU</div><div class="tier-range mono">$460–$1,570</div></div>
-          <div class="tier-cell" data-mau="10k"><div class="tier-name">10k MAU</div><div class="tier-range mono">$915–$3,725</div></div>
-          <div class="tier-cell" data-mau="50k"><div class="tier-name">50k MAU</div><div class="tier-range mono">$5,030–$18,390++</div></div>
+          <div class="tier-cell active" data-mau="1k"><div class="tier-name">1k MAU</div><div class="tier-range mono">$340–$560</div></div>
+          <div class="tier-cell" data-mau="5k"><div class="tier-name">5k MAU</div><div class="tier-range mono">$690–$1,900</div></div>
+          <div class="tier-cell" data-mau="10k"><div class="tier-name">10k MAU</div><div class="tier-range mono">$1,240–$4,280</div></div>
+          <div class="tier-cell" data-mau="50k"><div class="tier-name">50k MAU</div><div class="tier-range mono">$5,440–$20,280</div></div>
         </div>
         <table class="infra-table">
-          <thead><tr><th>Services Item</th><th class="num" id="tierColHead">1k MAU</th></tr></thead>
-          <tbody id="backendBody"></tbody>
+          <thead><tr><th>Service</th><th class="num" id="tierColHead">1K MAU / Month</th></tr></thead>
+          <tbody id="awsServiceBody"></tbody>
         </table>
+      </div>
+
+      <div class="card infra-card infra-summary-full">
+        <div class="infra-card-header fixed">Combined Infrastructure Budget Summary</div>
+        <table class="infra-table">
+          <thead><tr><th>Budget Metric</th><th class="num">Selected Scenario</th></tr></thead>
+          <tbody>
+            <tr><td>Fixed Front-End / Month (USD)</td><td class="num mono">$84.04</td></tr>
+            <tr><td>AWS v2.0 Scale Range / Month (USD)</td><td class="num mono" id="awsScaleMonthlyUsd">$340 – $560</td></tr>
+            <tr class="total-row"><td>Combined Monthly Total (USD)</td><td class="num mono" id="awsMonthlyUsd">$424.04 – $644.04</td></tr>
+            <tr><td>Combined Monthly Total (MYR)</td><td class="num mono" id="awsMonthlyMyr">RM 1,734.32 – RM 2,634.12</td></tr>
+            <tr class="grand-row"><td>Combined Annual Total · 12 Months (MYR)</td><td class="num mono" id="awsAnnualMyr">RM 20,811.88 – RM 31,609.48</td></tr>
+          </tbody>
+        </table>
+        <div class="note-flex">
+          <div><strong>Source:</strong> Serase AWS Cost Estimate · Version 2.0 · August 2026 · AWS ap-southeast-1 (Singapore), plus the existing dashboard's fixed front-end layer of $84.04/month.</div>
+          <div><strong>Major cost drivers:</strong> Amazon Bedrock AI, Rekognition Face Liveness, OpenSearch Serverless, and Amazon Chime SDK.</div>
+          <div><strong>Budgeting treatment:</strong> Front-end remains a separate fixed cost and is added to the selected AWS v2.0 monthly range for Total Cost calculations.</div>
+        </div>
+        <div class="warning-box"><strong>Engineering review:</strong> the AWS v2.0 estimate itself includes services such as CloudFront and CloudWatch that also appear in the fixed front-end list. Keep this dashboard treatment for budgeting as requested, but confirm service ownership before final sign-off to avoid any double counting. AWS v2.0 also includes Chime SDK for voice/video calls.</div>
       </div>
     </div>
   </section>
@@ -2263,7 +2285,7 @@
         <div class="total-cost-card">
           <div class="total-cost-card-head">
             <div class="total-cost-card-title"><span class="total-step">02</span><span>Year 1 Cost Breakdown</span></div>
-            <div class="total-cost-card-sub">AWS is calculated for 12 months. Launch Budget is treated as a one-time cost.</div>
+            <div class="total-cost-card-sub">AWS uses the v2.0 complete monthly cost range × 12 months. Launch Budget is treated as a one-time cost.</div>
           </div>
           <table class="total-summary-table">
             <thead><tr><th>Cost Component</th><th class="num">Year 1 Amount (RM)</th></tr></thead>
@@ -2273,7 +2295,7 @@
                 <td class="num mono" id="totalEkycAmount">RM 38,880.00</td>
               </tr>
               <tr>
-                <td><span class="total-summary-label">AWS Infrastructure</span><span class="total-summary-note" id="totalAwsNote">1K MAU · Front-End fixed + Back-End range · 12 months</span></td>
+                <td><span class="total-summary-label">AWS Infrastructure</span><span class="total-summary-note" id="totalAwsNote">1K MAU · AWS v2.0 complete monthly range · 12 months</span></td>
                 <td class="num mono" id="totalAwsAmount">RM 10,995.88 – RM 30,137.08</td>
               </tr>
               <tr>
@@ -2307,7 +2329,7 @@
         <div class="total-grand-meta"><span>Selected Plan</span><strong id="totalGrandPlan">WISE AI · Plan 1</strong></div>
         <div class="total-grand-meta"><span>AWS Scenario</span><strong id="totalGrandAws">1K MAU</strong></div>
         <div class="total-grand-meta"><span>FX Rate</span><strong id="totalGrandFx">USD 1 = RM 4.09</strong></div>
-        <div class="total-assumption">Year 1 includes one selected eKYC plan, 12 months of AWS infrastructure, and the Marketing Launch Budget. Year 2 uses the eKYC renewal cost plus another 12 months of AWS and excludes the one-time Launch Budget.</div>
+        <div class="total-assumption">Year 1 includes one selected eKYC plan, 12 months of fixed front-end + AWS v2.0 infrastructure, and the Marketing Launch Budget. Year 2 uses the eKYC renewal cost plus another 12 months of fixed front-end + AWS v2.0 infrastructure and excludes the one-time Launch Budget.</div>
       </aside>
     </div>
   </section>
@@ -2697,47 +2719,68 @@
   renderWisePostpaid();
   renderWisePrepaid();
 
-  // ---------------- AWS MAU Data ----------------
+  // ---------------- AWS MAU Data · Serase AWS Cost Estimate v2.0 (Aug 2026) ----------------
+  const awsServices = [
+    "Amazon Cognito",
+    "AWS AppSync",
+    "AWS Lambda",
+    "Amazon DynamoDB",
+    "S3 + CloudFront",
+    "OpenSearch Serverless",
+    "Rekognition (Liveness)",
+    "Bedrock AI",
+    "Chime SDK (calls)",
+    "Pinpoint (push)",
+    "EventBridge Scheduler",
+    "CloudWatch",
+    "AWS WAF",
+    "AppConfig",
+    "Secrets Manager"
+  ];
+
   const mauData = {
-    "1k":  { front: 84.04, low: 140,  high: 530,   plus:false, rows: ["$0","$2 - $25","$0 - $5","$5 - $15","$2 - $10","$100 - $400","$5 - $20","$0 - $5","$5 - $20"] },
-    "5k":  { front: 84.04, low: 460,  high: 1570,  plus:false, rows: ["$0","$15 - $50","$2 - $15","$15 - $40","$5 - $20","$300 - $1,200","$10 - $40","$5 - $15","$10 - $40"] },
-    "10k": { front: 84.04, low: 915,  high: 3725,  plus:false, rows: ["$0","$40 - $120","$5 - $25","$30 - $80","$10 - $35","$600 - $3,000","$20 - $60","$10 - $25","$20 - $80"] },
-    "50k": { front: 84.04, low: 5030, high: 18390, plus:true,  rows: ["$600","$200 - $500","$15 - $60","$80 - $200","$25 - $100","$3,000 - $15,000++","$40 - $150","$20 - $80","$50 - $200"] },
+    "1k":  { low:340,  high:560,   rows:["$0","$5–25","$0–5","$5–15","$5–15","$175","$20–30","$100–400","$15","$0–5","$0","$5–20","$5","$0","$1"] },
+    "5k":  { low:690,  high:1900,  rows:["$0","$15–50","$2–15","$15–40","$10–30","$175–250","$100–150","$300–1,200","$50–100","$5–15","$0–2","$10–40","$5–10","$0","$1"] },
+    "10k": { low:1240, high:4280,  rows:["$0","$40–120","$5–25","$30–80","$20–50","$200–350","$200–300","$600–3,000","$100–220","$10–30","$2–5","$20–60","$10–20","$0","$1"] },
+    "50k": { low:5440, high:20280, rows:["~$600","$200–500","$15–60","$80–200","$50–150","$400–700","$1,000–1,500","$3,000–15,000","$500–1,250","$30–100","$5–20","$40–150","$20–50","$0","$1"] }
   };
-  const backendServices = ["Authentication (Cognito)","API & Real-Time (AppSync)","Compute (Lambda)","Database (DynamoDB)","Storage (S3)","AI Companion & Assistance","Monitoring & Logs","Notifications & Messaging","Data Transfer & Misc"];
 
   let currentMau = "1k";
+  const FRONT_END_MONTHLY_USD = 84.04;
+
+  function formatUsdRange(low, high){
+    return `$${Number(low).toLocaleString('en-US')} – $${Number(high).toLocaleString('en-US')}`;
+  }
 
   function renderMau(){
     const m = mauData[currentMau];
-    document.getElementById('tierColHead').textContent = currentMau.toUpperCase() + " MAU";
-    const body = document.getElementById('backendBody');
-    
-    // Front-end MYR conversion
-    const frontMYR = (m.front * fxRate).toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
-    document.getElementById('frontEndMYR').textContent = `RM ${frontMYR}`;
-
-    // Back-end MYR conversion
-    const lowMYR = (m.low * fxRate).toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
-    const highMYR = (m.high * fxRate).toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
-
-    body.innerHTML = backendServices.map((s,i) => `<tr><td>${s}</td><td class="num mono">${m.rows[i]}</td></tr>`).join('')
-      + `<tr class="total-row"><td>Total (USD)</td><td class="num mono">$${m.low.toLocaleString()} - $${m.high.toLocaleString()}${m.plus?'++':''}</td></tr>`
-      + `<tr class="grand-row"><td>Total (MYR / RM)</td><td class="num mono">RM ${lowMYR} - RM ${highMYR}${m.plus?'++':''}</td></tr>`;
+    document.getElementById('tierColHead').textContent = currentMau.toUpperCase() + " MAU / Month";
+    const body = document.getElementById('awsServiceBody');
+    body.innerHTML = awsServices.map((s,i) => `<tr><td>${s}</td><td class="num mono">${m.rows[i]}</td></tr>`).join('')
+      + `<tr class="total-row"><td>Monthly Total (USD)</td><td class="num mono">${formatUsdRange(m.low,m.high)}</td></tr>`;
 
     document.querySelectorAll('.tier-cell').forEach(c => c.classList.toggle('active', c.dataset.mau === currentMau));
 
-    // USD Total
-    const infraLowUSD = (m.front + m.low).toFixed(2);
-    const infraHighUSD = (m.front + m.high).toFixed(2);
+    const combinedLowUSD = FRONT_END_MONTHLY_USD + m.low;
+    const combinedHighUSD = FRONT_END_MONTHLY_USD + m.high;
+    const frontEndMYR = FRONT_END_MONTHLY_USD * fxRate;
+    const monthlyLowMYR = combinedLowUSD * fxRate;
+    const monthlyHighMYR = combinedHighUSD * fxRate;
+    const annualLowMYR = monthlyLowMYR * 12;
+    const annualHighMYR = monthlyHighMYR * 12;
+    const monthlyLowText = monthlyLowMYR.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
+    const monthlyHighText = monthlyHighMYR.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
+    const annualLowText = annualLowMYR.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
+    const annualHighText = annualHighMYR.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
 
-    // MYR Total for Top KPI Card
-    const infraLowMYR = ((m.front + m.low) * fxRate).toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
-    const infraHighMYR = ((m.front + m.high) * fxRate).toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
-    
-    // Dynamic update for top KPI card
-    document.getElementById('kpiInfra').textContent = `RM ${infraLowMYR} – RM ${infraHighMYR}${m.plus?'++':''}`;
-    document.getElementById('kpiInfraSub').textContent = `($${Number(infraLowUSD).toLocaleString('en-US',{minimumFractionDigits:2})} – $${Number(infraHighUSD).toLocaleString('en-US',{minimumFractionDigits:2})} USD) · Front-End Fixed + Back-End`;
+    document.getElementById('awsScaleMonthlyUsd').textContent = formatUsdRange(m.low,m.high);
+    document.getElementById('awsMonthlyUsd').textContent = formatUsdRange(combinedLowUSD,combinedHighUSD);
+    document.getElementById('frontEndMYR').textContent = `RM ${frontEndMYR.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+    document.getElementById('awsMonthlyMyr').textContent = `RM ${monthlyLowText} – RM ${monthlyHighText}`;
+    document.getElementById('awsAnnualMyr').textContent = `RM ${annualLowText} – RM ${annualHighText}`;
+
+    document.getElementById('kpiInfra').textContent = `RM ${monthlyLowText} – RM ${monthlyHighText}`;
+    document.getElementById('kpiInfraSub').textContent = `${formatUsdRange(combinedLowUSD,combinedHighUSD)} USD / month · Front-End Fixed + AWS v2.0 Scale Range`;
     document.getElementById('kpiInfraLabel').textContent = `AWS Infra (${currentMau.toUpperCase()} MAU)`;
     const totalAwsTierEl = document.getElementById('totalAwsTier');
     if (totalAwsTierEl) totalAwsTierEl.value = currentMau;
@@ -2928,8 +2971,8 @@
     const ekyc = getSelectedEkyc();
     const awsTier = totalAwsTierEl.value;
     const aws = mauData[awsTier];
-    const awsLowAnnual = (aws.front + aws.low) * fxRate * 12;
-    const awsHighAnnual = (aws.front + aws.high) * fxRate * 12;
+    const awsLowAnnual = (FRONT_END_MONTHLY_USD + aws.low) * fxRate * 12;
+    const awsHighAnnual = (FRONT_END_MONTHLY_USD + aws.high) * fxRate * 12;
     const marketing = getMarketingTotalMYR();
     const totalLow = ekyc.y1Amount + awsLowAnnual + marketing;
     const totalHigh = ekyc.y1Amount + awsHighAnnual + marketing;
@@ -2951,12 +2994,12 @@
     document.getElementById('totalEkycName').textContent = ekyc.name;
     document.getElementById('totalEkycNote').textContent = ekyc.note;
     document.getElementById('totalEkycAmount').textContent = fmtRMWithPrefix(ekyc.y1Amount);
-    document.getElementById('totalAwsNote').textContent = `${awsTier.toUpperCase()} MAU · Front-End fixed + Back-End range · 12 months`;
-    document.getElementById('totalAwsAmount').textContent = `${fmtRMWithPrefix(awsLowAnnual)} – ${fmtRMWithPrefix(awsHighAnnual)}${aws.plus?'++':''}`;
+    document.getElementById('totalAwsNote').textContent = `${awsTier.toUpperCase()} MAU · Front-End $84.04 fixed + AWS v2.0 range · 12 months`;
+    document.getElementById('totalAwsAmount').textContent = `${fmtRMWithPrefix(awsLowAnnual)} – ${fmtRMWithPrefix(awsHighAnnual)}`;
     document.getElementById('totalMarketingAmount').textContent = fmtRMWithPrefix(marketing);
-    document.getElementById('totalBreakdownGrand').textContent = rangeText + (aws.plus?'++':'');
-    document.getElementById('totalGrandValue').innerHTML = `${fmtRMWithPrefix(totalLow)}<br>– ${fmtRMWithPrefix(totalHigh)}${aws.plus?'++':''}`;
-    document.getElementById('totalGrandY2Value').innerHTML = `${fmtRMWithPrefix(totalY2Low)}<br>– ${fmtRMWithPrefix(totalY2High)}${aws.plus?'++':''}`;
+    document.getElementById('totalBreakdownGrand').textContent = rangeText;
+    document.getElementById('totalGrandValue').innerHTML = `${fmtRMWithPrefix(totalLow)}<br>– ${fmtRMWithPrefix(totalHigh)}`;
+    document.getElementById('totalGrandY2Value').innerHTML = `${fmtRMWithPrefix(totalY2Low)}<br>– ${fmtRMWithPrefix(totalY2High)}`;
     document.getElementById('totalGrandPlan').textContent = ekyc.name;
     document.getElementById('totalGrandAws').textContent = `${awsTier.toUpperCase()} MAU`;
     document.getElementById('totalGrandFx').textContent = `USD 1 = RM ${fxRate.toFixed(2)}`;
