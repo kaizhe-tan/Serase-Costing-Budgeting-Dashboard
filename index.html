@@ -1867,6 +1867,69 @@ body[data-view] #costingAnalysisSection{display:none;}
     .analysis-section-title p{text-align:left;}
   }
 
+
+  /* WISE Plan 1 inline expandable SaaS detail */
+  .detail-toggle-row{cursor:pointer;transition:background .16s ease;}
+  .detail-toggle-row:hover td{background:#F8FBFA;}
+  .detail-toggle-label{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);}
+  .detail-toggle-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:#EDF3F2;color:var(--teal);font-size:14px;font-weight:700;transition:transform .18s ease;flex:none;}
+  .detail-toggle-row[aria-expanded="true"] .detail-toggle-icon{transform:rotate(90deg);}
+  .detail-toggle-sub{display:block;margin-top:3px;font-size:10.8px;font-weight:500;color:var(--muted);}
+  .detail-toggle-price{display:inline-flex;align-items:center;gap:7px;justify-content:flex-end;}
+  .detail-expand-row{display:none;}
+  .detail-expand-row.open{display:table-row;}
+  .detail-expand-row td{padding:0!important;background:#FAFCFB!important;border-top:none!important;}
+  .detail-expand-wrap{padding:16px 18px 18px;border-top:1px dashed #D9E3DF;}
+  .detail-expand-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px;}
+  .detail-expand-title{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--ink);}
+  .detail-expand-badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.04em;white-space:nowrap;}
+  .detail-feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;}
+  .detail-feature-item{padding:8px 0;border-bottom:1px solid #EDF1EF;color:#17334F;font-size:12px;line-height:1.45;}
+  .detail-feature-item:last-child{border-bottom:none;}
+  .detail-feature-item b{display:block;margin-bottom:5px;color:#10233F;font-size:12px;}
+  .detail-pills{display:flex;flex-wrap:wrap;gap:5px;}
+  .detail-pill{display:inline-flex;align-items:center;padding:2px 7px;border-radius:999px;background:#EEF3F4;color:#536B7E;font-size:9.7px;line-height:1.35;}
+  .detail-note{margin-top:14px;padding:11px 12px;border-left:3px solid var(--teal);border-radius:7px;background:#EAF5F2;color:#315F59;font-size:11.3px;line-height:1.55;}
+  @media(max-width:760px){.detail-feature-grid{grid-template-columns:1fr;}.detail-expand-head{align-items:flex-start;flex-direction:column;}}
+
+
+  /* Innov8tif optional-module selection */
+  .optional-selector-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;margin:0 0 12px;border:1px solid #DDE5E2;border-radius:12px;background:#F8FBFA;}
+  .optional-selector-toolbar strong{display:block;color:var(--ink);font-size:12px;}
+  .optional-selector-toolbar span{display:block;margin-top:3px;color:var(--muted);font-size:10.5px;line-height:1.45;}
+  .optional-clear-btn{border:1px solid #CFDBD7;border-radius:8px;background:#fff;color:#536B7E;padding:7px 10px;font:600 10px 'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;}
+  .optional-clear-btn:hover{background:#F1F6F4;color:var(--teal);}
+  .optional-select-cell{width:86px;text-align:center;}
+  .optional-choice{width:16px;height:16px;accent-color:var(--teal);cursor:pointer;}
+  .optional-choice:disabled{cursor:not-allowed;opacity:.45;}
+  .optional-relation-select{width:100%;min-width:126px;padding:6px 7px;border:1px solid #D6E0DD;border-radius:7px;background:#fff;color:#17334F;font:500 10px 'DM Sans',sans-serif;}
+  .optional-module-row.is-selected td{background:#F0F8F6;}
+  .optional-module-row.is-selected td:first-child{box-shadow:inset 3px 0 0 var(--teal);}
+  .innov-option-summary-label{display:block;font-size:10.5px;font-weight:500;color:var(--muted);margin-top:3px;}
+  .innov-option-active{color:var(--teal);font-weight:700;}
+  .innov-option-none{color:var(--muted);font-weight:600;}
+  .innov-option-total-row td{background:#F8FBFA!important;}
+  .innov-option-updated td{background:#EAF5F2!important;color:#0E5F58!important;font-weight:800!important;}
+  .innov-option-updated.y2 td{background:#EEF5F8!important;color:#17334F!important;}
+  @media(max-width:760px){.optional-selector-toolbar{align-items:flex-start;flex-direction:column;}.optional-select-cell{width:auto;}.optional-relation-select{min-width:110px;}}
+
+
+  .innov-option-detail-summary td{padding:14px 16px 16px!important;background:#FBFDFC!important;}
+  .innov-option-summary-heading{font-weight:600;color:var(--ink);margin-bottom:10px;}
+  .innov-selected-detail-area{width:100%;}
+  .innov-option-summary-list{display:flex;flex-direction:column;gap:10px;width:100%;}
+  .innov-option-summary-item{width:100%;padding:0;border:1px solid #DCE8E5;border-radius:10px;background:#F7FBFA;color:#18384E;text-align:left;overflow:hidden;}
+  .innov-summary-module-title{padding:9px 12px;background:#EEF7F5;color:#0F766E;font-weight:700;font-size:11.5px;border-bottom:1px solid #DCE8E5;}
+  .innov-summary-lines{display:grid;grid-template-columns:1fr;}
+  .innov-summary-line{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:7px 12px;border-bottom:1px solid #E7EEEC;font-size:10.8px;line-height:1.45;}
+  .innov-summary-line:last-child{border-bottom:none;}
+  .innov-summary-line span:first-child{color:#5F7182;}
+  .innov-summary-line strong{color:#102846;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:10.5px;}
+  .innov-summary-line.total{background:#F1F8F6;font-weight:700;}
+  .innov-summary-line.total span:first-child{color:#0F766E;font-weight:700;}
+  .innov-summary-line.total strong{color:#0F766E;}
+  @media(max-width:760px){.innov-summary-line{gap:10px;flex-direction:column}.innov-summary-line strong{text-align:left}}
+
 </style>
 </head>
 <body data-view="wise1">
@@ -1978,7 +2041,82 @@ body[data-view] #costingAnalysisSection{display:none;}
         <table>
           <thead><tr><th>Cost Item</th><th class="num">Amount (RM)</th></tr></thead>
           <tbody>
-            <tr><td>Setup &amp; Implementation (Y1 only)</td><td class="num mono">18,000.00</td></tr>
+            <tr class="detail-toggle-row" id="wise1SaasToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="wise1SaasDetails">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>eKYC Solution · SaaS (Postpaid)<span class="detail-toggle-sub">Click to view all included platform features</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="confirmed">INCLUDED · NIL</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="wise1SaasDetails">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">Included SaaS Platform Features</div><span class="detail-expand-badge">FULL QUOTED SCOPE</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>Identity Document OCR</b><div class="detail-pills"><span class="detail-pill">MyKad</span><span class="detail-pill">MyTentera</span><span class="detail-pill">Malaysia Driver License</span><span class="detail-pill">MyPR</span><span class="detail-pill">Passport</span></div></div>
+                    <div class="detail-feature-item"><b>Identity Document Fraud Detection</b><div class="detail-pills"><span class="detail-pill">MyKad</span></div></div>
+                    <div class="detail-feature-item"><b>Face Comparison</b><div class="detail-pills"><span class="detail-pill">Selfie vs ID Photo</span></div></div>
+                    <div class="detail-feature-item"><b>Face Liveness Detection</b></div>
+                    <div class="detail-feature-item"><b>Web &amp; Mobile SDK</b><div class="detail-pills"><span class="detail-pill">Android</span><span class="detail-pill">iOS</span><span class="detail-pill">Harmony</span></div></div>
+                    <div class="detail-feature-item"><b>WISE Console</b><div class="detail-pills"><span class="detail-pill">Dashboard</span></div></div>
+                    <div class="detail-feature-item"><b>REST API Integration Endpoint</b></div>
+                    <div class="detail-feature-item"><b>eKYC Backend Solution</b></div>
+                    <div class="detail-feature-item"><b>SDK License Key Control</b></div>
+                    <div class="detail-feature-item"><b>Dashboard</b><div class="detail-pills"><span class="detail-pill">Utilization</span><span class="detail-pill">Transaction History</span><span class="detail-pill">etc.</span></div></div>
+                    <div class="detail-feature-item"><b>Multi-language</b></div>
+                    <div class="detail-feature-item"><b>Customer Onboarding Information Listing</b></div>
+                    <div class="detail-feature-item"><b>eKYC Listing &amp; Review</b></div>
+                    <div class="detail-feature-item"><b>BNM Reporting</b></div>
+                    <div class="detail-feature-item"><b>Backend User Management</b></div>
+                    <div class="detail-feature-item"><b>System Configuration</b><div class="detail-pills"><span class="detail-pill">eKYC Parameters</span><span class="detail-pill">License Key</span></div></div>
+                    <div class="detail-feature-item"><b>Audit Log</b></div>
+                  </div>
+                  <div class="detail-note"><b>Quotation treatment:</b> this SaaS solution is shown as <b>NIL</b> in the first-year quotation. The features above are included platform capabilities and are not separate RM18,000 setup sub-prices.</div>
+                </div>
+              </td>
+            </tr>
+            <tr class="detail-toggle-row" id="wise1SetupToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="wise1SetupDetails">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>Setup &amp; Implementation (Y1 only)<span class="detail-toggle-sub">Click to view full scope covered by RM18,000</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono">18,000.00</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="wise1SetupDetails">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">RM18,000 Setup &amp; Implementation Scope</div><span class="detail-expand-badge">ONE-TIME FEE</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>License</b></div>
+                    <div class="detail-feature-item"><b>SDK Integration Support</b><div class="detail-pills"><span class="detail-pill">Web</span><span class="detail-pill">Android</span><span class="detail-pill">iOS</span><span class="detail-pill">Setup &amp; Configuration</span></div></div>
+                    <div class="detail-feature-item"><b>eKYC Threshold Configuration</b><div class="detail-pills"><span class="detail-pill">According to URS</span></div></div>
+                    <div class="detail-feature-item"><b>User Acceptance Test</b></div>
+                    <div class="detail-feature-item"><b>Train the Trainer</b></div>
+                    <div class="detail-feature-item"><b>Go Live Support</b><div class="detail-pills"><span class="detail-pill">Weekdays only</span><span class="detail-pill">Working hours only</span></div></div>
+                  </div>
+                  <div class="detail-note"><b>Bundled quotation:</b> the vendor gives one total price of <b>RM18,000</b> for the whole setup scope above. No separate sub-item prices are stated.</div>
+                </div>
+              </td>
+            </tr>
+            <tr class="detail-toggle-row" id="wise1TxnToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="wise1TxnDetails">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>Transaction Fees · Postpaid Monthly Commitment<span class="detail-toggle-sub">Click to view tier rates and billing rule</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono">RM 1.80–3.00 / txn</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="wise1TxnDetails">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">Postpaid Transaction Fee Tiers</div><span class="detail-expand-badge">MONTHLY BILLING</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>Tier 1</b><div class="detail-pills"><span class="detail-pill">0–500</span><span class="detail-pill">RM3.00 / txn</span></div></div>
+                    <div class="detail-feature-item"><b>Tier 2</b><div class="detail-pills"><span class="detail-pill">501–1,000</span><span class="detail-pill">RM2.80 / txn</span></div></div>
+                    <div class="detail-feature-item"><b>Tier 3</b><div class="detail-pills"><span class="detail-pill">1,001–1,500</span><span class="detail-pill">RM2.50 / txn</span></div></div>
+                    <div class="detail-feature-item"><b>Tier 4</b><div class="detail-pills"><span class="detail-pill">1,501–4,000</span><span class="detail-pill">RM2.10 / txn</span></div></div>
+                    <div class="detail-feature-item"><b>Tier 5</b><div class="detail-pills"><span class="detail-pill">&gt; 4,000</span><span class="detail-pill">RM1.80 / txn</span></div></div>
+                  </div>
+                  <div class="detail-note"><b>Billing rule:</b> one tier rate applies to <b>all</b> completed transactions within the selected monthly range. If monthly usage is less than 100 completed transactions, a minimum charge of <b>100 transactions</b> applies.</div>
+                </div>
+              </td>
+            </tr>
             <tr><td>Selected Monthly Tier</td><td class="num mono" id="wiseTierLabel">1–500 @ RM3.00</td></tr>
             <tr><td>Billed Transactions / Month</td><td class="num mono" id="wiseBilledTxn">500</td></tr>
             <tr><td>Monthly Usage (before SST)</td><td class="num mono" id="wiseMonthlyNet">1,500.00</td></tr>
@@ -1986,6 +2124,24 @@ body[data-view] #costingAnalysisSection{display:none;}
             <tr><td>12-Month Usage (before SST)</td><td class="num mono" id="wiseAnnualUsage">18,000.00</td></tr>
             <tr class="total-row"><td>Year 1 Net Total</td><td class="num mono" id="wiseY1Net">36,000.00</td></tr>
             <tr class="grand-row"><td>Year 1 Total incl. 8% SST</td><td class="num mono" id="wiseY1Gross">38,880.00</td></tr>
+            <tr class="detail-toggle-row" id="wise1Y2Toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="wise1Y2Details">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>Subsequent Annual Charges · Year 2+<span class="detail-toggle-sub">Click to view what continues after Year 1</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono">RM 5,000 / year + usage</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="wise1Y2Details">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">Year 2+ Charges</div><span class="detail-expand-badge">ONGOING</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>Yearly Support &amp; Maintenance</b><div class="detail-pills"><span class="detail-pill">RM5,000 / year</span><span class="detail-pill">Applicable from Year 2 onward</span></div></div>
+                    <div class="detail-feature-item"><b>Transaction Fees Continue</b><div class="detail-pills"><span class="detail-pill">Same postpaid tier schedule</span><span class="detail-pill">Same 100-txn minimum rule</span></div></div>
+                  </div>
+                  <div class="detail-note"><b>Budget treatment:</b> Year 2 and beyond include fixed annual support plus the same usage-based postpaid transaction fees.</div>
+                </div>
+              </td>
+            </tr>
             <tr class="y2-row"><td>Year 2+ Net (RM5k maintenance + usage)</td><td class="num mono" id="wiseY2Net">23,000.00</td></tr>
             <tr class="y2-row"><td>Year 2+ Total incl. 8% SST</td><td class="num mono" id="wiseY2Gross">24,840.00</td></tr>
           </tbody>
@@ -2013,13 +2169,87 @@ body[data-view] #costingAnalysisSection{display:none;}
         <table>
           <thead><tr><th>Cost Item</th><th class="num">Amount (RM)</th></tr></thead>
           <tbody>
-            <tr><td>Setup &amp; Implementation (Y1 only)</td><td class="num mono">18,000.00</td></tr>
+            <tr class="detail-toggle-row" id="wise2SaasToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="wise2SaasDetails">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>eKYC Solution · SaaS Feature<span class="detail-toggle-sub">Click to view annual package features and included quota</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono" id="wisePrepaidPackage">12,000.00</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="wise2SaasDetails">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">Annual SaaS Feature Scope</div><span class="detail-expand-badge">PREPAID PACKAGE</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>Identity Document OCR</b><div class="detail-pills"><span class="detail-pill">MyKad</span><span class="detail-pill">MyTentera</span><span class="detail-pill">Malaysia Driver License</span><span class="detail-pill">MyPR</span><span class="detail-pill">Passport</span></div></div>
+                    <div class="detail-feature-item"><b>Identity Document Fraud Detection</b><div class="detail-pills"><span class="detail-pill">MyKad</span></div></div>
+                    <div class="detail-feature-item"><b>Face Comparison</b><div class="detail-pills"><span class="detail-pill">Selfie vs ID Photo</span></div></div>
+                    <div class="detail-feature-item"><b>Face Liveness Detection</b></div>
+                    <div class="detail-feature-item"><b>Web &amp; Mobile SDK</b><div class="detail-pills"><span class="detail-pill">Android</span><span class="detail-pill">iOS</span><span class="detail-pill">Harmony</span></div></div>
+                    <div class="detail-feature-item"><b>WISE Console</b><div class="detail-pills"><span class="detail-pill">Dashboard</span></div></div>
+                    <div class="detail-feature-item"><b>REST API Integration Endpoint</b></div>
+                    <div class="detail-feature-item"><b>eKYC Backend Solution</b></div>
+                    <div class="detail-feature-item"><b>SDK License Key Control</b></div>
+                    <div class="detail-feature-item"><b>Dashboard</b><div class="detail-pills"><span class="detail-pill">Utilization</span><span class="detail-pill">Transaction History</span></div></div>
+                    <div class="detail-feature-item"><b>Multi-language</b></div>
+                    <div class="detail-feature-item"><b>Customer Onboarding Information Listing</b></div>
+                    <div class="detail-feature-item"><b>eKYC Listing &amp; Review</b></div>
+                    <div class="detail-feature-item"><b>BNM Reporting</b></div>
+                    <div class="detail-feature-item"><b>Backend User Management</b></div>
+                    <div class="detail-feature-item"><b>System Configuration</b><div class="detail-pills"><span class="detail-pill">eKYC Parameters</span><span class="detail-pill">License Key</span></div></div>
+                    <div class="detail-feature-item"><b>Audit Log</b></div>
+                  </div>
+                  <div class="detail-note"><b>Included quota:</b> the quotation states <b>1 block usage of 5,000 transactions</b> is free of charge and valid for <b>1 year only</b> under the SaaS Feature.</div>
+                </div>
+              </td>
+            </tr>
+            <tr class="detail-toggle-row" id="wise2SetupToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="wise2SetupDetails">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>Setup &amp; Implementation (Y1 only)<span class="detail-toggle-sub">Click to view full scope covered by RM18,000</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono">18,000.00</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="wise2SetupDetails">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">RM18,000 Setup &amp; Implementation Scope</div><span class="detail-expand-badge">ONE-TIME FEE</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>License</b></div>
+                    <div class="detail-feature-item"><b>SDK Integration Support</b><div class="detail-pills"><span class="detail-pill">Web</span><span class="detail-pill">Android</span><span class="detail-pill">iOS</span><span class="detail-pill">Setup &amp; Configuration</span></div></div>
+                    <div class="detail-feature-item"><b>eKYC Threshold Configuration</b><div class="detail-pills"><span class="detail-pill">According to URS</span></div></div>
+                    <div class="detail-feature-item"><b>User Acceptance Test</b></div>
+                    <div class="detail-feature-item"><b>Train the Trainer</b></div>
+                    <div class="detail-feature-item"><b>Go Live Support</b><div class="detail-pills"><span class="detail-pill">Weekdays only</span><span class="detail-pill">Working hours only</span></div></div>
+                  </div>
+                  <div class="detail-note"><b>Bundled quotation:</b> the vendor gives one total price of <b>RM18,000</b> for the whole setup scope above. No separate sub-item prices are stated.</div>
+                </div>
+              </td>
+            </tr>
             <tr><td>Selected Prepaid Block</td><td class="num mono" id="wisePrepaidIncluded">5,000 / year</td></tr>
             <tr><td>Vendor Unit Rate</td><td class="num mono" id="wisePrepaidUnitRate">RM 2.40 / txn</td></tr>
-            <tr><td>Annual Package Price</td><td class="num mono" id="wisePrepaidPackage">12,000.00</td></tr>
+            
             <tr><td>Package Validity</td><td class="num mono">1 year</td></tr>
             <tr class="total-row"><td>Year 1 Net Total</td><td class="num mono" id="wisePrepaidY1Net">30,000.00</td></tr>
             <tr class="grand-row"><td>Year 1 Total incl. 8% SST</td><td class="num mono" id="wisePrepaidY1Gross">32,400.00</td></tr>
+            <tr class="detail-toggle-row" id="wise2Y2Toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="wise2Y2Details">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>Subsequent Annual Charges · Year 2+<span class="detail-toggle-sub">Click to view the recurring annual structure</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono">RM 18,360 / year</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="wise2Y2Details">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">Year 2+ Quoted Charges</div><span class="detail-expand-badge">RECURRING</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>Yearly Support &amp; Maintenance</b><div class="detail-pills"><span class="detail-pill">RM5,000 / year</span></div></div>
+                    <div class="detail-feature-item"><b>eKYC Solution · SaaS Feature</b><div class="detail-pills"><span class="detail-pill">RM12,000 / year</span></div></div>
+                    <div class="detail-feature-item"><b>Subtotal</b><div class="detail-pills"><span class="detail-pill">RM17,000</span></div></div>
+                    <div class="detail-feature-item"><b>SST @ 8%</b><div class="detail-pills"><span class="detail-pill">RM1,360</span><span class="detail-pill">Grand Total RM18,360</span></div></div>
+                  </div>
+                  <div class="detail-note"><b>Quoted note:</b> the subsequent annual quotation again shows one 5,000-transaction FOC block valid for 1 year under the SaaS Feature.</div>
+                </div>
+              </td>
+            </tr>
             <tr class="y2-row"><td>Year 2+ Net (Package + RM5k support)</td><td class="num mono" id="wisePrepaidY2Net">17,000.00</td></tr>
             <tr class="y2-row"><td>Year 2+ Total incl. 8% SST</td><td class="num mono" id="wisePrepaidY2Gross">18,360.00</td></tr>
             <tr><td>Unused quota validity extension</td><td class="num"><span class="confirmed">~3–4 MONTHS</span></td></tr>
@@ -2033,21 +2263,85 @@ body[data-view] #costingAnalysisSection{display:none;}
       <!-- INNOV8TIF (Modular Prepaid) -->
       <div class="card" id="innov8tifCard">
         <div class="vendor-header warning">Innov8tif - Base Onboarding</div>
+        <div class="calc-panel">
+          <div class="calc-row">
+            <label for="innovBaseTier">Onboarding credit pricing</label>
+            <select id="innovBaseTier" class="fx-input" style="width:auto;min-width:240px;padding:7px 10px;text-align:left;">
+              <option value="10k">10,000 Credits @ RM2.80</option>
+              <option value="20k">20,000 Credits @ RM2.70</option>
+            </select>
+            <span class="confirmed">QUOTED</span>
+          </div>
+          <div class="calc-hint">Choose the quoted Innov8tif onboarding credit option. The Cloud API row and Year 1 / Year 2 totals update automatically; fixed Cloud Service and Implementation fees are shown only once.</div>
+        </div>
         <table>
           <thead><tr><th>Cost Item</th><th class="num">Amount (RM)</th></tr></thead>
           <tbody>
-            <tr><td colspan="2" class="text-teal-bold pb-4">10,000 Credit Tier</td></tr>
-            <tr class="sub-row"><td>↳ 10k Credits @ RM2.80</td><td class="num mono">28,000.00</td></tr>
-            <tr class="sub-row"><td>↳ Annual Cloud Service</td><td class="num mono">5,000.00</td></tr>
-            <tr class="sub-row"><td>↳ Implementation (10 mandays)</td><td class="num mono">19,000.00</td></tr>
-            <tr class="total-row"><td>10k Year 1 Net</td><td class="num mono">52,000.00</td></tr>
-            <tr class="grand-row"><td>10k Year 1 incl. 8% SST</td><td class="num mono">56,160.00</td></tr>
-            <tr class="y2-row"><td>10k Year 2+ incl. 8% SST</td><td class="num mono">35,640.00</td></tr>
-            <tr><td colspan="2" class="text-teal-bold pt-12-pb-4">20,000 Credit Tier</td></tr>
-            <tr class="sub-row"><td>↳ 20k Credits @ RM2.70</td><td class="num mono">54,000.00</td></tr>
-            <tr class="total-row"><td>20k Year 1 Net (+ Cloud + Implementation)</td><td class="num mono">78,000.00</td></tr>
-            <tr class="grand-row"><td>20k Year 1 incl. 8% SST</td><td class="num mono">84,240.00</td></tr>
-            <tr class="y2-row"><td>20k Year 2+ incl. 8% SST</td><td class="num mono">63,720.00</td></tr>
+            <tr class="detail-toggle-row" id="innovBaseSaasToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="innovBaseSaasDetails">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>EMAS eKYC Cloud API · Onboarding<span class="detail-toggle-sub">Click to view included SaaS scope and quoted credit options</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono" id="innovBaseHeaderRate">RM 2.80 / credit</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="innovBaseSaasDetails">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">Onboarding SaaS Scope</div><span class="detail-expand-badge">CREDIT-BASED</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>Included SaaS Modules</b><div class="detail-pills"><span class="detail-pill">OkayID</span><span class="detail-pill">OkayLive</span><span class="detail-pill">OkayFace</span><span class="detail-pill">OkayDoc</span></div></div>
+                    <div class="detail-feature-item"><b>Support Service</b><div class="detail-pills"><span class="detail-pill">8 × 5 normal working days SLA</span></div></div>
+                    <div class="detail-feature-item"><b>Quoted Option A</b><div class="detail-pills"><span class="detail-pill">10,000 credits</span><span class="detail-pill">RM2.80 / credit</span><span class="detail-pill">Total RM28,000</span></div></div>
+                    <div class="detail-feature-item"><b>Quoted Option B</b><div class="detail-pills"><span class="detail-pill">20,000 credits</span><span class="detail-pill">RM2.70 / credit</span><span class="detail-pill">Total RM54,000</span></div></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="detail-toggle-row" id="innovCloudToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="innovCloudDetails">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>EMAS eKYC Annual Cloud Service Subscription<span class="detail-toggle-sub">Click to view annual channel subscription details</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono">5,000.00</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="innovCloudDetails">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">Annual Cloud Service</div><span class="detail-expand-badge">PER CHANNEL</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>Service</b><div class="detail-pills"><span class="detail-pill">EMAS eKYC Annual Cloud Service Subscription</span></div></div>
+                    <div class="detail-feature-item"><b>Purpose</b><div class="detail-pills"><span class="detail-pill">For onboarding</span><span class="detail-pill">1 channel</span><span class="detail-pill">RM5,000 / year</span></div></div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr class="detail-toggle-row" id="innovImplToggle" role="button" tabindex="0" aria-expanded="false" aria-controls="innovImplDetails">
+              <td>
+                <div class="detail-toggle-label"><span class="detail-toggle-icon">›</span><span>One Time Implementation Fee<span class="detail-toggle-sub">Click to view the 10-mandays implementation scope</span></span></div>
+              </td>
+              <td class="num"><span class="detail-toggle-price"><span class="mono">19,000.00</span></span></td>
+            </tr>
+            <tr class="detail-expand-row" id="innovImplDetails">
+              <td colspan="2">
+                <div class="detail-expand-wrap">
+                  <div class="detail-expand-head"><div class="detail-expand-title">Implementation Scope</div><span class="detail-expand-badge">10 MANDAYS</span></div>
+                  <div class="detail-feature-grid">
+                    <div class="detail-feature-item"><b>Activities Included</b><div class="detail-pills"><span class="detail-pill">Solution Design</span><span class="detail-pill">Testing</span><span class="detail-pill">Implementation</span><span class="detail-pill">Project Management</span><span class="detail-pill">Support</span></div></div>
+                    <div class="detail-feature-item"><b>Calculation</b><div class="detail-pills"><span class="detail-pill">10 mandays</span><span class="detail-pill">RM1,900 / manday</span><span class="detail-pill">Total RM19,000</span></div></div>
+                  </div>
+                  <div class="detail-note"><b>Bundled quotation:</b> the vendor gives one total implementation price. It does not assign separate prices to each activity.</div>
+                </div>
+              </td>
+            </tr>
+            <tr class="total-row"><td>Year 1 Net Total</td><td class="num mono" id="innovSelectedY1Net">52,000.00</td></tr>
+            <tr class="grand-row"><td>Year 1 Total incl. 8% SST</td><td class="num mono" id="innovSelectedY1Gross">56,160.00</td></tr>
+            <tr class="y2-row"><td>Year 2+ Total incl. 8% SST</td><td class="num mono" id="innovSelectedY2Gross">35,640.00</td></tr>
+            <tr class="innov-option-total-row innov-option-detail-summary"><td colspan="2">
+              <div class="innov-option-summary-heading">Selected Optional Modules<span class="innov-option-summary-label">Selections from the Optional Modules section below are added automatically</span></div>
+              <div id="innovSelectedOptionalLabel" class="innov-selected-detail-area"><span class="innov-option-none">None selected</span></div>
+            </td></tr>
+            <tr class="innov-option-total-row"><td>Optional Add-ons · Year 1 incl. 8% SST (applied once)</td><td class="num mono" id="innovOptionalY1Gross">0.00</td></tr>
+            <tr class="innov-option-total-row"><td>Optional Add-ons · Year 2+ incl. 8% SST (applied once)</td><td class="num mono" id="innovOptionalY2Gross">0.00</td></tr>
+            <tr class="innov-option-updated"><td>Updated Year 1 Total incl. 8% SST</td><td class="num mono" id="innovUpdatedY1Gross">56,160.00</td></tr>
+            <tr class="innov-option-updated y2"><td>Updated Year 2+ Total incl. 8% SST</td><td class="num mono" id="innovUpdatedY2Gross">35,640.00</td></tr>
           </tbody>
         </table>
         <div class="formula-note">Credits are prepaid, valid 1 year and non-refundable. Reload is allowed based on committed tier, but minimum reload quantity and reload expiry are TBC.</div>
@@ -2057,19 +2351,44 @@ body[data-view] #costingAnalysisSection{display:none;}
     <div id="innovOptionalSection">
     <div class="section-subtitle">Innov8tif Optional Modules &amp; Quotation Risks</div>
     <div class="card full-width-card">
+      <div class="optional-selector-toolbar">
+        <div><strong>Select optional modules to include in the Innov8tif estimate</strong><span>Choose one tier for Re-authentication, one tier for Facial Blacklist, and any applicable one-time add-ons. The totals in the Base Onboarding card above update automatically.</span></div>
+        <button type="button" class="optional-clear-btn" id="innovOptionalClear">Clear selections</button>
+      </div>
       <table>
-        <thead><tr><th>Optional Item</th><th>Quoted Logic</th><th class="num">Total incl. 8% SST</th><th>Status / Note</th></tr></thead>
+        <thead><tr><th class="optional-select-cell">Select</th><th>Optional Item</th><th>Quoted Logic</th><th class="num">Quoted Price (RM)</th><th>Status / Note</th></tr></thead>
         <tbody>
-          <tr><td>Re-authentication · 20k</td><td>20,000 × RM1.40 + RM5,000 Annual Cloud</td><td class="num mono">35,640.00</td><td><span class="confirmed">QUOTED</span></td></tr>
-          <tr><td>Re-authentication · 50k</td><td>50,000 × RM1.30 + RM5,000 Annual Cloud</td><td class="num mono">75,600.00</td><td><span class="confirmed">QUOTED</span></td></tr>
-          <tr><td>Facial Blacklist · 10k</td><td>10,000 × RM0.53 + RM5,000 Annual Cloud</td><td class="num mono">11,124.00</td><td><span class="confirmed">QUOTED</span></td></tr>
-          <tr><td>Facial Blacklist · 20k</td><td>20,000 × RM0.50 + RM5,000 Annual Cloud</td><td class="num mono">16,200.00</td><td><span class="confirmed">QUOTED</span></td></tr>
-          <tr><td>Blacklist + De-duplication</td><td>Quotation states “double charges”</td><td class="num"><span class="tbc">TBC</span></td><td>Need vendor to confirm whether only usage credits double or annual subscription also doubles.</td></tr>
-          <tr><td>HIP Portal</td><td>RM68,000 server licence / 1 Production Server / without HA</td><td class="num mono">73,440.00</td><td>Optional</td></tr>
-          <tr><td>Full Optional Implementation</td><td>36 mandays × RM1,900 = RM68,400</td><td class="num mono">73,872.00</td><td><span class="tbc">TBC RELATIONSHIP</span> to basic RM19,000 implementation</td></tr>
+          <tr class="optional-module-row" data-option-row="reauth">
+            <td class="optional-select-cell">
+              <select class="optional-relation-select" id="innovReauthOption" aria-label="Select Re-authentication tier">
+                <option value="none">Not selected</option>
+                <option value="20k">20k @ RM1.40</option>
+                <option value="50k">50k @ RM1.30</option>
+              </select>
+            </td>
+            <td>Re-authentication / Re-verification</td>
+            <td id="innovReauthLogic">Choose 20k or 50k. Each quoted tier includes its own RM5,000 Re-authentication Annual Cloud.</td>
+            <td class="num mono" id="innovReauthTotal">—</td>
+            <td><span class="confirmed">QUOTED · ANNUAL</span></td>
+          </tr>
+          <tr class="optional-module-row" data-option-row="blacklist">
+            <td class="optional-select-cell">
+              <select class="optional-relation-select" id="innovBlacklistOption" aria-label="Select Facial Blacklist tier">
+                <option value="none">Not selected</option>
+                <option value="10k">10k @ RM0.53</option>
+                <option value="20k">20k @ RM0.50</option>
+              </select>
+            </td>
+            <td>Facial Blacklist <span class="muted">or</span> De-duplication</td>
+            <td id="innovBlacklistLogic">Choose 10k or 20k for either Facial Blacklist or De-duplication. The selected tier adds a separate RM5,000 annual cloud fee.</td>
+            <td class="num mono" id="innovBlacklistTotal">—</td>
+            <td><span class="confirmed">QUOTED · ANNUAL</span><div style="margin-top:5px;font-size:10px;line-height:1.4;color:var(--muted);">Selected price covers either one function. If both are required, quotation states “double charges”; exact scope remains TBC.</div></td>
+          </tr>
+          <tr class="optional-module-row" data-option-row="hip"><td class="optional-select-cell"><input class="optional-choice" id="innovHipOption" type="checkbox" aria-label="Include HIP Portal"></td><td>HIP Portal</td><td>RM68,000 server licence / 1 Production Server / without HA</td><td class="num mono">68,000.00</td><td><span class="confirmed">OPTIONAL · YEAR 1</span></td></tr>
+          <tr class="optional-module-row" data-option-row="fullImpl"><td class="optional-select-cell"><select class="optional-relation-select" id="innovFullImplOption" aria-label="Full optional implementation treatment"><option value="none">Not selected</option><option value="add">Add to base</option><option value="replace">Replace base RM19k</option></select></td><td>Full Optional Implementation</td><td>36 mandays × RM1,900 = RM68,400</td><td class="num mono">68,400.00</td><td><span class="tbc">RELATIONSHIP TBC</span> · choose Add or Replace for scenario modelling.</td></tr>
         </tbody>
       </table>
-      <div class="warning-box"><b>Important budgeting rule:</b> do not add RM19,000 + RM68,400 automatically and do not subtract RM19,000 automatically. The proposal summary does not explicitly state whether RM68,400 supersedes the basic implementation. Confirm with Innov8tif before final budget sign-off.</div>
+      <div class="warning-box"><b>Budgeting treatment:</b> the optional-module table shows the <b>original quoted prices before SST</b>. SST is applied only once in the summary totals above, so it is not repeated inside each selected module. Each optional module uses the cloud fee stated in its own quotation section. The selector adds only the option you choose. HIP Portal is Year 1 only. Full Optional Implementation can be modelled as Add or Replace because its relationship to the base RM19,000 implementation remains TBC. For Facial Blacklist / De-duplication, the selected price covers either one function. If both are required, the quotation states “double charges”; the exact double-charge scope remains TBC and is not auto-calculated.</div>
     </div>
 
     </div>
@@ -2180,7 +2499,7 @@ body[data-view] #costingAnalysisSection{display:none;}
         </div>
         <div class="marketing-quote-meta-item">
           <span class="marketing-quote-meta-label">Quote Title</span>
-          <span class="marketing-quote-meta-value">SERASI Event Launching</span>
+          <span class="marketing-quote-meta-value">SERASE Event Launching</span>
         </div>
         <div class="marketing-quote-meta-item">
           <span class="marketing-quote-meta-label">Quoted Total</span>
@@ -3154,11 +3473,14 @@ body[data-view] #costingAnalysisSection{display:none;}
     }
     if (totalSelectedPlan === 'innov8tif') {
       const is20k = totalInnovTierEl.value === '20k';
+      const baseY1 = is20k ? 84240 : 56160;
+      const baseY2 = is20k ? 63720 : 35640;
+      const opt = (window.getInnovOptionalCostSummary ? window.getInnovOptionalCostSummary() : {y1Gross:0,y2Gross:0,labels:[]});
       return {
         name:'Innov8tif · EMAS eKYC',
-        y1Amount:is20k ? 84240 : 56160,
-        y2Amount:is20k ? 63720 : 35640,
-        note:`Year 1 ${is20k ? '20,000' : '10,000'}-credit tier including 8% SST`
+        y1Amount:baseY1 + (opt.y1Gross || 0),
+        y2Amount:baseY2 + (opt.y2Gross || 0),
+        note:`Year 1 ${is20k ? '20,000' : '10,000'}-credit tier including 8% SST${opt.labels && opt.labels.length ? ' + selected optional modules' : ''}`
       };
     }
     return { name:'WISE AI · Plan 1', y1Amount:getWisePlan1Y1Gross(), y2Amount:getWisePlan1Y2Gross(), note:'Year 1 postpaid total including 8% SST' };
@@ -3188,7 +3510,8 @@ body[data-view] #costingAnalysisSection{display:none;}
 
     document.getElementById('totalWise1OptionCost').textContent = fmtRMWithPrefix(getWisePlan1Y1Gross());
     document.getElementById('totalWise2OptionCost').textContent = fmtRMWithPrefix(getWisePrepaidCosts(totalWise2TierEl.value).y1Gross);
-    document.getElementById('totalInnovOptionCost').textContent = totalInnovTierEl.value === '20k' ? 'RM 84,240.00' : 'RM 56,160.00';
+    const innovOptSummary = (window.getInnovOptionalCostSummary ? window.getInnovOptionalCostSummary() : {y1Gross:0});
+    document.getElementById('totalInnovOptionCost').textContent = fmtRMWithPrefix((totalInnovTierEl.value === '20k' ? 84240 : 56160) + (innovOptSummary.y1Gross || 0));
     document.getElementById('totalEkycName').textContent = ekyc.name;
     document.getElementById('totalEkycNote').textContent = ekyc.note;
     document.getElementById('totalEkycAmount').textContent = fmtRMWithPrefix(ekyc.y1Amount);
@@ -3284,5 +3607,205 @@ body[data-view] #costingAnalysisSection{display:none;}
 </script>
 
 
+
+<script>
+(function(){
+  document.querySelectorAll('.detail-toggle-row[aria-controls]').forEach(function(toggle){
+    const detailId = toggle.getAttribute('aria-controls');
+    const detail = document.getElementById(detailId);
+    if(!detail) return;
+    function setOpen(open){
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      detail.classList.toggle('open', open);
+    }
+    function activate(){ setOpen(toggle.getAttribute('aria-expanded') !== 'true'); }
+    toggle.addEventListener('click', activate);
+    toggle.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); activate(); }
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const select = document.getElementById('innovBaseTier');
+  if(!select) return;
+
+  const scenarios = {
+    '10k': {volume:10000, rate:2.80, credit:28000, y1Net:52000, y1Gross:56160, y2Gross:35640},
+    '20k': {volume:20000, rate:2.70, credit:54000, y1Net:78000, y1Gross:84240, y2Gross:63720}
+  };
+
+  const optionalPrices = {
+    reauth20: {
+      y1Gross:35640, y2Gross:35640, label:'Re-authentication 20k',
+      summary:'<div class="innov-summary-module-title">Re-authentication / Re-verification</div><div class="innov-summary-lines"><div class="innov-summary-line"><span>Credit Volume</span><strong>20,000 credits</strong></div><div class="innov-summary-line"><span>Unit Price</span><strong>RM1.40 / credit</strong></div><div class="innov-summary-line"><span>Credit Subscription Cost</span><strong>RM28,000</strong></div><div class="innov-summary-line"><span>Re-authentication Annual Cloud</span><strong>RM5,000 / year</strong></div><div class="innov-summary-line total"><span>Quoted Total (before SST)</span><strong>RM33,000 / year</strong></div></div>'
+    },
+    reauth50: {
+      y1Gross:75600, y2Gross:75600, label:'Re-authentication 50k',
+      summary:'<div class="innov-summary-module-title">Re-authentication / Re-verification</div><div class="innov-summary-lines"><div class="innov-summary-line"><span>Credit Volume</span><strong>50,000 credits</strong></div><div class="innov-summary-line"><span>Unit Price</span><strong>RM1.30 / credit</strong></div><div class="innov-summary-line"><span>Credit Subscription Cost</span><strong>RM65,000</strong></div><div class="innov-summary-line"><span>Re-authentication Annual Cloud</span><strong>RM5,000 / year</strong></div><div class="innov-summary-line total"><span>Quoted Total (before SST)</span><strong>RM70,000 / year</strong></div></div>'
+    },
+    blacklist10: {
+      y1Gross:11124, y2Gross:11124, label:'Facial Blacklist 10k',
+      summary:'<div class="innov-summary-module-title">Facial Blacklist or De-duplication</div><div class="innov-summary-lines"><div class="innov-summary-line"><span>Credit Volume</span><strong>10,000 credits</strong></div><div class="innov-summary-line"><span>Unit Price</span><strong>RM0.53 / credit</strong></div><div class="innov-summary-line"><span>Credit Subscription Cost</span><strong>RM5,300</strong></div><div class="innov-summary-line"><span>Blacklist / De-duplication Annual Cloud</span><strong>RM5,000 / year</strong></div><div class="innov-summary-line total"><span>Quoted Total (before SST)</span><strong>RM10,300 / year</strong></div></div>'
+    },
+    blacklist20: {
+      y1Gross:16200, y2Gross:16200, label:'Facial Blacklist 20k',
+      summary:'<div class="innov-summary-module-title">Facial Blacklist or De-duplication</div><div class="innov-summary-lines"><div class="innov-summary-line"><span>Credit Volume</span><strong>20,000 credits</strong></div><div class="innov-summary-line"><span>Unit Price</span><strong>RM0.50 / credit</strong></div><div class="innov-summary-line"><span>Credit Subscription Cost</span><strong>RM10,000</strong></div><div class="innov-summary-line"><span>Blacklist / De-duplication Annual Cloud</span><strong>RM5,000 / year</strong></div><div class="innov-summary-line total"><span>Quoted Total (before SST)</span><strong>RM15,000 / year</strong></div></div>'
+    },
+    hip: {
+      y1Gross:73440, y2Gross:0, label:'HIP Portal',
+      summary:'<div class="innov-summary-module-title">HIP Portal</div><div class="innov-summary-lines"><div class="innov-summary-line"><span>Server Licence</span><strong>1 Production Server · without HA</strong></div><div class="innov-summary-line total"><span>Quoted Price (before SST)</span><strong>RM68,000 · Year 1 only</strong></div></div>'
+    },
+    fullImplAdd: {
+      y1Gross:73872, y2Gross:0, label:'Full Optional Implementation · add',
+      summary:'<div class="innov-summary-module-title">Full Optional Implementation · Add to Base</div><div class="innov-summary-lines"><div class="innov-summary-line"><span>Implementation Effort</span><strong>36 mandays × RM1,900</strong></div><div class="innov-summary-line total"><span>Quoted Price (before SST)</span><strong>RM68,400 · Year 1 only</strong></div></div>'
+    },
+    fullImplReplace: {
+      y1Gross:53352, y2Gross:0, label:'Full Optional Implementation · replace base RM19k',
+      summary:'<div class="innov-summary-module-title">Full Optional Implementation · Replace Base RM19,000</div><div class="innov-summary-lines"><div class="innov-summary-line"><span>Full Implementation</span><strong>36 mandays × RM1,900 = RM68,400</strong></div><div class="innov-summary-line"><span>Base Implementation Replaced</span><strong>RM19,000</strong></div><div class="innov-summary-line total"><span>Net Difference (before SST)</span><strong>RM49,400 · Year 1 only</strong></div></div>'
+    }
+  };
+
+  const reauthOption = document.getElementById('innovReauthOption');
+  const blacklistOption = document.getElementById('innovBlacklistOption');
+  const hipOption = document.getElementById('innovHipOption');
+  const fullImplOption = document.getElementById('innovFullImplOption');
+  const clearBtn = document.getElementById('innovOptionalClear');
+
+  function money(n){ return n.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  function whole(n){ return n.toLocaleString('en-MY'); }
+
+  function readState(){
+    const reauth = reauthOption ? reauthOption.value : 'none';
+    const blacklist = blacklistOption ? blacklistOption.value : 'none';
+    return {reauth, blacklist, hip:!!(hipOption && hipOption.checked), fullImpl:fullImplOption ? fullImplOption.value : 'none'};
+  }
+
+  function getOptionalCostSummary(){
+    const st = readState();
+    let y1Gross = 0, y2Gross = 0;
+    const labels = [];
+    const summaries = [];
+    function add(key){
+      const p = optionalPrices[key]; if(!p) return;
+      y1Gross += p.y1Gross; y2Gross += p.y2Gross; labels.push(p.label); summaries.push(p.summary || p.label);
+    }
+    if(st.reauth === '20k') add('reauth20');
+    if(st.reauth === '50k') add('reauth50');
+    if(st.blacklist === '10k') add('blacklist10');
+    if(st.blacklist === '20k') add('blacklist20');
+    if(st.hip) add('hip');
+    if(st.fullImpl === 'add') add('fullImplAdd');
+    if(st.fullImpl === 'replace') add('fullImplReplace');
+    return {y1Gross, y2Gross, labels, summaries, state:st};
+  }
+  window.getInnovOptionalCostSummary = getOptionalCostSummary;
+
+  function saveState(){
+    try{
+      const st = readState();
+      localStorage.setItem('innov8tif-optional-selection', JSON.stringify(st));
+    }catch(err){}
+  }
+
+  function restoreState(){
+    try{
+      const raw = localStorage.getItem('innov8tif-optional-selection');
+      if(!raw) return;
+      const st = JSON.parse(raw);
+      if(reauthOption && ['none','20k','50k'].includes(st.reauth)) reauthOption.value = st.reauth;
+      if(blacklistOption && ['none','10k','20k'].includes(st.blacklist)) blacklistOption.value = st.blacklist;
+      if(hipOption) hipOption.checked = !!st.hip;
+      if(fullImplOption && ['none','add','replace'].includes(st.fullImpl)) fullImplOption.value = st.fullImpl;
+    }catch(err){}
+  }
+
+  function paintSelectedRows(){
+    document.querySelectorAll('.optional-module-row').forEach(row => row.classList.remove('is-selected'));
+    const st = readState();
+    if(st.reauth !== 'none') document.querySelector('[data-option-row="reauth"]')?.classList.add('is-selected');
+    if(st.blacklist !== 'none') document.querySelector('[data-option-row="blacklist"]')?.classList.add('is-selected');
+    if(st.hip) document.querySelector('[data-option-row="hip"]')?.classList.add('is-selected');
+    if(st.fullImpl !== 'none') document.querySelector('[data-option-row="fullImpl"]')?.classList.add('is-selected');
+  }
+
+  function render(syncTotal){
+    const s = scenarios[select.value] || scenarios['10k'];
+    const opt = getOptionalCostSummary();
+    const st = opt.state;
+
+    const reauthLogic = document.getElementById('innovReauthLogic');
+    const reauthTotal = document.getElementById('innovReauthTotal');
+    if(reauthLogic && reauthTotal){
+      if(st.reauth === '20k'){ reauthLogic.textContent = '20,000 × RM1.40 + RM5,000 Re-authentication Annual Cloud'; reauthTotal.textContent = '33,000.00'; }
+      else if(st.reauth === '50k'){ reauthLogic.textContent = '50,000 × RM1.30 + RM5,000 Re-authentication Annual Cloud'; reauthTotal.textContent = '70,000.00'; }
+      else { reauthLogic.textContent = 'Choose 20k or 50k. Each quoted tier includes its own RM5,000 Re-authentication Annual Cloud.'; reauthTotal.textContent = '—'; }
+    }
+    const blacklistLogic = document.getElementById('innovBlacklistLogic');
+    const blacklistTotal = document.getElementById('innovBlacklistTotal');
+    if(blacklistLogic && blacklistTotal){
+      if(st.blacklist === '10k'){ blacklistLogic.textContent = '10,000 × RM0.53 + separate RM5,000 annual cloud (for either Blacklist or De-duplication)'; blacklistTotal.textContent = '10,300.00'; }
+      else if(st.blacklist === '20k'){ blacklistLogic.textContent = '20,000 × RM0.50 + separate RM5,000 annual cloud (for either Blacklist or De-duplication)'; blacklistTotal.textContent = '15,000.00'; }
+      else { blacklistLogic.textContent = 'Choose 10k or 20k for either Facial Blacklist or De-duplication. The selected tier adds a separate RM5,000 annual cloud fee.'; blacklistTotal.textContent = '—'; }
+    }
+
+    document.getElementById('innovBaseHeaderRate').textContent = `${whole(s.volume)} credits @ RM ${s.rate.toFixed(2)} · RM ${whole(s.credit)}`;
+    document.getElementById('innovSelectedY1Net').textContent = money(s.y1Net);
+    document.getElementById('innovSelectedY1Gross').textContent = money(s.y1Gross);
+    document.getElementById('innovSelectedY2Gross').textContent = money(s.y2Gross);
+    document.getElementById('innovOptionalY1Gross').textContent = money(opt.y1Gross);
+    document.getElementById('innovOptionalY2Gross').textContent = money(opt.y2Gross);
+    document.getElementById('innovUpdatedY1Gross').textContent = money(s.y1Gross + opt.y1Gross);
+    document.getElementById('innovUpdatedY2Gross').textContent = money(s.y2Gross + opt.y2Gross);
+    document.getElementById('innovSelectedOptionalLabel').innerHTML = opt.summaries && opt.summaries.length
+      ? `<div class="innov-option-summary-list">${opt.summaries.map(item => `<div class="innov-option-summary-item">${item}</div>`).join('')}</div>`
+      : '<span class="innov-option-none">None selected</span>';
+
+    paintSelectedRows();
+    saveState();
+
+    try { localStorage.setItem('total-cost-innov-tier', select.value); } catch(err){}
+    if(syncTotal){
+      const totalSelect = document.getElementById('totalInnovTier');
+      if(totalSelect && totalSelect.value !== select.value){
+        totalSelect.value = select.value;
+      }
+      if(totalSelect) totalSelect.dispatchEvent(new Event('change', {bubbles:true}));
+    }
+  }
+
+  try {
+    const stored = localStorage.getItem('total-cost-innov-tier');
+    if(stored && scenarios[stored]) select.value = stored;
+  } catch(err){}
+  restoreState();
+
+  select.addEventListener('change', function(){ render(true); });
+  if(reauthOption) reauthOption.addEventListener('change', function(){ render(true); });
+  if(blacklistOption) blacklistOption.addEventListener('change', function(){ render(true); });
+  if(hipOption) hipOption.addEventListener('change', function(){ render(true); });
+  if(fullImplOption) fullImplOption.addEventListener('change', function(){ render(true); });
+  if(clearBtn) clearBtn.addEventListener('click', function(){
+    if(reauthOption) reauthOption.value = 'none';
+    if(blacklistOption) blacklistOption.value = 'none';
+    if(hipOption) hipOption.checked = false;
+    if(fullImplOption) fullImplOption.value = 'none';
+    render(true);
+  });
+
+  const totalSelect = document.getElementById('totalInnovTier');
+  if(totalSelect){
+    totalSelect.addEventListener('change', function(){
+      if(scenarios[totalSelect.value] && select.value !== totalSelect.value){
+        select.value = totalSelect.value;
+        render(false);
+      }
+    });
+  }
+  render(true);
+})();
+</script>
 
 </body></html>
