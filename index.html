@@ -2193,20 +2193,30 @@ body[data-view] #costingAnalysisSection{display:none;}
     .pricing-intro-grid{grid-template-columns:1fr;}
   }
 
+  /* Pricing model is intentionally full-bleed: no large outer card/frame around it. */
+  #pricingAnalysisSection{overflow:visible;}
   .pricing-analysis-host{
-    width:100%;
-    margin-top:4px;
-    background:transparent;
-    border:0;
-    border-radius:0;
-    box-shadow:none;
-    overflow:visible;
+    width:100vw;
+    margin:4px 0 0 calc(50% - 50vw);
+    padding:0 3vw 10px;
+    background:transparent!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    overflow:visible!important;
   }
   #pricingAnalysisFrame{
+    display:block;
     width:100%;
-    border:0;
-    background:transparent;
+    border:0!important;
+    outline:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    background:transparent!important;
     overflow:hidden;
+  }
+  @media(max-width:700px){
+    .pricing-analysis-host{padding-left:14px;padding-right:14px;}
   }
 </style>
 </head>
@@ -3390,7 +3400,7 @@ body[data-view] #costingAnalysisSection{display:none;}
         title="Pricing Analysis"
         src="about:blank"
         scrolling="no"
-        style="display:block;width:100%;height:1100px;border:0;background:transparent;overflow:hidden;"
+        style="display:block;width:100%;height:1100px;border:0;border-radius:0;box-shadow:none;background:transparent;overflow:hidden;"
         loading="eager">
       </iframe>
       <script>
@@ -3416,15 +3426,19 @@ body[data-view] #costingAnalysisSection{display:none;}
 
                 const style = d.createElement('style');
                 style.textContent = `
-                  html,body{overflow:hidden!important;background:transparent!important;}
-                  body{margin:0!important;}
+                  html,body{overflow:hidden!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;}
+                  body{margin:0!important;padding:0!important;}
                   .shell{
                     max-width:none!important;
                     width:100%!important;
                     margin:0!important;
-                    padding:2px 0 24px!important;
-                    grid-template-columns:276px minmax(0,1fr)!important;
+                    padding:0 0 24px!important;
+                    grid-template-columns:286px minmax(0,1fr)!important;
                     gap:18px!important;
+                    background:transparent!important;
+                    border:0!important;
+                    border-radius:0!important;
+                    box-shadow:none!important;
                   }
                   aside{
                     position:relative!important;
