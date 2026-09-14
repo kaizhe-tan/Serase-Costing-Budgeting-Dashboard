@@ -3459,30 +3459,36 @@ body[data-view] #costingAnalysisSection{display:none;}
                 `;
                 d.head.appendChild(style);
 
+                let resizeRaf = 0;
                 const resize = () => {
-                  const root = d.documentElement;
-                  const body = d.body;
-                  const h = Math.max(
-                    body ? body.scrollHeight : 0,
-                    root ? root.scrollHeight : 0
-                  );
-                  if (h) frame.style.height = (h + 8) + 'px';
+                  cancelAnimationFrame(resizeRaf);
+                  resizeRaf = requestAnimationFrame(() => {
+                    const shell = d.querySelector('.shell');
+                    if (!shell) return;
+                    // Measure the actual content, not document/body scrollHeight. Using the
+                    // document height here creates a feedback loop because the iframe viewport
+                    // itself becomes part of scrollHeight and grows again after every resize.
+                    const h = Math.ceil(shell.getBoundingClientRect().height);
+                    if (!h) return;
+                    const current = parseFloat(frame.style.height) || 0;
+                    if (Math.abs(current - h) > 2) frame.style.height = h + 'px';
+                  });
                 };
 
                 resize();
-                setTimeout(resize, 80);
-                setTimeout(resize, 300);
-                setTimeout(resize, 900);
+                setTimeout(resize, 120);
+                setTimeout(resize, 500);
 
                 if (frame.contentWindow.ResizeObserver) {
-                  const ro = new frame.contentWindow.ResizeObserver(resize);
-                  ro.observe(d.documentElement);
-                  ro.observe(d.body);
+                  const shell = d.querySelector('.shell');
+                  if (shell) {
+                    const ro = new frame.contentWindow.ResizeObserver(resize);
+                    ro.observe(shell);
+                  }
                 }
-                frame.contentWindow.addEventListener('resize', resize);
-                d.addEventListener('click', () => setTimeout(resize, 60), true);
-                d.addEventListener('input', () => setTimeout(resize, 60), true);
-                d.addEventListener('change', () => setTimeout(resize, 60), true);
+                // Re-measure only when UI content can genuinely open/close or change height.
+                d.addEventListener('click', () => setTimeout(resize, 80), true);
+                d.addEventListener('change', () => setTimeout(resize, 80), true);
               } catch (e) {
                 console.warn('Pricing Analysis integration sizing failed:', e);
               }
