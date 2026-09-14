@@ -2048,6 +2048,69 @@ body[data-view] #costingAnalysisSection{display:none;}
     #marketing .block-desc{white-space:normal;}
   }
 
+
+
+  /* ---------- App Growth & Acquisition view ---------- */
+  #appGrowthSection .growth-hero{
+    display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:18px;margin-bottom:18px;
+  }
+  .growth-card{background:#fff;border:1px solid #DCE2DF;border-radius:17px;box-shadow:var(--exec-shadow-md);overflow:hidden;}
+  .growth-card-head{padding:17px 18px;border-bottom:1px solid #E1E6E3;background:linear-gradient(180deg,#fff 0%,#F7F9F8 100%);}
+  .growth-card-head h3{margin:0;font-family:'Fraunces',serif;font-size:18px;color:var(--ink);}
+  .growth-card-head p{margin:5px 0 0;font-size:12px;line-height:1.5;color:var(--muted);}
+  .growth-compare-body{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px;}
+  .growth-model{padding:15px;border:1px solid #E0E5E2;border-radius:12px;background:#FAFBFA;}
+  .growth-model.new{border-color:#BFDCD7;background:#F2F9F7;}
+  .growth-model-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+  .growth-model h4{margin:7px 0 7px;font-size:14px;color:var(--ink);}
+  .growth-model p{margin:0;font-size:12px;line-height:1.55;color:#5E7184;}
+  .growth-priority{padding:18px;background:linear-gradient(145deg,#10233F 0%,#173B5E 100%);color:#fff;}
+  .growth-priority-kicker{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9FC5D2;}
+  .growth-priority strong{display:block;margin:8px 0 5px;font-family:'Fraunces',serif;font-size:20px;color:#fff;}
+  .growth-priority p{margin:0;font-size:12px;line-height:1.6;color:#C4D2DD;}
+  .growth-priority-chain{margin-top:14px;padding:11px 12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.055);font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.7;color:#EAF0F5;}
+
+  .growth-funnel{display:flex;align-items:stretch;gap:7px;padding:18px;overflow-x:auto;}
+  .growth-node{min-width:126px;flex:1;padding:14px 12px;border:1px solid #DCE2DF;border-radius:12px;background:#fff;}
+  .growth-node-stage{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:700;}
+  .growth-node strong{display:block;margin-top:6px;font-size:13px;color:var(--ink);line-height:1.35;}
+  .growth-node small{display:block;margin-top:5px;font-size:10.5px;line-height:1.45;color:var(--muted);}
+  .growth-arrow{display:flex;align-items:center;color:#8DA0AF;font-size:18px;flex:none;}
+  .growth-stage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0;}
+  .growth-stage{position:relative;padding:17px;border:1px solid #DCE2DF;border-radius:15px;background:#fff;box-shadow:var(--exec-shadow-sm);}
+  .growth-stage::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 99px 99px 0;background:var(--teal);}
+  .growth-stage:nth-child(2)::before{background:#2D5D87}.growth-stage:nth-child(3)::before{background:#C2792B}.growth-stage:nth-child(4)::before{background:#7C3AED}
+  .growth-stage-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+  .growth-stage h4{margin:7px 0 9px;font-family:'Fraunces',serif;font-size:16px;color:var(--ink);}
+  .growth-chip-wrap{display:flex;gap:6px;flex-wrap:wrap;}
+  .growth-chip{padding:5px 7px;border-radius:999px;background:#EFF3F1;font-size:10px;font-weight:700;color:#35516B;}
+  .growth-stage p{margin:10px 0 0;font-size:11px;line-height:1.55;color:var(--muted);}
+
+  .growth-kpi-shell{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:18px;margin-top:18px;align-items:start;}
+  .growth-kpi-table td:first-child{font-weight:700;color:var(--ink);white-space:nowrap;}
+  .growth-kpi-table .formula{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#617487;}
+  .growth-kpi-table .priority-high{font-weight:700;color:var(--teal);}
+  .growth-calc{padding:17px;}
+  .growth-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .growth-input{padding:10px;border:1px solid #DCE2DF;border-radius:10px;background:#FAFBFA;}
+  .growth-input label{display:block;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+  .growth-input input{width:100%;border:1px solid #CBD5D1;border-radius:8px;background:#fff;padding:8px 9px;font-family:'IBM Plex Mono',monospace;color:var(--ink);}
+  .growth-input input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.10);}
+  .growth-output-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px;}
+  .growth-output{padding:11px;border-radius:10px;background:#10233F;color:#fff;}
+  .growth-output span{display:block;font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.07em;text-transform:uppercase;color:#9FB5C7;}
+  .growth-output strong{display:block;margin-top:5px;font-family:'IBM Plex Mono',monospace;font-size:15px;color:#fff;}
+  .growth-output.primary{background:#0F766E}.growth-output.money{background:#173B5E}.growth-output.roas{background:#6B4FA0}
+  .growth-rate-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;}
+  .growth-rate{padding:9px;border:1px solid #DCE2DF;border-radius:9px;background:#F7F9F8;text-align:center;}
+  .growth-rate span{display:block;font-size:8.5px;color:var(--muted);text-transform:uppercase;font-weight:700;}
+  .growth-rate strong{display:block;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink);}
+  .growth-note{margin-top:12px;padding:10px 11px;border-left:3px solid var(--exec-gold);background:#FBF6EE;border-radius:5px 9px 9px 5px;font-size:10.8px;line-height:1.55;color:#6E573A;}
+  .growth-channel-table tbody td{vertical-align:middle;}
+  .growth-channel-table .metric-focus{font-weight:700;color:var(--teal);}
+  @media(max-width:1050px){.growth-hero,.growth-kpi-shell{grid-template-columns:1fr}.growth-stage-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:720px){.growth-compare-body,.growth-stage-grid,.growth-input-grid,.growth-output-grid,.growth-rate-row{grid-template-columns:1fr}.growth-funnel{padding:14px}.growth-arrow{display:none}.growth-node{min-width:170px}}
+
 </style>
 </head>
 <body data-view="wise1">
@@ -2055,7 +2118,7 @@ body[data-view] #costingAnalysisSection{display:none;}
 <header class="topbar">
   <div class="eyebrow">Executive Report · Financial Dashboard</div>
   <h1 class="title">Serase Costing &amp; Budgeting Dashboard</h1>
-  <div class="subline">Interactive executive dashboard for eKYC vendors, fixed AWS front-end infrastructure, AWS v2.0 scalable infrastructure, and marketing launch budget.</div>
+  <div class="subline">Interactive executive dashboard for eKYC vendors, AWS infrastructure, Serase launch budget, marketing acquisition, activation, and monetisation performance.</div>
   <div class="currency-note"><span class="dot"></span> Currencies: AWS Infrastructure in USD, eKYC Quotations in MYR (RM) | All vendor prices subject to 8% SST</div>
 </header>
 
@@ -2641,6 +2704,68 @@ body[data-view] #costingAnalysisSection{display:none;}
       </button>
     </div>
 
+    <div class="growth-card" style="margin-top:18px;margin-bottom:18px;">
+      <div class="growth-card-head">
+        <h3>Management View · New Business Model + KPI Framework + Example Projection</h3>
+        <p>Simple summary for management: how Serase app acquisition differs from the current MVAS model, what to measure, and how the funnel can convert into revenue.</p>
+      </div>
+
+      <div style="padding:0 16px 8px;">
+        <div class="growth-model-label">01 · New Business Model</div>
+      </div>
+      <div class="growth-compare-body">
+        <div class="growth-model">
+          <div class="growth-model-label">Current · MVAS</div>
+          <h4>Subscription Model</h4>
+          <p>Content / Ads → Landing Page → MSISDN → Subscribe → Successful Subscription</p>
+          <div class="growth-note"><strong>Main measures:</strong> Scrub · Conversion Rate · CPA</div>
+        </div>
+        <div class="growth-model new">
+          <div class="growth-model-label">New · Serase App</div>
+          <h4>App Acquisition &amp; Monetisation Model</h4>
+          <p>KOL / Influencer Content → Ads → App Install → Register → Verify / Activate → Paid User → Revenue</p>
+          <div class="growth-note"><strong>Goal:</strong> measure the full journey from media exposure to paying user, not downloads alone.</div>
+        </div>
+      </div>
+
+      <div style="padding:0 16px 8px;">
+        <div class="growth-model-label">02 · KPI Framework</div>
+      </div>
+      <div class="growth-stage-grid" style="margin:0;padding:0 16px 16px;">
+        <div class="growth-stage">
+          <div class="growth-stage-label">Awareness</div>
+          <h4>Get Seen</h4>
+          <div class="growth-chip-wrap"><span class="growth-chip">Reach</span><span class="growth-chip">Impressions</span><span class="growth-chip">Views</span></div>
+        </div>
+        <div class="growth-stage">
+          <div class="growth-stage-label">Acquisition</div>
+          <h4>Get Installed</h4>
+          <div class="growth-chip-wrap"><span class="growth-chip">CTR</span><span class="growth-chip">CPC</span><span class="growth-chip">CPI</span></div>
+        </div>
+        <div class="growth-stage">
+          <div class="growth-stage-label">Activation</div>
+          <h4>Get Real Users</h4>
+          <div class="growth-chip-wrap"><span class="growth-chip">Registration Rate</span><span class="growth-chip">Verification Rate</span><span class="growth-chip">Cost / Active User</span></div>
+        </div>
+        <div class="growth-stage">
+          <div class="growth-stage-label">Monetisation</div>
+          <h4>Get Revenue</h4>
+          <div class="growth-chip-wrap"><span class="growth-chip">Paid Conversion</span><span class="growth-chip">CPA / CAC</span><span class="growth-chip">ROAS</span></div>
+        </div>
+      </div>
+
+      <div style="padding:0 16px 8px;">
+        <div class="growth-model-label">03 · Example Projection</div>
+      </div>
+      <div style="padding:0 16px 16px;">
+        <div class="growth-model new">
+          <h4>Illustrative campaign funnel</h4>
+          <p class="mono" style="font-size:11px;line-height:1.8;">10,000 Views → 1,000 Clicks → 500 Installs → 350 Registrations → 250 Verified / Active Users → 50 Paid Users → Revenue</p>
+          <div class="growth-note"><strong>Management takeaway:</strong> compare each channel or KOL by how efficiently it moves users through the funnel to paid conversion and revenue. <strong>Illustration only — not a Serase forecast.</strong></div>
+        </div>
+      </div>
+    </div>
+
     <div class="mkt-detail-panel" id="mktPhysicalDetail" hidden>
       <div class="mkt-detail-head">
         <div><h3>Physical Launch · Pixel Pro Quote 0088</h3><p>Original quotation and live editable budget table retained below.</p></div>
@@ -3012,7 +3137,7 @@ body[data-view] #costingAnalysisSection{display:none;}
   <!-- ================= Section 8: Total Cost ================= -->
   <section class="block" id="totalCostSection">
     <div class="block-head">
-      <span class="block-index">08</span>
+      <span class="block-index">09</span>
       <span class="block-title">Total Costs Before Marketing</span>
       <span class="block-desc"><span class="total-status-dot"></span> Live Budget Model · Year 1–2 Outlook</span>
     </div>
@@ -3074,7 +3199,7 @@ body[data-view] #costingAnalysisSection{display:none;}
         <div class="total-cost-card">
           <div class="total-cost-card-head">
             <div class="total-cost-card-title"><span class="total-step">02</span><span>Year 1 Cost Breakdown</span></div>
-            <div class="total-cost-card-sub">AWS uses the v2.0 complete monthly cost range × 12 months. <strong>The Serase Event Launch Budget is excluded</strong> — see View 7 for it, and View 9 for the full cost stack.</div>
+            <div class="total-cost-card-sub">AWS uses the v2.0 complete monthly cost range × 12 months. <strong>The Serase Event Launch Budget is excluded</strong> — see View 7 for the launch budget and app acquisition KPIs.</div>
           </div>
           <table class="total-summary-table">
             <thead><tr><th>Cost Component</th><th class="num">Year 1 Amount (RM)</th></tr></thead>
@@ -3119,10 +3244,10 @@ body[data-view] #costingAnalysisSection{display:none;}
     </div>
   </section>
 
-  <!-- ================= Section 9: Executive Cost Overview ================= -->
+  <!-- ================= Section 9: Pricing Analysis ================= -->
   <section class="block" id="pricingAnalysisSection">
     <div class="block-head">
-      <span class="block-index">09</span>
+      <span class="block-index">10</span>
       <span class="block-title">Pricing Analysis</span>
       <span class="block-desc"><span class="total-status-dot"></span> What We Bill · Where It Sits In The Market</span>
     </div>
@@ -3192,7 +3317,7 @@ body[data-view] #costingAnalysisSection{display:none;}
 
   <section class="block" id="costingAnalysisSection">
     <div class="block-head">
-      <span class="block-index">10</span>
+      <span class="block-index">11</span>
       <span class="block-title">Executive Summary</span>
       <span class="block-desc"><span class="total-status-dot"></span> Model v4 · Billings, Before App-Store Fees</span>
     </div>
@@ -3467,7 +3592,7 @@ body[data-view] #costingAnalysisSection{display:none;}
   <!-- ================= Section 10: AI Decision Analysis ================= -->
   
 
-  <!-- ================= Section 11: Pricing & Business Summary ================= -->
+  <!-- ================= Section 12: Pricing & Business Summary ================= -->
   
 </main>
 
