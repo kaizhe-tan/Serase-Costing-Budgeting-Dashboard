@@ -2178,7 +2178,7 @@ body[data-view] #costingAnalysisSection{display:none;}
 </style>
 <meta name="serase-build" content="native-pricing-lazy-shadow-2026-09-15">
 </head>
-<body data-view="wise1">
+<body data-view="fullcomparison">
 
 <header class="topbar">
   <div class="eyebrow">Executive Report · Financial Dashboard</div>
@@ -2192,15 +2192,11 @@ body[data-view] #costingAnalysisSection{display:none;}
   <div class="dashboard-nav view-spacer">
     <div class="dashboard-nav-label">Select Executive Dashboard View</div>
     <div class="dashboard-tabs" role="tablist" aria-label="Executive dashboard views">
-      <button class="dashboard-tab active" type="button" role="tab" aria-selected="true" tabindex="0" data-view="wise1">1. WISE AI · Plan 1</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="wise2">2. WISE AI · Plan 2</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="innov8tif">3. Innov8tif · EMAS eKYC</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="mydigitalid">4. MyDigital ID · Free</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="fullcomparison">5. Full Vendor Comparison (All 4)</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="aws">6. AWS Infrastructure Cost</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="marketing">7. Marketing</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="total">8. Total Costs Before Marketing</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="pricing">9. Pricing Analysis</button>
+      <button class="dashboard-tab active" type="button" role="tab" aria-selected="true" tabindex="0" data-view="fullcomparison">1. E-KYC Provider</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="aws">2. AWS Infrastructure Cost</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="marketing">3. Marketing</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="total">4. Total Costs Before Marketing</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="pricing">5. Pricing Analysis</button>
     </div>
   </div>
   <!-- KPI Overview -->
@@ -2695,7 +2691,7 @@ body[data-view] #costingAnalysisSection{display:none;}
       </div>
 
       <div class="card infra-card">
-        <div class="infra-card-header variable">AWS v2.0 — Scalable Infrastructure Estimate</div>
+        <div class="infra-card-header variable">AWS — Scalable Infrastructure Estimate</div>
         <div class="tier-grid" id="tierGrid">
           <div class="tier-cell active" data-mau="1k"><div class="tier-name">1k MAU</div><div class="tier-range mono">$340–$560</div></div>
           <div class="tier-cell" data-mau="5k"><div class="tier-name">5k MAU</div><div class="tier-range mono">$690–$1,900</div></div>
@@ -2730,10 +2726,10 @@ body[data-view] #costingAnalysisSection{display:none;}
     </div>
   </section>
 
-  <!-- ================= Section 4: Marketing Budget ================= -->
+  <!-- ================= Section 3: Marketing Budget ================= -->
   <section class="block" id="marketing">
     <div class="block-head">
-      <span class="block-index">04</span>
+      <span class="block-index">03</span>
       <span class="block-title">Marketing</span>
       <span class="block-desc">Launch · Acquisition · Conversion</span>
     </div>
@@ -3203,10 +3199,10 @@ body[data-view] #costingAnalysisSection{display:none;}
   })();
   </script>
 
-  <!-- ================= Section 8: Total Cost ================= -->
+  <!-- ================= Section 4: Total Cost ================= -->
   <section class="block" id="totalCostSection">
     <div class="block-head">
-      <span class="block-index">09</span>
+      <span class="block-index">04</span>
       <span class="block-title">Total Costs Before Marketing</span>
       <span class="block-desc"><span class="total-status-dot"></span> Live Budget Model · Year 1–2 Outlook</span>
     </div>
@@ -3313,10 +3309,10 @@ body[data-view] #costingAnalysisSection{display:none;}
     </div>
   </section>
 
-  <!-- ================= Section 9: Pricing Analysis ================= -->
+  <!-- ================= Section 5: Pricing Analysis ================= -->
   <section class="block" id="pricingAnalysisSection">
     <div class="block-head">
-      <span class="block-index">09</span>
+      <span class="block-index">05</span>
       <span class="block-title">Pricing Analysis</span>
       <span class="block-desc"><span class="total-status-dot"></span> Interactive Pricing · Revenue · ROI Model</span>
     </div>
@@ -5430,7 +5426,7 @@ sizeDrawer();</script>
     });
   });
 
-  let initialView = 'wise1';
+  let initialView = 'fullcomparison';
   try {
     const storedView = localStorage.getItem(viewStorageKey);
     if (storedView && dashboardTabs.some(btn => btn.dataset.view === storedView)) initialView = storedView;
