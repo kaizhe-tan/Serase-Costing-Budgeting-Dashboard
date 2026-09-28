@@ -2175,6 +2175,161 @@ body[data-view] #costingAnalysisSection{display:none;}
   @keyframes pricingSpin{to{transform:rotate(360deg)}}
   @media(max-width:700px){.pricing-analysis-host{padding-left:14px;padding-right:14px;}}
 
+
+
+/* ===== Integrated Marketing Strategy & ROI Dashboard ===== */
+.roi-shell{
+  margin:0 0 24px;
+  border:1px solid #D8E0DD;
+  border-radius:18px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:var(--exec-shadow-md);
+}
+.roi-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  padding:22px 24px;
+  background:
+    radial-gradient(circle at 92% 0%,rgba(15,118,110,.16),transparent 30%),
+    linear-gradient(180deg,#FFFFFF 0%,#F7F9F8 100%);
+  border-bottom:1px solid #DDE4E1;
+}
+.roi-head h3{margin:0;font-family:'Fraunces',serif;font-size:22px;color:var(--ink);}
+.roi-head p{margin:6px 0 0;max-width:850px;font-size:12.5px;line-height:1.55;color:var(--muted);}
+.roi-status{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;}
+.roi-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:var(--teal-soft);color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;}
+.roi-badge.amber{background:var(--amber-soft);color:#9A5B16;}
+.roi-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:13px;background:#F2F5F3;border-bottom:1px solid #DDE4E1;}
+.roi-tab{border:1px solid transparent;border-radius:10px;background:transparent;color:#587087;padding:10px 11px;text-align:left;font:600 12px/1.3 'Inter',sans-serif;cursor:pointer;transition:.16s ease;}
+.roi-tab:hover{background:#fff;border-color:#D4DDDA;color:var(--ink);transform:translateY(-1px);}
+.roi-tab.active{background:linear-gradient(135deg,#10233F,#174567);border-color:#10233F;color:#fff;box-shadow:0 6px 14px rgba(16,35,63,.16);}
+.roi-panel{padding:20px 22px 22px;}
+.roi-panel[hidden]{display:none!important;}
+.roi-panel-title{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px;}
+.roi-panel-title h4{margin:0;font-family:'Fraunces',serif;font-size:18px;color:var(--ink);}
+.roi-panel-title p{margin:4px 0 0;font-size:12px;line-height:1.5;color:var(--muted);max-width:760px;}
+.roi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+.roi-grid.three{grid-template-columns:repeat(3,minmax(0,1fr));}
+.roi-grid.two{grid-template-columns:repeat(2,minmax(0,1fr));}
+.roi-kpi{position:relative;overflow:hidden;min-height:112px;padding:16px;border:1px solid #DDE4E1;border-radius:13px;background:linear-gradient(180deg,#fff,#FAFBFA);}
+.roi-kpi.primary{background:linear-gradient(145deg,#10233F,#173E61);border-color:#10233F;color:#fff;}
+.roi-kpi.teal{border-top:3px solid var(--teal);}
+.roi-kpi.amber{border-top:3px solid var(--amber);}
+.roi-kpi-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:#6C7C8A;}
+.roi-kpi.primary .roi-kpi-label{color:#AFC4D2;}
+.roi-kpi-value{margin-top:8px;font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1.15;}
+.roi-kpi.primary .roi-kpi-value{color:#fff;}
+.roi-kpi-sub{margin-top:6px;font-size:11px;line-height:1.45;color:var(--muted);}
+.roi-kpi.primary .roi-kpi-sub{color:#C8D5DF;}
+.roi-note{margin-top:14px;padding:11px 13px;border-left:3px solid var(--amber);border-radius:0 9px 9px 0;background:#FBF5EB;color:#735020;font-size:11.5px;line-height:1.55;}
+.roi-note.teal{border-left-color:var(--teal);background:#F0F7F5;color:#315E59;}
+.roi-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0;}
+.roi-control{padding:11px 12px;border:1px solid #DCE3E0;border-radius:11px;background:#FAFBFA;}
+.roi-control label{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.roi-control input,.roi-control select{width:100%;border:1px solid #CBD7D3;border-radius:8px;background:#fff;color:var(--ink);padding:8px 9px;font:600 12px 'Inter',sans-serif;}
+.roi-control input:focus,.roi-control select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.11);}
+.roi-funnel{display:flex;flex-direction:column;gap:7px;align-items:center;padding:10px 0 2px;}
+.roi-funnel-step{display:flex;justify-content:space-between;align-items:center;gap:16px;min-width:240px;max-width:100%;height:42px;padding:0 14px;border-radius:8px;background:linear-gradient(90deg,#10233F,#17496B);color:#fff;box-shadow:0 3px 9px rgba(16,35,63,.08);}
+.roi-funnel-step span:first-child{font-weight:700;font-size:12px;}
+.roi-funnel-step span:last-child{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#D4E0E8;}
+.roi-strategy-layout{display:grid;grid-template-columns:minmax(500px,1.05fr) minmax(360px,.95fr);gap:24px;align-items:center;}
+.roi-strategy-wheel{position:relative;width:min(100%,560px);aspect-ratio:1/1;margin:4px auto 0;isolation:isolate;}
+.roi-strategy-wheel::before{content:"";position:absolute;inset:13%;border:1px solid #D8E1DE;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(15,118,110,.05) 0 31%,transparent 32% 100%);box-shadow:inset 0 0 0 18px rgba(15,118,110,.018);z-index:0;}
+.roi-strategy-lines{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible;}
+.roi-strategy-line{stroke:#D4DFDC;stroke-width:1.2;transition:stroke .18s ease,stroke-width .18s ease,opacity .18s ease;opacity:.8;}
+.roi-strategy-line.active{stroke:var(--teal);stroke-width:2.5;opacity:1;}
+.roi-strategy-hub{position:absolute;left:50%;top:50%;width:154px;height:154px;transform:translate(-50%,-50%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;background:radial-gradient(circle at 35% 28%,#1B5273 0%,#123553 52%,#10233F 100%);color:#fff;border:5px solid #fff;box-shadow:0 14px 32px rgba(16,35,63,.2),0 0 0 1px #D8E1DE;z-index:3;}
+.roi-strategy-hub strong{font-family:'Fraunces',serif;font-size:20px;line-height:1.08;font-weight:600;}
+.roi-strategy-hub span{margin-top:7px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;line-height:1.35;letter-spacing:.06em;text-transform:uppercase;color:#BFD0DB;}
+.roi-strategy-btn{position:absolute;width:116px;height:116px;transform:translate(-50%,-50%);appearance:none;border:1px solid #D2DEDA;background:linear-gradient(180deg,#fff,#F8FAF9);border-radius:50%;padding:13px 10px;text-align:center;color:var(--ink);cursor:pointer;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease;z-index:4;font:600 10.5px/1.25 'Inter',sans-serif;box-shadow:0 5px 14px rgba(16,35,63,.055);}
+.roi-strategy-btn .roi-strategy-num{display:flex;align-items:center;justify-content:center;width:24px;height:24px;margin:0 auto 6px;border-radius:50%;background:#EDF3F1;color:#42695F;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;transition:inherit;}
+.roi-strategy-btn .roi-strategy-label{display:block;max-width:94px;margin:auto;}
+.roi-strategy-btn:hover{transform:translate(-50%,-50%) scale(1.055);border-color:#91B7AF;box-shadow:0 10px 22px rgba(16,35,63,.1);}
+.roi-strategy-btn.active{border:3px solid #2A8B80;background:linear-gradient(145deg,#10233F,#174567);color:#fff;box-shadow:0 13px 27px rgba(16,35,63,.19),0 0 0 6px rgba(15,118,110,.08);}
+.roi-strategy-btn.active .roi-strategy-num{background:#E4F2EF;color:#0F6D64;}
+.roi-strategy-detail{margin:0;min-height:310px;padding:22px 22px 20px;border:1px solid #D7E1DE;border-radius:16px;background:linear-gradient(180deg,#FFFFFF 0%,#F7FAF8 100%);box-shadow:0 10px 24px rgba(16,35,63,.06);}
+.roi-strategy-detail .roi-detail-kicker{display:inline-flex;align-items:center;gap:7px;margin-bottom:12px;padding:5px 8px;border-radius:999px;background:#E7F3F0;color:#16675F;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.roi-strategy-detail h5{margin:0 0 14px;font-family:'Fraunces',serif;font-size:24px;line-height:1.15;color:var(--ink);}
+.roi-strategy-detail .roi-detail-row{padding:12px 0;border-top:1px solid #E1E7E5;}
+.roi-strategy-detail .roi-detail-row:first-of-type{border-top:none;padding-top:0;}
+.roi-strategy-detail .roi-detail-label{display:block;margin-bottom:5px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:#6A7F90;font-weight:700;}
+.roi-strategy-detail .roi-detail-copy{font-size:12.5px;line-height:1.58;color:#445D72;}
+.roi-budget-chip{appearance:none;border:1px solid #D9E1DE;background:#fff;border-radius:11px;padding:12px;text-align:left;color:var(--ink);cursor:pointer;transition:.16s ease;font:600 12px/1.35 'Inter',sans-serif;}
+.roi-budget-chip:hover{border-color:#AFC6C0;transform:translateY(-1px);box-shadow:0 5px 12px rgba(16,35,63,.05);}
+.roi-budget-chip.active{border:2px solid var(--teal);background:#F0F8F6;padding:11px;color:#135E57;}
+.roi-detail{margin-top:12px;padding:15px 16px;border:1px solid #DCE4E1;border-radius:12px;background:#F8FAF9;}
+.roi-detail h5{margin:0 0 9px;font-family:'Fraunces',serif;font-size:16px;color:var(--ink);}
+.roi-detail p{margin:6px 0;font-size:12px;line-height:1.55;color:#536779;}
+.roi-detail b{color:var(--ink);}
+
+/* Interactive roadmap timeline */
+.roi-road{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:4px 0 0;padding:14px 12px 8px;overflow:visible;}
+.roi-road::before{content:"";position:absolute;left:10%;right:10%;top:39px;height:2px;background:linear-gradient(90deg,#D6E0DD 0%,#C6D8D3 100%);z-index:0;}
+.roi-road-step{position:relative;z-index:1;appearance:none;border:0;background:transparent;padding:0 8px 10px;text-align:center;color:var(--ink);cursor:pointer;font-family:'Inter',sans-serif;min-width:0;}
+.roi-road-step::after{content:"";position:absolute;left:50%;top:38px;width:100%;height:2px;background:transparent;z-index:-1;}
+.roi-road-step:hover .roi-road-dot{transform:translateY(-2px) scale(1.04);border-color:#8DB8AF;box-shadow:0 8px 18px rgba(16,35,63,.10);}
+.roi-road-step:focus-visible{outline:none;}
+.roi-road-step:focus-visible .roi-road-dot{box-shadow:0 0 0 4px rgba(15,118,110,.15),0 8px 18px rgba(16,35,63,.10);}
+.roi-road-dot{display:flex;align-items:center;justify-content:center;width:48px;height:48px;margin:0 auto 10px;border-radius:50%;border:2px solid #D2DEDA;background:#fff;color:#557082;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.03em;box-shadow:0 4px 12px rgba(16,35,63,.05);transition:transform .17s ease,border-color .17s ease,box-shadow .17s ease,background .17s ease,color .17s ease;}
+.roi-road-phase{display:block;font-family:'Fraunces',serif;font-size:14px;font-weight:600;line-height:1.2;color:var(--ink);}
+.roi-road-month{display:block;margin-top:4px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#8797A5;}
+.roi-road-step.active .roi-road-dot{border-color:#0F766E;background:linear-gradient(145deg,#10233F,#174567);color:#fff;box-shadow:0 10px 22px rgba(16,35,63,.18),0 0 0 6px rgba(15,118,110,.08);}
+.roi-road-step.active .roi-road-phase{color:#0F665F;}
+.roi-road-step.active .roi-road-month{color:#0F766E;}
+.roi-road-step.done .roi-road-dot{border-color:#A9C8C1;background:#EFF7F5;color:#246C64;}
+
+.roi-road-detail{margin-top:16px;padding:0;border:1px solid #D8E2DF;border-radius:16px;background:linear-gradient(180deg,#FFFFFF 0%,#F8FAF9 100%);box-shadow:0 9px 22px rgba(16,35,63,.05);overflow:hidden;}
+.roi-road-detail-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding:18px 20px 16px;border-bottom:1px solid #E1E7E5;background:linear-gradient(180deg,#FFFFFF 0%,#F4F8F6 100%);}
+.roi-road-detail-kicker{display:inline-flex;align-items:center;margin-bottom:7px;padding:4px 8px;border-radius:999px;background:#E6F2EF;color:#16675F;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
+.roi-road-detail-head h5{margin:0;font-family:'Fraunces',serif;font-size:22px;line-height:1.15;color:var(--ink);}
+.roi-road-detail-head p{margin:5px 0 0;font-size:12.5px;line-height:1.5;color:#536779;}
+.roi-road-status{flex:none;padding:7px 10px;border-radius:999px;background:#10233F;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.roi-road-detail-grid{display:grid;grid-template-columns:1.45fr 1fr 1fr;gap:0;}
+.roi-road-info{min-height:112px;padding:16px 18px;border-right:1px solid #E1E7E5;}
+.roi-road-info:last-child{border-right:0;}
+.roi-road-info-label{display:block;margin-bottom:7px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#6A7F90;}
+.roi-road-info-copy{font-size:12.2px;line-height:1.56;color:#445D72;}
+.roi-road-info.kpi{background:#FBFCFB;}
+.roi-road-info.revenue{background:#F3F8F6;}
+.roi-road-info.revenue .roi-road-info-copy{font-weight:600;color:#165F58;}
+.roi-table{width:100%;border-collapse:collapse;font-size:12px;}
+.roi-table th,.roi-table td{padding:9px 10px;border-bottom:1px solid #E2E7E5;text-align:left;vertical-align:top;}
+.roi-table th{background:#F2F5F3;color:#5B7082;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;}
+.roi-table td.num{text-align:right;font-family:'IBM Plex Mono',monospace;white-space:nowrap;}
+.roi-channel-card{border:1px solid #DCE3E0;border-radius:13px;background:#fff;overflow:hidden;}
+.roi-channel-head{padding:13px 15px;background:#F3F6F5;border-bottom:1px solid #DCE3E0;font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--ink);}
+.roi-channel-body{padding:14px 15px;}
+.roi-inline-funnel{display:flex;flex-wrap:wrap;gap:6px;align-items:center;color:#4D6578;font-size:11px;line-height:1.45;}
+.roi-inline-funnel b{padding:6px 8px;border-radius:7px;background:#EFF4F2;color:#1D4E4A;}
+.roi-arrow{color:#B27636;font-weight:700;}
+.roi-budget-layout{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);gap:18px;align-items:start;}
+.roi-donut-wrap{padding:12px;border:1px solid #DCE4E1;border-radius:14px;background:#FAFBFA;text-align:center;}
+.roi-donut-wrap svg{width:100%;max-width:300px;display:block;margin:auto;}
+.roi-budget-list{display:grid;gap:8px;}
+.roi-budget-row{display:grid;grid-template-columns:minmax(150px,1fr) 130px 76px;gap:8px;align-items:center;padding:9px 10px;border:1px solid #E0E6E3;border-radius:10px;background:#fff;}
+.roi-budget-row label{font-size:11.5px;font-weight:600;color:#385269;}
+.roi-budget-row input{width:100%;border:1px solid #CCD8D4;border-radius:7px;padding:7px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;text-align:right;}
+.roi-budget-row span{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6A7E8E;text-align:right;}
+.roi-budget-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;}
+.roi-budget-chip{padding:7px 10px;border-radius:999px;font-size:10.5px;}
+.roi-decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+.roi-decision{padding:15px;border:1px solid #DCE3E0;border-radius:13px;background:#fff;}
+.roi-decision strong{display:block;font-family:'Fraunces',serif;font-size:16px;color:var(--ink);}
+.roi-decision p{margin:6px 0 0;font-size:11.5px;line-height:1.5;color:var(--muted);}
+.roi-decision.active{border:2px solid var(--teal);background:#F1F8F6;padding:14px;}
+.roi-pill{display:inline-flex;padding:4px 8px;border-radius:999px;background:var(--teal);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+.roi-pill.optimise{background:#C7892D;}.roi-pill.stop{background:#B42318;}
+.mkt-section-divider{display:flex;align-items:center;gap:12px;margin:24px 0 14px;}
+.mkt-section-divider::after{content:"";height:1px;background:#DCE3E0;flex:1;}
+.mkt-section-divider span{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#567086;}
+@media(max-width:1120px){.roi-strategy-layout{grid-template-columns:1fr;}.roi-strategy-wheel{max-width:520px;}.roi-strategy-detail{min-height:0;}}
+@media(max-width:1050px){.roi-tabs{grid-template-columns:repeat(2,minmax(0,1fr));}.roi-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.roi-budget-layout{grid-template-columns:1fr;}}
+@media(max-width:720px){.roi-head{flex-direction:column}.roi-status{justify-content:flex-start}.roi-tabs{grid-template-columns:1fr}.roi-panel{padding:16px}.roi-grid,.roi-grid.three,.roi-grid.two,.roi-controls,.roi-decision-grid{grid-template-columns:1fr}.roi-budget-row{grid-template-columns:1fr 120px 68px}.roi-road{grid-template-columns:repeat(5,minmax(112px,1fr));overflow-x:auto;padding-left:4px;padding-right:4px}.roi-road::before{left:56px;right:56px}.roi-road-phase{font-size:12.5px}.roi-road-dot{width:44px;height:44px}.roi-road-detail-head{align-items:flex-start;flex-direction:column}.roi-road-detail-grid{grid-template-columns:1fr}.roi-road-info{border-right:0;border-bottom:1px solid #E1E7E5}.roi-road-info:last-child{border-bottom:0}.roi-strategy-wheel{width:min(100%,430px)}.roi-strategy-btn{width:92px;height:92px;padding:9px 7px;font-size:9px}.roi-strategy-btn .roi-strategy-num{width:20px;height:20px;margin-bottom:4px;font-size:8px}.roi-strategy-btn .roi-strategy-label{max-width:76px}.roi-strategy-hub{width:126px;height:126px;padding:14px}.roi-strategy-hub strong{font-size:17px}.roi-strategy-hub span{font-size:7.5px}.roi-strategy-detail h5{font-size:21px}}
+@media(max-width:480px){.roi-strategy-wheel{width:100%;aspect-ratio:1/1}.roi-strategy-btn{width:78px;height:78px;font-size:8px}.roi-strategy-btn .roi-strategy-num{width:18px;height:18px}.roi-strategy-btn .roi-strategy-label{max-width:64px}.roi-strategy-hub{width:108px;height:108px}.roi-strategy-hub strong{font-size:15px}.roi-strategy-hub span{display:none}}
+
 </style>
 <meta name="serase-build" content="native-pricing-lazy-shadow-2026-09-15">
 </head>
@@ -2734,6 +2889,203 @@ body[data-view] #costingAnalysisSection{display:none;}
       <span class="block-desc">Launch · Acquisition · Conversion</span>
     </div>
 
+
+    <div class="roi-shell" id="roiDashboard">
+      <div class="roi-head">
+        <div>
+          <h3>Marketing Strategy &amp; ROI Framework</h3>
+          <p>Management view for connecting marketing investment to acquisition, paid conversion, retention and customer value. The planning figures below are illustrative until real campaign data is available.</p>
+        </div>
+        <div class="roi-status">
+          <span class="roi-badge">4-Month Pilot</span>
+          <span class="roi-badge amber">Illustrative Planning Model</span>
+        </div>
+      </div>
+
+      <div class="roi-tabs" role="tablist" aria-label="Marketing strategy and ROI modules">
+        <button class="roi-tab active" type="button" data-roi-tab="summary" aria-selected="true">1. CEO Summary</button>
+        <button class="roi-tab" type="button" data-roi-tab="funnel" aria-selected="false">2. Marketing Funnel</button>
+        <button class="roi-tab" type="button" data-roi-tab="strategies" aria-selected="false">3. 7 Strategies</button>
+        <button class="roi-tab" type="button" data-roi-tab="roadmap" aria-selected="false">4. 4-Month Roadmap</button>
+        <button class="roi-tab" type="button" data-roi-tab="channels" aria-selected="false">5. Channel Measurement</button>
+        <button class="roi-tab" type="button" data-roi-tab="budget" aria-selected="false">6. Budget Allocation</button>
+        <button class="roi-tab" type="button" data-roi-tab="economics" aria-selected="false">7. Unit Economics</button>
+        <button class="roi-tab" type="button" data-roi-tab="decision" aria-selected="false">8. Decision &amp; Outcome</button>
+      </div>
+
+      <div class="roi-panel" data-roi-panel="summary">
+        <div class="roi-panel-title"><div><h4>CEO Summary</h4><p>One view of what the marketing budget is expected to buy, how many paying subscribers it creates, and whether the economics can support further scale.</p></div></div>
+        <div class="roi-controls">
+          <div class="roi-control"><label for="roiPaidSubs">Paid subscribers acquired</label><input id="roiPaidSubs" type="number" min="1" step="100" value="5000"></div>
+          <div class="roi-control"><label for="roiChurn">Monthly churn · planning input (%)</label><input id="roiChurn" type="number" min="1" max="100" step="1" value="8"></div>
+          <div class="roi-control"><label for="roiMargin">Contribution margin · planning input (%)</label><input id="roiMargin" type="number" min="1" max="100" step="5" value="80"></div>
+        </div>
+        <div class="roi-grid">
+          <div class="roi-kpi primary"><div class="roi-kpi-label">Illustrative envelope</div><div class="roi-kpi-value" id="roiSummarySpend">RM 500,000</div><div class="roi-kpi-sub">Management planning scenario, not a committed spend.</div></div>
+          <div class="roi-kpi primary"><div class="roi-kpi-label">Paid subscribers</div><div class="roi-kpi-value" id="roiSummarySubs">5,000</div><div class="roi-kpi-sub">Adjust the planning input above.</div></div>
+          <div class="roi-kpi primary"><div class="roi-kpi-label">CAC</div><div class="roi-kpi-value" id="roiSummaryCac">RM 100.00</div><div class="roi-kpi-sub">Marketing spend ÷ new paid subscribers.</div></div>
+          <div class="roi-kpi primary"><div class="roi-kpi-label">MRR</div><div class="roi-kpi-value" id="roiSummaryMrr">RM 189,500</div><div class="roi-kpi-sub">Using the illustrative blended ARPU.</div></div>
+        </div>
+        <div class="roi-grid" style="margin-top:12px;">
+          <div class="roi-kpi teal"><div class="roi-kpi-label">Blended ARPU / month</div><div class="roi-kpi-value" id="roiSummaryArpu">RM 37.90</div><div class="roi-kpi-sub">50% Select · 30% Elite · 20% Signature.</div></div>
+          <div class="roi-kpi"><div class="roi-kpi-label">Estimated LTV</div><div class="roi-kpi-value" id="roiSummaryLtv">—</div><div class="roi-kpi-sub">Uses planning churn and contribution margin until actual behaviour exists.</div></div>
+          <div class="roi-kpi"><div class="roi-kpi-label">Payback period</div><div class="roi-kpi-value" id="roiSummaryPayback">—</div><div class="roi-kpi-sub">CAC ÷ monthly contribution per customer.</div></div>
+          <div class="roi-kpi amber"><div class="roi-kpi-label">LTV : CAC</div><div class="roi-kpi-value" id="roiSummaryRatio">—</div><div class="roi-kpi-sub">Directional planning ratio only.</div></div>
+        </div>
+        <div class="roi-note">The PDF's RM500K, 5,000 paid-subscriber example, 50/30/20 subscription mix and RM37.90 blended ARPU are illustrative management scenarios. Churn and contribution margin are additional planning inputs and must be replaced with real subscriber data once the pilot runs.</div>
+      </div>
+
+      <div class="roi-panel" data-roi-panel="funnel" hidden>
+        <div class="roi-panel-title"><div><h4>Marketing Funnel</h4><p>Management funnel: Spend → Reach → Download → Register → Verify → Pay → Retain → Revenue → LTV. Downloads alone are not the commercial outcome.</p></div></div>
+        <div class="roi-funnel" id="roiFunnel">
+          <div class="roi-funnel-step" style="width:100%"><span>Marketing Spend</span><span>RM 500,000 planning envelope</span></div>
+          <div class="roi-funnel-step" style="width:92%"><span>Reach / Views</span><span>100,000 · KOL example</span></div>
+          <div class="roi-funnel-step" style="width:82%"><span>Clicks</span><span>5,000</span></div>
+          <div class="roi-funnel-step" style="width:70%"><span>Downloads</span><span>1,500</span></div>
+          <div class="roi-funnel-step" style="width:60%"><span>Registrations</span><span>900</span></div>
+          <div class="roi-funnel-step" style="width:51%"><span>Verified Users</span><span>600</span></div>
+          <div class="roi-funnel-step" style="width:40%"><span>Paid Users</span><span>100</span></div>
+          <div class="roi-funnel-step" style="width:35%"><span>Renewal / Retention</span><span>Measure after launch</span></div>
+          <div class="roi-funnel-step" style="width:31%"><span>Recurring Revenue</span><span>MRR</span></div>
+          <div class="roi-funnel-step" style="width:27%"><span>Customer Lifetime Value</span><span>LTV</span></div>
+        </div>
+        <div class="roi-note teal"><strong>Customer path:</strong> Awareness → Website / Social / KOL → App Store / Google Play → Download → Registration → Verification / Activation → Engagement → Paid Subscription → Renewal → Recurring Revenue. The 100,000 → 100 KOL funnel is illustrative only.</div>
+      </div>
+
+      <div class="roi-panel" data-roi-panel="strategies" hidden>
+        <div class="roi-panel-title"><div><h4>Marketing Strategy Wheel</h4><p>Click any strategy around the wheel to reveal its objective, tactics and KPIs. Only the selected strategy expands, keeping the management view clean.</p></div></div>
+        <div class="roi-strategy-layout">
+          <div class="roi-strategy-wheel" id="roiStrategyGrid" aria-label="7 Core Marketing Strategies"></div>
+          <div class="roi-strategy-detail" id="roiStrategyDetail" aria-live="polite"></div>
+        </div>
+        <div class="roi-note teal"><strong>Content vs Social:</strong> content is the marketing asset (education, posters, videos, product walkthroughs); social media is one of the distribution and community channels where that content is published and measured.</div>
+      </div>
+
+      <div class="roi-panel" data-roi-panel="roadmap" hidden>
+        <div class="roi-panel-title"><div><h4>4-Month Execution Roadmap</h4><p>Month 0 builds attribution readiness; Months 1–4 move from launch to acquisition, conversion and finally Scale / Stop decisions.</p></div></div>
+        <div class="roi-road" id="roiRoad"></div>
+        <div class="roi-road-detail" id="roiRoadDetail"></div>
+      </div>
+
+      <div class="roi-panel" data-roi-panel="channels" hidden>
+        <div class="roi-panel-title"><div><h4>Channel Measurement</h4><p>Each channel answers the same commercial question: how much did it cost, and what did it produce downstream?</p></div></div>
+        <div class="roi-grid two">
+          <div class="roi-channel-card">
+            <div class="roi-channel-head">KOL / Influencer Calculator</div>
+            <div class="roi-channel-body">
+              <div class="roi-controls" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0;">
+                <div class="roi-control"><label for="roiKolFee">KOL fee (RM)</label><input id="roiKolFee" type="number" value="5000" min="0"></div>
+                <div class="roi-control"><label for="roiKolViews">Views</label><input id="roiKolViews" type="number" value="100000" min="0"></div>
+                <div class="roi-control"><label for="roiKolClick">View → Click (%)</label><input id="roiKolClick" type="number" value="5" min="0" step="0.1"></div>
+                <div class="roi-control"><label for="roiKolDl">Click → Download (%)</label><input id="roiKolDl" type="number" value="30" min="0" step="0.1"></div>
+                <div class="roi-control"><label for="roiKolReg">Download → Register (%)</label><input id="roiKolReg" type="number" value="60" min="0" step="0.1"></div>
+                <div class="roi-control"><label for="roiKolVer">Register → Verify (%)</label><input id="roiKolVer" type="number" value="66.7" min="0" step="0.1"></div>
+                <div class="roi-control"><label for="roiKolPay">Verified → Paid (%)</label><input id="roiKolPay" type="number" value="16.7" min="0" step="0.1"></div>
+              </div>
+              <table class="roi-table"><tbody id="roiKolOutput"></tbody></table>
+              <div class="roi-note teal">Give every creator a unique tracking link, QR code, promo code or landing page so creator spend can be tied to verified users, paid subscribers, CAC and attributed revenue.</div>
+            </div>
+          </div>
+          <div class="roi-channel-card">
+            <div class="roi-channel-head">Event Launch ROI Funnel</div>
+            <div class="roi-channel-body">
+              <div class="roi-inline-funnel"><b>Event / PR Exposure</b><span class="roi-arrow">→</span><b>QR Scan</b><span class="roi-arrow">→</span><b>Website</b><span class="roi-arrow">→</span><b>Download</b><span class="roi-arrow">→</span><b>Registration</b><span class="roi-arrow">→</span><b>Verification</b><span class="roi-arrow">→</span><b>Paid Subscription</b></div>
+              <table class="roi-table" style="margin-top:14px;"><tbody>
+                <tr><td><b>Pre-launch</b></td><td>Teasers, save-the-date, founder/CEO announcement, KOL/media invitations, waitlist.</td></tr>
+                <tr><td><b>During</b></td><td>Product demo, trust/verification demo, interviews, KOL content, QR download CTA.</td></tr>
+                <tr><td><b>Post-launch</b></td><td>Highlight video, media coverage, short-form clips, testimonials, retargeting.</td></tr>
+                <tr><td><b>Management KPI</b></td><td>Attributed downloads, verified users, paid subscribers and MRR — not attendance alone.</td></tr>
+              </tbody></table>
+              <div class="roi-note">Current Pixel Pro physical launch quotation: <strong>RM394,250</strong>. Against a RM500K planning envelope, this is 78.85%, leaving RM105,750 for other marketing activities. Management must decide whether the event is primarily brand/PR, acquisition, or a hybrid.</div>
+            </div>
+          </div>
+        </div>
+        <div class="roi-channel-card" style="margin-top:14px;">
+          <div class="roi-channel-head">Paid Digital Advertising Structure</div>
+          <div class="roi-channel-body">
+            <table class="roi-table"><thead><tr><th>Campaign stage</th><th>Objective</th><th>Core KPI</th></tr></thead><tbody>
+              <tr><td>Awareness</td><td>Reach and introduce Serasé</td><td>CPM, Reach, Video Views</td></tr>
+              <tr><td>Acquisition</td><td>Generate app downloads</td><td>CTR, CPC, CPI</td></tr>
+              <tr><td>Activation</td><td>Generate registrations / verification</td><td>Cost / Registration, Cost / Verified User</td></tr>
+              <tr><td>Conversion</td><td>Generate paid subscribers</td><td>CAC, Paid Conversion, Revenue, ROAS</td></tr>
+              <tr><td>Retention</td><td>Increase renewals</td><td>Retention, Churn, LTV</td></tr>
+            </tbody></table>
+            <div class="roi-note teal"><strong>Watch CPI vs CAC:</strong> a healthy cost per install can still hide an expensive cost per paying subscriber.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roi-panel" data-roi-panel="budget" hidden>
+        <div class="roi-panel-title"><div><h4>Illustrative Marketing Budget Allocation</h4><p>RM500K planning envelope from the ROI plan. This model is separate from the current Pixel Pro quotation and does not overwrite the existing Total Cost calculation.</p></div></div>
+        <div class="roi-control" style="max-width:280px;margin-bottom:12px;"><label for="roiEnvelope">Total planning envelope (RM)</label><input id="roiEnvelope" type="number" min="1" value="500000"></div>
+        <div class="roi-budget-layout">
+          <div>
+            <div class="roi-donut-wrap"><svg id="roiBudgetDonut" viewBox="0 0 220 220" role="img" aria-label="Illustrative marketing budget allocation"></svg></div>
+            <div class="roi-budget-chips" id="roiBudgetChips"></div>
+            <div class="roi-detail" id="roiBudgetDetail"><h5>Select a budget category</h5><p>Click a slice or category to see its purpose and share of the planning envelope.</p></div>
+          </div>
+          <div>
+            <div class="roi-budget-list" id="roiBudgetList"></div>
+            <div class="roi-grid" style="margin-top:12px;">
+              <div class="roi-kpi"><div class="roi-kpi-label">Envelope</div><div class="roi-kpi-value" id="roiBudgetEnvelope">RM 500,000</div></div>
+              <div class="roi-kpi"><div class="roi-kpi-label">Allocated</div><div class="roi-kpi-value" id="roiBudgetAllocated">RM 490,000</div></div>
+              <div class="roi-kpi"><div class="roi-kpi-label">Remaining / contingency</div><div class="roi-kpi-value" id="roiBudgetRemaining">RM 10,000</div></div>
+              <div class="roi-kpi"><div class="roi-kpi-label">% Allocated</div><div class="roi-kpi-value" id="roiBudgetPct">98.0%</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="roi-note">The ROI plan uses RM150,000 for Event Launch as an illustrative allocation, while this dashboard's current Pixel Pro quotation is RM394,250. Keep both visible until management decides which launch budget treatment to use.</div>
+      </div>
+
+      <div class="roi-panel" data-roi-panel="economics" hidden>
+        <div class="roi-panel-title"><div><h4>Revenue &amp; Unit Economics</h4><p>Current subscription prices: Select RM19.90, Elite RM39.90 and Signature RM79.90 per month. Replace planning mix assumptions with actual subscriber data once available.</p></div></div>
+        <div class="roi-controls">
+          <div class="roi-control"><label for="roiMixSelect">Select share (%)</label><input id="roiMixSelect" type="number" min="0" max="100" value="50"></div>
+          <div class="roi-control"><label for="roiMixElite">Elite share (%)</label><input id="roiMixElite" type="number" min="0" max="100" value="30"></div>
+          <div class="roi-control"><label>Signature share (%)</label><input id="roiMixSignature" type="number" value="20" disabled></div>
+        </div>
+        <div class="roi-grid">
+          <div class="roi-kpi primary"><div class="roi-kpi-label">Blended ARPU / month</div><div class="roi-kpi-value" id="roiEcoArpu">RM 37.90</div></div>
+          <div class="roi-kpi"><div class="roi-kpi-label">CAC</div><div class="roi-kpi-value" id="roiEcoCac">RM 100.00</div></div>
+          <div class="roi-kpi"><div class="roi-kpi-label">Revenue payback</div><div class="roi-kpi-value" id="roiEcoRevenuePayback">2.64 mo</div><div class="roi-kpi-sub">Simple revenue basis, before fees, refunds and churn.</div></div>
+          <div class="roi-kpi teal"><div class="roi-kpi-label">MRR @ current paid-subscriber input</div><div class="roi-kpi-value" id="roiEcoMrr">RM 189,500</div></div>
+        </div>
+        <div class="roi-grid two" style="margin-top:14px;">
+          <div class="roi-channel-card"><div class="roi-channel-head">MRR by Paid Subscribers</div><div class="roi-channel-body"><table class="roi-table"><thead><tr><th>Paid subscribers</th><th class="num">Illustrative MRR</th></tr></thead><tbody id="roiMrrTable"></tbody></table></div></div>
+          <div class="roi-channel-card"><div class="roi-channel-head">Core Formulas</div><div class="roi-channel-body"><table class="roi-table"><tbody>
+            <tr><td>CPI</td><td>Marketing spend ÷ downloads</td></tr>
+            <tr><td>Cost / Registration</td><td>Marketing spend ÷ registrations</td></tr>
+            <tr><td>Cost / Verified User</td><td>Marketing spend ÷ verified users</td></tr>
+            <tr><td>CAC</td><td>Marketing spend ÷ new paid subscribers</td></tr>
+            <tr><td>Paid Conversion</td><td>Paid subscribers ÷ eligible / activated users</td></tr>
+            <tr><td>ARPU</td><td>Subscription revenue ÷ average paid subscribers</td></tr>
+            <tr><td>MRR</td><td>Active paid subscribers × monthly subscription revenue</td></tr>
+            <tr><td>ROAS</td><td>Attributed revenue ÷ marketing spend</td></tr>
+            <tr><td>LTV</td><td>ARPU × expected customer lifetime</td></tr>
+            <tr><td>Payback</td><td>CAC ÷ monthly contribution margin per customer</td></tr>
+          </tbody></table></div></div>
+        </div>
+        <div class="roi-note">The PDF's simple RM100 CAC / RM37.90 ARPU example gives a 2.64 subscriber-month revenue payback before payment fees, discounts, refunds, churn and other costs.</div>
+      </div>
+
+      <div class="roi-panel" data-roi-panel="decision" hidden>
+        <div class="roi-panel-title"><div><h4>Decision &amp; 4-Month Outcome</h4><p>Every channel should move through TEST → MEASURE → OPTIMISE → SCALE. Budget should not continue only because awareness metrics look good.</p></div></div>
+        <div class="roi-decision-grid">
+          <div class="roi-decision" id="roiDecisionScale"><strong>Scale</strong><p>Strong acquisition efficiency + acceptable retention + sustainable unit economics.</p></div>
+          <div class="roi-decision" id="roiDecisionOptimise"><strong>Optimise</strong><p>Good traffic / acquisition but weak activation, conversion or retention.</p></div>
+          <div class="roi-decision" id="roiDecisionStop"><strong>Stop / Reallocate</strong><p>Persistently high CAC and weak downstream customer value.</p></div>
+        </div>
+        <div class="roi-detail" style="margin-top:14px;"><h5>Current planning scenario</h5><p id="roiDecisionText">Calculating…</p></div>
+        <div class="roi-grid two" style="margin-top:14px;">
+          <div class="roi-channel-card"><div class="roi-channel-head">What the First Four Months Should Prove</div><div class="roi-channel-body"><ul style="margin:0;padding-left:18px;font-size:12px;line-height:1.7;color:#536779;"><li>Which channels produce the most paid subscribers</li><li>CAC by channel and campaign</li><li>The path from download to registration, verification and payment</li><li>An initial ARPU and subscription-mix baseline</li><li>Retention and churn are being measured</li><li>LTV and payback can be estimated from actual behaviour</li><li>Budget can shift toward channels with stronger downstream economics</li></ul></div></div>
+          <div class="roi-channel-card"><div class="roi-channel-head">Three Assets Built at Once</div><div class="roi-channel-body"><table class="roi-table"><tbody><tr><td><b>Brand</b></td><td>Awareness, credibility and trust</td></tr><tr><td><b>Customer Base</b></td><td>Registered, verified and active users</td></tr><tr><td><b>Revenue Engine</b></td><td>Paying subscribers, recurring revenue and retention</td></tr></tbody></table><div class="roi-note teal">Management question: not “How many people saw Serasé?” but “How much customer value did Serasé create from every RM invested in marketing?”</div></div></div>
+        </div>
+        <div class="roi-note">The 3× / 1× LTV:CAC decision thresholds used by this interactive view are a planning rule of thumb only and are not part of the source plan. Management should set the real thresholds.</div>
+      </div>
+    </div>
+
+    <div class="mkt-section-divider"><span>Current Marketing Proposals &amp; Evidence</span></div>
+
     <div class="mkt-exec-flow" aria-label="Marketing decision flow">
       <span>Build Presence</span><span class="arrow">→</span>
       <span>Acquire New Users</span><span class="arrow">→</span>
@@ -2767,68 +3119,6 @@ body[data-view] #costingAnalysisSection{display:none;}
         <span class="mkt-card-secondary"><strong>Serasé today: DCB only</strong> · Keep DCB + add Cards · FPX / Banking · E-wallets</span>
         <span class="mkt-card-action">View business case &amp; sources →</span>
       </button>
-    </div>
-
-    <div class="growth-card" style="margin-top:18px;margin-bottom:18px;">
-      <div class="growth-card-head">
-        <h3>Management View · New Business Model + KPI Framework + Example Projection</h3>
-        <p>Simple summary for management: how Serase app acquisition differs from the current MVAS model, what to measure, and how the funnel can convert into revenue.</p>
-      </div>
-
-      <div style="padding:0 16px 8px;">
-        <div class="growth-model-label">01 · New Business Model</div>
-      </div>
-      <div class="growth-compare-body">
-        <div class="growth-model">
-          <div class="growth-model-label">Current · MVAS</div>
-          <h4>Subscription Model</h4>
-          <p>Content / Ads → Landing Page → MSISDN → Subscribe → Successful Subscription</p>
-          <div class="growth-note"><strong>Main measures:</strong> Scrub · Conversion Rate · CPA</div>
-        </div>
-        <div class="growth-model new">
-          <div class="growth-model-label">New · Serase App</div>
-          <h4>App Acquisition &amp; Monetisation Model</h4>
-          <p>KOL / Influencer Content → Ads → App Install → Register → Verify / Activate → Paid User → Revenue</p>
-          <div class="growth-note"><strong>Goal:</strong> measure the full journey from media exposure to paying user, not downloads alone.</div>
-        </div>
-      </div>
-
-      <div style="padding:0 16px 8px;">
-        <div class="growth-model-label">02 · KPI Framework</div>
-      </div>
-      <div class="growth-stage-grid" style="margin:0;padding:0 16px 16px;">
-        <div class="growth-stage">
-          <div class="growth-stage-label">Awareness</div>
-          <h4>Get Seen</h4>
-          <div class="growth-chip-wrap"><span class="growth-chip">Reach</span><span class="growth-chip">Impressions</span><span class="growth-chip">Views</span></div>
-        </div>
-        <div class="growth-stage">
-          <div class="growth-stage-label">Acquisition</div>
-          <h4>Get Installed</h4>
-          <div class="growth-chip-wrap"><span class="growth-chip">CTR</span><span class="growth-chip">CPC</span><span class="growth-chip">CPI</span></div>
-        </div>
-        <div class="growth-stage">
-          <div class="growth-stage-label">Activation</div>
-          <h4>Get Real Users</h4>
-          <div class="growth-chip-wrap"><span class="growth-chip">Registration Rate</span><span class="growth-chip">Verification Rate</span><span class="growth-chip">Cost / Active User</span></div>
-        </div>
-        <div class="growth-stage">
-          <div class="growth-stage-label">Monetisation</div>
-          <h4>Get Revenue</h4>
-          <div class="growth-chip-wrap"><span class="growth-chip">Paid Conversion</span><span class="growth-chip">CPA / CAC</span><span class="growth-chip">ROAS</span></div>
-        </div>
-      </div>
-
-      <div style="padding:0 16px 8px;">
-        <div class="growth-model-label">03 · Example Projection</div>
-      </div>
-      <div style="padding:0 16px 16px;">
-        <div class="growth-model new">
-          <h4>Illustrative campaign funnel</h4>
-          <p class="mono" style="font-size:11px;line-height:1.8;">10,000 Views → 1,000 Clicks → 500 Installs → 350 Registrations → 250 Verified / Active Users → 50 Paid Users → Revenue</p>
-          <div class="growth-note"><strong>Management takeaway:</strong> compare each channel or KOL by how efficiently it moves users through the funnel to paid conversion and revenue. <strong>Illustration only — not a Serase forecast.</strong></div>
-        </div>
-      </div>
     </div>
 
     <div class="mkt-detail-panel" id="mktPhysicalDetail" hidden>
@@ -3179,6 +3469,231 @@ body[data-view] #costingAnalysisSection{display:none;}
       <div class="mkt-caveat"><strong>Management takeaway:</strong> We are paying to acquire users through open digital channels, but today every paying user must exit through a single DCB payment route. Adding payment methods broadens checkout access; it does not mean removing DCB.</div>
     </div>    </div>
   </section>
+
+
+
+<script>
+(function(){
+  const root = document.getElementById('roiDashboard');
+  if(!root) return;
+
+  const money0 = n => 'RM ' + Math.round(Number(n)||0).toLocaleString('en-MY');
+  const money2 = n => 'RM ' + (Number(n)||0).toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const num = n => Math.round(Number(n)||0).toLocaleString('en-MY');
+  const clamp = (v,min,max) => Math.min(max,Math.max(min,v));
+  const price = {select:19.9,elite:39.9,signature:79.9};
+
+  const state = {
+    paidSubs:5000,
+    churn:8,
+    margin:80,
+    mixSelect:50,
+    mixElite:30,
+    envelope:500000,
+    budget:{
+      'Event Launch':150000,
+      'Paid Digital Ads':150000,
+      'KOL / Influencers':60000,
+      'Content Production':50000,
+      'SEO + Website':25000,
+      'CRM / Email':10000,
+      'Social Media':25000,
+      'Analytics / Tracking / Testing':20000
+    },
+    selectedBudget:null,
+    strategy:0,
+    month:0
+  };
+
+  const purposes = {
+    'Event Launch':'Brand credibility + launch acquisition',
+    'Paid Digital Ads':'Scalable user acquisition',
+    'KOL / Influencers':'Trust + audience acquisition',
+    'Content Production':'Organic + paid creative',
+    'SEO + Website':'Long-term organic acquisition',
+    'CRM / Email':'Conversion + retention',
+    'Social Media':'Community + awareness',
+    'Analytics / Tracking / Testing':'Attribution + optimisation'
+  };
+
+  const colors = ['#10233F','#0F766E','#C2792B','#6B5BD6','#3A8FA5','#B65C7A','#4D7C67','#8797A6'];
+
+  const strategies = [
+    ['Event Launch','Create public awareness, credibility and a strong launch moment.','Pre-launch teasers; VIP/KOL/media invitations; CEO/founder story; product demonstration; QR download CTA; live content; post-event PR and retargeting.','QR scans, website visits, downloads, registrations, verified users, paid subscribers, attributed MRR'],
+    ['Content Marketing','Build trust and educate users before asking them to subscribe.','Trust & safety; scam awareness; verification education; relationships/community; product walkthroughs; founder story; testimonials.','Reach, views, engagement, website clicks, downloads, registrations, paid conversion'],
+    ['SEO + Website','Create a permanent organic acquisition channel.','SEO landing pages; blog; safety resources; pricing/FAQ; app download CTAs; Google Search Console/analytics; conversion tracking.','Organic sessions, ranking/search clicks, app-store clicks, downloads, registrations, paid conversion'],
+    ['Email / CRM','Convert and retain users already acquired.','Welcome journey; profile completion; verification reminders; premium education; upgrade campaigns; renewal reminders; win-back.','Open rate, CTR, activation, paid conversion, renewal, churn, reactivation'],
+    ['Social Media','Build awareness and community across the customer journey.','TikTok, Instagram, Threads, Facebook and LinkedIn; short-form video; carousels; community discussion; product demos; founder content.','Reach, engagement, clicks, downloads, registrations, paid users'],
+    ['KOL / Influencer','Borrow trusted audiences and measure creator-driven acquisition.','Unique links, QR codes, promo codes and landing pages; test creators by audience quality, not follower count alone.','Cost per download, cost per verified user, paid subscriber CAC, attributed revenue'],
+    ['Paid Digital Advertising','Create a controllable and scalable acquisition engine.','Meta, TikTok and Google/app campaigns; awareness, acquisition, retargeting and conversion; creative/audience testing.','CPM, CTR, CPC, CPI, cost per verified user, CAC, ROAS, retention']
+  ];
+
+  const roadmap = [
+    ['Month 0','Preparation','Build measurement infrastructure','Website; app analytics; UTM; pixels; CRM; email; KOL tracking; QR; payment/subscription tracking','Tracking coverage; attribution readiness','Ability to attribute paid users'],
+    ['Month 1','Launch','Awareness + first users','Event; PR; KOL; TikTok/Instagram; paid ads; website; content','Reach; impressions; visits; downloads; registrations','First paid subscribers + initial MRR'],
+    ['Month 2','Acquisition','Improve acquisition efficiency','Paid acquisition; KOL tests; retargeting; SEO; referral; email onboarding','CPI; registration cost; verification cost; CAC','MRR + paid conversion'],
+    ['Month 3','Conversion','Turn users into subscribers','Premium education; trials/offers; upgrade journeys; retargeting; KOL conversion','Paid conversion; CAC; ARPU','MRR + subscriber growth'],
+    ['Month 4','Scale / Stop','Decide where to put more money','Channel comparison; retention analysis; budget reallocation; creative optimisation','CAC + retention + LTV','LTV, payback, recurring revenue']
+  ];
+
+  function calc(){
+    const sel = clamp(Number(state.mixSelect)||0,0,100);
+    const elite = clamp(Number(state.mixElite)||0,0,100-sel);
+    state.mixSelect = sel;
+    state.mixElite = elite;
+    const signature = 100-sel-elite;
+    const arpu = (sel*price.select + elite*price.elite + signature*price.signature)/100;
+    const spend = state.envelope;
+    const subs = Math.max(1,Number(state.paidSubs)||1);
+    const cac = spend/subs;
+    const churn = clamp(Number(state.churn)||1,1,100)/100;
+    const margin = clamp(Number(state.margin)||1,1,100)/100;
+    const life = 1/churn;
+    const ltv = arpu*margin*life;
+    const payback = cac/(arpu*margin);
+    const revenuePayback = cac/arpu;
+    const mrr = subs*arpu;
+    const ratio = ltv/cac;
+    return {signature,arpu,cac,ltv,payback,revenuePayback,mrr,ratio};
+  }
+
+  function renderSummary(){
+    const c=calc();
+    document.getElementById('roiSummarySpend').textContent=money0(state.envelope);
+    document.getElementById('roiSummarySubs').textContent=num(state.paidSubs);
+    document.getElementById('roiSummaryCac').textContent=money2(c.cac);
+    document.getElementById('roiSummaryMrr').textContent=money0(c.mrr);
+    document.getElementById('roiSummaryArpu').textContent=money2(c.arpu);
+    document.getElementById('roiSummaryLtv').textContent=money2(c.ltv);
+    document.getElementById('roiSummaryPayback').textContent=(isFinite(c.payback)?c.payback.toFixed(2):'—')+' mo';
+    document.getElementById('roiSummaryRatio').textContent=(isFinite(c.ratio)?c.ratio.toFixed(2):'—')+'×';
+  }
+
+  function renderStrategies(){
+    const grid=document.getElementById('roiStrategyGrid');
+    const cx=50, cy=50, radius=38;
+    const points=strategies.map((s,i)=>{
+      const angle=(-90 + i*(360/strategies.length))*Math.PI/180;
+      return {x:cx+radius*Math.cos(angle),y:cy+radius*Math.sin(angle)};
+    });
+    const lines=points.map((p,i)=>`<line class="roi-strategy-line ${i===state.strategy?'active':''}" x1="${cx}" y1="${cy}" x2="${p.x.toFixed(2)}" y2="${p.y.toFixed(2)}"></line>`).join('');
+    const buttons=strategies.map((s,i)=>{
+      const p=points[i];
+      return `<button type="button" class="roi-strategy-btn ${i===state.strategy?'active':''}" data-roi-strategy="${i}" aria-pressed="${i===state.strategy}" style="left:${p.x.toFixed(2)}%;top:${p.y.toFixed(2)}%"><span class="roi-strategy-num">${i+1}</span><span class="roi-strategy-label">${s[0]}</span></button>`;
+    }).join('');
+    grid.innerHTML=`<svg class="roi-strategy-lines" viewBox="0 0 100 100" aria-hidden="true">${lines}</svg><div class="roi-strategy-hub"><strong>7 Core<br>Strategies</strong><span>Click a strategy</span></div>${buttons}`;
+    const s=strategies[state.strategy];
+    document.getElementById('roiStrategyDetail').innerHTML=`<div class="roi-detail-kicker">Selected strategy · ${String(state.strategy+1).padStart(2,'0')}</div><h5>${s[0]}</h5><div class="roi-detail-row"><span class="roi-detail-label">Objective</span><div class="roi-detail-copy">${s[1]}</div></div><div class="roi-detail-row"><span class="roi-detail-label">Tactics</span><div class="roi-detail-copy">${s[2]}</div></div><div class="roi-detail-row"><span class="roi-detail-label">KPIs</span><div class="roi-detail-copy">${s[3]}</div></div>`;
+    grid.querySelectorAll('[data-roi-strategy]').forEach(btn=>btn.addEventListener('click',()=>{state.strategy=Number(btn.dataset.roiStrategy);renderStrategies();}));
+  }
+
+  function renderRoadmap(){
+    const host=document.getElementById('roiRoad');
+    host.innerHTML=roadmap.map((r,i)=>`<button type="button" class="roi-road-step ${i===state.month?'active':i<state.month?'done':''}" data-roi-month="${i}" aria-pressed="${i===state.month}"><span class="roi-road-dot">M${i}</span><span class="roi-road-phase">${r[1]}</span><span class="roi-road-month">${r[0]}</span></button>`).join('');
+    const r=roadmap[state.month];
+    document.getElementById('roiRoadDetail').innerHTML=`<div class="roi-road-detail-head"><div><span class="roi-road-detail-kicker">Selected phase · ${r[0]}</span><h5>${r[1]}</h5><p>${r[2]}</p></div><span class="roi-road-status">Phase ${state.month+1} of ${roadmap.length}</span></div><div class="roi-road-detail-grid"><div class="roi-road-info"><span class="roi-road-info-label">Key activities</span><div class="roi-road-info-copy">${r[3]}</div></div><div class="roi-road-info kpi"><span class="roi-road-info-label">Primary KPIs</span><div class="roi-road-info-copy">${r[4]}</div></div><div class="roi-road-info revenue"><span class="roi-road-info-label">Revenue KPI</span><div class="roi-road-info-copy">${r[5]}</div></div></div>`;
+    host.querySelectorAll('[data-roi-month]').forEach(btn=>btn.addEventListener('click',()=>{state.month=Number(btn.dataset.roiMonth);renderRoadmap();}));
+  }
+
+  function renderKol(){
+    const fee=Math.max(0,Number(document.getElementById('roiKolFee').value)||0);
+    const views=Math.max(0,Number(document.getElementById('roiKolViews').value)||0);
+    const click=Math.max(0,Number(document.getElementById('roiKolClick').value)||0)/100;
+    const dlr=Math.max(0,Number(document.getElementById('roiKolDl').value)||0)/100;
+    const regr=Math.max(0,Number(document.getElementById('roiKolReg').value)||0)/100;
+    const verr=Math.max(0,Number(document.getElementById('roiKolVer').value)||0)/100;
+    const payr=Math.max(0,Number(document.getElementById('roiKolPay').value)||0)/100;
+    const clicks=views*click, dls=clicks*dlr, regs=dls*regr, vers=regs*verr, paid=vers*payr;
+    const cpd=dls?fee/dls:0, cpv=vers?fee/vers:0, cac=paid?fee/paid:0;
+    document.getElementById('roiKolOutput').innerHTML=[
+      ['Clicks',num(clicks)],['Downloads',num(dls)],['Registrations',num(regs)],['Verified users',num(vers)],['Paid users',num(paid)],['Cost / download',money2(cpd)],['Cost / verified user',money2(cpv)],['CAC / paid subscriber',money2(cac)]
+    ].map(([a,b])=>`<tr><td>${a}</td><td class="num"><b>${b}</b></td></tr>`).join('');
+  }
+
+  function polar(cx,cy,r,a){return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+  function renderBudget(){
+    const keys=Object.keys(state.budget);
+    const allocated=keys.reduce((s,k)=>s+(Number(state.budget[k])||0),0);
+    const env=Math.max(1,Number(state.envelope)||1);
+    const svg=document.getElementById('roiBudgetDonut');
+    let angle=-Math.PI/2, paths='';
+    keys.forEach((k,i)=>{
+      const value=Math.max(0,Number(state.budget[k])||0);
+      if(!value||allocated<=0) return;
+      const frac=value/allocated;
+      const end=angle+frac*Math.PI*2-(frac>.999?0.001:0);
+      const r=88,ir=54,cx=110,cy=110;
+      const [x1,y1]=polar(cx,cy,r,angle),[x2,y2]=polar(cx,cy,r,end),[x3,y3]=polar(cx,cy,ir,end),[x4,y4]=polar(cx,cy,ir,angle);
+      const large=frac>.5?1:0;
+      const opacity=state.selectedBudget===null||state.selectedBudget===i?1:.38;
+      paths+=`<path d="M${x1} ${y1}A${r} ${r} 0 ${large} 1 ${x2} ${y2}L${x3} ${y3}A${ir} ${ir} 0 ${large} 0 ${x4} ${y4}Z" fill="${colors[i]}" opacity="${opacity}" data-roi-budget-slice="${i}" style="cursor:pointer"><title>${k}: ${money0(value)}</title></path>`;
+      angle=end;
+    });
+    svg.innerHTML=paths+`<text x="110" y="106" text-anchor="middle" fill="#10233F" font-size="13" font-family="IBM Plex Mono" font-weight="700">${money0(allocated)}</text><text x="110" y="124" text-anchor="middle" fill="#6A7E8E" font-size="9" font-family="IBM Plex Mono">allocated</text>`;
+    svg.querySelectorAll('[data-roi-budget-slice]').forEach(p=>p.addEventListener('click',()=>{state.selectedBudget=Number(p.dataset.roiBudgetSlice);renderBudget();}));
+
+    const list=document.getElementById('roiBudgetList');
+    list.innerHTML=keys.map((k,i)=>`<div class="roi-budget-row"><label><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${colors[i]};margin-right:7px;"></span>${k}</label><input type="number" min="0" step="5000" value="${state.budget[k]}" data-roi-budget-input="${i}"><span>${(state.budget[k]/env*100).toFixed(1)}%</span></div>`).join('');
+    list.querySelectorAll('[data-roi-budget-input]').forEach(input=>input.addEventListener('change',()=>{const i=Number(input.dataset.roiBudgetInput);state.budget[keys[i]]=Math.max(0,Number(input.value)||0);renderBudget();}));
+
+    const chips=document.getElementById('roiBudgetChips');
+    chips.innerHTML=keys.map((k,i)=>`<button type="button" class="roi-budget-chip ${state.selectedBudget===i?'active':''}" data-roi-budget-chip="${i}">${k}</button>`).join('');
+    chips.querySelectorAll('[data-roi-budget-chip]').forEach(btn=>btn.addEventListener('click',()=>{state.selectedBudget=Number(btn.dataset.roiBudgetChip);renderBudget();}));
+
+    if(state.selectedBudget!==null){
+      const k=keys[state.selectedBudget],v=state.budget[k];
+      document.getElementById('roiBudgetDetail').innerHTML=`<h5>${k} · ${money0(v)}</h5><p><b>Purpose:</b> ${purposes[k]}.</p><p><b>Share of planning envelope:</b> ${(v/env*100).toFixed(1)}%.</p>`;
+    }
+    document.getElementById('roiBudgetEnvelope').textContent=money0(env);
+    document.getElementById('roiBudgetAllocated').textContent=money0(allocated);
+    document.getElementById('roiBudgetRemaining').textContent=money0(env-allocated);
+    document.getElementById('roiBudgetRemaining').style.color=(env-allocated)<0?'var(--red)':'var(--ink)';
+    document.getElementById('roiBudgetPct').textContent=(allocated/env*100).toFixed(1)+'%';
+  }
+
+  function renderEconomics(){
+    const c=calc();
+    document.getElementById('roiMixSignature').value=c.signature.toFixed(0);
+    document.getElementById('roiEcoArpu').textContent=money2(c.arpu);
+    document.getElementById('roiEcoCac').textContent=money2(c.cac);
+    document.getElementById('roiEcoRevenuePayback').textContent=(isFinite(c.revenuePayback)?c.revenuePayback.toFixed(2):'—')+' mo';
+    document.getElementById('roiEcoMrr').textContent=money0(c.mrr);
+    const rows=[100,250,500,1000,2500,5000,10000];
+    document.getElementById('roiMrrTable').innerHTML=rows.map(n=>`<tr><td>${num(n)}</td><td class="num">${money0(n*c.arpu)}</td></tr>`).join('');
+  }
+
+  function renderDecision(){
+    const c=calc();
+    ['roiDecisionScale','roiDecisionOptimise','roiDecisionStop'].forEach(id=>document.getElementById(id).classList.remove('active'));
+    let label,cls,text,target;
+    if(c.ratio>=3){label='Scale';cls='';text='The current planning inputs produce a strong LTV:CAC ratio. Validate this with real retention and contribution-margin data before increasing spend.';target='roiDecisionScale';}
+    else if(c.ratio>=1){label='Optimise';cls='optimise';text='The current planning inputs suggest the funnel or retention economics need optimisation before further scale.';target='roiDecisionOptimise';}
+    else{label='Stop / Reallocate';cls='stop';text='The current planning inputs suggest customer value is below acquisition cost. Reallocate or stop weak channels until economics improve.';target='roiDecisionStop';}
+    document.getElementById(target).classList.add('active');
+    document.getElementById('roiDecisionText').innerHTML=`LTV : CAC = <b>${c.ratio.toFixed(2)}×</b> → <span class="roi-pill ${cls}">${label}</span> ${text}`;
+  }
+
+  function renderAll(){renderSummary();renderBudget();renderEconomics();renderDecision();}
+
+  root.querySelectorAll('[data-roi-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+    root.querySelectorAll('[data-roi-tab]').forEach(b=>{b.classList.toggle('active',b===btn);b.setAttribute('aria-selected',b===btn?'true':'false');});
+    root.querySelectorAll('[data-roi-panel]').forEach(p=>p.hidden=p.dataset.roiPanel!==btn.dataset.roiTab);
+  }));
+
+  document.getElementById('roiPaidSubs').addEventListener('change',e=>{state.paidSubs=Math.max(1,Number(e.target.value)||1);renderAll();});
+  document.getElementById('roiChurn').addEventListener('change',e=>{state.churn=clamp(Number(e.target.value)||1,1,100);renderAll();});
+  document.getElementById('roiMargin').addEventListener('change',e=>{state.margin=clamp(Number(e.target.value)||1,1,100);renderAll();});
+  document.getElementById('roiEnvelope').addEventListener('change',e=>{state.envelope=Math.max(1,Number(e.target.value)||1);renderAll();});
+  document.getElementById('roiMixSelect').addEventListener('change',e=>{state.mixSelect=clamp(Number(e.target.value)||0,0,100);if(state.mixElite>100-state.mixSelect)state.mixElite=100-state.mixSelect;document.getElementById('roiMixElite').value=state.mixElite;renderAll();});
+  document.getElementById('roiMixElite').addEventListener('change',e=>{state.mixElite=clamp(Number(e.target.value)||0,0,100-state.mixSelect);e.target.value=state.mixElite;renderAll();});
+  ['roiKolFee','roiKolViews','roiKolClick','roiKolDl','roiKolReg','roiKolVer','roiKolPay'].forEach(id=>document.getElementById(id).addEventListener('input',renderKol));
+
+  renderStrategies();
+  renderRoadmap();
+  renderKol();
+  renderAll();
+})();
+</script>
 
   <script>
   (function(){
