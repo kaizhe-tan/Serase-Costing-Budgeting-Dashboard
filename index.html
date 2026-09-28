@@ -3040,15 +3040,17 @@ body[data-view] #costingAnalysisSection{display:none;}
       <div class="roi-panel" data-roi-panel="economics" hidden>
         <div class="roi-panel-title"><div><h4>Revenue &amp; Unit Economics</h4><p>Current subscription prices: Select RM19.90, Elite RM39.90 and Signature RM79.90 per month. Replace planning mix assumptions with actual subscriber data once available.</p></div></div>
         <div class="roi-controls">
+          <div class="roi-control"><label for="roiEcoPaidSubs">Total paid subscribers</label><input id="roiEcoPaidSubs" type="number" min="1" step="100" value="5000"></div>
           <div class="roi-control"><label for="roiMixSelect">Select share (%)</label><input id="roiMixSelect" type="number" min="0" max="100" value="50"></div>
           <div class="roi-control"><label for="roiMixElite">Elite share (%)</label><input id="roiMixElite" type="number" min="0" max="100" value="30"></div>
           <div class="roi-control"><label>Signature share (%)</label><input id="roiMixSignature" type="number" value="20" disabled></div>
         </div>
         <div class="roi-grid">
-          <div class="roi-kpi primary"><div class="roi-kpi-label">Blended ARPU / month</div><div class="roi-kpi-value" id="roiEcoArpu">RM 37.90</div></div>
+          <div class="roi-kpi primary"><div class="roi-kpi-label">Total paid subscribers</div><div class="roi-kpi-value" id="roiEcoSubs">5,000</div><div class="roi-kpi-sub">Planning input · replace with actual subscriber data when available.</div></div>
+          <div class="roi-kpi"><div class="roi-kpi-label">Blended ARPU / month</div><div class="roi-kpi-value" id="roiEcoArpu">RM 37.90</div></div>
+          <div class="roi-kpi teal"><div class="roi-kpi-label">MRR / month</div><div class="roi-kpi-value" id="roiEcoMrr">RM 189,500</div><div class="roi-kpi-sub">Total paid subscribers × blended ARPU.</div></div>
           <div class="roi-kpi"><div class="roi-kpi-label">CAC</div><div class="roi-kpi-value" id="roiEcoCac">RM 100.00</div></div>
           <div class="roi-kpi"><div class="roi-kpi-label">Revenue payback</div><div class="roi-kpi-value" id="roiEcoRevenuePayback">2.64 mo</div><div class="roi-kpi-sub">Simple revenue basis, before fees, refunds and churn.</div></div>
-          <div class="roi-kpi teal"><div class="roi-kpi-label">MRR @ current paid-subscriber input</div><div class="roi-kpi-value" id="roiEcoMrr">RM 189,500</div></div>
         </div>
         <div class="roi-grid two" style="margin-top:14px;">
           <div class="roi-channel-card"><div class="roi-channel-head">MRR by Paid Subscribers</div><div class="roi-channel-body"><table class="roi-table"><thead><tr><th>Paid subscribers</th><th class="num">Illustrative MRR</th></tr></thead><tbody id="roiMrrTable"></tbody></table></div></div>
@@ -3559,6 +3561,7 @@ body[data-view] #costingAnalysisSection{display:none;}
 
   function renderSummary(){
     const c=calc();
+    document.getElementById('roiPaidSubs').value=state.paidSubs;
     document.getElementById('roiSummarySpend').textContent=money0(state.envelope);
     document.getElementById('roiSummarySubs').textContent=num(state.paidSubs);
     document.getElementById('roiSummaryCac').textContent=money2(c.cac);
@@ -3653,7 +3656,9 @@ body[data-view] #costingAnalysisSection{display:none;}
 
   function renderEconomics(){
     const c=calc();
+    document.getElementById('roiEcoPaidSubs').value=state.paidSubs;
     document.getElementById('roiMixSignature').value=c.signature.toFixed(0);
+    document.getElementById('roiEcoSubs').textContent=num(state.paidSubs);
     document.getElementById('roiEcoArpu').textContent=money2(c.arpu);
     document.getElementById('roiEcoCac').textContent=money2(c.cac);
     document.getElementById('roiEcoRevenuePayback').textContent=(isFinite(c.revenuePayback)?c.revenuePayback.toFixed(2):'—')+' mo';
@@ -3681,6 +3686,7 @@ body[data-view] #costingAnalysisSection{display:none;}
   }));
 
   document.getElementById('roiPaidSubs').addEventListener('change',e=>{state.paidSubs=Math.max(1,Number(e.target.value)||1);renderAll();});
+  document.getElementById('roiEcoPaidSubs').addEventListener('change',e=>{state.paidSubs=Math.max(1,Number(e.target.value)||1);renderAll();});
   document.getElementById('roiChurn').addEventListener('change',e=>{state.churn=clamp(Number(e.target.value)||1,1,100);renderAll();});
   document.getElementById('roiMargin').addEventListener('change',e=>{state.margin=clamp(Number(e.target.value)||1,1,100);renderAll();});
   document.getElementById('roiEnvelope').addEventListener('change',e=>{state.envelope=Math.max(1,Number(e.target.value)||1);renderAll();});
