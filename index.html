@@ -2434,8 +2434,360 @@ body[data-view] #costingAnalysisSection{display:none;}
     .roi-input-group .roi-controls,
     .roi-kol-inputs{grid-template-columns:1fr !important;}
   }
+
+
+  /* ===== Serasé Brand Palette + Premium Roadmap ===== */
+  :root{
+    --ink:#4B2D27;
+    --ink-soft:#6D4037;
+    --paper:#F7F0E8;
+    --card:#FFFDF9;
+    --teal:#98242E;
+    --teal-soft:#F0D9D4;
+    --amber:#B79A4F;
+    --amber-soft:#F3E8CF;
+    --red:#98242E;
+    --red-soft:#F3D9D5;
+    --muted:#786760;
+    --border:#E5D8CD;
+    --text:#3D2C28;
+    --grand:#7A443C;
+    --grand-soft:#F1DFDA;
+    --y2-bg:#F7EAE4;
+    --exec-gold:#B79A4F;
+    --exec-gold-soft:#F3E8CF;
+    --exec-surface:#FBF6F0;
+  }
+  body{background:linear-gradient(180deg,#F8F2EA 0%,#F5EDE5 48%,#F8F2EA 100%);color:var(--text);}
+  header.topbar{background:radial-gradient(circle at 88% 4%,rgba(197,124,105,.22),transparent 29%),radial-gradient(circle at 68% 130%,rgba(183,154,79,.18),transparent 34%),linear-gradient(125deg,#5A171D 0%,#8E2029 62%,#5B2C26 135%);box-shadow:0 12px 30px rgba(87,31,28,.14);}
+  header.topbar::after{background:linear-gradient(90deg,#B79A4F 0%,#D7BE77 34%,#C88373 68%,transparent 100%);}
+  header.topbar .eyebrow{color:#E7C9C1;}
+  .subline{color:#F0DDD7;}
+  .currency-note{background:rgba(255,250,243,.10);border-color:rgba(255,244,232,.20);color:#F7EDE6;}
+  .dashboard-nav{border-color:#DED0C5;background:#FBF7F2;}
+  .dashboard-nav-label{background:linear-gradient(90deg,#721A22 0%,#98242E 100%);border-bottom-color:#A64F54;color:#FFF8F0;}
+  .dashboard-tabs{background:linear-gradient(180deg,#FCF8F3 0%,#F5ECE4 100%);}
+  .dashboard-tab{color:#7E5D56;}
+  .dashboard-tab:hover{color:#5B2E29;border-color:#E0CFC5;background:#FFFDF9;}
+  .dashboard-tab.active{background:linear-gradient(135deg,#8F202A 0%,#A92B33 100%);border-color:#8F202A;box-shadow:0 8px 18px rgba(137,31,39,.22);}
+  body:not([data-view="total"]) .block-head{border-color:#E4D7CC;background:linear-gradient(180deg,#FFFDF9 0%,#F8F0E8 100%);}
+  body:not([data-view="total"]) .block-head::before{background:linear-gradient(180deg,#98242E,#C5786A);}
+  body:not([data-view="total"]) .block-index{color:#98242E;background:#F4DFDB;border-color:#E8C8C2;}
+  body:not([data-view="total"]) .block-desc{color:#8B6C64;}
+  body:not([data-view="total"]) .card,.roi-shell,.roi-input-hub{border-color:#E4D7CC;background:#FFFDF9;box-shadow:0 10px 28px rgba(101,58,50,.065);}
+  body:not([data-view="total"]) thead th,.roi-table th{background:#F5EAE2;color:#7B625B;border-bottom-color:#E4D7CC;}
+  .roi-head,.roi-input-hub-head{background:radial-gradient(circle at 92% 0%,rgba(198,124,107,.12),transparent 31%),linear-gradient(180deg,#FFFDF9 0%,#F8F0E8 100%);border-bottom-color:#E5D8CD;}
+  .roi-tabs{background:#F6ECE4;border-bottom-color:#E5D8CD;}
+  .roi-tab{color:#805F58;}
+  .roi-tab:hover{background:#FFFDF9;border-color:#E0CFC5;color:#532C27;}
+  .roi-tab.active{background:linear-gradient(135deg,#8F202A 0%,#A92B33 100%);border-color:#8F202A;box-shadow:0 7px 17px rgba(137,31,39,.20);}
+  .roi-kpi{border-color:#E5D8CD;background:linear-gradient(180deg,#FFFDF9,#FBF5EF);}
+  .roi-kpi.primary{background:linear-gradient(145deg,#7D1D25,#A32A32);border-color:#7D1D25;}
+  .roi-kpi.primary .roi-kpi-label{color:#ECCFC8;}
+  .roi-kpi.primary .roi-kpi-sub{color:#F2DDD8;}
+  .roi-control{border-color:#E4D7CC;background:#FBF6F0;}
+  .roi-control input,.roi-control select{border-color:#DCCBC0;background:#FFFDF9;}
+  .roi-control input:focus,.roi-control select:focus{border-color:#98242E;box-shadow:0 0 0 3px rgba(152,36,46,.10);}
+  .roi-funnel-step{background:linear-gradient(90deg,#7D1D25,#A22B33);box-shadow:0 4px 11px rgba(133,37,43,.10);}
+  .roi-funnel-step span:last-child{color:#F2DCD6;}
+  .roi-strategy-wheel::before{border-color:#E2D4CA;background:radial-gradient(circle at 50% 50%,rgba(152,36,46,.05) 0 31%,transparent 32% 100%);box-shadow:inset 0 0 0 18px rgba(152,36,46,.018);}
+  .roi-strategy-line{stroke:#E1D3C9;}
+  .roi-strategy-hub{background:radial-gradient(circle at 35% 28%,#A3343C 0%,#8D222B 52%,#6A1A22 100%);border-color:#FFFDF9;box-shadow:0 14px 32px rgba(112,31,34,.20),0 0 0 1px #E0D2C8;}
+  .roi-strategy-btn{border-color:#E2D5CB;background:linear-gradient(180deg,#FFFDF9,#FAF3ED);}
+  .roi-strategy-btn.active{border-color:#B99D55;background:linear-gradient(145deg,#7D1D25,#A42C34);box-shadow:0 13px 27px rgba(123,30,36,.20),0 0 0 6px rgba(183,154,79,.10);}
+  .roi-note{background:#F7EEDF;color:#795A2F;}
+  .roi-note.teal{border-left-color:#98242E;background:#F4E1DD;color:#6D3735;}
+  .roi-decision.active{border-color:#98242E;background:#F7E6E2;}
+  .roi-pill{background:#98242E;}
+  .roi-budget-popover{background:#FFFDF9;border-color:#DECFC4;box-shadow:0 18px 38px rgba(93,49,42,.18);}
+  .roi-budget-popover-close{background:#F2E8E1;color:#815E56;}
+  .roi-budget-popover-amount{color:#7D1D25;}
+  .roi-budget-row{border-color:#E5D8CD;background:#FFFDF9;}
+  .roi-budget-row label{color:#5E4039;}
+  .total-plan-option.active{border-color:#B99D55;background:radial-gradient(circle at 100% 0%,rgba(183,154,79,.22),transparent 35%),linear-gradient(145deg,#741B22 0%,#9E2730 100%);box-shadow:0 13px 26px rgba(116,27,34,.18);}
+  .total-summary-table .grand-row td{background:linear-gradient(90deg,#741B22 0%,#9E2730 100%);}
+  .total-grand-card{border-top-color:#B99D55;background:radial-gradient(circle at 100% 0%,rgba(183,154,79,.20),transparent 30%),linear-gradient(150deg,#5C171D 0%,#8E232B 100%);box-shadow:0 18px 40px rgba(96,33,30,.18);}
+
+  .roi-roadmap-title{align-items:flex-end;margin-bottom:18px;}
+  .roi-roadmap-kicker{display:inline-block;margin-bottom:7px;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#98242E;}
+  .roi-roadmap-title h4{font-size:28px;letter-spacing:-.02em;color:#8E2029;}
+  .roi-roadmap-title p{max-width:720px;color:#6F5B55;}
+  .roi-roadmap-hint{flex:none;padding:7px 10px;border:1px solid #E0C9BF;border-radius:999px;background:#FFF9F4;color:#8F4A43;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+  .roi-road{display:grid;grid-template-columns:repeat(5,minmax(220px,1fr));gap:14px;align-items:stretch;margin:0;padding:16px 4px 28px;overflow-x:auto;overflow-y:visible;scroll-snap-type:x proximity;}
+  .roi-road::before{display:none;}
+  .roi-road-card{position:relative;min-height:480px;padding:20px 19px 22px;border:1px solid #E7DDD4;border-radius:18px;background:#FFFDF9;color:#49332E;box-shadow:0 8px 22px rgba(98,58,50,.055);cursor:pointer;scroll-snap-align:start;transition:transform .26s cubic-bezier(.2,.8,.2,1),box-shadow .26s ease,border-color .26s ease,background .26s ease,color .26s ease;outline:none;isolation:isolate;}
+  .roi-road-card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(145deg,rgba(255,255,255,.50),transparent 35%);pointer-events:none;opacity:.75;z-index:-1;}
+  .roi-road-card:hover{transform:translateY(-5px);border-color:#D6B9AF;box-shadow:0 14px 30px rgba(98,58,50,.10);}
+  .roi-road-card:focus-visible{box-shadow:0 0 0 4px rgba(152,36,46,.13),0 14px 30px rgba(98,58,50,.10);}
+  .roi-road-card.active{z-index:3;transform:translateY(-14px) scale(1.025);border-color:#8E2029;background:linear-gradient(165deg,#A02831 0%,#8E2029 58%,#7D1B23 100%);color:#FFF8F0;box-shadow:0 26px 48px rgba(109,27,32,.24),0 0 0 1px rgba(183,154,79,.30);animation:roiRoadPremiumPop .34s cubic-bezier(.18,.86,.22,1);}
+  .roi-road-card.active::before{background:radial-gradient(circle at 100% 0%,rgba(218,190,118,.20),transparent 34%),linear-gradient(145deg,rgba(255,255,255,.06),transparent 42%);opacity:1;}
+  @keyframes roiRoadPremiumPop{0%{transform:translateY(0) scale(.985);box-shadow:0 8px 20px rgba(109,27,32,.08)}70%{transform:translateY(-17px) scale(1.032)}100%{transform:translateY(-14px) scale(1.025)}}
+  .roi-road-card-month{display:block;margin-bottom:8px;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#9C2B34;}
+  .roi-road-card h5{margin:0;font-family:'Fraunces',serif;font-size:25px;font-weight:600;line-height:1.05;color:#4A312B;letter-spacing:-.02em;}
+  .roi-road-card-goal{margin:9px 0 18px;font-size:12px;line-height:1.5;color:#735F59;}
+  .roi-road-card-block{padding:12px 0 0;border-top:1px solid #EEE5DE;}
+  .roi-road-card-block + .roi-road-card-block{margin-top:11px;}
+  .roi-road-card-label{display:block;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:#9C2B34;}
+  .roi-road-line{display:block;font-size:11.4px;line-height:1.48;color:#5C4842;}
+  .roi-road-line + .roi-road-line{margin-top:3px;}
+  .roi-road-card-kpi{margin-top:auto;}
+  .roi-road-card-selected{position:absolute;top:16px;right:16px;display:none;padding:4px 7px;border:1px solid rgba(238,213,153,.42);border-radius:999px;background:rgba(80,24,24,.17);color:#E8D293;font-family:'IBM Plex Mono',monospace;font-size:7.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+  .roi-road-card.active .roi-road-card-selected{display:inline-flex;}
+  .roi-road-card.active .roi-road-card-month,.roi-road-card.active .roi-road-card-label{color:#E2C675;}
+  .roi-road-card.active h5{color:#FFF8F0;}
+  .roi-road-card.active .roi-road-card-goal,.roi-road-card.active .roi-road-line{color:#F7EAE4;}
+  .roi-road-card.active .roi-road-card-block{border-top-color:rgba(255,244,235,.17);}
+  @media(max-width:1320px){.roi-road{grid-template-columns:repeat(5,minmax(210px,1fr));}.roi-road-card{min-height:500px;}}
+  @media(max-width:900px){.roi-road{grid-template-columns:repeat(5,minmax(260px,1fr));padding-top:20px}.roi-road-card{min-height:470px}.roi-roadmap-title{align-items:flex-start;flex-direction:column}.roi-roadmap-hint{margin-top:3px}}
+  @media(max-width:720px){.roi-road{grid-template-columns:repeat(5,minmax(250px,1fr));padding-left:4px;padding-right:4px}.roi-road-card.active{transform:translateY(-8px) scale(1.015)}@keyframes roiRoadPremiumPop{0%{transform:translateY(0) scale(.99)}70%{transform:translateY(-11px) scale(1.02)}100%{transform:translateY(-8px) scale(1.015)}}.roi-roadmap-title h4{font-size:24px}}
+
+  /* Premium roadmap expansion: PDF-style five cards, selected month pushes forward and opens in place. */
+  .roi-road{align-items:start;}
+  .roi-road-card{display:flex;flex-direction:column;height:auto;min-height:480px;overflow:hidden;}
+  .roi-road-card.active{min-height:640px;}
+  .roi-road-card.active::after{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 99px 99px;background:linear-gradient(90deg,transparent,#D9B672 18%,#E7CE91 50%,#D9B672 82%,transparent);box-shadow:0 2px 12px rgba(217,182,114,.22);}
+  .roi-road-premium{display:grid;grid-template-rows:0fr;opacity:0;margin-top:0;transition:grid-template-rows .34s cubic-bezier(.2,.8,.2,1),opacity .22s ease,margin-top .34s ease;}
+  .roi-road-premium-inner{min-height:0;overflow:hidden;}
+  .roi-road-card.active .roi-road-premium{grid-template-rows:1fr;opacity:1;margin-top:16px;}
+  .roi-road-premium-rule{height:1px;margin-bottom:15px;background:linear-gradient(90deg,rgba(217,182,114,.75),rgba(255,244,235,.14));}
+  .roi-road-premium-kicker{margin-bottom:10px;font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#E2C675;}
+  .roi-road-premium-grid{display:grid;gap:9px;}
+  .roi-road-premium-item{padding:10px 11px;border:1px solid rgba(255,244,235,.14);border-radius:11px;background:rgba(255,248,240,.055);}
+  .roi-road-premium-item span{display:block;margin-bottom:5px;font-family:'IBM Plex Mono',monospace;font-size:7.8px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#E2C675;}
+  .roi-road-premium-item strong{display:block;font-size:10.8px;line-height:1.48;font-weight:500;color:#FFF5ED;}
+  @media(max-width:1320px){.roi-road-card.active{min-height:660px;}}
+  @media(max-width:900px){.roi-road-card.active{min-height:640px;}}
+  @media(max-width:720px){.roi-road-card.active{min-height:620px;}}
+  @media(prefers-reduced-motion:reduce){.roi-road-card,.roi-road-premium{transition:none!important;animation:none!important;}}
+
+
+
+  /* ===== v19 · Compact-to-Premium Roadmap Push-Out ===== */
+  .roi-roadmap-title{margin-bottom:16px;}
+  .roi-roadmap-hint{background:#FFF9F3;border-color:#E4CEC2;color:#8A3C3B;}
+  .roi-road{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    width:100%;
+    margin:0;
+    padding:20px 4px 26px;
+    overflow-x:auto;
+    overflow-y:visible;
+    scroll-snap-type:x proximity;
+  }
+  .roi-road-card{
+    flex:1 1 0;
+    min-width:150px;
+    min-height:178px;
+    height:auto;
+    padding:16px 16px 15px;
+    border:1px solid #E8DCD2;
+    border-radius:17px;
+    background:linear-gradient(180deg,#FFFDF9 0%,#FAF3EC 100%);
+    color:#4A3A35;
+    box-shadow:0 7px 18px rgba(86,48,42,.055);
+    overflow:hidden;
+    scroll-snap-align:start;
+    transform-origin:top center;
+    transition:flex-basis .46s cubic-bezier(.18,.86,.22,1),
+               min-width .46s cubic-bezier(.18,.86,.22,1),
+               min-height .46s cubic-bezier(.18,.86,.22,1),
+               transform .38s cubic-bezier(.18,.86,.22,1),
+               box-shadow .38s ease,border-color .28s ease,background .32s ease,color .32s ease;
+  }
+  .roi-road-card:hover:not(.active){
+    transform:translateY(-5px);
+    border-color:#D5B6AC;
+    box-shadow:0 13px 26px rgba(86,48,42,.10);
+  }
+  .roi-road-card-top{position:relative;min-height:145px;display:flex;flex-direction:column;}
+  .roi-road-card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:11px;}
+  .roi-road-card-month{margin:0;font-size:8.5px;letter-spacing:.12em;color:#98242E;}
+  .roi-road-stage{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:4px 7px;border:1px solid #E2CEC4;border-radius:999px;
+    background:#FFF8F2;color:#8C5A52;
+    font-family:'IBM Plex Mono',monospace;font-size:7.3px;font-weight:700;letter-spacing:.08em;
+  }
+  .roi-road-card h5{font-size:21px;line-height:1.05;color:#4C302C;}
+  .roi-road-question{margin:9px 0 0;font-size:11.6px;line-height:1.43;font-weight:600;color:#725C55;}
+  .roi-road-openhint{margin-top:auto;padding-top:12px;font-family:'IBM Plex Mono',monospace;font-size:7.8px;letter-spacing:.06em;text-transform:uppercase;color:#A78276;}
+  .roi-road-card-selected{top:14px;right:14px;display:none;}
+
+  .roi-road-expand{
+    display:grid;
+    grid-template-rows:0fr;
+    opacity:0;
+    margin-top:0;
+    transition:grid-template-rows .42s cubic-bezier(.2,.8,.2,1),opacity .24s ease,margin-top .42s ease;
+  }
+  .roi-road-expand-inner{min-height:0;overflow:hidden;}
+  .roi-road-detail-columns{display:grid;grid-template-columns:1.18fr .82fr;gap:12px;margin-top:14px;}
+  .roi-road-detail-stack{display:grid;gap:10px;align-content:start;}
+  .roi-road-card-block{padding:11px 12px;border:1px solid rgba(255,244,235,.14)!important;border-radius:11px;background:rgba(255,248,240,.052);}
+  .roi-road-card-block + .roi-road-card-block{margin-top:0;}
+  .roi-road-card-kpi{margin-top:0;background:rgba(217,182,114,.085);}
+  .roi-road-card-goal{margin:0;color:#F6E9E1;font-size:12.2px;line-height:1.5;}
+  .roi-road-premium-kicker{margin:15px 0 9px;}
+  .roi-road-premium-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+  .roi-road-premium-item{padding:10px 10px;}
+
+  .roi-road-card.active{
+    flex:2.15 1 0;
+    min-width:360px;
+    min-height:505px;
+    z-index:5;
+    transform:translateY(-12px) scale(1.012);
+    border-color:#892027;
+    background:
+      radial-gradient(circle at 100% 0%,rgba(217,182,114,.17),transparent 31%),
+      linear-gradient(160deg,#972730 0%,#892027 58%,#6F171E 100%);
+    color:#FFF8F0;
+    box-shadow:0 28px 54px rgba(89,23,27,.25),0 0 0 1px rgba(217,182,114,.25);
+  }
+  .roi-road-card.active::after{left:16px;right:16px;}
+  .roi-road-card.active .roi-road-expand{grid-template-rows:1fr;opacity:1;margin-top:15px;}
+  .roi-road-card.active .roi-road-card-meta{padding-right:50px;}
+  .roi-road-card.active .roi-road-card-month{color:#E8CE8C;}
+  .roi-road-card.active .roi-road-stage{border-color:rgba(232,206,140,.35);background:rgba(72,18,22,.18);color:#E8CE8C;}
+  .roi-road-card.active h5{font-size:28px;color:#FFF9F3;}
+  .roi-road-card.active .roi-road-question{font-size:14px;line-height:1.42;color:#FFF1E8;max-width:95%;}
+  .roi-road-card.active .roi-road-openhint{color:#DCC4AE;}
+  .roi-road-card.active .roi-road-card-selected{display:inline-flex;}
+  .roi-road-card.active .roi-road-card-label{color:#E6C87A;}
+  .roi-road-card.active .roi-road-line{color:#F9EDE6;}
+  .roi-road-card.active .roi-road-premium-item strong{font-size:10.5px;}
+
+  /* the inactive cards deliberately remain compact while one month is open */
+  .roi-road:has(.roi-road-card.active) .roi-road-card:not(.active){
+    flex:.78 1 0;
+    min-width:132px;
+    opacity:.86;
+  }
+  .roi-road:has(.roi-road-card.active) .roi-road-card:not(.active) h5{font-size:18px;}
+  .roi-road:has(.roi-road-card.active) .roi-road-card:not(.active) .roi-road-question{font-size:10.6px;}
+
+  @media(max-width:1180px){
+    .roi-road-card{flex:0 0 180px;min-width:180px;}
+    .roi-road-card.active{flex:0 0 430px;min-width:430px;}
+    .roi-road:has(.roi-road-card.active) .roi-road-card:not(.active){flex:0 0 160px;min-width:160px;}
+  }
+  @media(max-width:720px){
+    .roi-road{gap:10px;padding-top:16px;}
+    .roi-road-card{flex:0 0 158px;min-width:158px;min-height:164px;padding:14px;}
+    .roi-road-card-top{min-height:135px;}
+    .roi-road-card.active{flex:0 0 min(86vw,390px);min-width:min(86vw,390px);min-height:500px;transform:translateY(-7px) scale(1.006);}
+    .roi-road:has(.roi-road-card.active) .roi-road-card:not(.active){flex:0 0 142px;min-width:142px;}
+    .roi-road-detail-columns{grid-template-columns:1fr;}
+    .roi-road-premium-grid{grid-template-columns:1fr;}
+  }
+
+
+
+  /* v20 · Marketing Budget Allocation — management-first premium layout */
+  .roi-budget-title-row{align-items:flex-start;gap:18px;margin-bottom:16px;}
+  .roi-budget-kicker{display:inline-block;margin-bottom:6px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#98242E;}
+  .roi-budget-status{flex:none;display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border:1px solid #E1CDBF;border-radius:999px;background:#FBF2EA;color:#8A5145;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+  .roi-budget-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#D9B672;box-shadow:0 0 0 4px rgba(217,182,114,.14);}
+  .roi-budget-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:2px 0 18px;}
+  .roi-budget-summary-card{position:relative;overflow:hidden;min-height:104px;padding:15px 16px 14px;border:1px solid #E4D7CC;border-radius:14px;background:linear-gradient(180deg,#FFFDF9 0%,#FAF3ED 100%);box-shadow:0 6px 18px rgba(101,58,50,.055);}
+  .roi-budget-summary-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#CBB6A8;}
+  .roi-budget-summary-card.envelope::before{background:#892027;}
+  .roi-budget-summary-card.allocated::before{background:#D9B672;}
+  .roi-budget-summary-card.remaining::before{background:#9EB02A;}
+  .roi-budget-summary-card.percentage::before{background:#B86A54;}
+  .roi-budget-summary-label{display:block;margin-bottom:8px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#8A776C;}
+  .roi-budget-summary-value{display:block;font-family:'Fraunces',serif;font-size:clamp(18px,1.7vw,24px);font-weight:600;line-height:1.12;color:#4A3A35;letter-spacing:-.015em;}
+  .roi-budget-summary-card.envelope .roi-budget-summary-value{color:#892027;}
+  .roi-budget-summary-sub{display:block;margin-top:7px;font-size:10.5px;line-height:1.35;color:#8A776C;}
+  .roi-budget-layout{display:grid;grid-template-columns:minmax(340px,.9fr) minmax(470px,1.1fr);gap:14px;align-items:stretch;}
+  .roi-budget-panel{min-width:0;border:1px solid #E3D6CB;border-radius:17px;background:#FFFDF9;box-shadow:0 8px 24px rgba(101,58,50,.06);overflow:hidden;}
+  .roi-budget-panel-head{min-height:70px;padding:14px 16px 13px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #E9DDD4;background:linear-gradient(180deg,#FCF7F2 0%,#F7EEE7 100%);}
+  .roi-budget-panel-kicker{display:block;margin-bottom:4px;font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9A665A;}
+  .roi-budget-panel-head h5{margin:0;font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#4A302C;}
+  .roi-budget-panel-hint{flex:none;padding:5px 8px;border:1px solid #E4D3C7;border-radius:999px;background:#FFF9F4;color:#8B6A60;font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:600;letter-spacing:.03em;white-space:nowrap;}
+  .roi-donut-wrap{min-height:396px;padding:14px 16px 16px;border:0;border-radius:0;background:radial-gradient(circle at 50% 45%,#FFFDF9 0%,#FBF4ED 70%,#F7EEE7 100%);display:flex;align-items:center;justify-content:center;}
+  .roi-donut-stage{width:100%;max-width:520px;min-height:360px;margin:0;}
+  .roi-donut-stage svg{width:min(100%,350px);max-width:350px;filter:drop-shadow(0 8px 12px rgba(92,49,42,.07));}
+  .roi-budget-editor-panel{display:flex;flex-direction:column;}
+  .roi-budget-list{display:grid;gap:7px;padding:12px 13px 10px;flex:1;align-content:start;}
+  .roi-budget-row{position:relative;overflow:hidden;grid-template-columns:minmax(165px,1fr) 138px 70px;min-height:45px;gap:9px;padding:8px 10px;border-color:#E8DDD4;border-radius:10px;background:#FFFDF9;transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease;}
+  .roi-budget-row::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:var(--budget-share,0%);max-width:100%;background:var(--budget-color,#D9B672);opacity:.72;transition:width .22s ease;}
+  .roi-budget-row:hover{transform:translateY(-1px);border-color:#D9C5B8;box-shadow:0 5px 13px rgba(96,52,45,.07);}
+  .roi-budget-row.selected{border-color:#C89A82;background:#FCF4EE;box-shadow:inset 3px 0 0 var(--budget-color,#892027),0 5px 13px rgba(96,52,45,.07);}
+  .roi-budget-row label{display:flex;align-items:center;min-width:0;font-size:11.5px;color:#5E4039;cursor:pointer;}
+  .roi-budget-dot{display:inline-block;width:9px;height:9px;margin-right:8px;border-radius:50%;background:var(--budget-color);box-shadow:0 0 0 3px color-mix(in srgb,var(--budget-color) 15%,transparent);flex:none;}
+  .roi-budget-row input{position:relative;z-index:1;border-color:#DDCFC4;background:#FFFDF9;color:#4A3A35;font-weight:600;}
+  .roi-budget-row input:focus{outline:none;border-color:#98242E;box-shadow:0 0 0 3px rgba(152,36,46,.09);}
+  .roi-budget-share{position:relative;z-index:1;display:inline-flex!important;justify-content:flex-end;align-items:center;min-width:0;color:#8A655B!important;font-weight:700!important;}
+  .roi-budget-editor-foot{padding:10px 14px 12px;border-top:1px solid #E9DDD4;background:#FBF5EF;font-size:10.5px;line-height:1.45;color:#816C64;}
+  .roi-budget-popover{border-color:#DCC7BA;box-shadow:0 18px 38px rgba(93,49,42,.18);}
+  .roi-budget-popover-share{color:#98242E;}
+  .roi-budget-popover-purpose{color:#765F57;}
+  .roi-budget-popover-purpose b{color:#4A3A35;}
+  @media(max-width:1100px){.roi-budget-summary{grid-template-columns:repeat(2,minmax(0,1fr));}.roi-budget-layout{grid-template-columns:1fr;}.roi-donut-wrap{min-height:350px}.roi-donut-stage{min-height:330px}}
+  @media(max-width:720px){.roi-budget-title-row{flex-direction:column}.roi-budget-status{align-self:flex-start}.roi-budget-summary{grid-template-columns:1fr 1fr}.roi-budget-summary-card{min-height:96px;padding:13px 14px}.roi-budget-layout{gap:12px}.roi-budget-panel-head{align-items:flex-start;flex-direction:column;gap:8px}.roi-budget-row{grid-template-columns:1fr 110px 58px}.roi-donut-wrap{min-height:370px}.roi-donut-stage{min-height:340px}}
+  @media(max-width:500px){.roi-budget-summary{grid-template-columns:1fr}.roi-budget-row{grid-template-columns:minmax(0,1fr) 104px}.roi-budget-share{grid-column:2;text-align:right}.roi-budget-row label{grid-row:1 / span 2}.roi-budget-panel-hint{white-space:normal}}
 </style>
-<meta name="serase-build" content="native-pricing-lazy-shadow-2026-09-15">
+<meta name="serase-build" content="serase-brand-roadmap-pushout-v19-2026-09-30">
+
+<style>
+  /* v21 · Budget Allocation — de-duplicated management view */
+  .roi-budget-statusbar{
+    display:flex;align-items:center;gap:16px;margin:0 0 16px;padding:11px 14px;
+    border:1px solid #E2D3C8;border-radius:13px;background:linear-gradient(90deg,#FFFDF9 0%,#FAF1EA 100%);
+    box-shadow:0 5px 16px rgba(101,58,50,.045);
+  }
+  .roi-budget-statusbar-label{
+    flex:none;padding:5px 8px;border-radius:999px;background:#892027;color:#FFF8F0;
+    font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  }
+  .roi-budget-statusbar-item{display:flex;align-items:baseline;gap:7px;min-width:0;white-space:nowrap;}
+  .roi-budget-statusbar-item>span{font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.055em;text-transform:uppercase;color:#8A776C;}
+  .roi-budget-statusbar-item strong{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:#4A3A35;}
+  .roi-budget-statusbar-item.envelope strong{color:#892027;}
+  .roi-budget-statusbar-item.allocated em{font-style:normal;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;color:#9A665A;}
+  .roi-budget-statusbar-item.remaining strong{color:#657315;}
+  .roi-budget-statusbar-sep{width:1px;height:22px;background:#E3D6CC;flex:none;}
+
+  .roi-budget-layout{grid-template-columns:minmax(320px,.82fr) minmax(500px,1.18fr);gap:14px;}
+  .roi-budget-panel-head{min-height:58px;padding:12px 15px;}
+  .roi-budget-panel-head h5{margin:0;font-size:16px;}
+  .roi-budget-panel-kicker{display:none;}
+  .roi-donut-wrap{min-height:318px;}
+  .roi-donut-stage{min-height:300px;}
+  #roiBudgetDonut{width:min(100%,292px);}
+
+  .roi-budget-list{gap:6px;padding:10px 12px 12px;}
+  .roi-budget-row{grid-template-columns:minmax(185px,1fr) 134px 60px;min-height:44px;padding:7px 9px;}
+  .roi-budget-row::after{display:none;}
+  .roi-budget-row label{align-items:center;line-height:1.2;}
+  .roi-budget-row-copy{display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .roi-budget-row-name{font-size:11.5px;font-weight:600;color:#5E4039;}
+  .roi-budget-reference{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:600;color:#9A665A;white-space:nowrap;}
+  .roi-budget-dot{margin-right:8px;}
+  .roi-budget-share{font-size:10px!important;}
+  .roi-budget-editor-foot{display:none;}
+
+  @media(max-width:1100px){
+    .roi-budget-statusbar{flex-wrap:wrap;gap:10px 14px;}
+    .roi-budget-layout{grid-template-columns:1fr;}
+  }
+  @media(max-width:720px){
+    .roi-budget-statusbar{align-items:flex-start;}
+    .roi-budget-statusbar-label{width:100%;text-align:center;}
+    .roi-budget-statusbar-sep{display:none;}
+    .roi-budget-statusbar-item{flex:1 1 30%;flex-wrap:wrap;gap:3px 6px;}
+    .roi-budget-row{grid-template-columns:minmax(0,1fr) 108px 54px;}
+  }
+  @media(max-width:500px){
+    .roi-budget-statusbar-item{flex:1 1 100%;justify-content:space-between;}
+    .roi-budget-row{grid-template-columns:minmax(0,1fr) 100px;}
+    .roi-budget-share{grid-column:2;text-align:right;}
+    .roi-budget-row label{grid-row:1 / span 2;}
+  }
+</style>
 </head>
 <body data-view="fullcomparison">
 
@@ -3115,9 +3467,15 @@ body[data-view] #costingAnalysisSection{display:none;}
       </div>
 
       <div class="roi-panel" data-roi-panel="roadmap" hidden>
-        <div class="roi-panel-title"><div><h4>4-Month Execution Roadmap</h4><p>Month 0 builds attribution readiness; Months 1–4 move from launch to acquisition, conversion and finally Scale / Stop decisions.</p></div></div>
-        <div class="roi-road" id="roiRoad"></div>
-        <div class="roi-road-detail" id="roiRoadDetail"></div>
+        <div class="roi-panel-title roi-roadmap-title">
+          <div>
+            <span class="roi-roadmap-kicker">Serasé Social &amp; Ads</span>
+            <h4>4-Month Social &amp; Ads Calendar</h4>
+            <p>Every post drives the same path: Download → Register → Verify → Pay. Each month hands off to the next.</p>
+          </div>
+          <span class="roi-roadmap-hint">Click a month to expand</span>
+        </div>
+        <div class="roi-road" id="roiRoad" aria-label="4-Month Social and Ads Calendar"></div>
       </div>
 
       <div class="roi-panel" data-roi-panel="channels" hidden>
@@ -3161,28 +3519,56 @@ body[data-view] #costingAnalysisSection{display:none;}
       </div>
 
       <div class="roi-panel" data-roi-panel="budget" hidden>
-        <div class="roi-panel-title"><div><h4>Illustrative Marketing Budget Allocation</h4><p>Allocation of the total marketing envelope (set in the Budget group above) across channels. This model is separate from the current Pixel Pro quotation and does not overwrite the existing Total Cost calculation.</p></div></div>
-        <p style="margin:0 0 12px;font-size:12px;color:var(--muted);">Adjust the total envelope in the <strong>Budget</strong> group of the Marketing Planning Inputs panel above — it applies here too.</p>
-        <div class="roi-budget-layout">
+        <div class="roi-panel-title roi-budget-title-row">
           <div>
+            <span class="roi-budget-kicker">Management planning view</span>
+            <h4>Marketing Budget Allocation</h4>
+            <p>Adjust channel budgets and see the allocation mix update instantly.</p>
+          </div>
+          <span class="roi-budget-status">Illustrative scenario</span>
+        </div>
+
+        <div class="roi-budget-statusbar" aria-label="Marketing budget status">
+          <div class="roi-budget-statusbar-label">Budget status</div>
+          <div class="roi-budget-statusbar-item envelope">
+            <span>Envelope</span>
+            <strong id="roiBudgetEnvelope">RM 500,000</strong>
+          </div>
+          <div class="roi-budget-statusbar-sep" aria-hidden="true"></div>
+          <div class="roi-budget-statusbar-item allocated">
+            <span>Allocated</span>
+            <strong id="roiBudgetAllocated">RM 490,000</strong>
+            <em id="roiBudgetPct">98.0%</em>
+          </div>
+          <div class="roi-budget-statusbar-sep" aria-hidden="true"></div>
+          <div class="roi-budget-statusbar-item remaining">
+            <span>Remaining</span>
+            <strong id="roiBudgetRemaining">RM 10,000</strong>
+          </div>
+        </div>
+
+        <div class="roi-budget-layout">
+          <section class="roi-budget-panel roi-budget-chart-panel">
+            <div class="roi-budget-panel-head">
+              <h5>Allocation mix</h5>
+              <span class="roi-budget-panel-hint">Click a slice for details</span>
+            </div>
             <div class="roi-donut-wrap">
               <div class="roi-donut-stage">
                 <svg id="roiBudgetDonut" viewBox="0 0 220 220" role="img" aria-label="Illustrative marketing budget allocation"></svg>
                 <div class="roi-budget-popover" id="roiBudgetPopover" data-side="right" aria-live="polite" aria-hidden="true"></div>
               </div>
             </div>
-          </div>
-          <div>
-            <div class="roi-budget-list" id="roiBudgetList"></div>
-            <div class="roi-grid" style="margin-top:12px;">
-              <div class="roi-kpi"><div class="roi-kpi-label">Envelope</div><div class="roi-kpi-value" id="roiBudgetEnvelope">RM 500,000</div></div>
-              <div class="roi-kpi"><div class="roi-kpi-label">Allocated</div><div class="roi-kpi-value" id="roiBudgetAllocated">RM 490,000</div></div>
-              <div class="roi-kpi"><div class="roi-kpi-label">Remaining / contingency</div><div class="roi-kpi-value" id="roiBudgetRemaining">RM 10,000</div></div>
-              <div class="roi-kpi"><div class="roi-kpi-label">% Allocated</div><div class="roi-kpi-value" id="roiBudgetPct">98.0%</div></div>
+          </section>
+
+          <section class="roi-budget-panel roi-budget-editor-panel">
+            <div class="roi-budget-panel-head">
+              <h5>Adjust allocation</h5>
+              <span class="roi-budget-panel-hint">RM · live</span>
             </div>
-          </div>
+            <div class="roi-budget-list" id="roiBudgetList"></div>
+          </section>
         </div>
-        <div class="roi-note">The ROI plan uses RM150,000 for Event Launch as an illustrative allocation, while this dashboard's current Pixel Pro quotation is RM394,250. Keep both visible until management decides which launch budget treatment to use.</div>
       </div>
 
       <div class="roi-panel" data-roi-panel="economics" hidden>
@@ -3650,7 +4036,7 @@ body[data-view] #costingAnalysisSection{display:none;}
     },
     selectedBudget:null,
     strategy:0,
-    month:0
+    month:null
   };
 
   const purposes = {
@@ -3664,7 +4050,7 @@ body[data-view] #costingAnalysisSection{display:none;}
     'Analytics / Tracking / Testing':'Attribution + optimisation'
   };
 
-  const colors = ['#10233F','#0F766E','#C2792B','#6B5BD6','#3A8FA5','#B65C7A','#4D7C67','#8797A6'];
+  const colors = ['#96232D','#C77D6D','#D3AE63','#5D302A','#E3BBB3','#A79A58','#7A4B3D','#C8BBAE'];
 
   const strategies = [
     ['Event Launch','Create public awareness, credibility and a strong launch moment.','Pre-launch teasers; VIP/KOL/media invitations; CEO/founder story; product demonstration; QR download CTA; live content; post-event PR and retargeting.','QR scans, website visits, downloads, registrations, verified users, paid subscribers, attributed MRR'],
@@ -3677,11 +4063,11 @@ body[data-view] #costingAnalysisSection{display:none;}
   ];
 
   const roadmap = [
-    ['Month 0','Preparation','Build measurement infrastructure','Website; app analytics; UTM; pixels; CRM; email; KOL tracking; QR; payment/subscription tracking','Tracking coverage; attribution readiness','Ability to attribute paid users'],
-    ['Month 1','Launch','Awareness + first users','Event; PR; KOL; TikTok/Instagram; paid ads; website; content','Reach; impressions; visits; downloads; registrations','First paid subscribers + initial MRR'],
-    ['Month 2','Acquisition','Improve acquisition efficiency','Paid acquisition; KOL tests; retargeting; SEO; referral; email onboarding','CPI; registration cost; verification cost; CAC','MRR + paid conversion'],
-    ['Month 3','Conversion','Turn users into subscribers','Premium education; trials/offers; upgrade journeys; retargeting; KOL conversion','Paid conversion; CAC; ARPU','MRR + subscriber growth'],
-    ['Month 4','Scale / Stop','Decide where to put more money','Channel comparison; retention analysis; budget reallocation; creative optimisation','CAC + retention + LTV','LTV, payback, recurring revenue']
+    {month:'Month 0',phase:'Pre-launch',stage:'TRACK',question:'Are we ready to measure?',goal:'Build the waitlist and tracking before launch.',organic:['Something real is coming','Countdown stories (7 · 3 · 1)','Waitlist story','Founder story'],ads:['Small waitlist boost on Meta / TikTok'],cadence:'3 feed posts + daily stories a week',kpi:'Waitlist sign-ups, cost per sign-up',keyActivities:'Website; app analytics; UTM; pixels; CRM; email; KOL tracking; QR; payment / subscription tracking',primaryKpis:'Tracking coverage; attribution readiness',revenueKpi:'Ability to attribute paid users'},
+    {month:'Month 1',phase:'Launch',stage:'INTEREST',question:'Are people interested?',goal:'Awareness and first users.',organic:['Serasé is live','Is your match even real?','4 checks before anyone can say hi','Launch Night invite','KOL promo-code stories'],ads:['Hero post + banner as acquisition ads'],cadence:'4–5 feed + daily stories + 3 TikToks a week',kpi:'Downloads, registrations, verified users, first paid',keyActivities:'Event; PR; KOL; TikTok / Instagram; paid ads; website; content',primaryKpis:'Reach; impressions; visits; downloads; registrations',revenueKpi:'First paid subscribers + initial MRR'},
+    {month:'Month 2',phase:'Acquisition',stage:'ACQUIRE',question:'Can we acquire users efficiently?',goal:'Make each new user cheaper.',organic:['Scam-awareness carousel (3 slides)','AI Wingman','POV: first date reel','Invite a friend'],ads:['Banner and creative A/B tests','KOL tests with unique codes','Retargeting starts'],cadence:'4 feed + daily stories + 3 TikToks a week',kpi:'CPI, cost per verified user, CAC',keyActivities:'Paid acquisition; KOL tests; retargeting; SEO; referral; email onboarding',primaryKpis:'CPI; registration cost; verification cost; CAC',revenueKpi:'MRR + paid conversion'},
+    {month:'Month 3',phase:'Conversion',stage:'CONVERT',question:'Can we convert users into paying customers?',goal:'Turn verified users into subscribers.',organic:['Choose how you connect (plans)','Signature spotlight'],ads:['Retargeting: Still thinking about it?','Elite free trial','Upgrade ad for members'],cadence:'3 feed + stories; ads carry the load',kpi:'Paid conversion, CAC, ARPU, MRR',keyActivities:'Premium education; trials / offers; upgrade journeys; retargeting; KOL conversion',primaryKpis:'Paid conversion; CAC; ARPU',revenueKpi:'MRR + subscriber growth'},
+    {month:'Month 4',phase:'Scale & retain',stage:'DECIDE',question:'What should we scale, optimise or stop?',goal:'Put money behind what works; keep members.',organic:['Real member success story','Verified-members milestone'],ads:['Win-back ad for lapsed users','Scale the lowest-CAC ads'],cadence:'3–4 feed + stories a week',kpi:'Retention, churn, LTV, payback → Scale / Optimise / Stop',keyActivities:'Channel comparison; retention analysis; budget reallocation; creative optimisation',primaryKpis:'CAC + retention + LTV',revenueKpi:'LTV, payback, recurring revenue'}
   ];
 
   function calc(){
@@ -3738,10 +4124,57 @@ body[data-view] #costingAnalysisSection{display:none;}
 
   function renderRoadmap(){
     const host=document.getElementById('roiRoad');
-    host.innerHTML=roadmap.map((r,i)=>`<button type="button" class="roi-road-step ${i===state.month?'active':i<state.month?'done':''}" data-roi-month="${i}" aria-pressed="${i===state.month}"><span class="roi-road-dot">M${i}</span><span class="roi-road-phase">${r[1]}</span><span class="roi-road-month">${r[0]}</span></button>`).join('');
-    const r=roadmap[state.month];
-    document.getElementById('roiRoadDetail').innerHTML=`<div class="roi-road-detail-head"><div><span class="roi-road-detail-kicker">Selected phase · ${r[0]}</span><h5>${r[1]}</h5><p>${r[2]}</p></div><span class="roi-road-status">Phase ${state.month+1} of ${roadmap.length}</span></div><div class="roi-road-detail-grid"><div class="roi-road-info"><span class="roi-road-info-label">Key activities</span><div class="roi-road-info-copy">${r[3]}</div></div><div class="roi-road-info kpi"><span class="roi-road-info-label">Primary KPIs</span><div class="roi-road-info-copy">${r[4]}</div></div><div class="roi-road-info revenue"><span class="roi-road-info-label">Revenue KPI</span><div class="roi-road-info-copy">${r[5]}</div></div></div>`;
-    host.querySelectorAll('[data-roi-month]').forEach(btn=>btn.addEventListener('click',()=>{state.month=Number(btn.dataset.roiMonth);renderRoadmap();}));
+    const lines = items => items.map(item=>`<span class="roi-road-line">${item}</span>`).join('');
+    host.innerHTML=roadmap.map((r,i)=>`
+      <article class="roi-road-card ${i===state.month?'active':''}" data-roi-month="${i}" role="button" tabindex="0" aria-pressed="${i===state.month}" aria-expanded="${i===state.month}">
+        <div class="roi-road-card-top">
+          <div class="roi-road-card-meta">
+            <span class="roi-road-card-month">${r.month}</span>
+            <span class="roi-road-stage">${r.stage}</span>
+          </div>
+          <h5>${r.phase}</h5>
+          <p class="roi-road-question">${r.question}</p>
+          <span class="roi-road-openhint">${i===state.month?'Click again to close':'Click to explore'}</span>
+        </div>
+        <div class="roi-road-expand" aria-hidden="${i===state.month?'false':'true'}">
+          <div class="roi-road-expand-inner">
+            <div class="roi-road-premium-rule"></div>
+            <p class="roi-road-card-goal">${r.goal}</p>
+            <div class="roi-road-detail-columns">
+              <div class="roi-road-detail-stack">
+                <div class="roi-road-card-block"><span class="roi-road-card-label">Organic posts</span><div>${lines(r.organic)}</div></div>
+                <div class="roi-road-card-block"><span class="roi-road-card-label">Ads</span><div>${lines(r.ads)}</div></div>
+              </div>
+              <div class="roi-road-detail-stack">
+                <div class="roi-road-card-block"><span class="roi-road-card-label">Cadence</span><div><span class="roi-road-line">${r.cadence}</span></div></div>
+                <div class="roi-road-card-block roi-road-card-kpi"><span class="roi-road-card-label">KPI to watch</span><div><span class="roi-road-line">${r.kpi}</span></div></div>
+              </div>
+            </div>
+            <div class="roi-road-premium-kicker">Management view</div>
+            <div class="roi-road-premium-grid">
+              <div class="roi-road-premium-item"><span>Key activities</span><strong>${r.keyActivities}</strong></div>
+              <div class="roi-road-premium-item"><span>Primary KPIs</span><strong>${r.primaryKpis}</strong></div>
+              <div class="roi-road-premium-item"><span>Revenue KPI</span><strong>${r.revenueKpi}</strong></div>
+            </div>
+          </div>
+        </div>
+        <span class="roi-road-card-selected">Open</span>
+      </article>`).join('');
+    const activate = card => {
+      const idx=Number(card.dataset.roiMonth);
+      state.month = state.month===idx ? null : idx;
+      renderRoadmap();
+      if(state.month!==null){
+        requestAnimationFrame(()=>{
+          const active=host.querySelector('.roi-road-card.active');
+          if(active) active.scrollIntoView({behavior:'smooth',block:'nearest',inline:'nearest'});
+        });
+      }
+    };
+    host.querySelectorAll('[data-roi-month]').forEach(card=>{
+      card.addEventListener('click',()=>activate(card));
+      card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate(card);}});
+    });
   }
 
   function renderKol(){
@@ -3793,7 +4226,7 @@ body[data-view] #costingAnalysisSection{display:none;}
       paths+=`<path d="M${x1} ${y1}A${r} ${r} 0 ${large} 1 ${x2} ${y2}L${x3} ${y3}A${ir} ${ir} 0 ${large} 0 ${x4} ${y4}Z" fill="${colors[i]}" opacity="${opacity}" data-roi-budget-slice="${i}" style="cursor:pointer"><title>${k}: ${money0(value)}</title></path>`;
       angle=end;
     });
-    const centerSvg=`<text x="110" y="106" text-anchor="middle" fill="#10233F" font-size="13" font-family="IBM Plex Mono" font-weight="700">${money0(allocated)}</text><text x="110" y="124" text-anchor="middle" fill="#6A7E8E" font-size="9" font-family="IBM Plex Mono">allocated</text>`;
+    const centerSvg=`<text x="110" y="106" text-anchor="middle" fill="#892027" font-size="11" font-family="IBM Plex Mono" font-weight="700" letter-spacing="1.2">ALLOCATION</text><text x="110" y="124" text-anchor="middle" fill="#8A776C" font-size="9" font-family="IBM Plex Mono" letter-spacing="1">MIX</text>`;
     svg.innerHTML=paths+centerSvg;
 
     const popover=document.getElementById('roiBudgetPopover');
@@ -3822,8 +4255,9 @@ body[data-view] #costingAnalysisSection{display:none;}
     svg.querySelectorAll('[data-roi-budget-slice]').forEach(p=>p.addEventListener('click',()=>{const i=Number(p.dataset.roiBudgetSlice);state.selectedBudget=(state.selectedBudget===i?null:i);renderBudget();}));
 
     const list=document.getElementById('roiBudgetList');
-    list.innerHTML=keys.map((k,i)=>`<div class="roi-budget-row"><label><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${colors[i]};margin-right:7px;"></span>${k}</label><input type="number" min="0" step="5000" value="${state.budget[k]}" data-roi-budget-input="${i}"><span>${(state.budget[k]/env*100).toFixed(1)}%</span></div>`).join('');
+    list.innerHTML=keys.map((k,i)=>{const share=(Math.max(0,Number(state.budget[k])||0)/env*100);const reference=k==='Event Launch'?`<small class="roi-budget-reference">Quotation ref · RM394,250</small>`:'';return `<div class="roi-budget-row ${state.selectedBudget===i?'selected':''}" data-roi-budget-row="${i}" style="--budget-color:${colors[i]}"><label><span class="roi-budget-dot"></span><span class="roi-budget-row-copy"><span class="roi-budget-row-name">${k}</span>${reference}</span></label><input type="number" min="0" step="5000" value="${state.budget[k]}" data-roi-budget-input="${i}"><span class="roi-budget-share">${share.toFixed(1)}%</span></div>`;}).join('');
     list.querySelectorAll('[data-roi-budget-input]').forEach(input=>input.addEventListener('change',()=>{const i=Number(input.dataset.roiBudgetInput);state.budget[keys[i]]=Math.max(0,Number(input.value)||0);renderBudget();}));
+    list.querySelectorAll('[data-roi-budget-row]').forEach(row=>row.addEventListener('click',(e)=>{if(e.target.closest('input')) return;const i=Number(row.dataset.roiBudgetRow);state.selectedBudget=(state.selectedBudget===i?null:i);renderBudget();}));
 
     const chips=document.getElementById('roiBudgetChips');
     if(chips){
@@ -3895,7 +4329,7 @@ body[data-view] #costingAnalysisSection{display:none;}
     if(state.selectedBudget===null) return;
     const t=e.target;
     if(!(t instanceof Element)) return;
-    if(t.closest('#roiBudgetPopover,[data-roi-budget-chip],[data-roi-budget-slice]')) return;
+    if(t.closest('#roiBudgetPopover,[data-roi-budget-chip],[data-roi-budget-slice],[data-roi-budget-row]')) return;
     if(t.closest('button,a,input,select,textarea,label')) return;
     state.selectedBudget=null;
     renderBudget();
