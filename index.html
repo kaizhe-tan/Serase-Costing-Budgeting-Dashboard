@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="serase-build" content="marketing-funnel-old-vs-new-v62-2026-10-02">
 <title>Serase Costing &amp; Budgeting Dashboard</title>
-<meta name="serase-marketing-build" content="v90-horizontal-pricing-assumptions">
+<meta name="serase-marketing-build" content="v91-link-ekyc-provider-costs">
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -5681,6 +5681,16 @@ html.m54-strategy-modal-open{overflow:hidden}
 @media(max-width:760px){#marketing .m67-route{padding-bottom:35px;}#marketing .m67-route>svg.m88-mobile-car-lane{display:block;position:absolute;top:auto;left:0;bottom:-8px;width:100%;height:24px;}#marketing .m67-route>svg.m88-mobile-car-lane>path{fill:none;stroke:#d9b57b;stroke-width:1;}}
 
 </style>
+<script id="m91-ekyc-quote-bridge">
+window.seraseEkycQuotes=Object.create(null);
+window.publishSeraseEkycQuote=function(provider,quote){
+  const next={...quote,y1:Number(quote.y1.toFixed(2)),y2:Number(quote.y2.toFixed(2))};
+  const previous=window.seraseEkycQuotes[provider];
+  if(previous&&JSON.stringify(previous)===JSON.stringify(next))return;
+  window.seraseEkycQuotes[provider]=Object.freeze(next);
+  document.dispatchEvent(new CustomEvent('serase:ekyc-costs-change',{detail:{provider}}));
+};
+</script>
 </head>
 <body data-view="fullcomparison">
 
@@ -7044,7 +7054,7 @@ document.addEventListener('DOMContentLoaded',function(){
         '<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m3-15a6 6 0 0 1 0 8m-2-6a3 3 0 0 1 0 4m3 7h3m-2-2v4"/>',
         '<path d="M3 10v6h5l10 5V5L8 10Zm5 6 2 6H6l-2-6m17-7v8"/>'
       ];
-      host.innerHTML=`<div class="m53-stage-tools"><span>Seven strategies</span><button type="button" class="m53-pack-button" data-roi-pack disabled aria-label="Pack away the seven strategies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5-9-5Zm0 0v9l9 5 9-5V8m-9 5v9"/></svg>Pack away</button></div>
+      host.innerHTML=`<div class="m53-stage-tools"><span>Seven strategies · Pick one</span><button type="button" class="m53-pack-button" data-roi-pack disabled aria-label="Pack away the seven strategies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5-9-5Zm0 0v9l9 5 9-5V8m-9 5v9"/></svg>Pack away</button></div>
         <button type="button" class="m53-box-button" data-roi-box aria-expanded="false" aria-controls="roiStrategyItems" aria-label="Open the box to reveal all seven marketing strategies">
           <svg viewBox="0 0 280 270" aria-hidden="true" focusable="false">
             <defs><linearGradient id="m53BoxFront" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#A23C42"/><stop offset="1" stop-color="#7F2531"/></linearGradient><linearGradient id="m53BoxSide" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#76232F"/><stop offset="1" stop-color="#5C1D28"/></linearGradient><linearGradient id="m53BoxLid" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#B55150"/><stop offset="1" stop-color="#8D303A"/></linearGradient></defs>
@@ -7955,6 +7965,10 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
 @media(max-width:680px){.pricing-root #side{grid-template-columns:repeat(2,minmax(0,1fr));}.pricing-root .shell>.bar{flex-wrap:wrap;gap:10px;}.pricing-root .shell>.bar .basis{margin-left:0;}}
 @media(max-width:420px){.pricing-root #side{grid-template-columns:minmax(0,1fr);}.pricing-root #side .opt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}.pricing-root #side>.ctl:nth-child(3) .opt{grid-template-columns:1fr;}.pricing-root #side label.radio{flex-wrap:wrap;}.pricing-root #side .ctl h3{font-size:10.5px;}}
 
+.m91-source-link{margin-top:10px;padding:7px 0;border:0;border-bottom:1px solid #d4c1a5;background:transparent;color:#7a4136;font:600 10px var(--sans);text-align:left;cursor:pointer;}
+.pricing-root #side input[name="ekyc"]{grid-row:1 / span 2;}
+.pricing-root #side label.radio:has(input[name="ekyc"]){display:grid;grid-template-columns:14px minmax(0,1fr);gap:3px 7px;}
+.pricing-root #side label.radio:has(input[name="ekyc"]) .n{grid-column:2;margin-left:0;padding-left:0;font-size:9px;}
 </style>
 <div class="pricing-root">
 <div class="shell" id="shell">
@@ -7992,13 +8006,13 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
     <h3><span class="stepno">3</span> Which eKYC plan should we assume?</h3>
     <div class="opt">
       <label class="radio"><input type="radio" name="ekyc" value="wise1" checked>
-        <span class="t">WISE Plan 1</span><span class="n">577.6k</span></label>
+        <span class="t">WISE Plan 1</span><span class="n">Linked quote</span></label>
       <label class="radio"><input type="radio" name="ekyc" value="wise2">
-        <span class="t">WISE Plan 2</span><span class="n">545.4k</span></label>
+        <span class="t">WISE Plan 2</span><span class="n">Linked quote</span></label>
       <label class="radio"><input type="radio" name="ekyc" value="innov">
-        <span class="t">Innov8tif</span><span class="n">970k</span></label>
+        <span class="t">Innov8tif</span><span class="n">Linked quote</span></label>
     </div>
-    <div class="note" id="ekycNote"></div>
+    <div class="note" id="ekycNote"></div><button type="button" class="m91-source-link" id="m91EditEkyc">Edit in 1. E-KYC Provider ↗</button>
   </div>
 
   <div class="ctl">
@@ -8146,9 +8160,10 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
       <li><b>Success rate multiplies collection only.</b> Failed charges lose revenue and cost
         nothing; churn is unaffected on either channel, as the model has no dunning or
         expired-card attrition. Optimistic.</li>
+      <li><b>eKYC costs are linked to 1. E-KYC Provider.</b> Year 1 uses its selected Year 1 total; Years 2 and 3 each use its Year 2+ total. All include the source SST and selected Innov8tif add-ons. Annual budgets are allocated evenly across 12 months. The selected monthly transaction volume or annual credit block is held constant; additional usage or top-ups are not automatically purchased for the growth scenario.</li>
       <li><b>Excludes all headcount.</b> A team of six is RM1.5–2.0m over three years.</li>
       <li><b>Funnel is fixed.</b> No control on this page changes registrations, verifications
-        or MAU — so eKYC and marketing volumes never move. "Launch event only" therefore just
+        or MAU — so marketing acquisition volumes never move. eKYC budgets follow the settings in 1. E-KYC Provider. "Launch event only" therefore just
         deletes the CPA line from a RM100,000 launch; it is not a claim that the event delivers
         the same users. <b>The RM394,250 Pixel Pro quote in full is no longer modelled here</b> —
         the launch is capped at RM100,000 on both routes, per the standing recommendation.</li>
@@ -8202,18 +8217,12 @@ const ANCHORS=[[1000,340,560,100,400],[5000,690,1900,300,1200],
                [10000,1240,4280,600,3000],[50000,5440,20280,3000,15000]];
 const FIXED_USD=84.04;
 
-/* eKYC annual totals. Verification volumes never change on this page (the funnel is
-   independent of every control), so wise2 and innov are the exact figures
-   serase_v4_combos.py computed at those volumes. wise1 is recomputed here monthly. */
-/* innov corrected 14 Sep — the annual cloud fee was being charged once per 20k credit
-   tier instead of once per year, overstating the 3-year total by RM70,200. S17. */
-const EKYC_ANNUAL={ wise2:[75600,140400,329400], innov:[142560,238680,588600] };
-const EKYC_LABEL={wise1:"WISE Plan 1 · postpaid banded", wise2:"WISE Plan 2 · prepaid blocks",
-                  innov:"Innov8tif EMAS · 20k tiers"};
-const EKYC_DETAIL={
-  wise1:"Postpaid, banded. The engine's own basis.",
-  wise2:"Prepaid blocks. Cheapest over three years — saves RM32,215, all of it in Year 3; Years 1 and 2 are dearer, so breakeven is later than Plan 1. Blocks are valid 1 year and non-refundable, so no carry-over is assumed. Unused quota may extend ~3–4 months; the extension fee is TBC.",
-  innov:"+78% over cheapest, against a 15% tolerance. Not viable. Corrected 14 Sep from +91%: the RM5,000 annual cloud fee is per channel, not per credit tier."};
+const EKYC_LABEL={wise1:"WISE Plan 1 · linked quote",wise2:"WISE Plan 2 · linked quote",innov:"Innov8tif EMAS · linked quote"};
+function linkedEkycQuote(provider){
+  const quote=window.seraseEkycQuotes[provider];
+  if(!quote)throw new Error('The eKYC Provider quote has not been initialised.');
+  return quote;
+}
 
 function build(c){
   const rows=[]; let Rp=0,Sp=0,Ip=0;
@@ -8272,13 +8281,9 @@ function costStreams(rows, ekyc, mktMode, cpaUsd){
   const ek=[], mkt=[], serv=[];
   for(let i=0;i<36;i++){
     const r=rows[i], y=r.y-1;
-    if(ekyc==="wise1"){
-      const v=r.J+r.bk;
-      let e=Math.max(v,MIN_TXN)*rate(v);
-      if(r.t===1) e+=SETUP;
-      if(r.t===13||r.t===25) e+=SUPPORT;
-      ek.push(e*(1+SST));
-    } else ek.push(EKYC_ANNUAL[ekyc][y]/12);
+    const quote=linkedEkycQuote(ekyc);
+    // Source totals already include SST, setup/renewal and selected add-ons.
+    ek.push((y===0?quote.y1:quote.y2)/12);
     mkt.push(mktMode==="cpa" ? r.J*cpaUsd*FX : 0);
     serv.push((interp(r.L,1)+FIXED_USD)*FX);
   }
@@ -8905,15 +8910,21 @@ function render(){
     ? `DCB · revenue share 70% × ${(S.srDcb*100).toFixed(0)}% success`
     : `Non-DCB · revenue share 90% × ${(S.srCard*100).toFixed(0)}% success`;
 
-  const en=document.getElementById("ekycNote");
-  if(en.dataset.k!==S.ekyc){ en.innerHTML=EKYC_DETAIL[S.ekyc];
-    en.className = S.ekyc==="innov" ? "note bad" : "note"; en.dataset.k=S.ekyc; flash(en,"flash"); }
+  document.querySelectorAll('input[name="ekyc"]').forEach(input=>{
+    const quote=linkedEkycQuote(input.value),amount=input.closest('label').querySelector('.n');
+    amount.textContent='Y1 '+money(quote.y1);
+    amount.title='Year 1 '+money(quote.y1)+' · Year 2+ '+money(quote.y2)+' · includes SST';
+  });
+  const quote=linkedEkycQuote(S.ekyc),en=document.getElementById("ekycNote");
+  en.className='note';en.replaceChildren();
+  const totals=realDocument.createElement('strong');totals.textContent='Y1 '+money(quote.y1)+' · Y2+ '+money(quote.y2);en.append(totals);
+  const basis=realDocument.createElement('div');basis.textContent=quote.basis;en.append(basis);
+  const source=realDocument.createElement('div');source.textContent='Linked to 1. E-KYC Provider · includes SST';en.append(source);
   const mno=document.getElementById("mktNote");
   mno.className = S.mkt==="cpa" ? "note" : "note warn";
   mno.innerHTML = S.mkt==="cpa"
     ? `${fmt(M.verifNew.reduce((a,b)=>a+b))} <b>new-registration</b> verifications × USD ${rm(S.cpa)}. `+
-      `The back-book is verified but not acquired, so it is billed by eKYC and not charged CPA — `+
-      `which is why this is below the ${fmt(M.verif.reduce((a,b)=>a+b))} in the table.`
+      `CPA follows new-registration verifications; eKYC uses the selected budget from 1. E-KYC Provider.`
     : `Same RM100,000 launch, zero CPA — so this is the CPA line removed, nothing else. `+
       `The funnel is held constant, which is <b>not</b> a claim that it delivers the same users.`;
 
@@ -9041,6 +9052,13 @@ window.addEventListener("resize",()=>{ onResize(); layoutMarks(); });
 if(window.ResizeObserver) new ResizeObserver(onResize).observe(document.getElementById("chart"));
 /* the web font lands after first paint and changes label widths — restack then */
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(layoutMarks);
+realDocument.addEventListener('serase:ekyc-costs-change',()=>{
+  if(realDocument.body.dataset.view==='pricing')render();
+});
+realDocument.addEventListener('serase:dashboard-view-change',e=>{
+  if(e.detail.view==='pricing')requestAnimationFrame(()=>render());
+});
+document.getElementById('m91EditEkyc').addEventListener('click',()=>realDocument.querySelector('button[data-view="fullcomparison"]').click());
 document.querySelectorAll('input[name=ekyc]').forEach(el=>
   el.addEventListener("change",()=>{S.ekyc=el.value;render();}));
 document.querySelectorAll('input[name=mkt]').forEach(el=>
@@ -9133,6 +9151,7 @@ sizeDrawer();</script>
           const sourceEl = document.getElementById('pricingAnalysisTemplate');
           const logicEl = document.getElementById('pricingAnalysisLogic');
           if(!host || !sourceEl || !logicEl) return;
+          window.ensureEkycQuoteData?.();
           loading = true;
           addPricingFontOnce();
 
@@ -9231,6 +9250,7 @@ sizeDrawer();</script>
     document.getElementById('wisePrepaidY1Gross').textContent = fmtRM(costs.y1Gross);
     document.getElementById('wisePrepaidY2Net').textContent = fmtRM(costs.y2Net);
     document.getElementById('wisePrepaidY2Gross').textContent = fmtRM(costs.y2Gross);
+    window.publishSeraseEkycQuote('wise2',{y1:costs.y1Gross,y2:costs.y2Gross,basis:`${costs.transactions.toLocaleString('en-MY')} transactions/year · selected prepaid block`});
     document.getElementById('wisePrepaidFormula').textContent = `Effective blended cost if all ${costs.transactions.toLocaleString('en-MY')} transactions are used: Y1 RM${fmtRM(costs.y1Gross)} ÷ ${costs.transactions.toLocaleString('en-MY')} = RM${(costs.y1Gross / costs.transactions).toFixed(2)}/txn; Y2 RM${fmtRM(costs.y2Gross)} ÷ ${costs.transactions.toLocaleString('en-MY')} = RM${(costs.y2Gross / costs.transactions).toFixed(2)}/txn. Vendor unit rate = RM${costs.unitRate.toFixed(2)}/txn before setup/support and SST.`;
   }
 
@@ -9281,6 +9301,7 @@ sizeDrawer();</script>
     document.getElementById('wiseY1Gross').textContent = fmtRM(y1Gross);
     document.getElementById('wiseY2Net').textContent = fmtRM(y2Net);
     document.getElementById('wiseY2Gross').textContent = fmtRM(y2Gross);
+    window.publishSeraseEkycQuote('wise1',{y1:y1Gross,y2:y2Gross,basis:`${actual.toLocaleString('en-MY')} transactions/month · ${tier.label}${actual<100?' · 100 minimum billed':''}`});
   }
 
   if (wiseMonthlyTxnEl) wiseMonthlyTxnEl.addEventListener('input', renderWisePostpaid);
@@ -9472,6 +9493,8 @@ sizeDrawer();</script>
   // Compatibility for existing cost-input refresh hooks.
   function renderTotalCost(){}
 
+  window.ensureEkycQuoteData=function(){renderWisePostpaid();renderWisePrepaid();window.ensureInnov8tifInitialized?.();};
+
   // ---------------- Executive tabbed views ----------------
   const dashboardTabs = Array.from(document.querySelectorAll('.dashboard-tab'));
   const viewStorageKey = 'financial-dashboard-active-view';
@@ -9505,6 +9528,7 @@ sizeDrawer();</script>
     });
     try { localStorage.setItem(viewStorageKey, view); } catch(err){}
     initializeView(view);
+    document.dispatchEvent(new CustomEvent('serase:dashboard-view-change',{detail:{view}}));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -9688,6 +9712,7 @@ sizeDrawer();</script>
     document.getElementById('innovOptionalY2Gross').textContent = money(opt.y2Gross);
     document.getElementById('innovUpdatedY1Gross').textContent = money(s.y1Gross + opt.y1Gross);
     document.getElementById('innovUpdatedY2Gross').textContent = money(s.y2Gross + opt.y2Gross);
+    window.publishSeraseEkycQuote('innov',{y1:s.y1Gross+opt.y1Gross,y2:s.y2Gross+opt.y2Gross,basis:`${whole(s.volume)} credits/year${opt.labels.length?' · '+opt.labels.join(' + '):' · no add-ons'}`});
     document.getElementById('innovSelectedOptionalLabel').innerHTML = opt.summaries && opt.summaries.length
       ? `<div class="innov-option-summary-list">${opt.summaries.map(item => `<div class="innov-option-summary-item">${item}</div>`).join('')}</div>`
       : '<span class="innov-option-none">None selected</span>';
