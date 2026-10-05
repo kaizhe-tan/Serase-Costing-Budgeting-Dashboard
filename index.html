@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="serase-build" content="marketing-funnel-old-vs-new-v62-2026-10-02">
 <title>Serase Costing &amp; Budgeting Dashboard</title>
-<meta name="serase-marketing-build" content="v70-compact-google-meta-metrics">
+<meta name="serase-marketing-build" content="v71-independent-subscription-shares">
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -4702,6 +4702,16 @@ html.m54-strategy-modal-open{overflow:hidden}
 @media(max-width:600px){#marketing #m69DigitalScenarios .m69-channel-tabs{display:flex;width:100%;}#marketing #m69DigitalScenarios .m69-channel-tab{width:auto;flex:1;padding:8px 10px;}#marketing #m69DigitalScenarios .m68-scenario-head{gap:8px;}#marketing #m69DigitalScenarios .m68-scenario-head h5{font-size:21px;}#marketing #m69DigitalScenarios .m68-scenario-kpis{gap:8px;}#marketing #m69DigitalScenarios .m68-scenario-kpis>div{padding:14px 12px;}#marketing #m69DigitalScenarios .m68-scenario-kpis strong{font-size:20px;}#marketing #m69DigitalScenarios .m68-scenario-kpis span{font-size:10px;}#marketing #m69DigitalScenarios .m69-return-strip{flex-wrap:wrap;justify-content:flex-start;gap:7px 15px;padding:10px 13px;}#marketing #m69DigitalScenarios .m69-return-strip>span:first-child{width:100%;}#marketing #m69DigitalScenarios .m69-return-strip strong small{display:inline;margin:0;font-size:9px;}#marketing #m69DigitalScenarios .m68-comparison-head h5{font-size:20px;}}
 @media(max-width:380px){#marketing #m69DigitalScenarios .m68-scenario-kpis{grid-template-columns:1fr;}#marketing #m69DigitalScenarios .m68-scenario-kpis>div{padding:13px 15px;}#marketing #m69DigitalScenarios .m68-scenario-kpis strong{font-size:24px;}}
 </style>
+
+<style id="m71-independent-subscription-mix">
+#marketing .m71-mix-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:-6px 0 22px;padding:11px 13px;border:1px solid #e2d2bd;border-radius:8px;background:#faf3e8;}
+#marketing #m71MixStatus{font:400 10.5px/1.6 'Inter',Arial,sans-serif;color:#86684b;}
+#marketing #m71MixStatus[data-valid="false"]{color:#9c5839;}
+#marketing #m71ResetMix{flex-shrink:0;padding:5px 8px;border:1px solid #dbc5a7;border-radius:6px;background:#fffdf8;color:#8a5341;font:500 10px/1.5 'Inter',Arial,sans-serif;cursor:pointer;}
+#marketing #m71ResetMix:hover{background:#f1e4d1;}
+#marketing #m71ResetMix:focus-visible{outline:2px solid #96343d;outline-offset:3px;}
+@media(max-width:600px){#marketing .m71-mix-bar{align-items:flex-start;flex-direction:column;gap:8px;}}
+</style>
 </head>
 <body data-view="fullcomparison">
 
@@ -5282,9 +5292,9 @@ html.m54-strategy-modal-open{overflow:hidden}
         <section class="m23-input-group">
           <div class="m23-input-head"><span>03</span><strong>Subscription &amp; economics</strong></div>
           <div class="m23-input-grid two">
-            <label>Select share %<input id="roiMixSelect" type="number" min="0" max="100" value="50"></label>
-            <label>Elite share %<input id="roiMixElite" type="number" min="0" max="100" value="30"></label>
-            <label>Signature share %<input id="roiMixSignature" type="number" value="20" disabled></label>
+            <label>Select share %<input id="roiMixSelect" type="number" value="50" min="0" max="100" step="any"></label>
+            <label>Elite share %<input id="roiMixElite" type="number" value="30" min="0" max="100" step="any"></label>
+            <label>Signature share %<input id="roiMixSignature" type="number" value="20" min="0" max="100" step="any"></label>
             <label class="m23-placeholder">Monthly churn % <em>placeholder</em><input id="roiChurn" type="number" min="1" max="100" step="1" value="8"></label>
             <label class="m23-placeholder">Contribution margin % <em>placeholder</em><input id="roiMargin" type="number" min="1" max="100" step="5" value="80"></label>
           </div>
@@ -5424,7 +5434,7 @@ html.m54-strategy-modal-open{overflow:hidden}
               <tr><td>Activation</td><td>Did downloads become usable users?</td><td>Cost / registration · Cost / verified</td></tr>
               <tr><td>Conversion</td><td>Did verified users become subscribers?</td><td>CAC · Paid conversion · Revenue · ROAS</td></tr>
               <tr><td>Retention</td><td>Did paid users stay valuable?</td><td>Retention · Churn · LTV</td></tr>
-            </tbody></table></div></div></details><details class="m65-detail"><summary><div><strong>Revenue Model</strong><small>Subscription prices, subscriber mix and MRR scenarios</small></div><span class="m65-toggle" aria-hidden="true">+</span></summary><div class="m65-detail-body"><div class="m52-price-grid" aria-label="Subscription pricing from PDF section 9"><div><span>Serasé Select</span><strong>RM19.90<small> / month</small></strong></div><div><span>Serasé Elite</span><strong>RM39.90<small> / month</small></strong></div><div><span>Serasé Signature</span><strong>RM79.90<small> / month</small></strong></div></div><p class="m52-field-note">PDF §9 planning mix: 50% Select / 30% Elite / 20% Signature → RM37.90 blended ARPU. The mix controls update this illustration.</p><div class="m23-input-grid two m65-inputs"><label>Paid subscribers acquired<input id="m65-roiPaidSubs" data-m65-source="roiPaidSubs" type="number" min="1" step="100" value="5000"></label><label>Select share %<input id="m65-roiMixSelect" data-m65-source="roiMixSelect" type="number" min="0" max="100" value="50"></label><label>Elite share %<input id="m65-roiMixElite" data-m65-source="roiMixElite" type="number" min="0" max="100" value="30"></label><label>Signature share %<input id="m65-roiMixSignature" data-m65-source="roiMixSignature" type="number" value="20" disabled></label></div><div><h5>MRR by paid subscribers</h5><table class="roi-table"><thead><tr><th>Paid subscribers</th><th class="num">Illustrative MRR</th></tr></thead><tbody id="m65-roiMrrTable" data-m65-source="roiMrrTable"></tbody></table></div><details class="m65-assumed"><summary>Supplemental assumptions · not PDF-approved actuals</summary><div class="m23-input-grid two m65-inputs"><label class="m23-placeholder">Monthly churn % <em>placeholder</em><input id="m65-roiChurn" data-m65-source="roiChurn" type="number" min="1" max="100" step="1" value="8"></label><label class="m23-placeholder">Contribution margin % <em>placeholder</em><input id="m65-roiMargin" data-m65-source="roiMargin" type="number" min="1" max="100" step="5" value="80"></label></div><div class="m23-assumption-kpis">
+            </tbody></table></div></div></details><details class="m65-detail"><summary><div><strong>Revenue Model</strong><small>Subscription prices, subscriber mix and MRR scenarios</small></div><span class="m65-toggle" aria-hidden="true">+</span></summary><div class="m65-detail-body"><div class="m52-price-grid" aria-label="Subscription pricing from PDF section 9"><div><span>Serasé Select</span><strong>RM19.90<small> / month</small></strong></div><div><span>Serasé Elite</span><strong>RM39.90<small> / month</small></strong></div><div><span>Serasé Signature</span><strong>RM79.90<small> / month</small></strong></div></div><p class="m52-field-note">PDF §9 planning mix: 50% Select / 30% Elite / 20% Signature → RM37.90 blended ARPU. The mix controls update this illustration.</p><div class="m23-input-grid two m65-inputs"><label>Paid subscribers acquired<input id="m65-roiPaidSubs" data-m65-source="roiPaidSubs" type="number" min="1" step="100" value="5000"></label><label>Select share %<input id="m65-roiMixSelect" data-m65-source="roiMixSelect" type="number" value="50" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label><label>Elite share %<input id="m65-roiMixElite" data-m65-source="roiMixElite" type="number" value="30" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label><label>Signature share %<input id="m65-roiMixSignature" data-m65-source="roiMixSignature" type="number" value="20" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label></div><div class="m71-mix-bar"><span id="m71MixStatus" role="status" aria-live="polite" data-valid="true">Total 100% · Revenue calculations are up to date.</span><button type="button" id="m71ResetMix">Reset 50 / 30 / 20</button></div><div><h5>MRR by paid subscribers</h5><table class="roi-table"><thead><tr><th>Paid subscribers</th><th class="num">Illustrative MRR</th></tr></thead><tbody id="m65-roiMrrTable" data-m65-source="roiMrrTable"></tbody></table></div><details class="m65-assumed"><summary>Supplemental assumptions · not PDF-approved actuals</summary><div class="m23-input-grid two m65-inputs"><label class="m23-placeholder">Monthly churn % <em>placeholder</em><input id="m65-roiChurn" data-m65-source="roiChurn" type="number" min="1" max="100" step="1" value="8"></label><label class="m23-placeholder">Contribution margin % <em>placeholder</em><input id="m65-roiMargin" data-m65-source="roiMargin" type="number" min="1" max="100" step="5" value="80"></label></div><div class="m23-assumption-kpis">
               <div><span>Estimated contribution LTV · assumed</span><strong id="m65-roiSummaryLtv" data-m65-source="roiSummaryLtv">—</strong></div>
               <div><span>Contribution payback · assumed</span><strong id="m65-roiSummaryPayback" data-m65-source="roiSummaryPayback">—</strong></div>
               <div><span>LTV : CAC · assumed</span><strong id="m65-roiSummaryRatio" data-m65-source="roiSummaryRatio">—</strong></div>
@@ -5856,6 +5866,7 @@ document.addEventListener('DOMContentLoaded',function(){
     margin:80,
     mixSelect:50,
     mixElite:30,
+    mixSignature:20,
     envelope:500000,
     budget:{
       'Event Launch':150000,
@@ -5985,11 +5996,11 @@ document.addEventListener('DOMContentLoaded',function(){
 
   function calc(){
     const sel = clamp(Number(state.mixSelect)||0,0,100);
-    const elite = clamp(Number(state.mixElite)||0,0,100-sel);
-    state.mixSelect = sel;
-    state.mixElite = elite;
-    const signature = 100-sel-elite;
-    const arpu = (sel*price.select + elite*price.elite + signature*price.signature)/100;
+    const elite = clamp(Number(state.mixElite)||0,0,100);
+    const signature = clamp(Number(state.mixSignature)||0,0,100);
+    const mixTotal = sel+elite+signature;
+    const mixValid = Math.abs(mixTotal-100)<1e-8;
+    const arpu = mixValid ? (sel*price.select + elite*price.elite + signature*price.signature)/100 : NaN;
     const spend = state.envelope;
     const subs = Math.max(1,Number(state.paidSubs)||1);
     const cac = spend/subs;
@@ -6001,7 +6012,7 @@ document.addEventListener('DOMContentLoaded',function(){
     const revenuePayback = cac/arpu;
     const mrr = subs*arpu;
     const ratio = ltv/cac;
-    return {signature,arpu,cac,ltv,payback,revenuePayback,mrr,ratio};
+    return {signature,mixTotal,mixValid,arpu,cac,ltv,payback,revenuePayback,mrr,ratio};
   }
 
   function renderSummary(){
@@ -6011,10 +6022,10 @@ document.addEventListener('DOMContentLoaded',function(){
     setText('roiSummarySpend',money0(state.envelope));
     setText('roiSummarySubs',num(state.paidSubs));
     setText('roiSummaryCac',money2(c.cac));
-    setText('roiSummaryMrr',money0(c.mrr));
-    setText('roiSummaryLtv',money2(c.ltv));
-    setText('roiSummaryPayback',(isFinite(c.payback)?c.payback.toFixed(2):'—')+' mo');
-    setText('roiSummaryRatio',(isFinite(c.ratio)?c.ratio.toFixed(2):'—')+'×');
+    setText('roiSummaryMrr',c.mixValid?money0(c.mrr):'—');
+    setText('roiSummaryLtv',c.mixValid?money2(c.ltv):'—');
+    setText('roiSummaryPayback',isFinite(c.payback)?c.payback.toFixed(2)+' mo':'—');
+    setText('roiSummaryRatio',isFinite(c.ratio)?c.ratio.toFixed(2)+'×':'—');
   }
 
 
@@ -6320,21 +6331,22 @@ document.addEventListener('DOMContentLoaded',function(){
 
   function renderEconomics(){
     const c=calc();
-    const sig=document.getElementById('roiMixSignature'); if(sig) sig.value=c.signature.toFixed(0);
+    [['roiMixSelect','mixSelect'],['roiMixElite','mixElite'],['roiMixSignature','mixSignature']].forEach(([id,key])=>{document.getElementById(id).value=state[key];});
     const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
     setText('roiEcoSubs',num(state.paidSubs));
-    setText('roiEcoArpu',money2(c.arpu));
+    setText('roiEcoArpu',c.mixValid?money2(c.arpu):'—');
     setText('roiEcoCac',money2(c.cac));
-    setText('roiEcoRevenuePayback',(isFinite(c.revenuePayback)?c.revenuePayback.toFixed(2):'—')+' mo');
-    setText('roiEcoMrr',money0(c.mrr));
+    setText('roiEcoRevenuePayback',isFinite(c.revenuePayback)?c.revenuePayback.toFixed(2)+' mo':'—');
+    setText('roiEcoMrr',c.mixValid?money0(c.mrr):'—');
     const rows=[100,250,500,1000,2500,5000,10000];
-    const table=document.getElementById('roiMrrTable'); if(table) table.innerHTML=rows.map(n=>`<tr><td>${num(n)}</td><td class="num">${money0(n*c.arpu)}</td></tr>`).join('');
+    const table=document.getElementById('roiMrrTable'); if(table) table.innerHTML=rows.map(n=>`<tr><td>${num(n)}</td><td class="num">${c.mixValid?money0(n*c.arpu):'—'}</td></tr>`).join('');
   }
 
   function renderDecision(){
     const c=calc();
     ['roiDecisionScale','roiDecisionOptimise','roiDecisionStop'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
     const out=document.getElementById('roiDecisionText');
+    if(out&&!c.mixValid){out.textContent='Complete a 100% subscription mix in Revenue Model to calculate LTV and payback. CAC is still based on spend and paid subscribers.';return;}
     if(out) out.innerHTML=`Current assumption-based scenario: <b>LTV : CAC ${c.ratio.toFixed(2)}×</b>. This ratio uses placeholder churn and contribution margin. <strong>Management threshold: TBC.</strong> Use actual channel CAC, paid conversion and retention before assigning Scale / Optimise / Stop.`;
   }
 
@@ -6360,7 +6372,10 @@ document.addEventListener('DOMContentLoaded',function(){
       else el.innerHTML=original.innerHTML;
     });
     const c=calc();
-    document.getElementById('m65-roiCacExample').textContent=`Current planning scenario: ${money0(state.envelope)} ÷ ${num(state.paidSubs)} paid subscribers = ${money2(c.cac)} CAC. Simple revenue payback: ${c.revenuePayback.toFixed(2)} months at ${money2(c.arpu)} ARPU.`;
+    const mixStatus=document.getElementById('m71MixStatus');
+    mixStatus.dataset.valid=String(c.mixValid);
+    mixStatus.textContent=`Total ${Number(c.mixTotal.toFixed(6))}% · ${c.mixValid?'Revenue calculations are up to date.':'Enter shares totalling 100% to calculate ARPU, MRR and payback.'}`;
+    document.getElementById('m65-roiCacExample').textContent=`Current planning scenario: ${money0(state.envelope)} ÷ ${num(state.paidSubs)} paid subscribers = ${money2(c.cac)} CAC. `+(c.mixValid?`Simple revenue payback: ${c.revenuePayback.toFixed(2)} months at ${money2(c.arpu)} ARPU.`:'ARPU and payback await a 100% subscription mix in Revenue Model.');
   }
   document.querySelectorAll('input[data-m65-source]').forEach(el=>{
     const eventType=el.dataset.m65Source.startsWith('roiKol')?'input':'change';
@@ -6402,8 +6417,10 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 
   document.getElementById('roiHubEventBudget').addEventListener('change',e=>{state.budget['Event Launch']=Math.max(0,Number(e.target.value)||0);renderAll();});
-  document.getElementById('roiMixSelect').addEventListener('change',e=>{state.mixSelect=clamp(Number(e.target.value)||0,0,100);if(state.mixElite>100-state.mixSelect)state.mixElite=100-state.mixSelect;document.getElementById('roiMixElite').value=state.mixElite;renderAll();});
-  document.getElementById('roiMixElite').addEventListener('change',e=>{state.mixElite=clamp(Number(e.target.value)||0,0,100-state.mixSelect);e.target.value=state.mixElite;renderAll();});
+  [['roiMixSelect','mixSelect'],['roiMixElite','mixElite'],['roiMixSignature','mixSignature']].forEach(([id,key])=>{
+    document.getElementById(id).addEventListener('change',e=>{state[key]=clamp(Number(e.target.value)||0,0,100);renderAll();});
+  });
+  document.getElementById('m71ResetMix').addEventListener('click',()=>{state.mixSelect=50;state.mixElite=30;state.mixSignature=20;renderAll();});
   ['roiKolFee','roiKolViews','roiKolClick','roiKolDl','roiKolReg','roiKolVer','roiKolPay'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{renderKol();renderPerformance();}));
 
   // Close the budget detail bubble when the user clicks/taps a blank area.
