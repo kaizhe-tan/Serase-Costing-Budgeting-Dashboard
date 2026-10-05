@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="serase-build" content="marketing-funnel-old-vs-new-v62-2026-10-02">
 <title>Serase Costing &amp; Budgeting Dashboard</title>
-<meta name="serase-marketing-build" content="v71-independent-subscription-shares">
+<meta name="serase-marketing-build" content="v90-horizontal-pricing-assumptions">
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -4712,6 +4712,975 @@ html.m54-strategy-modal-open{overflow:hidden}
 #marketing #m71ResetMix:focus-visible{outline:2px solid #96343d;outline-offset:3px;}
 @media(max-width:600px){#marketing .m71-mix-bar{align-items:flex-start;flex-direction:column;gap:8px;}}
 </style>
+<style id="m72-performance-refinement">
+#marketing .m65-performance .m65-metrics>div{position:relative;padding:19px 21px;border-radius:12px;background:#fffdf9;box-shadow:0 3px 12px rgba(80,28,29,.025);}
+#marketing .m65-performance .m65-metrics>div:nth-child(4){background:#72232c;border-color:#72232c;}
+#marketing .m65-performance .m65-metrics>div:nth-child(4) strong{color:#fff7eb;}
+#marketing .m65-performance .m65-metrics>div:nth-child(4) span,#marketing .m65-performance .m65-metrics>div:nth-child(4) small{color:#e9cabc;}
+#marketing .m65-performance .m65-metrics strong{font-size:clamp(23px,2.3vw,30px);letter-spacing:-.025em;}
+#marketing .m72-scenario-strip{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #e5d7cd;margin-top:8px;font-size:11px;color:#856f65;}
+#marketing .m72-scenario-strip>span{display:flex;align-items:center;gap:7px;color:#89232d;font-weight:600;}
+#marketing .m72-scenario-strip i{width:5px;height:5px;background:#b88a4c;border-radius:50%;}
+#marketing .m72-scenario-strip p{margin:0;flex:1;line-height:1.6;}
+#marketing .m72-scenario-strip button{border:1px solid #e5d7cd;background:#fffdf9;padding:8px 12px;border-radius:7px;color:#89232d;font:600 11px Inter,sans-serif;cursor:pointer;}
+#marketing .m72-scenario-strip button:focus-visible{outline:2px solid #89232d;outline-offset:3px;}
+#marketing .m72-retention-model{margin:25px 0;padding:22px;border:1px solid #e5d7cd;background:#faf5ed;border-radius:12px;}
+#marketing .m72-section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+#marketing .m72-section-head h5{margin:7px 0 0;}
+#marketing .m72-retention-model .m65-inputs{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+#marketing .m72-retention-model .m65-inputs label{min-width:0;}
+#marketing .m72-retention-model .m65-inputs input{width:100%;}
+#marketing .m72-projection-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0;}
+#marketing .m72-projection-kpis>div{padding:15px;background:#fffdf9;border:1px solid #e5d7cd;border-radius:9px;min-width:0;}
+#marketing .m72-projection-kpis span{display:block;font-size:10px;color:#856f65;}
+#marketing .m72-projection-kpis strong{display:block;margin:8px 0;font:600 23px 'Fraunces',Georgia,serif;color:#89232d;}
+#marketing .m72-projection-kpis small{font-size:10px;line-height:1.5;display:block;color:#856f65;}
+#marketing .m72-chart-head{display:flex;gap:12px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;margin-top:22px;}
+#marketing .m72-chart-head h5{font-size:16px;}
+#marketing .m72-chart-head span{font-size:10px;color:#856f65;}
+#marketing .m72-chart{background:#fffdf9;border:1px solid #e5d7cd;border-radius:9px;padding:12px;}
+#marketing .m72-chart svg{width:100%;height:auto;display:block;max-height:250px;}
+#marketing .m72-month-table summary{font-size:12px;color:#89232d;cursor:pointer;padding:12px 0;}
+#marketing .m72-table-scroll{overflow-x:auto;}
+#marketing .m72-month-table table{min-width:650px;}
+#marketing .m72-retention-model p.m72-formula-note{font-size:10px;border-top:1px solid #e5d7cd;padding-top:12px;margin-bottom:0;}
+@media(max-width:720px){#marketing .m72-retention-model{padding:16px;}#marketing .m72-retention-model .m65-inputs{grid-template-columns:1fr;}#marketing .m72-projection-kpis{grid-template-columns:1fr;}#marketing .m72-scenario-strip p{flex-basis:calc(100% - 150px);}#marketing .m72-chart{padding:5px;}#marketing .m65-performance .m65-metrics>div{padding:16px;}}
+@media(prefers-reduced-motion:reduce){#marketing .m65-performance *{scroll-behavior:auto;}}
+</style>
+<style id="m73-inline-detail-canvases">
+#marketing #roiStrategyWrap,#marketing #roiRoad{scroll-margin-top:24px;}
+#marketing #roiStrategyWrap.m73-is-detail>#roiStrategyGlobe,#marketing #roiRoad.m73-is-detail>.m51-road-shell{display:none!important;}
+#marketing dialog.m73-canvas{position:relative!important;inset:auto!important;margin:0!important;width:100%!important;max-width:none!important;max-height:none!important;height:auto!important;padding:0!important;border:1px solid #e1d1c1!important;border-radius:18px!important;background:#fffaf2!important;color:#623d32;box-shadow:0 8px 30px #6f292908!important;overflow:visible!important;transform-origin:var(--m73-origin,50% 50%);animation:none!important;}
+#marketing dialog.m73-canvas:not([open]){display:none!important;}
+#marketing dialog.m73-canvas[open]{display:block!important;animation:m73CanvasIn .28s cubic-bezier(.2,.7,.2,1)!important;}
+#marketing .m73-content{padding:26px 42px 24px;min-height:660px;display:flex;flex-direction:column;background:radial-gradient(ellipse at 100% 0%,#ead9bb33,transparent 45%);border-radius:18px;}
+#marketing .m73-topbar{display:flex;align-items:center;gap:14px;padding-bottom:24px;border-bottom:1px solid #e5d7c8;}
+#marketing .m73-back{border:0;background:none;padding:6px 0;font:500 11px Inter,sans-serif;color:#8a5748;cursor:pointer;display:flex;align-items:center;gap:10px;}
+#marketing .m73-browse{display:flex;align-items:center;gap:13px;margin-left:auto;}
+#marketing .m73-browse>span{font:500 10px 'IBM Plex Mono',monospace;color:#9a7354;}
+#marketing .m73-browse>button,#marketing .m73-close{display:grid;place-items:center;width:33px;height:33px;border:1px solid #e5d4c2;background:transparent;border-radius:50%;color:#89232d;font:400 17px Inter,sans-serif;cursor:pointer;}
+#marketing .m73-browse>button:disabled{opacity:.3;cursor:default;}
+#marketing .m73-close{position:static;inset:auto;font-size:22px;margin-left:14px;flex:none;}
+#marketing .m73-top-note{margin-left:auto;font-size:10px;color:#997b66;}
+#marketing .m73-heading{margin:30px 0 24px;}
+#marketing .m73-kicker,#marketing .m73-label{display:block;font:500 9px/1.5 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#a47a50;}
+#marketing .m73-heading h5{margin:9px 0 0;font:600 clamp(28px,3vw,42px)/1.15 'Fraunces',Georgia,serif;letter-spacing:-.025em;color:#72232c;}
+#marketing .m73-heading h5 button{display:block;padding:0;border:0;background:transparent;color:inherit;font:inherit;letter-spacing:inherit;text-align:left;cursor:pointer;}
+#marketing .m73-objective{padding:0 0 28px;max-width:960px;}
+#marketing .m73-objective p{margin:12px 0 0;font:500 clamp(21px,2.25vw,29px)/1.45 'Fraunces',Georgia,serif;color:#58382d;letter-spacing:-.015em;}
+#marketing .m73-detail-tabs{display:flex;gap:28px;border-bottom:1px solid #e5d7c8;}
+#marketing .m73-detail-tabs button{position:relative;padding:12px 0 14px;border:0;background:transparent;color:#947563;font:500 12px Inter,sans-serif;cursor:pointer;}
+#marketing .m73-detail-tabs button[aria-selected="true"]{color:#89232d;}
+#marketing .m73-detail-tabs button[aria-selected="true"]::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#89232d;}
+#marketing .m73-detail-tabs button span{display:inline-grid;place-items:center;width:20px;height:20px;margin-left:7px;border-radius:50%;background:#f0e4d4;font-size:9px;color:#947052;}
+#marketing .m73-detail-section{padding:26px 0 32px;min-height:175px;}
+#marketing .m73-detail-section[hidden]{display:none!important;}
+#marketing .m73-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 38px;counter-reset:m73items;list-style:none;padding:0;margin:0;}
+#marketing .m73-list li{position:relative;counter-increment:m73items;min-width:0;padding:0 0 0 35px;color:#735b4d;font:400 13px/1.8 Inter,sans-serif;}
+#marketing .m73-list li::before{content:counter(m73items,decimal-leading-zero);position:absolute;left:0;top:4px;font:500 10px/1.6 'IBM Plex Mono',monospace;color:#b48c58;}
+#marketing .m73-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+#marketing .m73-kpis>span{position:relative;display:flex;align-items:center;min-height:80px;padding:18px;border-top:2px solid #b48c58;border-bottom:1px solid #e5d7c8;background:#f7eee0;color:#72232c;font:500 15px/1.6 'Fraunces',Georgia,serif;}
+#marketing .m73-source{margin-top:auto;padding:18px 0 0;background:transparent;border-top:1px solid #e5d7c8;color:#a38a73;font:400 9px/1.6 Inter,sans-serif;}
+#marketing .m73-month-nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;max-width:700px;margin:26px 0 0;}
+#marketing .m73-month-nav button{position:relative;padding:0 0 14px;border:0;background:transparent;text-align:left;font:500 11px Inter,sans-serif;color:#a08470;cursor:pointer;}
+#marketing .m73-month-nav button::after{content:'';position:absolute;bottom:3px;left:0;right:0;height:1px;background:#dfcbb1;}
+#marketing .m73-month-nav i{position:absolute;left:0;bottom:0;height:7px;width:7px;border-radius:50%;background:#dfcbb1;z-index:1;}
+#marketing .m73-month-nav button[aria-current="step"]{color:#89232d;font-weight:600;}
+#marketing .m73-month-nav button[aria-current="step"] i{background:#89232d;box-shadow:0 0 0 4px #89232d0d;}
+#marketing .m73-road-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,.8fr);gap:36px;padding:26px 0 30px;border-top:1px solid #e5d7c8;}
+#marketing .m73-activities>.m73-label{margin-bottom:22px;}
+#marketing .m73-activities .m73-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:19px 24px;}
+#marketing .m73-outcomes{display:grid;align-content:start;gap:12px;}
+#marketing .m73-outcomes section{padding:22px;background:#f2e7d7;border-radius:10px;}
+#marketing .m73-outcomes p{margin:10px 0 0;font:500 19px/1.5 'Fraunces',Georgia,serif;color:#6a3c32;}
+#marketing .m73-outcomes .m73-revenue{background:#72232c;}
+#marketing .m73-revenue .m73-label{color:#d1a56d;}
+#marketing .m73-revenue p{color:#fff4e4;}
+#marketing .m73-return>#roiStrategyGlobe,#marketing .m73-return>.m51-road-shell{animation:m73OverviewIn .22s ease-out;}
+@keyframes m73CanvasIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@keyframes m73OverviewIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:720px){#marketing .m73-content{padding:18px 20px;min-height:0;}#marketing .m73-topbar{padding-bottom:16px;gap:8px;}#marketing .m73-back{font-size:10px;gap:6px;}#marketing .m73-browse{gap:8px;}#marketing .m73-browse>button,#marketing .m73-close{width:29px;height:29px;}#marketing .m73-close{margin-left:3px;}#marketing .m73-top-note{display:none;}#marketing .m73-road-content .m73-close{margin-left:auto;}#marketing .m73-heading{margin:25px 0 21px;}#marketing .m73-heading h5{font-size:29px;}#marketing .m73-objective p{font-size:22px;}#marketing .m73-list{grid-template-columns:1fr;gap:18px;}#marketing .m73-kpis{grid-template-columns:1fr;}#marketing .m73-detail-section{min-height:0;}#marketing .m73-road-grid{grid-template-columns:1fr;gap:26px;}#marketing .m73-activities .m73-list{grid-template-columns:1fr;}#marketing .m73-month-nav button{font-size:10px;}#marketing .m73-outcomes section{padding:19px;}#marketing .m73-canvas .m73-label{font-size:8px;}}
+@media(prefers-reduced-motion:reduce){#marketing dialog.m73-canvas[open],#marketing .m73-return>*{animation:none!important;}}
+</style>
+
+<style id="m76-strategy-focus-drawer">
+/* v76 — keep the successful v73 strategy constellation, but open details inside the same canvas. */
+#marketing #roiStrategyWrap{position:relative;isolation:isolate;}
+#marketing #roiStrategyWrap.m73-is-detail>#roiStrategyGlobe{display:block!important;}
+#marketing #roiStrategyWrap.m73-return>#roiStrategyGlobe{animation:none!important;}
+
+#marketing .m53-strategy-stage{
+  transition:background .42s cubic-bezier(.22,1,.36,1),border-color .42s cubic-bezier(.22,1,.36,1),box-shadow .42s cubic-bezier(.22,1,.36,1);
+}
+#marketing .m53-box-button{
+  transition:left .52s cubic-bezier(.22,1,.36,1),top .52s cubic-bezier(.22,1,.36,1),transform .52s cubic-bezier(.22,1,.36,1),opacity .32s ease,filter .32s ease;
+}
+#marketing .m53-box-lid{transition:transform .58s cubic-bezier(.22,1,.36,1);}
+#marketing .m53-strategy-item{
+  transition:left .66s cubic-bezier(.22,1,.36,1),top .66s cubic-bezier(.22,1,.36,1),transform .66s cubic-bezier(.22,1,.36,1),opacity .34s ease,filter .34s ease,visibility 0s .66s,box-shadow .26s ease,border-color .26s ease,background .26s ease;
+  will-change:left,top,transform,opacity;
+}
+#marketing .m53-strategy-stage.is-expanded .m53-strategy-item{
+  transition-delay:var(--card-delay),var(--card-delay),var(--card-delay),var(--card-delay),var(--card-delay),0s,0s,0s,0s,0s;
+}
+
+/* Focus mode: the selected strategy stays spatially connected to the constellation. */
+#marketing #roiStrategyWrap.m73-is-detail .m53-strategy-stage{
+  border-color:#DDC8B4;
+  background:
+    radial-gradient(ellipse at 18% 52%,#FFFDF9 0%,#FBF4EA 42%,transparent 68%),
+    linear-gradient(100deg,#F8EEDF 0%,#F5E8D8 36%,#EEE0CF 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.48);
+}
+#marketing #roiStrategyWrap.m73-is-detail .m53-stage-tools{opacity:.28;filter:saturate(.55);pointer-events:none;}
+#marketing #roiStrategyWrap.m73-is-detail .m53-box-button{
+  left:18%;top:50%;opacity:.09;filter:saturate(.35) blur(.25px);transform:translate(-50%,-50%) scale(.66)!important;pointer-events:none;
+}
+#marketing #roiStrategyWrap.m73-is-detail .m53-strategy-item[aria-pressed="false"]{
+  opacity:.16!important;filter:saturate(.4);pointer-events:none;
+}
+#marketing #roiStrategyWrap.m73-is-detail .m53-strategy-item[aria-pressed="true"]{
+  left:18.5%!important;top:50%!important;z-index:8!important;
+  opacity:1!important;filter:none!important;
+  transform:translate(-50%,-50%) scale(1.09) rotate(0deg)!important;
+  border-color:#B56D5E!important;
+  box-shadow:0 22px 50px rgba(87,34,31,.18),0 3px 10px rgba(87,34,31,.09)!important;
+  pointer-events:none;
+}
+#marketing #roiStrategyWrap.m73-is-detail::after{
+  content:"";position:absolute;inset:0;z-index:9;border-radius:26px;pointer-events:none;
+  background:linear-gradient(90deg,transparent 0%,rgba(80,38,30,.02) 31%,rgba(80,38,30,.08) 58%,rgba(80,38,30,.12) 100%);
+  opacity:0;animation:m76VeilIn .36s ease .05s forwards;
+}
+
+/* Details are now a premium in-canvas drawer rather than a page replacement. */
+#marketing #roiStrategyDetail.m73-canvas{
+  position:absolute!important;inset:22px 22px 22px auto!important;z-index:12!important;
+  width:min(660px,61%)!important;height:calc(100% - 44px)!important;max-width:none!important;max-height:none!important;
+  margin:0!important;padding:0!important;overflow:auto!important;
+  border:1px solid rgba(207,179,151,.92)!important;border-radius:22px!important;
+  background:rgba(255,251,245,.985)!important;
+  box-shadow:0 28px 70px rgba(64,27,23,.18),0 8px 24px rgba(64,27,23,.08)!important;
+  transform-origin:100% 50%!important;
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  scrollbar-width:thin;scrollbar-color:#D7BFA4 transparent;
+}
+#marketing #roiStrategyDetail.m73-canvas[open]{
+  display:block!important;animation:m76DrawerIn .48s cubic-bezier(.22,1,.36,1)!important;
+}
+#marketing #roiStrategyWrap.m76-closing #roiStrategyDetail.m73-canvas[open]{
+  animation:m76DrawerOut .24s cubic-bezier(.4,0,1,1) both!important;pointer-events:none;
+}
+#marketing #roiStrategyDetail .m73-content{
+  min-height:100%;padding:26px 30px 23px;border-radius:22px;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(220,183,126,.12),transparent 32%),
+    linear-gradient(180deg,#FFFDF9 0%,#FBF5EC 100%);
+}
+#marketing #roiStrategyDetail .m73-strategy-content{animation:m76ContentIn .44s cubic-bezier(.22,1,.36,1) both;}
+#marketing #roiStrategyDetail .m73-topbar{padding-bottom:17px;}
+#marketing #roiStrategyDetail .m73-back{font-size:10px;color:#8A5B4D;}
+#marketing #roiStrategyDetail .m73-heading{margin:23px 0 18px;}
+#marketing #roiStrategyDetail .m73-heading h5{font-size:clamp(27px,2.55vw,38px);}
+#marketing #roiStrategyDetail .m73-objective{padding-bottom:20px;}
+#marketing #roiStrategyDetail .m73-objective p{margin-top:10px;font-size:clamp(19px,1.7vw,24px);line-height:1.48;}
+#marketing #roiStrategyDetail .m73-detail-tabs{gap:24px;}
+#marketing #roiStrategyDetail .m73-detail-section{padding:21px 0 24px;min-height:150px;}
+#marketing #roiStrategyDetail .m73-list{gap:17px 28px;}
+#marketing #roiStrategyDetail .m73-list li{font-size:12px;line-height:1.72;padding-left:30px;}
+#marketing #roiStrategyDetail .m73-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+#marketing #roiStrategyDetail .m73-kpis>span{min-height:68px;padding:14px;font-size:13px;}
+#marketing #roiStrategyDetail .m73-source{padding-top:14px;}
+#marketing #roiStrategyDetail .m73-browse>button,#marketing #roiStrategyDetail .m73-close{
+  transition:transform .18s ease,background .18s ease,border-color .18s ease;
+}
+#marketing #roiStrategyDetail .m73-browse>button:not(:disabled):hover,#marketing #roiStrategyDetail .m73-close:hover{
+  transform:translateY(-1px);background:#F4E8D9;border-color:#CFAB83;
+}
+
+@keyframes m76DrawerIn{
+  0%{opacity:0;transform:translateX(34px) scale(.985);filter:blur(2px)}
+  70%{opacity:1;transform:translateX(-2px) scale(1);filter:blur(0)}
+  100%{opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes m76DrawerOut{from{opacity:1;transform:none}to{opacity:0;transform:translateX(26px) scale(.99)}}
+@keyframes m76ContentIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes m76VeilIn{from{opacity:0}to{opacity:1}}
+
+/* Tablet/mobile: keep the reliable v73 inline reading layout. */
+@media(max-width:900px){
+  #marketing #roiStrategyWrap.m73-is-detail>#roiStrategyGlobe{display:none!important;}
+  #marketing #roiStrategyWrap.m73-is-detail::after{display:none;}
+  #marketing #roiStrategyDetail.m73-canvas{
+    position:relative!important;inset:auto!important;width:100%!important;height:auto!important;min-height:0!important;
+    border-radius:18px!important;box-shadow:0 8px 30px rgba(111,41,41,.03)!important;
+  }
+  #marketing #roiStrategyDetail .m73-content{min-height:0;padding:22px 24px;}
+}
+@media(max-width:720px){
+  #marketing #roiStrategyDetail .m73-content{padding:18px 20px;}
+  #marketing #roiStrategyDetail .m73-kpis{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){
+  #marketing #roiStrategyDetail.m73-canvas[open],#marketing #roiStrategyDetail .m73-strategy-content,
+  #marketing #roiStrategyWrap.m73-is-detail::after,#marketing .m53-strategy-item,#marketing .m53-box-button{animation:none!important;transition:none!important;}
+}
+</style>
+
+
+<style id="m77-strategy-detail-layout">
+/* v77 — editorial strategy detail: one clear reading hierarchy, no nested tabs. */
+#marketing #roiStrategyWrap.m73-is-detail .m53-strategy-stage{height:620px;}
+#marketing #roiStrategyWrap .m53-strategy-stage{transition:height .42s cubic-bezier(.22,1,.36,1),background .42s cubic-bezier(.22,1,.36,1),border-color .42s cubic-bezier(.22,1,.36,1),box-shadow .42s cubic-bezier(.22,1,.36,1);}
+#marketing #roiStrategyDetail.m73-canvas{
+  width:min(720px,64%)!important;
+  border-color:#D9C3AD!important;
+  background:#FFFDF9!important;
+}
+#marketing #roiStrategyDetail .m77-strategy-content{
+  display:flex;flex-direction:column;min-height:100%;padding:26px 30px 22px;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(217,182,114,.13),transparent 28%),
+    linear-gradient(180deg,#FFFDF9 0%,#FBF5ED 100%);
+}
+#marketing #roiStrategyDetail .m77-topbar{
+  display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;
+  padding:0 0 18px;border-bottom:1px solid #E8D9C9;
+}
+#marketing #roiStrategyDetail .m77-topbar .m73-back{
+  width:max-content;padding:0;border:0;background:transparent;color:#81584C;
+}
+#marketing #roiStrategyDetail .m77-browse{
+  display:flex;align-items:center;gap:8px;padding:4px 6px;border:1px solid #E3D2C0;
+  border-radius:999px;background:#FFF9F2;
+}
+#marketing #roiStrategyDetail .m77-browse>span{
+  min-width:50px;text-align:center;font:700 9px/1 'IBM Plex Mono',monospace;
+  letter-spacing:.08em;color:#916B5E;
+}
+#marketing #roiStrategyDetail .m77-browse>button{
+  width:27px;height:27px;border:0;border-radius:50%;background:transparent;color:#7C5148;
+}
+#marketing #roiStrategyDetail .m77-browse>button:not(:disabled):hover{background:#F1E4D6;transform:none;}
+#marketing #roiStrategyDetail .m77-topbar .m73-close{
+  width:34px;height:34px;margin:0;border-color:#E1CFBD;background:#FFF8F0;color:#874E45;
+}
+#marketing #roiStrategyDetail .m77-heading{
+  display:grid;grid-template-columns:72px minmax(0,1fr);align-items:end;gap:18px;
+  margin:26px 0 22px;
+}
+#marketing #roiStrategyDetail .m77-strategy-number{
+  font:600 52px/.82 'Fraunces',Georgia,serif;letter-spacing:-.045em;color:#C79A69;
+}
+#marketing #roiStrategyDetail .m77-heading-copy{min-width:0;}
+#marketing #roiStrategyDetail .m77-heading .m73-kicker{
+  display:block;margin-bottom:8px;font:700 8.5px/1.4 'IBM Plex Mono',monospace;
+  letter-spacing:.12em;text-transform:uppercase;color:#A16A58;
+}
+#marketing #roiStrategyDetail .m77-heading h5{margin:0;}
+#marketing #roiStrategyDetail .m77-heading h5 button{
+  display:block;width:100%;padding:0;border:0;background:transparent;text-align:left;
+  font:600 clamp(29px,2.7vw,40px)/1.05 'Fraunces',Georgia,serif;
+  letter-spacing:-.025em;color:#5A302B;cursor:pointer;
+}
+#marketing #roiStrategyDetail .m77-objective{
+  position:relative;margin:0;padding:18px 20px 19px 22px;border:1px solid #E3CCB5;
+  border-radius:16px;background:linear-gradient(135deg,#F7E8D6 0%,#FBF3E9 100%);
+  overflow:hidden;
+}
+#marketing #roiStrategyDetail .m77-objective::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#982E36;
+}
+#marketing #roiStrategyDetail .m77-objective .m73-label,
+#marketing #roiStrategyDetail .m77-section-head .m73-label{
+  display:block;margin:0 0 8px;font:700 8.5px/1.4 'IBM Plex Mono',monospace;
+  letter-spacing:.12em;text-transform:uppercase;color:#975048;
+}
+#marketing #roiStrategyDetail .m77-objective p{
+  margin:0;font:500 19px/1.52 'Fraunces',Georgia,serif;color:#653A32;
+}
+#marketing #roiStrategyDetail .m77-detail-grid{
+  display:grid;grid-template-columns:minmax(0,1.34fr) minmax(190px,.66fr);gap:22px;
+  margin-top:22px;align-items:start;
+}
+#marketing #roiStrategyDetail .m77-tactics,
+#marketing #roiStrategyDetail .m77-kpi-panel{
+  min-width:0;padding-top:16px;border-top:1px solid #E5D5C5;
+}
+#marketing #roiStrategyDetail .m77-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+#marketing #roiStrategyDetail .m77-tactic-list{
+  counter-reset:m77tactic;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;margin:0;padding:0;list-style:none;
+}
+#marketing #roiStrategyDetail .m77-tactic-list li{
+  counter-increment:m77tactic;position:relative;margin:0;padding:11px 0 11px 34px;
+  border-bottom:1px solid #EDE2D6;font:12px/1.5 'Inter',Arial,sans-serif;color:#624E46;
+}
+#marketing #roiStrategyDetail .m77-tactic-list li:nth-last-child(-n+2){border-bottom:0;}
+
+#marketing #roiStrategyDetail .m77-tactic-list li:last-child{border-bottom:0;}
+#marketing #roiStrategyDetail .m77-tactic-list li::before{
+  content:counter(m77tactic,decimal-leading-zero);position:absolute;left:0;top:12px;
+  font:700 8px/1.4 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#B98A64;
+}
+#marketing #roiStrategyDetail .m77-tactic-list .m67-delimiter{color:#B28A78;}
+#marketing #roiStrategyDetail .m77-kpi-panel{
+  padding:16px 17px 17px;border:1px solid #E0CDB9;border-top:3px solid #C59A5F;
+  border-radius:14px;background:#FFF9F1;box-shadow:0 8px 18px rgba(82,45,35,.04);
+}
+#marketing #roiStrategyDetail .m77-kpi-panel .m77-section-head .m73-label{margin-bottom:10px;}
+#marketing #roiStrategyDetail .m77-kpi-copy{
+  margin:0;font:600 13px/1.68 'Inter',Arial,sans-serif;color:#60483F;
+}
+#marketing #roiStrategyDetail .m77-source{
+  margin-top:auto;padding-top:18px;border-top:1px solid #E8D9C9;
+  font-size:8.5px;letter-spacing:.08em;color:#A18272;
+}
+@media(max-width:1120px){
+  #marketing #roiStrategyDetail.m73-canvas{width:min(680px,66%)!important;}
+  #marketing #roiStrategyDetail .m77-detail-grid{grid-template-columns:1fr;gap:14px;}
+  #marketing #roiStrategyDetail .m77-kpi-panel{margin-top:0;}
+  #marketing #roiStrategyDetail .m77-tactic-list{grid-template-columns:1fr;}
+  #marketing #roiStrategyDetail .m77-tactic-list li:nth-last-child(-n+2){border-bottom:1px solid #EDE2D6;}
+  #marketing #roiStrategyDetail .m77-tactic-list li:last-child{border-bottom:0;}
+}
+@media(max-width:900px){
+  #marketing #roiStrategyWrap.m73-is-detail .m53-strategy-stage{height:auto;}
+  #marketing #roiStrategyDetail.m73-canvas{width:100%!important;}
+  #marketing #roiStrategyDetail .m77-strategy-content{padding:22px 24px;}
+  #marketing #roiStrategyDetail .m77-heading{grid-template-columns:58px minmax(0,1fr);gap:14px;}
+  #marketing #roiStrategyDetail .m77-strategy-number{font-size:44px;}
+}
+@media(max-width:600px){
+  #marketing #roiStrategyDetail .m77-strategy-content{padding:18px;}
+  #marketing #roiStrategyDetail .m77-topbar{grid-template-columns:1fr auto;}
+  #marketing #roiStrategyDetail .m77-browse{grid-row:2;grid-column:1 / -1;justify-self:center;margin-top:2px;}
+  #marketing #roiStrategyDetail .m77-heading{grid-template-columns:1fr;gap:8px;margin-top:21px;}
+  #marketing #roiStrategyDetail .m77-strategy-number{font-size:34px;}
+  #marketing #roiStrategyDetail .m77-heading h5 button{font-size:30px;}
+  #marketing #roiStrategyDetail .m77-objective p{font-size:18px;}
+}
+</style>
+
+
+<style id="m78-strategy-detail-no-scroll">
+/* v78 — strategy detail is designed to fit in one view on desktop: no inner scrolling. */
+@media(min-width:901px){
+  #marketing #roiStrategyWrap.m73-is-detail .m53-strategy-stage{height:620px;}
+  #marketing #roiStrategyDetail.m73-canvas{
+    overflow:hidden!important;
+    scrollbar-width:none!important;
+  }
+  #marketing #roiStrategyDetail.m73-canvas::-webkit-scrollbar{display:none!important;}
+  #marketing #roiStrategyDetail .m77-strategy-content{
+    height:100%;min-height:0!important;padding:18px 24px 12px!important;
+  }
+  #marketing #roiStrategyDetail .m77-topbar{
+    padding-bottom:11px!important;gap:9px!important;
+  }
+  #marketing #roiStrategyDetail .m77-topbar .m73-back{font-size:9px!important;}
+  #marketing #roiStrategyDetail .m77-browse{padding:3px 5px!important;gap:6px!important;}
+  #marketing #roiStrategyDetail .m77-browse>button{width:24px!important;height:24px!important;}
+  #marketing #roiStrategyDetail .m77-browse>span{min-width:46px!important;font-size:8px!important;}
+  #marketing #roiStrategyDetail .m77-topbar .m73-close{width:30px!important;height:30px!important;font-size:19px!important;}
+
+  #marketing #roiStrategyDetail .m77-heading{
+    grid-template-columns:60px minmax(0,1fr)!important;gap:14px!important;
+    margin:14px 0 13px!important;align-items:center!important;
+  }
+  #marketing #roiStrategyDetail .m77-strategy-number{
+    font-size:43px!important;line-height:.82!important;
+  }
+  #marketing #roiStrategyDetail .m77-heading .m73-kicker{
+    margin-bottom:5px!important;font-size:7.5px!important;line-height:1.2!important;
+  }
+  #marketing #roiStrategyDetail .m77-heading h5 button{
+    font-size:clamp(27px,2.25vw,34px)!important;line-height:1.02!important;
+  }
+
+  #marketing #roiStrategyDetail .m77-objective{
+    padding:11px 14px 12px 16px!important;border-radius:13px!important;
+  }
+  #marketing #roiStrategyDetail .m77-objective .m73-label,
+  #marketing #roiStrategyDetail .m77-section-head .m73-label{
+    margin-bottom:5px!important;font-size:7.5px!important;line-height:1.2!important;
+  }
+  #marketing #roiStrategyDetail .m77-objective p{
+    font-size:16px!important;line-height:1.34!important;
+  }
+
+  #marketing #roiStrategyDetail .m77-detail-grid{
+    grid-template-columns:minmax(0,1.42fr) minmax(180px,.58fr)!important;
+    gap:17px!important;margin-top:13px!important;align-items:start!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactics,
+  #marketing #roiStrategyDetail .m77-kpi-panel{
+    padding-top:10px!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 14px!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li{
+    padding:7px 0 7px 28px!important;font-size:11px!important;line-height:1.28!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li::before{
+    top:8px!important;font-size:7.5px!important;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-panel{
+    padding:11px 13px 12px!important;border-radius:12px!important;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-panel .m77-section-head .m73-label{margin-bottom:7px!important;}
+  #marketing #roiStrategyDetail .m77-kpi-copy{
+    font-size:11.5px!important;line-height:1.48!important;
+  }
+  #marketing #roiStrategyDetail .m77-source{
+    margin-top:auto!important;padding-top:7px!important;border-top:0!important;
+    font-size:7.5px!important;line-height:1.2!important;
+  }
+}
+
+/* Keep two-column detail composition on normal laptop widths as well. */
+@media(min-width:901px) and (max-width:1120px){
+  #marketing #roiStrategyDetail.m73-canvas{width:min(650px,68%)!important;}
+  #marketing #roiStrategyDetail .m77-detail-grid{
+    grid-template-columns:minmax(0,1.38fr) minmax(170px,.62fr)!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list li:nth-last-child(-n+2){border-bottom:0!important;}
+}
+</style>
+
+
+<style id="m79-strategy-detail-landscape">
+/* v79 — landscape executive detail: objective + KPIs on one row, tactics full-width below. */
+@media(min-width:901px){
+  #marketing #roiStrategyDetail.m73-canvas{width:min(760px,70%)!important;}
+  #marketing #roiStrategyDetail .m77-strategy-content{
+    display:grid!important;
+    grid-template-columns:minmax(0,1.25fr) minmax(210px,.75fr)!important;
+    grid-template-areas:
+      "topbar topbar"
+      "heading heading"
+      "objective kpis"
+      "tactics tactics"
+      "source source";
+    grid-template-rows:auto auto auto 1fr auto;
+    column-gap:18px!important;
+    row-gap:0!important;
+    height:100%!important;
+    padding:18px 24px 12px!important;
+  }
+  #marketing #roiStrategyDetail .m77-topbar{grid-area:topbar;margin:0!important;}
+  #marketing #roiStrategyDetail .m77-heading{grid-area:heading;margin:14px 0 13px!important;}
+  #marketing #roiStrategyDetail .m77-objective{grid-area:objective;margin:0!important;height:100%;display:flex;flex-direction:column;justify-content:center;padding:13px 16px 14px 18px!important;}
+  #marketing #roiStrategyDetail .m77-objective p{font-size:15.5px!important;line-height:1.36!important;}
+  #marketing #roiStrategyDetail .m77-detail-grid{display:contents!important;}
+  #marketing #roiStrategyDetail .m77-kpi-panel{
+    grid-area:kpis;margin:0!important;padding:13px 14px 14px!important;border-top-width:2px!important;
+    min-height:0!important;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,#FFF9F1 0%,#FFFDF9 100%)!important;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-copy{font-size:11.5px!important;line-height:1.45!important;}
+  #marketing #roiStrategyDetail .m77-tactics{
+    grid-area:tactics;margin-top:13px!important;padding-top:10px!important;border-top:1px solid #E5D5C5!important;min-width:0;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list{
+    display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0 14px!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li{
+    padding:7px 0 7px 27px!important;font-size:10.7px!important;line-height:1.3!important;
+    border-bottom:1px solid #EDE2D6!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li:nth-last-child(-n+3){border-bottom:0!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list li::before{top:8px!important;}
+  #marketing #roiStrategyDetail .m77-source{grid-area:source;margin-top:4px!important;padding-top:6px!important;}
+}
+@media(min-width:901px) and (max-width:1120px){
+  #marketing #roiStrategyDetail.m73-canvas{width:min(700px,72%)!important;}
+  #marketing #roiStrategyDetail .m77-strategy-content{grid-template-columns:minmax(0,1.18fr) minmax(190px,.82fr)!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list li:nth-last-child(-n+3){border-bottom:1px solid #EDE2D6!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list li:nth-last-child(-n+2){border-bottom:0!important;}
+}
+</style>
+
+
+
+<style id="m80-strategy-boardroom-sheet">
+/* v80 — Boardroom Sheet: identity / objective on the left, tactics + KPIs on the right. */
+@media(min-width:901px){
+  #marketing #roiStrategyWrap.m73-is-detail .m53-strategy-stage{height:620px!important;}
+  #marketing #roiStrategyDetail.m73-canvas{
+    width:min(800px,73%)!important;
+    overflow:hidden!important;
+    border-color:#D8C5B0!important;
+    border-radius:20px!important;
+    background:#FFFCF7!important;
+    box-shadow:0 30px 72px rgba(65,31,27,.17),0 6px 18px rgba(65,31,27,.07)!important;
+  }
+  #marketing #roiStrategyDetail .m77-strategy-content{
+    position:relative!important;
+    display:grid!important;
+    grid-template-columns:minmax(205px,.31fr) minmax(0,.69fr)!important;
+    grid-template-areas:
+      "topbar topbar"
+      "heading details"
+      "objective details"
+      "source source"!important;
+    grid-template-rows:auto auto 1fr auto!important;
+    column-gap:22px!important;
+    row-gap:0!important;
+    height:100%!important;
+    min-height:0!important;
+    padding:17px 22px 10px!important;
+    background:
+      radial-gradient(circle at 100% 0%,rgba(217,182,114,.10),transparent 28%),
+      linear-gradient(180deg,#FFFDF9 0%,#FBF6EF 100%)!important;
+  }
+
+  /* Slim boardroom toolbar. */
+  #marketing #roiStrategyDetail .m77-topbar{
+    grid-area:topbar!important;
+    margin:0 0 14px!important;
+    padding:0 0 11px!important;
+    border-bottom:1px solid #E6D9CB!important;
+  }
+  #marketing #roiStrategyDetail .m77-topbar .m73-back{
+    font-size:8.5px!important;letter-spacing:.02em!important;color:#826052!important;
+  }
+  #marketing #roiStrategyDetail .m77-browse{padding:3px 5px!important;gap:6px!important;background:#FFF9F2!important;}
+  #marketing #roiStrategyDetail .m77-browse>button{width:24px!important;height:24px!important;}
+  #marketing #roiStrategyDetail .m77-browse>span{min-width:44px!important;font-size:7.8px!important;}
+  #marketing #roiStrategyDetail .m77-topbar .m73-close{width:30px!important;height:30px!important;font-size:19px!important;}
+
+  /* Left identity panel: number, title, objective read as one continuous sheet. */
+  #marketing #roiStrategyDetail .m77-heading{
+    grid-area:heading!important;
+    display:block!important;
+    margin:0!important;
+    padding:22px 20px 18px!important;
+    border:1px solid #E2CEB8!important;
+    border-bottom:0!important;
+    border-radius:16px 16px 0 0!important;
+    background:linear-gradient(155deg,#F6E9D8 0%,#FBF3E9 100%)!important;
+    overflow:hidden!important;
+  }
+  #marketing #roiStrategyDetail .m77-strategy-number{
+    display:block!important;
+    margin-bottom:20px!important;
+    font:600 58px/.8 'Fraunces',Georgia,serif!important;
+    letter-spacing:-.055em!important;
+    color:#B8844B!important;
+  }
+  #marketing #roiStrategyDetail .m77-heading .m73-kicker{
+    margin-bottom:7px!important;
+    font-size:7.2px!important;
+    line-height:1.25!important;
+    letter-spacing:.13em!important;
+    color:#9A6956!important;
+  }
+  #marketing #roiStrategyDetail .m77-heading h5 button{
+    font-size:clamp(24px,2.1vw,31px)!important;
+    line-height:1.05!important;
+    letter-spacing:-.028em!important;
+    color:#562D29!important;
+  }
+  #marketing #roiStrategyDetail .m77-objective{
+    grid-area:objective!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-end!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:18px 20px 21px!important;
+    border:1px solid #E2CEB8!important;
+    border-top:1px solid #E8D8C8!important;
+    border-radius:0 0 16px 16px!important;
+    background:linear-gradient(180deg,#FBF3E9 0%,#F8EDDF 100%)!important;
+  }
+  #marketing #roiStrategyDetail .m77-objective::before{display:none!important;}
+  #marketing #roiStrategyDetail .m77-objective .m73-label{
+    margin-bottom:8px!important;
+    font-size:7.4px!important;
+    color:#8E403C!important;
+  }
+  #marketing #roiStrategyDetail .m77-objective p{
+    font-size:15.5px!important;
+    line-height:1.43!important;
+    color:#65443A!important;
+  }
+
+  /* Right working area: tactics first, KPI strip underneath. */
+  #marketing #roiStrategyDetail .m77-detail-grid{
+    grid-area:details!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    grid-template-rows:minmax(0,1fr) auto!important;
+    gap:13px!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    align-items:stretch!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactics{
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:3px 0 0!important;
+    border-top:0!important;
+    overflow:hidden!important;
+  }
+  #marketing #roiStrategyDetail .m77-section-head{
+    padding-bottom:8px!important;
+    margin-bottom:2px!important;
+    border-bottom:1px solid #E4D5C6!important;
+  }
+  #marketing #roiStrategyDetail .m77-section-head .m73-label{
+    margin:0!important;
+    font-size:7.8px!important;
+    color:#8E403C!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    align-content:start!important;
+    gap:0 18px!important;
+    margin:0!important;
+    padding:4px 0 0!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li{
+    min-width:0!important;
+    padding:8px 0 8px 30px!important;
+    border-bottom:1px solid #EEE3D7!important;
+    font-size:10.8px!important;
+    line-height:1.34!important;
+    color:#5F4B43!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li::before{
+    top:9px!important;
+    font-size:7.2px!important;
+    color:#B17C52!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li:nth-last-child(-n+2){border-bottom:0!important;}
+
+  #marketing #roiStrategyDetail .m77-kpi-panel{
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:13px 16px 14px!important;
+    border:1px solid #DFCFBE!important;
+    border-top:2px solid #B48652!important;
+    border-radius:12px!important;
+    background:linear-gradient(100deg,#FFF8EF 0%,#FFFCF7 100%)!important;
+    box-shadow:none!important;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-panel .m77-section-head{
+    padding:0!important;margin:0 0 6px!important;border:0!important;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-copy{
+    margin:0!important;
+    font-size:11.2px!important;
+    line-height:1.48!important;
+    font-weight:600!important;
+    color:#5F4940!important;
+  }
+
+  #marketing #roiStrategyDetail .m77-source{
+    grid-area:source!important;
+    margin-top:7px!important;
+    padding-top:6px!important;
+    border-top:1px solid #E7D9CB!important;
+    font-size:7.2px!important;
+    line-height:1.2!important;
+  }
+}
+
+/* Slightly narrower laptops keep the same boardroom composition. */
+@media(min-width:901px) and (max-width:1120px){
+  #marketing #roiStrategyDetail.m73-canvas{width:min(750px,74%)!important;}
+  #marketing #roiStrategyDetail .m77-strategy-content{grid-template-columns:minmax(190px,.32fr) minmax(0,.68fr)!important;column-gap:18px!important;}
+  #marketing #roiStrategyDetail .m77-strategy-number{font-size:52px!important;margin-bottom:17px!important;}
+  #marketing #roiStrategyDetail .m77-heading h5 button{font-size:25px!important;}
+  #marketing #roiStrategyDetail .m77-objective p{font-size:14.5px!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list{gap:0 14px!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list li{font-size:10.1px!important;line-height:1.3!important;padding-left:27px!important;}
+  #marketing #roiStrategyDetail .m77-kpi-copy{font-size:10.7px!important;}
+}
+</style>
+
+
+<style id="m81-strategy-boardroom-balance">
+/* v81 — Boardroom Sheet refinement: Tactics own the upper-right; KPIs occupy the lower-right. */
+@media(min-width:901px){
+  #marketing #roiStrategyWrap.m73-is-detail .m53-strategy-stage{height:620px!important;}
+  #marketing #roiStrategyDetail.m73-canvas{width:min(820px,74%)!important;overflow:hidden!important;}
+  #marketing #roiStrategyDetail .m77-strategy-content{
+    grid-template-columns:minmax(215px,.30fr) minmax(0,.70fr)!important;
+    grid-template-areas:
+      "topbar topbar"
+      "heading details"
+      "objective details"
+      "source source"!important;
+    grid-template-rows:auto auto 1fr auto!important;
+    column-gap:22px!important;
+    height:100%!important;
+    min-height:0!important;
+    padding:17px 22px 10px!important;
+  }
+
+  /* Right-hand board is a deliberate 2-storey composition. */
+  #marketing #roiStrategyDetail .m77-detail-grid{
+    grid-area:details!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    grid-template-rows:minmax(0,1.62fr) minmax(118px,.72fr)!important;
+    gap:14px!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    align-self:stretch!important;
+    align-items:stretch!important;
+  }
+
+  /* TACTICS — upper-right, visually dominant. */
+  #marketing #roiStrategyDetail .m77-tactics{
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-start!important;
+    align-self:stretch!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:18px 20px 16px!important;
+    overflow:hidden!important;
+    border:1px solid #E1D1C1!important;
+    border-top:3px solid #9D403D!important;
+    border-radius:14px!important;
+    background:linear-gradient(180deg,#FFFDF9 0%,#FBF6EF 100%)!important;
+    box-shadow:0 9px 22px rgba(83,48,39,.045)!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactics .m77-section-head{
+    flex:0 0 auto!important;
+    margin:0 0 8px!important;
+    padding:0 0 10px!important;
+    border-bottom:1px solid #E7DACE!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactics .m73-label{
+    margin:0!important;
+    font-size:8px!important;
+    letter-spacing:.14em!important;
+    color:#8E403C!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list{
+    flex:1 1 auto!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-auto-rows:min-content!important;
+    align-content:start!important;
+    align-items:start!important;
+    gap:0 20px!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li{
+    min-width:0!important;
+    margin:0!important;
+    padding:10px 0 10px 31px!important;
+    border-bottom:1px solid #EEE3D8!important;
+    font-size:11.2px!important;
+    line-height:1.34!important;
+    color:#5F4C44!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li::before{
+    top:11px!important;
+    font-size:7.3px!important;
+    color:#B4774E!important;
+  }
+  #marketing #roiStrategyDetail .m77-tactic-list li:nth-last-child(-n+2){border-bottom:0!important;}
+
+  /* KPIs — lower-right, compact management outcome block. */
+  #marketing #roiStrategyDetail .m77-kpi-panel{
+    display:grid!important;
+    grid-template-columns:110px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:16px!important;
+    align-self:stretch!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:17px 19px!important;
+    border:1px solid #DCC8B2!important;
+    border-top:3px solid #C18D4E!important;
+    border-radius:14px!important;
+    background:linear-gradient(120deg,#F8ECDD 0%,#FFF9F1 38%,#FFFDF9 100%)!important;
+    box-shadow:0 8px 18px rgba(83,48,39,.035)!important;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-panel .m77-section-head{
+    display:block!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-panel .m73-label{
+    margin:0!important;
+    font-size:8px!important;
+    letter-spacing:.14em!important;
+    color:#8E403C!important;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-panel .m73-label::after{
+    content:"MEASURES";
+    display:block;
+    margin-top:8px;
+    font:600 16px/1.05 'Fraunces',Georgia,serif;
+    letter-spacing:-.015em;
+    text-transform:none;
+    color:#6A3A32;
+  }
+  #marketing #roiStrategyDetail .m77-kpi-copy{
+    margin:0!important;
+    padding-left:16px!important;
+    border-left:1px solid #DDC9B5!important;
+    font-size:11.7px!important;
+    line-height:1.5!important;
+    font-weight:600!important;
+    color:#5F4840!important;
+  }
+}
+@media(min-width:901px) and (max-width:1120px){
+  #marketing #roiStrategyDetail.m73-canvas{width:min(770px,75%)!important;}
+  #marketing #roiStrategyDetail .m77-strategy-content{grid-template-columns:minmax(195px,.31fr) minmax(0,.69fr)!important;column-gap:18px!important;}
+  #marketing #roiStrategyDetail .m77-detail-grid{grid-template-rows:minmax(0,1.55fr) minmax(112px,.72fr)!important;gap:12px!important;}
+  #marketing #roiStrategyDetail .m77-tactics{padding:15px 16px 13px!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list{gap:0 14px!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list li{font-size:10.4px!important;line-height:1.3!important;padding:8px 0 8px 28px!important;}
+  #marketing #roiStrategyDetail .m77-tactic-list li::before{top:9px!important;}
+  #marketing #roiStrategyDetail .m77-kpi-panel{grid-template-columns:94px minmax(0,1fr)!important;gap:12px!important;padding:14px 15px!important;}
+  #marketing #roiStrategyDetail .m77-kpi-panel .m73-label::after{font-size:14px!important;}
+  #marketing #roiStrategyDetail .m77-kpi-copy{font-size:10.8px!important;line-height:1.42!important;padding-left:12px!important;}
+}
+</style>
+
+
+<style id="m82-strategy-boardroom-fixed">
+/* v82 — robust boardroom sheet. Separate left/right wrappers prevent inherited grid rules from collapsing the right side. */
+@media(min-width:901px){
+  #marketing #roiStrategyWrap.m73-is-detail .m53-strategy-stage{height:620px!important;}
+  #marketing #roiStrategyDetail.m73-canvas{
+    width:min(820px,74%)!important;height:calc(100% - 44px)!important;overflow:hidden!important;
+  }
+  #marketing #roiStrategyDetail .m82-strategy-content{
+    display:grid!important;grid-template-columns:1fr!important;grid-template-rows:auto minmax(0,1fr) auto!important;
+    gap:0!important;height:100%!important;min-height:0!important;padding:17px 22px 10px!important;
+  }
+  #marketing #roiStrategyDetail .m82-topbar{grid-row:1!important;margin:0 0 16px!important;padding:0 0 11px!important;}
+  #marketing #roiStrategyDetail .m82-board{
+    grid-row:2!important;display:grid!important;grid-template-columns:minmax(215px,.30fr) minmax(0,.70fr)!important;
+    gap:22px!important;min-height:0!important;height:100%!important;align-items:stretch!important;
+  }
+  #marketing #roiStrategyDetail .m82-identity{
+    min-width:0!important;min-height:0!important;display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;
+    border:1px solid #E2CEB8!important;border-radius:16px!important;overflow:hidden!important;
+    background:linear-gradient(180deg,#F8ECDD 0%,#F8EDDF 100%)!important;
+  }
+  #marketing #roiStrategyDetail .m82-heading{
+    display:block!important;margin:0!important;padding:22px 20px 18px!important;border:0!important;border-radius:0!important;
+    background:linear-gradient(155deg,#F6E9D8 0%,#FBF3E9 100%)!important;
+  }
+  #marketing #roiStrategyDetail .m82-heading .m77-strategy-number{
+    display:block!important;margin:0 0 20px!important;font:600 58px/.8 'Fraunces',Georgia,serif!important;letter-spacing:-.055em!important;color:#B8844B!important;
+  }
+  #marketing #roiStrategyDetail .m82-heading .m73-kicker{margin:0 0 7px!important;font-size:7.2px!important;line-height:1.25!important;letter-spacing:.13em!important;color:#9A6956!important;}
+  #marketing #roiStrategyDetail .m82-heading h5 button{font-size:clamp(24px,2.1vw,31px)!important;line-height:1.05!important;letter-spacing:-.028em!important;color:#562D29!important;}
+  #marketing #roiStrategyDetail .m82-objective{
+    display:flex!important;flex-direction:column!important;justify-content:flex-end!important;min-height:0!important;margin:0!important;
+    padding:20px 20px 22px!important;border:0!important;border-top:1px solid #E8D8C8!important;border-radius:0!important;background:transparent!important;
+  }
+  #marketing #roiStrategyDetail .m82-objective::before{display:none!important;}
+  #marketing #roiStrategyDetail .m82-objective .m73-label{margin:0 0 9px!important;font-size:7.4px!important;color:#8E403C!important;}
+  #marketing #roiStrategyDetail .m82-objective p{margin:0!important;font-size:15.5px!important;line-height:1.43!important;color:#65443A!important;}
+
+  #marketing #roiStrategyDetail .m82-workspace{
+    min-width:0!important;min-height:0!important;height:100%!important;display:grid!important;grid-template-rows:minmax(0,1fr) auto!important;gap:14px!important;align-items:stretch!important;
+  }
+  #marketing #roiStrategyDetail .m82-tactics{
+    min-width:0!important;min-height:0!important;margin:0!important;padding:18px 20px 16px!important;overflow:hidden!important;
+    border:1px solid #E1D1C1!important;border-top:3px solid #9D403D!important;border-radius:14px!important;
+    background:linear-gradient(180deg,#FFFDF9 0%,#FBF6EF 100%)!important;box-shadow:0 9px 22px rgba(83,48,39,.045)!important;
+  }
+  #marketing #roiStrategyDetail .m82-tactics .m77-section-head{margin:0 0 8px!important;padding:0 0 10px!important;border-bottom:1px solid #E7DACE!important;}
+  #marketing #roiStrategyDetail .m82-tactics .m73-label{margin:0!important;font-size:8px!important;letter-spacing:.14em!important;color:#8E403C!important;}
+  #marketing #roiStrategyDetail .m82-tactics .m77-tactic-list{
+    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-content:start!important;gap:0 20px!important;margin:0!important;padding:0!important;
+  }
+  #marketing #roiStrategyDetail .m82-tactics .m77-tactic-list li{
+    min-width:0!important;margin:0!important;padding:10px 0 10px 31px!important;border-bottom:1px solid #EEE3D8!important;font-size:11.2px!important;line-height:1.34!important;color:#5F4C44!important;
+  }
+  #marketing #roiStrategyDetail .m82-tactics .m77-tactic-list li::before{top:11px!important;font-size:7.3px!important;color:#B4774E!important;}
+  #marketing #roiStrategyDetail .m82-tactics .m77-tactic-list li:nth-last-child(-n+2){border-bottom:0!important;}
+
+  #marketing #roiStrategyDetail .m82-kpis{
+    display:grid!important;grid-template-columns:92px minmax(0,1fr)!important;align-items:center!important;gap:15px!important;
+    min-width:0!important;min-height:104px!important;margin:0!important;padding:15px 17px!important;
+    border:1px solid #DCC8B2!important;border-top:3px solid #C18D4E!important;border-radius:14px!important;
+    background:linear-gradient(120deg,#F8ECDD 0%,#FFF9F1 38%,#FFFDF9 100%)!important;box-shadow:0 8px 18px rgba(83,48,39,.035)!important;
+  }
+  #marketing #roiStrategyDetail .m82-kpis .m77-section-head{display:block!important;margin:0!important;padding:0!important;border:0!important;}
+  #marketing #roiStrategyDetail .m82-kpis .m73-label{margin:0!important;font-size:8px!important;letter-spacing:.14em!important;color:#8E403C!important;}
+  #marketing #roiStrategyDetail .m82-kpis .m73-label::after{content:"MEASURES";display:block;margin-top:7px;font:600 15px/1.05 'Fraunces',Georgia,serif;letter-spacing:-.015em;text-transform:none;color:#6A3A32;}
+  #marketing #roiStrategyDetail .m82-kpis .m77-kpi-copy{margin:0!important;padding-left:15px!important;border-left:1px solid #DDC9B5!important;font-size:11.4px!important;line-height:1.45!important;font-weight:600!important;color:#5F4840!important;}
+  #marketing #roiStrategyDetail .m82-source{grid-row:3!important;margin:7px 0 0!important;padding:6px 0 0!important;border-top:1px solid #E7D9CB!important;font-size:7.2px!important;line-height:1.2!important;}
+}
+@media(min-width:901px) and (max-width:1120px){
+  #marketing #roiStrategyDetail.m73-canvas{width:min(780px,76%)!important;}
+  #marketing #roiStrategyDetail .m82-board{grid-template-columns:minmax(195px,.31fr) minmax(0,.69fr)!important;gap:18px!important;}
+  #marketing #roiStrategyDetail .m82-heading .m77-strategy-number{font-size:52px!important;margin-bottom:17px!important;}
+  #marketing #roiStrategyDetail .m82-heading h5 button{font-size:25px!important;}
+  #marketing #roiStrategyDetail .m82-objective p{font-size:14.5px!important;}
+  #marketing #roiStrategyDetail .m82-tactics{padding:15px 16px 13px!important;}
+  #marketing #roiStrategyDetail .m82-tactics .m77-tactic-list{gap:0 14px!important;}
+  #marketing #roiStrategyDetail .m82-tactics .m77-tactic-list li{font-size:10.4px!important;line-height:1.3!important;padding:8px 0 8px 28px!important;}
+  #marketing #roiStrategyDetail .m82-tactics .m77-tactic-list li::before{top:9px!important;}
+  #marketing #roiStrategyDetail .m82-kpis{grid-template-columns:84px minmax(0,1fr)!important;gap:12px!important;padding:13px 14px!important;min-height:96px!important;}
+  #marketing #roiStrategyDetail .m82-kpis .m73-label::after{font-size:13px!important;}
+  #marketing #roiStrategyDetail .m82-kpis .m77-kpi-copy{font-size:10.6px!important;line-height:1.4!important;padding-left:12px!important;}
+}
+</style>
+
+
+<style id="m83-strategy-grid-reset">
+/* v83 — reset legacy named grid areas inherited from v79/v80 inside the new boardroom wrappers. */
+@media(min-width:901px){
+  #marketing #roiStrategyDetail .m82-heading,
+  #marketing #roiStrategyDetail .m82-objective,
+  #marketing #roiStrategyDetail .m82-tactics,
+  #marketing #roiStrategyDetail .m82-kpis{grid-area:auto!important;}
+
+  #marketing #roiStrategyDetail .m82-identity{
+    grid-template-columns:1fr!important;
+    grid-template-rows:auto minmax(0,1fr)!important;
+  }
+  #marketing #roiStrategyDetail .m82-workspace{
+    grid-template-columns:1fr!important;
+    grid-template-rows:minmax(0,1fr) auto!important;
+  }
+  #marketing #roiStrategyDetail .m82-heading{grid-column:1!important;grid-row:1!important;}
+  #marketing #roiStrategyDetail .m82-objective{grid-column:1!important;grid-row:2!important;}
+  #marketing #roiStrategyDetail .m82-tactics{grid-column:1!important;grid-row:1!important;}
+  #marketing #roiStrategyDetail .m82-kpis{grid-column:1!important;grid-row:2!important;}
+}
+</style>
+
+
+
+<style id="m88-roadmap-car">
+#marketing .m88-road-car,#marketing .m88-detail-car{pointer-events:none;}
+#marketing .m51-road-stop.m88-destination .m51-road-sign{fill:#67202a;stroke:#d4ad65;stroke-width:5;}
+#marketing .m88-car-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+#marketing .m67-route>svg .m88-detail-car path{stroke:#57212a;stroke-width:1.2;}
+#marketing .m67-route>svg.m88-mobile-car-lane{display:none;}
+@media(max-width:760px){#marketing .m67-route{padding-bottom:35px;}#marketing .m67-route>svg.m88-mobile-car-lane{display:block;position:absolute;top:auto;left:0;bottom:-8px;width:100%;height:24px;}#marketing .m67-route>svg.m88-mobile-car-lane>path{fill:none;stroke:#d9b57b;stroke-width:1;}}
+
+</style>
 </head>
 <body data-view="fullcomparison">
 
@@ -4730,8 +5699,7 @@ html.m54-strategy-modal-open{overflow:hidden}
       <button class="dashboard-tab active" type="button" role="tab" aria-selected="true" tabindex="0" data-view="fullcomparison">1. E-KYC Provider</button>
       <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="aws">2. AWS Infrastructure Cost</button>
       <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="marketing">3. Marketing</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="total">4. Total Costs Before Marketing</button>
-      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="pricing">5. Pricing Analysis</button>
+      <button class="dashboard-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-view="pricing">4. Pricing Analysis</button>
     </div>
   </div>
   <!-- KPI Overview -->
@@ -5295,14 +6263,14 @@ html.m54-strategy-modal-open{overflow:hidden}
             <label>Select share %<input id="roiMixSelect" type="number" value="50" min="0" max="100" step="any"></label>
             <label>Elite share %<input id="roiMixElite" type="number" value="30" min="0" max="100" step="any"></label>
             <label>Signature share %<input id="roiMixSignature" type="number" value="20" min="0" max="100" step="any"></label>
-            <label class="m23-placeholder">Monthly churn % <em>placeholder</em><input id="roiChurn" type="number" min="1" max="100" step="1" value="8"></label>
+            <label class="m23-placeholder">Monthly churn % <em>placeholder</em><input id="roiChurn" type="number" min="0" max="100" step="any" value="8"></label>
             <label class="m23-placeholder">Contribution margin % <em>placeholder</em><input id="roiMargin" type="number" min="1" max="100" step="5" value="80"></label>
           </div>
         </section>
       </div>
     </details>
 
-<div class="roi-shell m23-shell" id="roiDashboard"><div class="m23-shell-head"><div><span class="m23-kicker">SERASÉ</span><h3>4-Month Marketing Strategy, Acquisition &amp; ROI Plan</h3><p>Purpose: Give management a clear framework to connect marketing investment with measurable user acquisition, subscription revenue and long-term customer value.</p></div></div><div class="roi-tabs m23-tabs" role="tablist" aria-label="Marketing presentation modules"><button class="roi-tab active" type="button" data-roi-tab="funnel" aria-selected="true"><span>01</span> Serasé Marketing Funnel</button><button class="roi-tab" type="button" data-roi-tab="strategies" aria-selected="false"><span>02</span> Seven Core Marketing Strategies</button><button class="roi-tab" type="button" data-roi-tab="roadmap" aria-selected="false"><span>03</span> Four-Month Execution Roadmap</button><button class="roi-tab" type="button" data-roi-tab="budget" aria-selected="false"><span>04</span> RM500K Illustrative Budget Structure</button><button class="roi-tab" type="button" data-roi-tab="performance" aria-selected="false"><span>05</span> Performance / ROI</button></div>
+<div class="roi-shell m23-shell" id="roiDashboard"><div hidden aria-hidden="true" id="m90MarketingOutputs"><span id="roiEcoSubs"></span><span id="roiEcoArpu"></span><span id="roiEcoMrr"></span><span id="roiEcoCac"></span><span id="roiEcoRevenuePayback"></span><span id="roiDecisionScale"></span><span id="roiDecisionOptimise"></span><span id="roiDecisionStop"></span><span id="roiDecisionText"></span><span id="roiSummaryLtv"></span><span id="roiSummaryPayback"></span><span id="roiSummaryRatio"></span><table><tbody id="roiMrrTable"></tbody></table><table><tbody id="roiKolOutput"></tbody></table><span id="roiChanEventNote"></span></div><div class="m23-shell-head"><div><span class="m23-kicker">SERASÉ</span><h3>4-Month Marketing Strategy, Acquisition &amp; ROI Plan</h3><p>Purpose: Give management a clear framework to connect marketing investment with measurable user acquisition, subscription revenue and long-term customer value.</p></div></div><div class="roi-tabs m23-tabs" role="tablist" aria-label="Marketing presentation modules"><button class="roi-tab active" type="button" data-roi-tab="funnel" aria-selected="true"><span>01</span> Serasé Marketing Funnel</button><button class="roi-tab" type="button" data-roi-tab="strategies" aria-selected="false"><span>02</span> Seven Core Marketing Strategies</button><button class="roi-tab" type="button" data-roi-tab="roadmap" aria-selected="false"><span>03</span> Four-Month Execution Roadmap</button><button class="roi-tab" type="button" data-roi-tab="budget" aria-selected="false"><span>04</span> RM500K Illustrative Budget Structure</button><button class="roi-tab" type="button" data-roi-tab="performance" aria-selected="false"><span>05</span> Performance / ROI</button></div>
       <div class="roi-panel m23-panel" data-roi-panel="funnel">
         <div class="m62-funnel-head">
           <div><span class="m23-kicker">2. Serasé Marketing Funnel</span><h4>Serasé Marketing Funnel</h4></div>
@@ -5340,7 +6308,7 @@ html.m54-strategy-modal-open{overflow:hidden}
         <div class="m23-panel-head"><div><span class="m23-kicker">3.</span><h4>Seven Core Marketing Strategies</h4></div></div>
         <div class="m53-strategy-wrap" id="roiStrategyWrap">
           <div class="m53-strategy-stage" id="roiStrategyGlobe" aria-label="Seven strategies in one strategy box"></div>
-          <dialog class="m54-strategy-dialog" id="roiStrategyDetail" aria-labelledby="m54StrategyTitle" aria-describedby="m54StrategySource"></dialog>
+          <dialog class="m54-strategy-dialog m73-canvas" id="roiStrategyDetail" aria-modal="false" aria-labelledby="m54StrategyTitle" aria-describedby="m54StrategySource"></dialog>
         </div>
       </div>
 
@@ -5381,16 +6349,16 @@ html.m54-strategy-modal-open{overflow:hidden}
       </div>
 
 <div class="roi-panel m23-panel m65-performance" data-roi-panel="performance" hidden>
-  <div class="m23-panel-head"><div><span class="m23-kicker">05 · Management outcomes</span><h4>Performance / ROI</h4><p>Paid customers, subscription revenue and the economics of growth.</p></div><span class="m23-outline-badge">Illustrative planning scenario · PDF §§9–10</span></div>
+  <div class="m23-panel-head"><div><span class="m23-kicker">05 · Management outcomes</span><h4>Performance / ROI</h4><p>Acquire customers. Grow recurring revenue. Understand what retention changes.</p></div><span class="m23-outline-badge">Planning scenario · not actual results</span></div>
   <div class="m65-metrics" aria-label="Management performance indicators">
     <div><span>Paid Subscribers</span><strong id="m65-roiEcoSubs" data-m65-source="roiEcoSubs">5,000</strong><small>Illustrative subscribers acquired</small></div>
     <div><span>CAC</span><strong id="m65-roiEcoCac" data-m65-source="roiEcoCac">RM 100.00</strong><small>Marketing envelope ÷ paid subscribers</small></div>
     <div><span>ARPU</span><strong id="m65-roiEcoArpu" data-m65-source="roiEcoArpu">RM 37.90</strong><small>Blended monthly subscription revenue</small></div>
     <div><span>MRR</span><strong id="m65-roiEcoMrr" data-m65-source="roiEcoMrr">RM 189,500</strong><small>Paid subscribers × ARPU</small></div>
-    <div><span>Retention</span><strong>—</strong><small>Awaiting actual cohort / renewal data</small></div>
-    <div><span>LTV / Payback</span><strong id="m65-roiEcoRevenuePayback" data-m65-source="roiEcoRevenuePayback">2.64 mo</strong><small>Simple revenue payback · CAC ÷ ARPU<br>Actual LTV: — · awaiting lifetime data</small></div>
+    <div><span>Retention · assumed</span><strong id="m72Retention">92%</strong><small>Monthly paid retention · <b id="m72ChurnNote">8% churn</b><br>Actual retention: awaiting cohort data</small></div>
+    <div><span>LTV / Payback · estimated</span><strong id="m72Ltv">RM 379.00</strong><small>Contribution LTV · <b id="m72Payback">3.68 mo</b> cohort payback with churn<br>Actual LTV: awaiting lifetime data</small></div>
   </div>
-  <p class="m65-basis">Planning figures are illustrations, not actual performance. Retention and actual LTV require measured customer behaviour.</p>
+  <div class="m72-scenario-strip"><span><i></i> Planning scenario</span><p id="m72ScenarioBasis">RM500K envelope · 5,000 acquired subscribers · 50 / 30 / 20 subscription mix</p><button type="button" id="m72EditModel">Adjust revenue model <span aria-hidden="true">↗</span></button></div><p class="m65-basis">Current MRR is the starting-month snapshot. Retention affects future MRR and estimated lifetime value; measured performance is not yet available.</p>
   <div class="m65-details" aria-label="Performance detail sections">
 <details class="m65-detail"><summary><div><strong>KOL Measurement</strong><small>Creator funnel, tracked outcomes and CAC</small></div><span class="m65-toggle" aria-hidden="true">+</span></summary><div class="m65-detail-body"><section class="m23-input-group">
           <div class="m23-input-head"><span>02</span><strong>KOL scenario</strong></div>
@@ -5434,7 +6402,7 @@ html.m54-strategy-modal-open{overflow:hidden}
               <tr><td>Activation</td><td>Did downloads become usable users?</td><td>Cost / registration · Cost / verified</td></tr>
               <tr><td>Conversion</td><td>Did verified users become subscribers?</td><td>CAC · Paid conversion · Revenue · ROAS</td></tr>
               <tr><td>Retention</td><td>Did paid users stay valuable?</td><td>Retention · Churn · LTV</td></tr>
-            </tbody></table></div></div></details><details class="m65-detail"><summary><div><strong>Revenue Model</strong><small>Subscription prices, subscriber mix and MRR scenarios</small></div><span class="m65-toggle" aria-hidden="true">+</span></summary><div class="m65-detail-body"><div class="m52-price-grid" aria-label="Subscription pricing from PDF section 9"><div><span>Serasé Select</span><strong>RM19.90<small> / month</small></strong></div><div><span>Serasé Elite</span><strong>RM39.90<small> / month</small></strong></div><div><span>Serasé Signature</span><strong>RM79.90<small> / month</small></strong></div></div><p class="m52-field-note">PDF §9 planning mix: 50% Select / 30% Elite / 20% Signature → RM37.90 blended ARPU. The mix controls update this illustration.</p><div class="m23-input-grid two m65-inputs"><label>Paid subscribers acquired<input id="m65-roiPaidSubs" data-m65-source="roiPaidSubs" type="number" min="1" step="100" value="5000"></label><label>Select share %<input id="m65-roiMixSelect" data-m65-source="roiMixSelect" type="number" value="50" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label><label>Elite share %<input id="m65-roiMixElite" data-m65-source="roiMixElite" type="number" value="30" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label><label>Signature share %<input id="m65-roiMixSignature" data-m65-source="roiMixSignature" type="number" value="20" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label></div><div class="m71-mix-bar"><span id="m71MixStatus" role="status" aria-live="polite" data-valid="true">Total 100% · Revenue calculations are up to date.</span><button type="button" id="m71ResetMix">Reset 50 / 30 / 20</button></div><div><h5>MRR by paid subscribers</h5><table class="roi-table"><thead><tr><th>Paid subscribers</th><th class="num">Illustrative MRR</th></tr></thead><tbody id="m65-roiMrrTable" data-m65-source="roiMrrTable"></tbody></table></div><details class="m65-assumed"><summary>Supplemental assumptions · not PDF-approved actuals</summary><div class="m23-input-grid two m65-inputs"><label class="m23-placeholder">Monthly churn % <em>placeholder</em><input id="m65-roiChurn" data-m65-source="roiChurn" type="number" min="1" max="100" step="1" value="8"></label><label class="m23-placeholder">Contribution margin % <em>placeholder</em><input id="m65-roiMargin" data-m65-source="roiMargin" type="number" min="1" max="100" step="5" value="80"></label></div><div class="m23-assumption-kpis">
+            </tbody></table></div></div></details><details class="m65-detail"><summary><div><strong>Revenue Model</strong><small>Adjust spend, subscriber mix and retention; see the revenue impact</small></div><span class="m65-toggle" aria-hidden="true">+</span></summary><div class="m65-detail-body"><div class="m52-price-grid" aria-label="Subscription pricing from PDF section 9"><div><span>Serasé Select</span><strong>RM19.90<small> / month</small></strong></div><div><span>Serasé Elite</span><strong>RM39.90<small> / month</small></strong></div><div><span>Serasé Signature</span><strong>RM79.90<small> / month</small></strong></div></div><p class="m52-field-note">PDF §9 planning mix: 50% Select / 30% Elite / 20% Signature → RM37.90 blended ARPU. The mix controls update this illustration.</p><div class="m23-input-grid two m65-inputs"><label>Marketing envelope (RM)<input id="m72Spend" type="number" min="1" step="1000" value="500000"></label><label>Paid subscribers acquired<input id="m65-roiPaidSubs" data-m65-source="roiPaidSubs" type="number" min="1" step="100" value="5000"></label><label>Select share %<input id="m65-roiMixSelect" data-m65-source="roiMixSelect" type="number" value="50" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label><label>Elite share %<input id="m65-roiMixElite" data-m65-source="roiMixElite" type="number" value="30" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label><label>Signature share %<input id="m65-roiMixSignature" data-m65-source="roiMixSignature" type="number" value="20" min="0" max="100" step="any" aria-describedby="m71MixStatus"></label></div><div class="m71-mix-bar"><span id="m71MixStatus" role="status" aria-live="polite" data-valid="true">Total 100% · Revenue calculations are up to date.</span><button type="button" id="m71ResetMix">Reset 50 / 30 / 20</button></div><section class="m72-retention-model" aria-labelledby="m72RetentionHeading"><div class="m72-section-head"><div><span class="m23-kicker">Retention &amp; recurring revenue</span><h5 id="m72RetentionHeading">What happens after the first payment?</h5></div><span class="m23-outline-badge">Supplemental planning assumptions</span></div><div class="m23-input-grid two m65-inputs"><label>Monthly paid retention %<input id="m72RetentionInput" type="number" min="0" max="100" step="any" value="92" aria-describedby="m72RetentionHelp"></label><label>Monthly churn %<input id="m65-roiChurn" data-m65-source="roiChurn" type="number" min="0" max="100" step="any" value="8" aria-describedby="m72RetentionHelp"></label><label>Contribution margin %<input id="m65-roiMargin" data-m65-source="roiMargin" type="number" min="1" max="100" step="any" value="80"></label></div><p id="m72RetentionHelp">Retention + churn = 100% for the same monthly paying cohort. Changing either updates the other. Defaults of 92% retention / 8% churn and 80% contribution margin are unvalidated assumptions.</p><div class="m72-projection-kpis"><div><span>Month 2 MRR</span><strong id="m72NextMrr">—</strong><small id="m72NextSubs"></small></div><div><span>12-month cohort revenue</span><strong id="m72TotalRevenue">—</strong><small>Subscription revenue before costs</small></div><div><span>Payback with churn</span><strong id="m72CohortPayback">—</strong><small>Expected cumulative contribution vs CAC</small></div></div><div class="m72-chart-head"><h5>MRR from the same acquired cohort</h5><span>Month 1–12 · no new subscribers</span></div><div id="m72Chart" class="m72-chart"></div><p class="m72-chart-note" id="m72ProjectionNote" aria-live="polite"></p><details class="m72-month-table"><summary>View monthly subscriber &amp; revenue projection</summary><div class="m72-table-scroll"><table class="roi-table"><thead><tr><th>Month</th><th class="num">Expected paid</th><th class="num">MRR</th><th class="num">Cumulative revenue</th><th class="num">Cumulative contribution</th></tr></thead><tbody id="m72ProjectionRows"></tbody></table></div></details><p class="m72-formula-note">Month n paid = acquired paid × retention^(n − 1). Month 1 assumes every acquired subscriber pays. Prices and mix stay constant; no new acquisition, reactivation or expansion revenue is included. Contribution = revenue × contribution margin.</p></section><div><h5>MRR by paid subscribers</h5><table class="roi-table"><thead><tr><th>Paid subscribers</th><th class="num">Illustrative MRR</th></tr></thead><tbody id="m65-roiMrrTable" data-m65-source="roiMrrTable"></tbody></table></div><details class="m65-assumed"><summary>Supplemental assumptions · not PDF-approved actuals</summary><p>Contribution LTV = ARPU × contribution margin ÷ churn. Contribution payback = CAC ÷ (ARPU × contribution margin), before churn. Simple revenue payback = CAC ÷ ARPU: <strong id="m65-roiEcoRevenuePayback" data-m65-source="roiEcoRevenuePayback">2.64 mo</strong>. The cohort projection above also accounts for churn when estimating payback.</p><div class="m23-assumption-kpis">
               <div><span>Estimated contribution LTV · assumed</span><strong id="m65-roiSummaryLtv" data-m65-source="roiSummaryLtv">—</strong></div>
               <div><span>Contribution payback · assumed</span><strong id="m65-roiSummaryPayback" data-m65-source="roiSummaryPayback">—</strong></div>
               <div><span>LTV : CAC · assumed</span><strong id="m65-roiSummaryRatio" data-m65-source="roiSummaryRatio">—</strong></div>
@@ -6004,7 +6972,7 @@ document.addEventListener('DOMContentLoaded',function(){
     const spend = state.envelope;
     const subs = Math.max(1,Number(state.paidSubs)||1);
     const cac = spend/subs;
-    const churn = clamp(Number(state.churn)||1,1,100)/100;
+    const churn = clamp(Number(state.churn)||0,0,100)/100;
     const margin = clamp(Number(state.margin)||1,1,100)/100;
     const life = 1/churn;
     const ltv = arpu*margin*life;
@@ -6023,9 +6991,9 @@ document.addEventListener('DOMContentLoaded',function(){
     setText('roiSummarySubs',num(state.paidSubs));
     setText('roiSummaryCac',money2(c.cac));
     setText('roiSummaryMrr',c.mixValid?money0(c.mrr):'—');
-    setText('roiSummaryLtv',c.mixValid?money2(c.ltv):'—');
+    setText('roiSummaryLtv',c.mixValid?(isFinite(c.ltv)?money2(c.ltv):'Unbounded'):'—');
     setText('roiSummaryPayback',isFinite(c.payback)?c.payback.toFixed(2)+' mo':'—');
-    setText('roiSummaryRatio',isFinite(c.ratio)?c.ratio.toFixed(2)+'×':'—');
+    setText('roiSummaryRatio',c.mixValid?(isFinite(c.ratio)?c.ratio.toFixed(2)+'×':'Unbounded'):'—');
   }
 
 
@@ -6035,15 +7003,34 @@ document.addEventListener('DOMContentLoaded',function(){
     return parts.map((part,i)=>`<${tag}>${briefEscape(part.trim())}${i<parts.length-1?`<span class="m67-delimiter">${separator}</span>`:''}</${tag}>`).join(' ');
   }
 
+
+  function m73OpenCanvas(canvas,host,trigger){
+    host._m73ReturnY=window.scrollY;
+    const bounds=host.getBoundingClientRect(),origin=trigger?.getBoundingClientRect();
+    canvas.style.setProperty('--m73-origin',origin?`${origin.left+origin.width/2-bounds.left}px ${Math.max(0,origin.top+origin.height/2-bounds.top)}px`:'50% 50%');
+    host.classList.add('m73-is-detail');canvas.show();
+    canvas.querySelector('.m73-close').focus({preventScroll:true});
+    if(bounds.top<0||bounds.top>innerHeight*.5)host.scrollIntoView({block:'start',behavior:'instant'});
+  }
+  function m73RestoreCanvas(host){
+    if(Number.isFinite(host._m73ReturnY))window.scrollTo({top:host._m73ReturnY,behavior:'instant'});
+    host.classList.add('m73-return');setTimeout(()=>host.classList.remove('m73-return'),220);
+  }
+
   function renderStrategies(){
     const host=document.getElementById('roiStrategyGlobe');
     const detail=document.getElementById('roiStrategyDetail');
     const wrap=document.getElementById('roiStrategyWrap');
     if(!host||!detail||!wrap) return;
     const closeDetails=()=>{
-      if(!state.strategyOpen)return;
-      state.strategyOpen=false;renderStrategies();
-      host.querySelector(`[data-roi-strategy="${state.strategy}"]`)?.focus({preventScroll:true});
+      if(!state.strategyOpen||wrap.classList.contains('m76-closing'))return;
+      const idx=state.strategy;
+      wrap.classList.add('m76-closing');
+      window.setTimeout(()=>{
+        wrap.classList.remove('m76-closing');
+        state.strategyOpen=false;renderStrategies();
+        host.querySelector(`[data-roi-strategy="${idx}"]`)?.focus({preventScroll:true});
+      },240);
     };
     // Keep the same seven buttons mounted so opening animates once and selection stays steady.
     if(!host.querySelector('[data-roi-box]')){
@@ -6074,7 +7061,6 @@ document.addEventListener('DOMContentLoaded',function(){
         </button>
         <div class="m53-strategy-items" id="roiStrategyItems" inert aria-hidden="true">${strategies.map((s,i)=>{const p=positions[i];return `<button type="button" class="m53-strategy-item" data-roi-strategy="${i}" style="--card-x:${p.x}%;--card-y:${p.y}%;--card-tilt:${p.t}deg;--card-delay:${i*.055}s" disabled aria-pressed="false" aria-expanded="false" aria-controls="roiStrategyDetail" aria-label="${String(i+1).padStart(2,'0')} ${s.title}"><span class="m53-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24">${icons[i]}</svg></span><span class="m53-card-name"><small>${String(i+1).padStart(2,'0')}</small><strong>${s.title}</strong></span></button>`;}).join('')}</div><span class="m53-sr-only" data-roi-box-status role="status"></span>`;
       const openBox=()=>{if(state.strategiesExpanded)return;state.strategiesExpanded=true;renderStrategies();};
-      host.querySelector('[data-roi-box]').addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'&&window.matchMedia('(hover:hover) and (pointer:fine)').matches)openBox();});
       host.querySelector('[data-roi-box]').addEventListener('click',e=>{e.stopPropagation();openBox();if(e.detail===0)host.querySelector('[data-roi-strategy="0"]')?.focus({preventScroll:true});});
       host.querySelector('[data-roi-pack]').addEventListener('click',e=>{e.stopPropagation();state.strategiesExpanded=false;state.strategyOpen=false;renderStrategies();host.querySelector('[data-roi-box]')?.focus({preventScroll:true});});
       host.querySelectorAll('[data-roi-strategy]').forEach(btn=>btn.addEventListener('click',e=>{
@@ -6087,14 +7073,6 @@ document.addEventListener('DOMContentLoaded',function(){
       const outsideDialog=e=>{const r=detail.getBoundingClientRect();return e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom;};
       detail.addEventListener('pointerdown',e=>{pressedBackdrop=e.target===detail&&outsideDialog(e);});
       detail.addEventListener('click',e=>{if(e.target===detail&&pressedBackdrop&&outsideDialog(e)){e.stopPropagation();closeDetails();}pressedBackdrop=false;});
-      detail.addEventListener('keydown',e=>{
-        if(e.key!=='Tab'||!detail.open)return;
-        const controls=[...detail.querySelectorAll('button,a[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(el=>!el.disabled&&el.getClientRects().length);
-        const first=controls[0],last=controls[controls.length-1],active=document.activeElement;
-        if(!first){e.preventDefault();return;}
-        if(e.shiftKey&&(active===first||!controls.includes(active))){e.preventDefault();last.focus();}
-        else if(!e.shiftKey&&(active===last||!controls.includes(active))){e.preventDefault();first.focus();}
-      });
       detail.addEventListener('cancel',e=>{e.preventDefault();closeDetails();});
       detail.addEventListener('close',()=>{if(!detail.open&&state.strategyOpen)closeDetails();});
     }
@@ -6109,30 +7087,30 @@ document.addEventListener('DOMContentLoaded',function(){
     host.querySelectorAll('[data-roi-strategy]').forEach(btn=>{const selected=Number(btn.dataset.roiStrategy)===state.strategy&&state.strategyOpen;btn.disabled=!state.strategiesExpanded;btn.setAttribute('aria-pressed',String(selected));btn.setAttribute('aria-expanded',String(selected));});
     const s=strategies[state.strategy];
     if(state.strategyOpen){
-      detail.innerHTML=`<div class="m67-brief m67-strategy-brief">
-        <aside class="m67-cover"><span class="m67-brand">SERASÉ<span>Marketing strategy</span></span>
-          <div class="m67-cover-main"><span class="m67-eyebrow">Strategy ${String(state.strategy+1).padStart(2,'0')} / 07</span><span class="m67-cover-number" aria-hidden="true">${String(state.strategy+1).padStart(2,'0')}</span><span class="m67-cover-icon" aria-hidden="true">${host.querySelector(`[data-roi-strategy="${state.strategy}"] svg`).outerHTML}</span>
-          <h5 id="m54StrategyTitle"><button type="button" class="m67-title" data-roi-detail-title aria-label="Close ${s.title} strategy details">${briefEscape(s.title)}</button></h5></div>
-          <span class="m67-cover-foot" id="m54StrategySource">Seven Core Marketing Strategies · PDF §3</span>
-        </aside>
-        <div class="m67-main"><button type="button" class="m67-close m54-dialog-close" aria-label="Close strategy details">×</button>
-          <section class="m67-objective"><span class="m67-section-label" data-strategy-label>01 / Objective</span><p data-strategy-content="objective">${briefEscape(s.objective)}</p></section>
-          <section class="m67-tactics"><span class="m67-section-label" data-strategy-label>02 / Tactics</span><ol class="m67-list" data-strategy-content="tactics">${briefItems(s.tactics,';','li')}</ol></section>
-          <section class="m67-strategy-kpis"><span class="m67-section-label" data-strategy-label>03 / KPIs</span><div class="m67-chips" data-strategy-content="kpis">${briefItems(s.kpis,',','span')}</div></section>
-          <nav class="m67-footer" aria-label="Browse strategy details"><button type="button" data-m67-strategy-step="-1" ${state.strategy===0?'disabled':''}><span aria-hidden="true">←</span> Previous strategy</button><span>${String(state.strategy+1).padStart(2,'0')} <i>/</i> 07</span><button type="button" data-m67-strategy-step="1" ${state.strategy===6?'disabled':''}>Next strategy <span aria-hidden="true">→</span></button></nav>
-        </div></div>`;
+      detail.innerHTML=`<article class="m73-content m73-strategy-content m77-strategy-content m82-strategy-content">
+        <div class="m73-topbar m77-topbar m82-topbar"><button type="button" class="m73-back" data-m73-back><span aria-hidden="true">←</span> All strategies</button><nav class="m73-browse m77-browse" aria-label="Browse strategy details"><button type="button" data-m67-strategy-step="-1" ${state.strategy===0?'disabled':''} aria-label="Previous strategy">←</button><span>${String(state.strategy+1).padStart(2,'0')} / 07</span><button type="button" data-m67-strategy-step="1" ${state.strategy===6?'disabled':''} aria-label="Next strategy">→</button></nav><button type="button" class="m73-close m54-dialog-close" aria-label="Close strategy details">×</button></div>
+        <div class="m82-board">
+          <section class="m82-identity">
+            <header class="m77-heading m82-heading"><div class="m77-strategy-number" aria-hidden="true">${String(state.strategy+1).padStart(2,'0')}</div><div class="m77-heading-copy"><span class="m73-kicker">Seven Core Marketing Strategies</span><h5 id="m54StrategyTitle"><button type="button" data-roi-detail-title aria-label="Close ${briefEscape(s.title)} strategy details">${briefEscape(s.title)}</button></h5></div></header>
+            <section class="m77-objective m82-objective"><span class="m73-label">Objective</span><p data-strategy-content="objective">${briefEscape(s.objective)}</p></section>
+          </section>
+          <section class="m82-workspace">
+            <section class="m77-tactics m82-tactics"><div class="m77-section-head"><span class="m73-label">Tactics</span></div><ol class="m77-tactic-list" data-strategy-content="tactics">${briefItems(s.tactics,';','li')}</ol></section>
+            <aside class="m77-kpi-panel m82-kpis"><div class="m77-section-head"><span class="m73-label">KPIs</span></div><p class="m77-kpi-copy" data-strategy-content="kpis">${briefEscape(s.kpis)}</p></aside>
+          </section>
+        </div>
+        <footer class="m73-source m77-source m82-source" id="m54StrategySource">Seven Core Marketing Strategies · PDF §3</footer>
+      </article>`;
+      detail.querySelector('[data-m73-back]').addEventListener('click',e=>{e.stopPropagation();closeDetails();});
       detail.querySelectorAll('[data-m67-strategy-step]').forEach(btn=>btn.addEventListener('click',()=>{
         const step=Number(btn.dataset.m67StrategyStep);state.strategy=clamp(state.strategy+step,0,6);renderStrategies();
         const next=detail.querySelector(`[data-m67-strategy-step="${step}"]`);(next&&!next.disabled?next:detail.querySelector('[data-roi-detail-title]')).focus({preventScroll:true});
       }));
       detail.querySelector('.m54-dialog-close').addEventListener('click',e=>{e.stopPropagation();closeDetails();});
       detail.querySelector('[data-roi-detail-title]').addEventListener('click',e=>{e.stopPropagation();closeDetails();});
-      if(!detail.open){detail.showModal();detail.scrollTop=0;}
-      document.documentElement.classList.add('m54-strategy-modal-open');
+      if(!detail.open)m73OpenCanvas(detail,wrap,host.querySelector(`[data-roi-strategy="${state.strategy}"]`));
     }else{
-      if(detail.open)detail.close();
-      document.documentElement.classList.remove('m54-strategy-modal-open');
-      detail.innerHTML='';
+      const wasOpen=detail.open;if(wasOpen)detail.close();wrap.classList.remove('m73-is-detail');detail.innerHTML='';if(wasOpen)m73RestoreCanvas(wrap);
     }
   }
 
@@ -6144,11 +7122,50 @@ document.addEventListener('DOMContentLoaded',function(){
     return '#'+[r,g,bl].map(v=>v.toString(16).padStart(2,'0')).join('');
   }
 
+  const m88CarBody = `<ellipse cx="0" cy="2" rx="17" ry="24" fill="#3b2524" opacity=".18"/><g stroke="#57212a" stroke-width="1.2"><rect x="-14" y="-15" width="5" height="9" rx="2" fill="#372d2c"/><rect x="9" y="-15" width="5" height="9" rx="2" fill="#372d2c"/><rect x="-14" y="9" width="5" height="9" rx="2" fill="#372d2c"/><rect x="9" y="9" width="5" height="9" rx="2" fill="#372d2c"/><path d="M-11-18Q-10-24 0-24Q10-24 11-18L12 17Q12 23 0 23Q-12 23-12 17Z" fill="#8b303b"/><path d="M-8-10L-6-15H6L8-10V-5H-8Z" fill="#f2d29c"/><rect x="-7" y="-3" width="14" height="14" rx="4" fill="#fff5df"/><path d="M-7 13H7L8 17H-8Z" fill="#e0b77b"/><path d="M-8-20H-4M4-20H8" stroke="#ffecc0" stroke-width="3"/><path d="M-7 21H-4M4 21H7" stroke="#d6956b" stroke-width="2"/></g>`;
+  const m88Journey={length:null,frame:0,routeFrame:0,month:0,routeMonth:0,moving:false};
+  const m88Reduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function m88Svg(tag,attrs){const el=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,v));return el;}
+  function m88PaintCar(car){car.querySelectorAll('path').forEach(p=>{p.style.fill=p.getAttribute('fill')||'none';p.style.stroke=p.getAttribute('stroke')||(p.getAttribute('fill')==='#8b303b'?'#f2d29c':'#57212a');p.style.strokeWidth=p.getAttribute('stroke-width')||'1.2';});}
+  function m88Nearest(path,x,y){const total=path.getTotalLength();let best=0,distance=Infinity;for(let n=0;n<=700;n++){const at=n/700*total,p=path.getPointAtLength(at),d=(p.x-x)**2+(p.y-y)**2;if(d<distance){distance=d;best=at;}}return best;}
+  function m88MainTrack(){
+    const svg=document.querySelector('#roiRoad .m51-road-map');if(!svg)return null;
+    let path=svg.querySelector('.m88-drive-path');
+    if(!path){const points=[...svg.querySelectorAll(':scope > path[stroke="#FFF9ED"]')].flatMap(p=>p.getAttribute('d').match(/-?\d+(?:\.\d+)?/g)||[]);path=m88Svg('path',{class:'m88-drive-path',d:points.length?'M'+points.slice(0,2).join(' ')+' L'+points.slice(2).join(' '):'',fill:'none',stroke:'none','aria-hidden':'true'});svg.append(path);const car=m88Svg('g',{class:'m88-road-car','aria-hidden':'true','pointer-events':'none'});car.innerHTML=m88CarBody;svg.append(car);const status=document.createElement('span');status.className='m88-car-status';status.setAttribute('role','status');svg.parentNode.append(status);}
+    return {svg,path,car:svg.querySelector('.m88-road-car')};
+  }
+  function m88MainTarget(track,i){const stop=track.svg.querySelector(`[data-roi-month="${i}"]>ellipse`);return m88Nearest(track.path,Number(stop.getAttribute('cx')),Number(stop.getAttribute('cy')));}
+  function m88PlaceMain(track,length,direction=1){
+    const p=track.path.getPointAtLength(length),a=track.path.getPointAtLength(Math.max(0,length-3)),b=track.path.getPointAtLength(Math.min(track.path.getTotalLength(),length+3));const angle=Math.atan2((b.y-a.y)*direction,(b.x-a.x)*direction)*180/Math.PI+90,scale=.33+Math.max(0,Math.min(1,p.y/700))*.78;
+    track.car.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${angle}) scale(${scale})`);track.car.dataset.progress=String(length);
+  }
+  function m88CancelDrive(){cancelAnimationFrame(m88Journey.frame);m88Journey.moving=false;const host=document.getElementById('roiRoad');host?.classList.remove('m88-driving');host?.querySelectorAll('.m88-destination').forEach(el=>el.classList.remove('m88-destination'));}
+  function m88DriveToMonth(i,onArrival){
+    const track=m88MainTrack();if(!track){onArrival?.();return;}
+    m88CancelDrive();const start=m88Journey.length??m88MainTarget(track,m88Journey.month),end=m88MainTarget(track,i),distance=Math.abs(end-start),direction=end>=start?1:-1,duration=m88Reduced()?0:Math.min(1350,450+distance*.7),host=document.getElementById('roiRoad');m88Journey.month=i;
+    host.querySelector('.m88-car-status').textContent=`Travelling to Month ${i}`;host.querySelectorAll(`[data-roi-month="${i}"]`).forEach(el=>el.classList.add('m88-destination'));host.classList.add('m88-driving');m88Journey.moving=true;
+    const finish=()=>{m88Journey.length=end;m88PlaceMain(track,end,direction);m88CancelDrive();host.querySelector('.m88-car-status').textContent=`At Month ${i}`;onArrival?.();};
+    if(!duration||distance<2){finish();return;}
+    const began=performance.now();const tick=now=>{const t=Math.min(1,(now-began)/duration),ease=t<.5?2*t*t:1-((-2*t+2)**2)/2;m88Journey.length=start+(end-start)*ease;m88PlaceMain(track,m88Journey.length,direction);if(t<1)m88Journey.frame=requestAnimationFrame(tick);else finish();};m88Journey.frame=requestAnimationFrame(tick);
+  }
+  function m88RouteCar(i){
+    const nav=document.querySelector('#roiRoadmapPopover .m67-route');if(!nav)return;
+    cancelAnimationFrame(m88Journey.routeFrame);const route=nav.querySelector('svg'),path=route.querySelector('path'),car=m88Svg('g',{class:'m88-detail-car','aria-hidden':'true'});car.innerHTML=m88CarBody;m88PaintCar(car);route.append(car);
+    const lane=m88Svg('svg',{class:'m88-mobile-car-lane',viewBox:'0 0 500 24','aria-hidden':'true'});lane.innerHTML='<path d="M50 12H450" fill="none" stroke="#d9b57b" stroke-opacity=".3" stroke-dasharray="3 6"/>';const small=m88Svg('g');small.innerHTML=m88CarBody;m88PaintCar(small);lane.append(small);nav.append(lane);
+    const previous=m88Journey.routeMonth;const xs=[29,43,26,42,29],target=n=>Math.max(0,m88Nearest(path,xs[n],31+n*72)+(n===0?23:-23));const start=target(previous),end=target(i),mobileFrom=50+previous*100,mobileTo=50+i*100;m88Journey.routeMonth=i;
+    const place=t=>{const at=start+(end-start)*t,p=path.getPointAtLength(at),a=path.getPointAtLength(Math.max(0,at-2)),b=path.getPointAtLength(Math.min(path.getTotalLength(),at+2)),angle=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI+(i<previous?90:-90);car.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${angle}) scale(.5)`);small.setAttribute('transform',`translate(${mobileFrom+(mobileTo-mobileFrom)*t} 12) rotate(${i<previous?-90:90}) scale(.85)`);};
+    const began=performance.now(),duration=m88Reduced()||previous===i?0:650;const tick=now=>{const t=duration?Math.min(1,(now-began)/duration):1;place(t*t*(3-2*t));if(t<1)m88Journey.routeFrame=requestAnimationFrame(tick);};tick(began);
+  }
+  function m88SyncRoadCars(){
+    const track=m88MainTrack();if(track&&!m88Journey.moving){if(m88Journey.length===null)m88Journey.length=m88MainTarget(track,m88Journey.month);m88PlaceMain(track,m88Journey.length);track.svg.parentNode.querySelector('.m88-car-status').textContent=`At Month ${m88Journey.month}`;}
+    if(state.month!==null){m88RouteCar(state.month);if(m88Journey.month!==state.month)m88DriveToMonth(state.month);}
+  }
+
   function closeRoadmapDetails(){
     if(state.month===null)return;
     const i=state.month,host=document.getElementById('roiRoad');
     state.month=null;renderRoadmap();
-    (host?._roadmapTrigger||host?.querySelector(`[data-roi-month="${i}"]`))?.focus({preventScroll:true});
+    host?.querySelector(`[data-roi-month="${i}"]`)?.focus({preventScroll:true});
   }
 
   function renderRoadmap(){
@@ -6180,11 +7197,10 @@ document.addEventListener('DOMContentLoaded',function(){
       </g>`}).join('')}</svg>
       <nav class="m51-road-mobile-nav" aria-label="Select roadmap month">${roadmap.map((r,i)=>`<button type="button" data-roi-month="${i}" aria-pressed="${i===state.month}" aria-expanded="${i===state.month}" aria-controls="roiRoadmapPopover" class="${i===state.month?'active':''}"><span>${r.month}</span><strong>${r.phase}</strong></button>`).join('')}</nav>
       
-      </div><dialog class="m54-strategy-dialog m55-road-dialog" id="roiRoadmapPopover" aria-labelledby="m55MonthTitle" aria-describedby="m55MonthSource"></dialog>`;
+      </div><dialog class="m54-strategy-dialog m55-road-dialog" id="roiRoadmapPopover" aria-modal="true" aria-labelledby="m55MonthTitle" aria-describedby="m55MonthSource"></dialog>`;
       function choose(el){
         const i=Number(el.dataset.roiMonth);host._roadmapTrigger=el;
-        state.month=state.month===i?null:i;renderRoadmap();
-        if(state.month===null)el.focus({preventScroll:true});
+        m88DriveToMonth(i,()=>{state.month=i;renderRoadmap();});
       }
       host.querySelectorAll('[data-roi-month]').forEach(el=>{
         el.addEventListener('click',()=>choose(el));
@@ -6196,18 +7212,6 @@ document.addEventListener('DOMContentLoaded',function(){
       dialog.addEventListener('click',e=>{if(e.target===dialog&&pressedBackdrop&&outside(e)){e.stopPropagation();closeRoadmapDetails();}pressedBackdrop=false;});
       dialog.addEventListener('cancel',e=>{e.preventDefault();closeRoadmapDetails();});
       dialog.addEventListener('close',()=>{if(!dialog.open&&state.month!==null)closeRoadmapDetails();});
-      dialog.addEventListener('keydown',e=>{
-        if(e.key!=='Tab'||!dialog.open)return;
-        const controls=[...dialog.querySelectorAll('button,a[href],input,select,textarea,summary,[tabindex]:not([tabindex="-1"])')].filter(el=>{
-          if(el.disabled||!el.getClientRects().length)return false;
-          for(let p=el.parentElement;p&&p!==dialog;p=p.parentElement){if(p.tagName==='DETAILS'&&!p.open&&!p.querySelector(':scope > summary')?.contains(el))return false;}
-          return true;
-        });
-        const first=controls[0],last=controls[controls.length-1],active=document.activeElement;
-        if(!first){e.preventDefault();return;}
-        if(e.shiftKey&&(active===first||!controls.includes(active))){e.preventDefault();last.focus();}
-        else if(!e.shiftKey&&(active===last||!controls.includes(active))){e.preventDefault();first.focus();}
-      });
     }
     host.querySelectorAll('[data-roi-month]').forEach(el=>{const active=Number(el.dataset.roiMonth)===state.month;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));el.setAttribute('aria-expanded',String(active));});
     const dialog=host.querySelector('#roiRoadmapPopover');
@@ -6218,7 +7222,7 @@ document.addEventListener('DOMContentLoaded',function(){
           <nav class="m67-route" aria-label="Browse roadmap month details"><svg viewBox="0 0 80 360" preserveAspectRatio="none" aria-hidden="true"><path d="M29 31C-3 66 62 68 43 103S4 137 26 175S62 209 42 247S3 283 29 319"/></svg><ol>${roadmap.map((r,i)=>`<li style="--route-x:${[29,43,26,42,29][i]}px"><button type="button" data-m67-month="${i}" aria-current="${i===state.month?'step':'false'}"><span class="m67-route-dot" aria-hidden="true">${i}</span><span class="m67-route-text"><small>${r.month}</small><strong>${briefEscape(r.phase)}</strong></span></button></li>`).join('')}</ol></nav>
           <span class="m67-cover-foot" id="m55MonthSource">Four-Month Execution Roadmap · PDF §4</span>
         </aside>
-        <div class="m67-main"><button type="button" class="m67-close m54-dialog-close" aria-label="Close roadmap details">×</button><header class="m67-month-head"><span class="m67-eyebrow">${detail.month}</span><h5 id="m55MonthTitle"><button type="button" class="m67-title" data-roi-month-title aria-label="Close ${detail.month} details">${briefEscape(detail.phase)}</button></h5></header>
+        <div class="m67-main"><button type="button" class="m67-close m54-dialog-close" autofocus aria-label="Close roadmap details">×</button><header class="m67-month-head"><span class="m67-eyebrow">${detail.month}</span><h5 id="m55MonthTitle"><button type="button" class="m67-title" data-roi-month-title aria-label="Close ${detail.month} details">${briefEscape(detail.phase)}</button></h5></header>
           <section class="m67-objective m67-month-objective"><span class="m67-section-label">Primary Objective</span><p data-month-content="goal">${briefEscape(detail.goal)}</p></section>
           <section class="m67-tactics"><span class="m67-section-label">Key Activities</span><ol class="m67-list" data-month-content="activities">${briefItems(detail.activities,';','li')}</ol></section>
           <div class="m67-outcomes"><section class="m67-primary-kpis"><span class="m67-section-label">Primary KPIs</span><p data-month-content="kpi">${briefEscape(detail.kpi)}</p></section><section class="m67-revenue"><span class="m67-section-label">Revenue KPI</span><p data-month-content="revenue">${briefEscape(detail.revenue)}</p></section></div>
@@ -6235,6 +7239,7 @@ document.addEventListener('DOMContentLoaded',function(){
       if(dialog.open)dialog.close();dialog.innerHTML='';
       if(!document.querySelector('dialog[open]'))document.documentElement.classList.remove('m54-strategy-modal-open');
     }
+    m88SyncRoadCars();
     document.dispatchEvent(new CustomEvent('serase:roadmap-change'));
   }
 
@@ -6347,7 +7352,7 @@ document.addEventListener('DOMContentLoaded',function(){
     ['roiDecisionScale','roiDecisionOptimise','roiDecisionStop'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
     const out=document.getElementById('roiDecisionText');
     if(out&&!c.mixValid){out.textContent='Complete a 100% subscription mix in Revenue Model to calculate LTV and payback. CAC is still based on spend and paid subscribers.';return;}
-    if(out) out.innerHTML=`Current assumption-based scenario: <b>LTV : CAC ${c.ratio.toFixed(2)}×</b>. This ratio uses placeholder churn and contribution margin. <strong>Management threshold: TBC.</strong> Use actual channel CAC, paid conversion and retention before assigning Scale / Optimise / Stop.`;
+    if(out) out.innerHTML=`Current assumption-based scenario: <b>LTV : CAC ${isFinite(c.ratio)?c.ratio.toFixed(2)+'×':'unbounded at zero churn'}</b>. This ratio uses placeholder churn and contribution margin. <strong>Management threshold: TBC.</strong> Use actual channel CAC, paid conversion and retention before assigning Scale / Optimise / Stop.`;
   }
 
   function renderHub(){
@@ -6364,6 +7369,46 @@ document.addEventListener('DOMContentLoaded',function(){
   const pdfBudget={'Event Launch':150000,'Paid Digital Ads':150000,'KOL / Influencers':60000,'Content Production':50000,'SEO + Website':25000,'CRM / Email':10000,'Social Media':25000,'Analytics / Tracking / Testing':20000};
 
 
+
+  function renderRetentionProjection(c){
+    const churn=clamp(Number(state.churn)||0,0,100)/100, retention=1-churn, margin=clamp(Number(state.margin)||1,1,100)/100;
+    const text=(id,v)=>document.getElementById(id).textContent=v;
+    const fmtPct=v=>Number((v*100).toFixed(6))+'%';
+    document.getElementById('roiChurn').value=Number((churn*100).toFixed(6));
+    document.getElementById('m65-roiChurn').value=Number((churn*100).toFixed(6));
+    document.getElementById('m72RetentionInput').value=Number((retention*100).toFixed(6));
+    document.getElementById('m72Spend').value=state.envelope;
+    text('m72Retention',fmtPct(retention));text('m72ChurnNote',fmtPct(churn)+' churn');
+    text('m72Ltv',c.mixValid?(isFinite(c.ltv)?money2(c.ltv):'Unbounded'):'—');
+    
+    text('m72ScenarioBasis',`${money0(state.envelope)} envelope · ${num(state.paidSubs)} acquired subscribers · ${state.mixSelect} / ${state.mixElite} / ${state.mixSignature} mix`);
+    const rows=[];let revenue=0;
+    for(let i=0;i<12;i++){const paid=state.paidSubs*Math.pow(retention,i),mrr=paid*c.arpu;revenue+=mrr;rows.push({month:i+1,paid,mrr,revenue,contribution:revenue*margin});}
+    let payback=Infinity;
+    if(c.mixValid){const target=c.cac/(c.arpu*margin);
+      if(retention===1)payback=target;
+      else if(retention===0)payback=target<=1?target:Infinity;
+      else if(target*churn<1){const months=Math.max(1,Math.ceil(Math.log1p(-target*churn)/Math.log(retention)-1e-10));const completed=months-1,earned=-Math.expm1(completed*Math.log(retention))/churn;payback=completed+(target-earned)/Math.pow(retention,completed);}
+    }
+    text('m72NextMrr',c.mixValid?money0(rows[1].mrr):'—');
+    text('m72NextSubs',num(Math.round(rows[1].paid))+' expected paid subscribers');
+    text('m72TotalRevenue',c.mixValid?money0(revenue):'—');
+    text('m72CohortPayback',c.mixValid?(isFinite(payback)?payback.toFixed(2)+' mo':'Not reached'):'—');text('m72Payback',c.mixValid?(isFinite(payback)?payback.toFixed(2)+' mo':'not reached'):'—');
+    text('m72ProjectionNote',c.mixValid?`At ${fmtPct(retention)} monthly paid retention, Month 12 has approximately ${num(Math.round(rows[11].paid))} paying subscribers and ${money0(rows[11].mrr)} MRR. `+(isFinite(payback)?'Payback uses expected cohort contribution, with proportional timing within the recovery month.':'Expected lifetime contribution does not exceed CAC; this cohort does not recover acquisition cost under these assumptions.'):'Enter a subscription mix totalling 100% to calculate revenue and payback.');
+    document.getElementById('m72ProjectionRows').innerHTML=rows.map(r=>`<tr><td>Month ${r.month}</td><td class="num">${num(Math.round(r.paid))}</td><td class="num">${c.mixValid?money0(r.mrr):'—'}</td><td class="num">${c.mixValid?money0(r.revenue):'—'}</td><td class="num">${c.mixValid?money0(r.contribution):'—'}</td></tr>`).join('');
+    const chart=document.getElementById('m72Chart');
+    if(!c.mixValid){chart.innerHTML='<p>Revenue projection awaits a 100% subscription mix.</p>';return;}
+    const compact=matchMedia('(max-width:720px)').matches,w=compact?420:800,left=compact?55:68,right=compact?400:760,font=compact?16:11;const max=Math.max(1,c.mrr),x=i=>left+i*(right-left)/11,y=v=>170-v/max*132;
+    const pts=rows.map((r,i)=>`${x(i).toFixed(1)},${y(r.mrr).toFixed(1)}`).join(' ');
+    const lines=[0,.5,1].map(t=>`<line x1="${left}" y1="${y(max*t)}" x2="${right}" y2="${y(max*t)}" stroke="#e5d7cd"/><text x="${left-10}" y="${y(max*t)+4}" text-anchor="end" fill="#856f65" font-size="${font}">${Number((max*t/1000).toPrecision(3))}k</text>`).join('');
+    const labels=[0,2,5,8,11].map(i=>`<text x="${x(i)}" y="194" text-anchor="middle" fill="#856f65" font-size="${font}">M${i+1}</text>`).join('');
+    chart.innerHTML=`<svg viewBox="0 0 ${w} 210" role="img" aria-label="Projected monthly recurring revenue changes from ${money0(rows[0].mrr)} in Month 1 to ${money0(rows[11].mrr)} in Month 12 at ${fmtPct(retention)} monthly retention. Full figures are in the monthly projection table."><text x="16" y="20" fill="#856f65" font-size="${font}">RM</text>${lines}<polygon points="${left},170 ${pts} ${x(11)},170" fill="#89232d" fill-opacity=".06"/><polyline points="${pts}" fill="none" stroke="#89232d" stroke-width="3" stroke-linejoin="round"/>${rows.map((r,i)=>`<circle cx="${x(i)}" cy="${y(r.mrr)}" r="3.5" fill="#b88a4c"><title>Month ${r.month}: ${money0(r.mrr)} MRR, ${num(Math.round(r.paid))} expected paid</title></circle>`).join('')}${labels}</svg>`;
+  }
+  document.getElementById('m72RetentionInput').addEventListener('change',e=>{const v=clamp(Number(e.target.value)||0,0,100);state.churn=Number((100-v).toFixed(8));renderAll();});
+  document.getElementById('m72Spend').addEventListener('change',e=>{state.envelope=Math.max(1,Number(e.target.value)||1);renderAll();});
+  document.getElementById('m72EditModel').addEventListener('click',()=>{const detail=document.getElementById('m72RetentionInput').closest('details.m65-detail');detail.open=true;detail.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});detail.querySelector('summary').focus({preventScroll:true});});
+
+  let m72ResizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(m72ResizeFrame);m72ResizeFrame=requestAnimationFrame(()=>renderRetentionProjection(calc()));});
   function renderPerformance(){
     document.querySelectorAll('[data-m65-source]').forEach(el=>{
       const original=document.getElementById(el.dataset.m65Source);
@@ -6372,6 +7417,7 @@ document.addEventListener('DOMContentLoaded',function(){
       else el.innerHTML=original.innerHTML;
     });
     const c=calc();
+    renderRetentionProjection(c);
     const mixStatus=document.getElementById('m71MixStatus');
     mixStatus.dataset.valid=String(c.mixValid);
     mixStatus.textContent=`Total ${Number(c.mixTotal.toFixed(6))}% · ${c.mixValid?'Revenue calculations are up to date.':'Enter shares totalling 100% to calculate ARPU, MRR and payback.'}`;
@@ -6390,13 +7436,16 @@ document.addEventListener('DOMContentLoaded',function(){
   function renderAll(){renderSummary();renderBudget();renderEconomics();renderDecision();renderHub();renderPerformance();}
 
   root.querySelectorAll('[data-roi-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+    if(btn.dataset.roiTab!=='roadmap')m88CancelDrive();
+    if(btn.dataset.roiTab!=='strategies'&&state.strategyOpen){state.strategyOpen=false;renderStrategies();}
+    if(btn.dataset.roiTab!=='roadmap'&&state.month!==null){state.month=null;renderRoadmap();}
     root.querySelectorAll('[data-roi-tab]').forEach(b=>{b.classList.toggle('active',b===btn);b.setAttribute('aria-selected',b===btn?'true':'false');});
     root.querySelectorAll('[data-roi-panel]').forEach(p=>p.hidden=p.dataset.roiPanel!==btn.dataset.roiTab);
   }));
 
   document.getElementById('roiPaidSubs').addEventListener('change',e=>{state.paidSubs=Math.max(1,Number(e.target.value)||1);renderAll();});
-  document.getElementById('roiChurn').addEventListener('change',e=>{state.churn=clamp(Number(e.target.value)||1,1,100);renderAll();});
-  document.getElementById('roiMargin').addEventListener('change',e=>{state.margin=clamp(Number(e.target.value)||1,1,100);renderAll();});
+  document.getElementById('roiChurn').addEventListener('change',e=>{state.churn=clamp(Number(e.target.value)||0,0,100);e.target.value=state.churn;renderAll();});
+  document.getElementById('roiMargin').addEventListener('change',e=>{state.margin=clamp(Number(e.target.value)||1,1,100);e.target.value=state.margin;renderAll();});
   document.getElementById('roiHubEnvelope').addEventListener('change',e=>{state.envelope=Math.max(1,Number(e.target.value)||1);renderAll();});
   const budgetTotalEdit=document.getElementById('budgetTotalEdit');
   const budgetTotalInput=document.getElementById('roiHubEnvelope');
@@ -6437,6 +7486,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
   document.addEventListener('keydown',e=>{
     if(e.key!=='Escape')return;
+    if(m88Journey.moving&&state.month===null){e.preventDefault();m88CancelDrive();}
     if(state.strategyOpen){e.preventDefault();state.strategyOpen=false;renderStrategies();root.querySelector(`[data-roi-strategy="${state.strategy}"]`)?.focus({preventScroll:true});}
     else if(state.strategiesExpanded&&!root.querySelector('[data-roi-panel="strategies"]').hidden){state.strategiesExpanded=false;renderStrategies();root.querySelector('[data-roi-box]')?.focus({preventScroll:true});}
     if(state.month!==null){e.preventDefault();closeRoadmapDetails();}
@@ -6467,191 +7517,13 @@ document.addEventListener('DOMContentLoaded',function(){
   })();
   </script>
 
-  <!-- ================= Section 4: Total Cost ================= -->
-  <section class="block" id="totalCostSection">
-    <div class="block-head">
-      <span class="block-index">04</span>
-      <span class="block-title">Total Costs Before Marketing</span>
-      <span class="block-desc"><span class="total-status-dot"></span> Live Budget Model · Year 1–2 Outlook</span>
-    </div>
-
-    <div class="total-cost-shell">
-      <div>
-        <div class="total-cost-card margin-b-24">
-          <div class="total-cost-card-head">
-            <div class="total-cost-card-title"><span class="total-step">01</span><span>Select One eKYC Plan</span></div>
-            <div class="total-cost-card-sub">Choose one of the three commercial plans to include in the Year 1 total.</div>
-          </div>
-          <div class="total-plan-options" id="totalPlanOptions">
-            <button class="total-plan-option active" type="button" aria-pressed="true" data-total-plan="wise1">
-              <span class="total-plan-number">1</span>
-              <span class="total-plan-name">WISE AI · Plan 1</span>
-              <span class="total-plan-cost" id="totalWise1OptionCost">RM 38,880.00</span>
-            </button>
-            <button class="total-plan-option" type="button" aria-pressed="false" data-total-plan="wise2">
-              <span class="total-plan-number">2</span>
-              <span class="total-plan-name">WISE AI · Plan 2</span>
-              <span class="total-plan-cost" id="totalWise2OptionCost">RM 32,400.00</span>
-            </button>
-            <button class="total-plan-option" type="button" aria-pressed="false" data-total-plan="innov8tif">
-              <span class="total-plan-number">3</span>
-              <span class="total-plan-name">Innov8tif · EMAS eKYC</span>
-              <span class="total-plan-cost" id="totalInnovOptionCost">RM 56,160.00</span>
-            </button>
-          </div>
-          <div class="total-control-grid">
-            <div class="total-control">
-              <label for="totalAwsTier">AWS MAU Scenario</label>
-              <select id="totalAwsTier">
-                <option value="1k">1K MAU</option>
-                <option value="5k">5K MAU</option>
-                <option value="10k">10K MAU</option>
-                <option value="50k">50K MAU</option>
-              </select>
-            </div>
-            <div class="total-control hidden" id="totalWise2TierControl">
-              <label for="totalWise2Tier">WISE Prepaid Block</label>
-              <select id="totalWise2Tier">
-                <option value="5k">5,000 Transactions</option>
-                <option value="10k">10,000 Transactions</option>
-                <option value="20k">20,000 Transactions</option>
-                <option value="50k">50,000 Transactions</option>
-                <option value="100k">100,000 Transactions</option>
-              </select>
-            </div>
-            <div class="total-control hidden" id="totalInnovTierControl">
-              <label for="totalInnovTier">Innov8tif Credit Tier</label>
-              <select id="totalInnovTier">
-                <option value="10k">10,000 Credits</option>
-                <option value="20k">20,000 Credits</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="total-cost-card">
-          <div class="total-cost-card-head">
-            <div class="total-cost-card-title"><span class="total-step">02</span><span>Year 1 Cost Breakdown</span></div>
-            <div class="total-cost-card-sub">AWS uses the v2.0 complete monthly cost range × 12 months. <strong>The Serase Event Launch Budget is excluded</strong> — see View 7 for the launch budget and app acquisition KPIs.</div>
-          </div>
-          <table class="total-summary-table">
-            <thead><tr><th>Cost Component</th><th class="num">Year 1 Amount (RM)</th></tr></thead>
-            <tbody>
-              <tr>
-                <td><span class="total-summary-label" id="totalEkycName">WISE AI · Plan 1</span><span class="total-summary-note" id="totalEkycNote">Year 1 postpaid total including 8% SST</span></td>
-                <td class="num mono" id="totalEkycAmount">RM 38,880.00</td>
-              </tr>
-              <tr>
-                <td><span class="total-summary-label">AWS Infrastructure</span><span class="total-summary-note" id="totalAwsNote">1K MAU · Front-End $84.04 fixed + AWS v2.0 range · 12 months</span></td>
-                <td class="num mono" id="totalAwsAmount">RM 20,811.88 – RM 31,609.48</td>
-              </tr>
-              <tr class="grand-row">
-                <td>Estimated Year 1 Total, Before Marketing</td>
-                <td class="num mono" id="totalBreakdownGrand">RM 453,941.88 – RM 464,739.48</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <aside class="total-grand-card" aria-live="polite">
-        <div class="total-year-block year-one">
-          <div class="total-grand-eyebrow">Estimated Year 1 Budget</div>
-          <div class="total-grand-label">Year 1 Cost Range, Before Marketing</div>
-          <div class="total-grand-value" id="totalGrandValue">RM 453,941.88<br>– RM 464,739.48</div>
-          <div class="total-year-caption">eKYC Year 1 + 12-month AWS + one-time Launch Budget</div>
-        </div>
-        <div class="total-grand-rule"></div>
-        <div class="total-year-block year-two">
-          <div class="total-grand-eyebrow">Estimated Year 2 Budget</div>
-          <div class="total-grand-label">Year 2 Total Cost Range</div>
-          <div class="total-grand-value" id="totalGrandY2Value">RM 45,651.88<br>– RM 56,449.48</div>
-          <div class="total-year-caption">eKYC renewal + 12-month AWS · Launch Budget excluded</div>
-        </div>
-        <div class="total-grand-rule"></div>
-        <div class="total-grand-meta"><span>Selected Plan</span><strong id="totalGrandPlan">WISE AI · Plan 1</strong></div>
-        <div class="total-grand-meta"><span>AWS Scenario</span><strong id="totalGrandAws">1K MAU</strong></div>
-        <div class="total-grand-meta"><span>FX Rate</span><strong id="totalGrandFx">USD 1 = RM 4.09</strong></div>
-        <div class="total-assumption">Year 1 includes one selected eKYC plan, 12 months of fixed front-end + AWS v2.0 infrastructure. The Serase Event Launch Budget is excluded. Year 2 uses the eKYC renewal cost plus another 12 months of fixed front-end + AWS v2.0 infrastructure and excludes the one-time Launch Budget.</div>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ================= Section 5: Pricing Analysis ================= -->
+  <!-- ================= Section 4: Pricing Analysis ================= -->
   <section class="block" id="pricingAnalysisSection">
     <div class="block-head">
-      <span class="block-index">05</span>
+      <span class="block-index">04</span>
       <span class="block-title">Pricing Analysis</span>
       <span class="block-desc"><span class="total-status-dot"></span> Interactive Pricing · Revenue · ROI Model</span>
     </div>
-<details id="marketingROIReference"><summary>Marketing ROI reference · Planning scenarios</summary>      <div class="presentation-roi-content">
-        <div class="m23-panel-head"><div><span class="m23-kicker">What marketing produces</span><h4>Revenue, unit economics &amp; decision framework</h4><p>Start with the commercial outputs. Keep formulas and assumption-sensitive metrics one level deeper.</p></div></div>
-<div class="m52-price-grid" aria-label="Subscription pricing from PDF section 9"><div><span>Serasé Select</span><strong>RM19.90<small> / month</small></strong></div><div><span>Serasé Elite</span><strong>RM39.90<small> / month</small></strong></div><div><span>Serasé Signature</span><strong>RM79.90<small> / month</small></strong></div></div><p class="m52-field-note">PDF §9 planning mix: 50% Select / 30% Elite / 20% Signature → RM37.90 blended ARPU. The mix controls update this illustration.</p>
-        <div class="m23-econ-kpis">
-          <div><span>Paid subscribers</span><strong id="roiEcoSubs">5,000</strong><small>Planning scenario</small></div>
-          <div><span>Blended ARPU</span><strong id="roiEcoArpu">RM 37.90</strong><small>Select / Elite / Signature mix</small></div>
-          <div><span>MRR</span><strong id="roiEcoMrr">RM 189,500</strong><small>Paid users × ARPU</small></div>
-          <div><span>CAC</span><strong id="roiEcoCac">RM 100.00</strong><small>Spend ÷ paid users</small></div>
-          <div><span>Revenue payback</span><strong id="roiEcoRevenuePayback">2.64 mo</strong><small>Simple revenue basis</small></div>
-        </div>
-
-
-        <div class="m23-decision-section">
-          <div class="m23-decision-head"><span class="m23-kicker">Month 4 decision</span><h5>Scale · Optimise · Stop / Reallocate</h5><p>These are the decisions to make once real channel CAC, conversion and retention data exist.</p></div>
-          <div class="roi-decision-grid m23-decision-grid">
-            <div class="roi-decision" id="roiDecisionScale"><strong>Scale</strong><p>Strong acquisition efficiency + acceptable retention + sustainable unit economics</p></div>
-            <div class="roi-decision" id="roiDecisionOptimise"><strong>Optimise</strong><p>Good traffic/acquisition but weak activation or conversion</p></div>
-            <div class="roi-decision" id="roiDecisionStop"><strong>Stop / Reallocate</strong><p>Persistently high CAC and weak downstream customer value</p></div>
-          </div>
-<details class="m52-disclosure m52-success"><summary>Four-month success definition · PDF §14 <small data-success-count>0 / 7 evidenced</small></summary><p class="m52-field-note">Mark a criterion only when evidence is available. This checklist does not automatically approve a budget decision.</p><div class="m52-checklist"><label><input type="checkbox" data-success="0"><span>Management can identify which channels produce the most paid subscribers.</span></label><label><input type="checkbox" data-success="1"><span>Serasé knows its CAC by channel and campaign.</span></label><label><input type="checkbox" data-success="2"><span>The team can see the conversion path from download to registration to verification to payment.</span></label><label><input type="checkbox" data-success="3"><span>Serasé has an initial ARPU and subscription-mix baseline.</span></label><label><input type="checkbox" data-success="4"><span>Retention and churn are being measured.</span></label><label><input type="checkbox" data-success="5"><span>The team can estimate LTV and payback using actual behaviour.</span></label><label><input type="checkbox" data-success="6"><span>Budget can be shifted toward channels that demonstrate stronger downstream economics.</span></label></div></details>
-          <div class="m23-decision-signal" id="roiDecisionText">Calculating planning scenario…</div>
-        </div>
-
-        <details class="m23-appendix">
-          <summary><div><span class="m23-kicker">Appendix</span><strong>Unit economics detail &amp; formulas</strong><small>Useful when management asks how the numbers are calculated.</small></div><span>Open appendix</span></summary>
-          <div class="m23-appendix-body">
-            <div class="m23-assumption-kpis">
-              <div><span>Estimated contribution LTV · assumed</span><strong id="roiSummaryLtv">—</strong></div>
-              <div><span>Contribution payback · assumed</span><strong id="roiSummaryPayback">—</strong></div>
-              <div><span>LTV : CAC · assumed</span><strong id="roiSummaryRatio">—</strong></div>
-            </div>
-            <div class="m23-appendix-grid">
-              <div><h5>MRR by paid subscribers</h5><table class="roi-table"><thead><tr><th>Paid subscribers</th><th class="num">Illustrative MRR</th></tr></thead><tbody id="roiMrrTable"></tbody></table></div>
-              <div><h5>Core formulas</h5><table class="roi-table"><tbody>
-                <tr><td>CPI</td><td>Spend ÷ downloads</td></tr><tr><td>Cost / Registration</td><td>Spend ÷ registrations</td></tr><tr><td>Cost / Verified</td><td>Spend ÷ verified users</td></tr><tr><td>CAC</td><td>Spend ÷ new paid subscribers</td></tr><tr><td>Paid Conversion</td><td>Paid ÷ eligible / activated users</td></tr><tr><td>ARPU</td><td>Subscription revenue ÷ average paid subscribers</td></tr><tr><td>MRR</td><td>Active paid × monthly subscription revenue</td></tr><tr><td>ROAS</td><td>Attributed revenue ÷ spend</td></tr><tr><td>LTV</td><td>ARPU × expected lifetime</td></tr><tr><td>Payback</td><td>CAC ÷ monthly contribution margin / customer</td></tr>
-              </tbody></table></div>
-            </div>
-            <div class="m23-note"><strong>Assumption warning:</strong> Monthly churn 8% and contribution margin 80% are scenario placeholders, not validated Serasé actuals. The previous 3× / 1× LTV:CAC rules are supplemental, unapproved assumptions, not PDF criteria. No numeric threshold assigns a management decision.</div>
-          </div>
-        </details>
-      </div>        <div class="m23-channel-disclosures">
-          <details>
-            <summary><div><span>01 · KOL / Influencer</span><b>Is creator spend producing paid users at a measurable CAC?</b></div><em>Open measurement</em></summary>
-            <div class="m23-disclosure-body two">
-              <div><h5>Illustrative tracked outcome</h5><table class="roi-table"><tbody id="roiKolOutput"></tbody></table></div>
-              <div><h5>Tracking rule</h5><p>Give every creator a unique link, QR code, promo code or landing page. Judge performance on downloads, verified users, paid users, CAC and attributed revenue — not follower count alone.</p></div>
-            </div>
-          </details>
-          <details>
-            <summary><div><span>02 · Event Launch</span><b>What business result should the event create?</b></div><em>Open ROI path</em></summary>
-            <div class="m23-disclosure-body">
-              <div class="m23-event-path"><b>Event / PR</b><i>→</i><b>QR</b><i>→</i><b>Website</b><i>→</i><b>Download</b><i>→</i><b>Register</b><i>→</i><b>Verify</b><i>→</i><b>Paid</b></div>
-              <div class="m23-note" id="roiChanEventNote">Current Pixel Pro physical launch quotation: <strong>RM394,250</strong>. Management-adjustable Event Launch planning budget is shown above.</div>
-            </div>
-          </details>
-          <details>
-            <summary><div><span>03 · Paid Digital</span><b>Are we buying installs, or acquiring paying customers efficiently?</b></div><em>Open KPI ladder</em></summary>
-            <div class="m23-disclosure-body"><table class="roi-table"><thead><tr><th>Funnel stage</th><th>What we need to know</th><th>Core KPI</th></tr></thead><tbody>
-              <tr><td>Awareness</td><td>Did the right audience see Serasé?</td><td>Reach · CPM · Video views</td></tr>
-              <tr><td>Acquisition</td><td>Did interest turn into app traffic?</td><td>CTR · CPC · CPI</td></tr>
-              <tr><td>Activation</td><td>Did downloads become usable users?</td><td>Cost / registration · Cost / verified</td></tr>
-              <tr><td>Conversion</td><td>Did verified users become subscribers?</td><td>CAC · Paid conversion · Revenue · ROAS</td></tr>
-              <tr><td>Retention</td><td>Did paid users stay valuable?</td><td>Retention · Churn · LTV</td></tr>
-            </tbody></table></div>
-          </details>
-        </div>
-<p>Figures and formulas shown here are planning illustrations.</p></details>
-
     <div class="pricing-analysis-host">
       <div id="pricingNativeHost" aria-live="polite">
         <div class="pricing-native-loading" id="pricingNativePlaceholder">Pricing Analysis loads when this view is opened</div>
@@ -7063,12 +7935,39 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
 .pricing-root .shell{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;overflow:visible!important;}
 .pricing-root main{overflow:visible!important;height:auto!important;max-height:none!important;}
 .pricing-root aside{overscroll-behavior:contain!important;}
+/* Pricing assumptions run across the page above the financial results. */
+.pricing-root .shell{grid-template-columns:minmax(0,1fr)!important;gap:18px!important;}
+.pricing-root .shell>.bar{margin:0!important;min-width:0;}
+.pricing-root #side{position:static!important;top:auto!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;align-items:stretch!important;width:100%!important;height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;padding:0!important;scrollbar-gutter:auto!important;}
+.pricing-root #side>.ctl{min-width:0;margin:0;padding:14px 12px;}
+.pricing-root #side .ctl h3{min-height:32px;line-height:1.55;font-size:10px;letter-spacing:.035em;}
+.pricing-root #side label.radio{padding:8px 7px;gap:6px;}
+.pricing-root #side label.radio .t{font-size:11.5px;overflow-wrap:break-word;}
+.pricing-root #side label.radio .n{font-size:9px;padding-left:2px;}
+.pricing-root #side .seg{flex-wrap:wrap;gap:4px;}
+.pricing-root #side .seg button{font-size:10px;padding:7px 6px;}
+.pricing-root #side .rowlbl{flex-wrap:wrap;gap:4px;font-size:10px;}
+.pricing-root #side .note{font-size:10px;line-height:1.6;}
+.pricing-root .shell.collapsed{grid-template-columns:minmax(0,1fr)!important;gap:18px!important;}
+.pricing-root .shell.collapsed #side{display:none!important;}
+.pricing-root .shell main{min-width:0!important;width:100%!important;}
+@media(max-width:1100px){.pricing-root #side{grid-template-columns:repeat(3,minmax(0,1fr));}.pricing-root #side .ctl h3{min-height:0;}}
+@media(max-width:680px){.pricing-root #side{grid-template-columns:repeat(2,minmax(0,1fr));}.pricing-root .shell>.bar{flex-wrap:wrap;gap:10px;}.pricing-root .shell>.bar .basis{margin-left:0;}}
+@media(max-width:420px){.pricing-root #side{grid-template-columns:minmax(0,1fr);}.pricing-root #side .opt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}.pricing-root #side>.ctl:nth-child(3) .opt{grid-template-columns:1fr;}.pricing-root #side label.radio{flex-wrap:wrap;}.pricing-root #side .ctl h3{font-size:10.5px;}}
+
 </style>
 <div class="pricing-root">
 <div class="shell" id="shell">
+  <div class="bar">
+    <button class="tog" id="tog" aria-controls="side" aria-expanded="true">✕ Hide assumptions</button>
+    <div class="titlewrap"><h1>Pricing Analysis</h1><div class="subtitle">Change one assumption at a time and see how it affects investment, revenue and ROI.</div></div>
+    <div class="basis">36-month scenario · model v4<br><span id="basisRev"></span></div>
+  </div>
+
+
 
 <!-- ============ SIDEBAR ============ -->
-<aside id="side">
+<aside id="side" aria-label="Pricing assumptions">
   <div class="ctl">
     <h3><span class="stepno">1</span> Which period should we review?</h3>
     <div class="seg" id="snapSeg">
@@ -7168,13 +8067,7 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
 
 <!-- ============ MAIN ============ -->
 <main>
-  <div class="bar">
-    <button class="tog" id="tog">☰ Show assumptions</button>
-    <div class="titlewrap"><h1>Pricing Analysis</h1><div class="subtitle">Change one assumption at a time and see how it affects investment, revenue and ROI.</div></div>
-    <div class="basis">36-month scenario · model v4<br><span id="basisRev"></span></div>
-  </div>
-
-  <div class="friendly-guide"><strong>How to use this page:</strong> pick your assumptions on the left, then compare the three headline numbers. For a clean comparison, change one assumption at a time.</div>
+  <div class="friendly-guide"><strong>How to use this page:</strong> pick your assumptions above, then compare the three headline numbers. For a clean comparison, change one assumption at a time.</div>
 
   <div class="kpis">
     <div class="kpi cost">
@@ -8192,7 +9085,8 @@ document.getElementById("tog").addEventListener("click",()=>{
   sh.classList.toggle("collapsed");
   document.getElementById("tog").textContent =
     sh.classList.contains("collapsed") ? "☰ Show assumptions" : "✕ Hide assumptions";
-  // The right workspace becomes full width when the assumptions pane is hidden.
+  document.getElementById("tog").setAttribute("aria-expanded",String(!sh.classList.contains("collapsed")));
+  // Refresh the chart after the horizontal assumption panel is toggled.
   // Trigger chart/mark relayout both immediately and after the grid transition settles.
   requestAnimationFrame(()=>window.dispatchEvent(new Event("resize")));
   setTimeout(()=>window.dispatchEvent(new Event("resize")), 500);
@@ -8575,142 +9469,8 @@ sizeDrawer();</script>
     renderMkt();
   }
 
-  // ---------------- Total Cost (eKYC + 12-Month AWS + Launch Budget) ----------------
-  const totalPlanOptions = Array.from(document.querySelectorAll('.total-plan-option'));
-  const totalAwsTierEl = document.getElementById('totalAwsTier');
-  const totalWise2TierEl = document.getElementById('totalWise2Tier');
-  const totalWise2TierControlEl = document.getElementById('totalWise2TierControl');
-  const totalInnovTierEl = document.getElementById('totalInnovTier');
-  const totalInnovTierControlEl = document.getElementById('totalInnovTierControl');
-  let totalSelectedPlan = 'wise1';
-
-  try {
-    const storedPlan = localStorage.getItem('total-cost-selected-plan');
-    if (['wise1','wise2','innov8tif'].includes(storedPlan)) totalSelectedPlan = storedPlan;
-    const storedWise2Tier = localStorage.getItem('total-cost-wise2-tier');
-    if (storedWise2Tier && wisePrepaidData[storedWise2Tier]) totalWise2TierEl.value = storedWise2Tier;
-    else if (wisePrepaidTierEl && wisePrepaidData[wisePrepaidTierEl.value]) totalWise2TierEl.value = wisePrepaidTierEl.value;
-    const storedInnovTier = localStorage.getItem('total-cost-innov-tier');
-    if (['10k','20k'].includes(storedInnovTier)) totalInnovTierEl.value = storedInnovTier;
-  } catch(err){}
-
-  function fmtRMWithPrefix(n){
-    return 'RM ' + Number(n).toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2});
-  }
-
-  function getWisePlan1Y1Gross(){
-    const actual = Math.max(0, Math.floor(parseFloat(wiseMonthlyTxnEl.value) || 0));
-    const billed = Math.max(actual, 100);
-    const tier = wisePostpaidRate(actual);
-    return (18000 + (billed * tier.rate * 12)) * 1.08;
-  }
-
-  function getWisePlan1Y2Gross(){
-    const actual = Math.max(0, Math.floor(parseFloat(wiseMonthlyTxnEl.value) || 0));
-    const billed = Math.max(actual, 100);
-    const tier = wisePostpaidRate(actual);
-    return (5000 + (billed * tier.rate * 12)) * 1.08;
-  }
-
-  function getSelectedEkyc(){
-    if (totalSelectedPlan === 'wise2') {
-      const costs = getWisePrepaidCosts(totalWise2TierEl.value);
-      return {
-        name:'WISE AI · Plan 2',
-        y1Amount:costs.y1Gross,
-        y2Amount:costs.y2Gross,
-        note:`Year 1 ${costs.transactions.toLocaleString('en-MY')}-transaction prepaid block including 8% SST`
-      };
-    }
-    if (totalSelectedPlan === 'innov8tif') {
-      const is20k = totalInnovTierEl.value === '20k';
-      const baseY1 = is20k ? 84240 : 56160;
-      const baseY2 = is20k ? 63720 : 35640;
-      const opt = (window.getInnovOptionalCostSummary ? window.getInnovOptionalCostSummary() : {y1Gross:0,y2Gross:0,labels:[]});
-      return {
-        name:'Innov8tif · EMAS eKYC',
-        y1Amount:baseY1 + (opt.y1Gross || 0),
-        y2Amount:baseY2 + (opt.y2Gross || 0),
-        note:`Year 1 ${is20k ? '20,000' : '10,000'}-credit tier including 8% SST${opt.labels && opt.labels.length ? ' + selected optional modules' : ''}`
-      };
-    }
-    return { name:'WISE AI · Plan 1', y1Amount:getWisePlan1Y1Gross(), y2Amount:getWisePlan1Y2Gross(), note:'Year 1 postpaid total including 8% SST' };
-  }
-
-  function renderTotalCost(){
-    if (!document.getElementById('totalGrandValue')) return;
-
-    const ekyc = getSelectedEkyc();
-    const awsTier = totalAwsTierEl.value;
-    const aws = mauData[awsTier];
-    const awsLowAnnual = (FRONT_END_MONTHLY_USD + aws.low) * fxRate * 12;
-    const awsHighAnnual = (FRONT_END_MONTHLY_USD + aws.high) * fxRate * 12;
-    const totalLow = ekyc.y1Amount + awsLowAnnual;   // marketing excluded — view 8 is BEFORE marketing
-    const totalHigh = ekyc.y1Amount + awsHighAnnual;
-    const totalY2Low = ekyc.y2Amount + awsLowAnnual;
-    const totalY2High = ekyc.y2Amount + awsHighAnnual;
-    const rangeText = `${fmtRMWithPrefix(totalLow)} – ${fmtRMWithPrefix(totalHigh)}`;
-
-    totalPlanOptions.forEach(btn => {
-      const active = btn.dataset.totalPlan === totalSelectedPlan;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    totalWise2TierControlEl.classList.toggle('hidden', totalSelectedPlan !== 'wise2');
-    totalInnovTierControlEl.classList.toggle('hidden', totalSelectedPlan !== 'innov8tif');
-
-    document.getElementById('totalWise1OptionCost').textContent = fmtRMWithPrefix(getWisePlan1Y1Gross());
-    document.getElementById('totalWise2OptionCost').textContent = fmtRMWithPrefix(getWisePrepaidCosts(totalWise2TierEl.value).y1Gross);
-    const innovOptSummary = (window.getInnovOptionalCostSummary ? window.getInnovOptionalCostSummary() : {y1Gross:0});
-    document.getElementById('totalInnovOptionCost').textContent = fmtRMWithPrefix((totalInnovTierEl.value === '20k' ? 84240 : 56160) + (innovOptSummary.y1Gross || 0));
-    document.getElementById('totalEkycName').textContent = ekyc.name;
-    document.getElementById('totalEkycNote').textContent = ekyc.note;
-    document.getElementById('totalEkycAmount').textContent = fmtRMWithPrefix(ekyc.y1Amount);
-    document.getElementById('totalAwsNote').textContent = `${awsTier.toUpperCase()} MAU · Front-End $84.04 fixed + AWS v2.0 range · 12 months`;
-    document.getElementById('totalAwsAmount').textContent = `${fmtRMWithPrefix(awsLowAnnual)} – ${fmtRMWithPrefix(awsHighAnnual)}`;
-    document.getElementById('totalBreakdownGrand').textContent = rangeText;
-    document.getElementById('totalGrandValue').innerHTML = `${fmtRMWithPrefix(totalLow)}<br>– ${fmtRMWithPrefix(totalHigh)}`;
-    document.getElementById('totalGrandY2Value').innerHTML = `${fmtRMWithPrefix(totalY2Low)}<br>– ${fmtRMWithPrefix(totalY2High)}`;
-    document.getElementById('totalGrandPlan').textContent = ekyc.name;
-    document.getElementById('totalGrandAws').textContent = `${awsTier.toUpperCase()} MAU`;
-    document.getElementById('totalGrandFx').textContent = `USD 1 = RM ${fxRate.toFixed(2)}`;
-  }
-
-  totalPlanOptions.forEach(btn => {
-    btn.addEventListener('click', () => {
-      totalSelectedPlan = btn.dataset.totalPlan;
-      try { localStorage.setItem('total-cost-selected-plan', totalSelectedPlan); } catch(err){}
-      renderTotalCost();
-    });
-  });
-
-  totalAwsTierEl.addEventListener('change', () => {
-    currentMau = totalAwsTierEl.value;
-    renderMau();
-    renderTotalCost();
-  });
-
-  totalWise2TierEl.addEventListener('change', () => {
-    try { localStorage.setItem('total-cost-wise2-tier', totalWise2TierEl.value); } catch(err){}
-    if (wisePrepaidTierEl) {
-      wisePrepaidTierEl.value = totalWise2TierEl.value;
-      try { localStorage.setItem('wise-prepaid-tier', wisePrepaidTierEl.value); } catch(err){}
-      renderWisePrepaid();
-    }
-    renderTotalCost();
-  });
-
-  totalInnovTierEl.addEventListener('change', () => {
-    try { localStorage.setItem('total-cost-innov-tier', totalInnovTierEl.value); } catch(err){}
-    renderTotalCost();
-  });
-
-  wiseMonthlyTxnEl.addEventListener('input', renderTotalCost);
-  fxInputEl.addEventListener('input', renderTotalCost);
-  document.getElementById('tierGrid').addEventListener('click', () => {
-    totalAwsTierEl.value = currentMau;
-    renderTotalCost();
-  });
+  // Compatibility for existing cost-input refresh hooks.
+  function renderTotalCost(){}
 
   // ---------------- Executive tabbed views ----------------
   const dashboardTabs = Array.from(document.querySelectorAll('.dashboard-tab'));
