@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="serase-build" content="marketing-funnel-old-vs-new-v62-2026-10-02">
 <title>Serase Costing &amp; Budgeting Dashboard</title>
-<meta name="serase-marketing-build" content="v91-link-ekyc-provider-costs">
+<meta name="serase-marketing-build" content="v104-clean-roadmap-travel-status">
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -5691,6 +5691,63 @@ window.publishSeraseEkycQuote=function(provider,quote){
   document.dispatchEvent(new CustomEvent('serase:ekyc-costs-change',{detail:{provider}}));
 };
 </script>
+<style id="m92-motion">
+#marketing .m53-strategy-item,#marketing .m53-box-button{transition:border-color .18s!important;transition-delay:0s!important;will-change:auto;filter:none!important;animation:none!important}
+#marketing #roiStrategyDetail.m73-canvas{backdrop-filter:none!important}
+#marketing #roiStrategyDetail[open],#marketing #roiStrategyDetail .m73-content,#marketing #roiRoadmapPopover[open],#marketing .m67-road-brief{animation:none!important}
+#marketing .m53-box-lid{transition:transform .38s cubic-bezier(.22,1,.36,1)!important}
+#marketing #roiStrategyWrap.m73-is-detail::after{animation:none!important}
+</style>
+<style id="m100-roadmap-right-layout">
+/* Keep the month rail intact; organise the right-hand brief within one view. */
+@media(min-width:761px){
+#marketing #roiRoadmapPopover{max-height:calc(100dvh - 32px)}
+#marketing #roiRoadmapPopover .m67-road-brief{min-height:660px}
+#marketing #roiRoadmapPopover .m67-main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);grid-template-rows:auto auto 1fr;align-content:start;gap:22px 24px;padding:32px 32px 28px}
+#marketing #roiRoadmapPopover .m67-month-head{grid-column:1/-1;margin:0;padding-right:40px}
+#marketing #roiRoadmapPopover .m67-month-head h5{font-size:34px;margin-top:6px;line-height:1.12}
+#marketing #roiRoadmapPopover .m67-month-objective{grid-column:1/-1;padding:18px 0 20px;border-top:1px solid #e5d9c7}
+#marketing #roiRoadmapPopover .m67-month-objective .m67-section-label{margin-bottom:9px}
+#marketing #roiRoadmapPopover .m67-month-objective p{font-size:23px;line-height:1.3}
+#marketing #roiRoadmapPopover .m67-tactics{margin:0;align-self:start}
+#marketing #roiRoadmapPopover .m67-tactics>.m67-section-label{margin-bottom:16px}
+#marketing #roiRoadmapPopover .m67-list{grid-template-columns:1fr;gap:10px}
+#marketing #roiRoadmapPopover .m67-list>li{font-size:12px;line-height:1.5;padding-left:27px}
+#marketing #roiRoadmapPopover .m67-outcomes{display:grid;grid-template-columns:1fr;align-self:start;margin:0;border-radius:12px}
+#marketing #roiRoadmapPopover .m67-outcomes>section{padding:20px}
+#marketing #roiRoadmapPopover .m67-outcomes .m67-section-label{margin-bottom:11px}
+#marketing #roiRoadmapPopover .m67-outcomes p{font-size:18px;line-height:1.45}
+}
+@media(min-width:761px) and (max-height:740px){
+#marketing #roiRoadmapPopover .m67-main{gap:16px 22px;padding-top:26px;padding-bottom:24px}
+#marketing #roiRoadmapPopover .m67-month-head h5{font-size:30px}
+#marketing #roiRoadmapPopover .m67-month-objective{padding:12px 0 15px}
+#marketing #roiRoadmapPopover .m67-month-objective p{font-size:21px}
+#marketing #roiRoadmapPopover .m67-list{gap:8px}
+#marketing #roiRoadmapPopover .m67-outcomes>section{padding:17px}
+}
+</style>
+<style id="m103-travel-feedback">
+#marketing #roiRoadmapPopover .m67-main>.m67-month-head,
+#marketing #roiRoadmapPopover .m67-main>.m67-month-objective,
+#marketing #roiRoadmapPopover .m67-main>.m67-tactics,
+#marketing #roiRoadmapPopover .m67-main>.m67-outcomes{transition:opacity .14s ease}
+#marketing #roiRoadmapPopover .m67-main.m103-travelling>.m67-month-head,
+#marketing #roiRoadmapPopover .m67-main.m103-travelling>.m67-month-objective,
+#marketing #roiRoadmapPopover .m67-main.m103-travelling>.m67-tactics,
+#marketing #roiRoadmapPopover .m67-main.m103-travelling>.m67-outcomes{opacity:.55;pointer-events:none}
+#marketing .m103-travel-status{position:absolute;left:32px;right:32px;bottom:24px;display:flex;align-items:center;gap:12px;min-height:38px;padding:9px 12px;border:1px solid #e7d7bc;border-radius:7px;background:#fcf6eafa;color:#936b3b;font:500 10px/1.5 'IBM Plex Mono',monospace;letter-spacing:.025em;z-index:1}
+#marketing .m103-travel-label{flex:1;min-width:0}
+#marketing .m103-travel-line{width:100px;height:2px;flex-shrink:0;background:#e6d8c1;overflow:hidden}
+#marketing .m103-travel-progress{display:block;height:100%;background:#b28a4f;transform:scaleX(0);transform-origin:left}
+@media(max-width:760px){#marketing .m103-travel-status{left:26px;right:26px;bottom:9px;font-size:9px;padding:7px 9px}#marketing .m103-travel-line{width:48px}}
+@media(prefers-reduced-motion:reduce){#marketing #roiRoadmapPopover .m67-main>*{transition:none!important}}
+</style>
+<style id="m104-no-roadmap-scrollbars">
+#marketing #roiRoadmapPopover,#marketing #roiRoadmapPopover .m67-main{scrollbar-width:none;-ms-overflow-style:none}
+#marketing #roiRoadmapPopover::-webkit-scrollbar,#marketing #roiRoadmapPopover .m67-main::-webkit-scrollbar{display:none;width:0;height:0}
+#marketing .m103-travel-line{display:none}
+</style>
 </head>
 <body data-view="fullcomparison">
 
@@ -7014,16 +7071,66 @@ document.addEventListener('DOMContentLoaded',function(){
   }
 
 
+  // Animate only transforms and opacity; capture before cancelling so retargets remain continuous.
+  function m92Animate(el,frames,duration=300,delay=0){
+    if(!el)return null;el._m92Motion?.cancel();
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return null;
+    const a=el.animate(frames,{duration,delay,fill:'backwards',easing:'cubic-bezier(.22,1,.36,1)'});el._m92Motion=a;
+    a.finished.then(()=>{if(el._m92Motion===a)el._m92Motion=null;},()=>{});return a;
+  }
+  function m92Capture(host){return [...host.querySelectorAll('[data-roi-box],[data-roi-strategy]')].map(el=>({el,r:el.getBoundingClientRect(),opacity:getComputedStyle(el).opacity}));}
+  function m92Flip(items){
+    items.forEach(({el})=>el._m92Motion?.cancel());
+    const measured=items.map(item=>({...item,to:item.el.getBoundingClientRect(),transform:getComputedStyle(item.el).transform,opacityTo:getComputedStyle(item.el).opacity}));
+    measured.forEach(({el,r,to,transform,opacity,opacityTo})=>{
+      if(!to.width||!r.width||opacityTo==='0')return;
+      const dx=r.left+r.width/2-to.left-to.width/2,dy=r.top+r.height/2-to.top-to.height/2;
+      if(Math.abs(dx)+Math.abs(dy)<.5&&opacity===opacityTo)return;
+      const emerging=el.hasAttribute('data-roi-strategy')&&Number(opacity)<.05&&Number(opacityTo)>.5;
+      const index=Number(el.dataset.roiStrategy)||0;
+      // A collapsed card starts at the box, small and hidden. Delay stays hidden too.
+      const box=emerging?el.closest('.m53-strategy-stage')?.querySelector('[data-roi-box]')?.getBoundingClientRect():null;
+      const fromX=box?box.left+box.width/2-to.left-to.width/2:dx;
+      const fromY=box?box.top+box.height*.38-to.top-to.height/2:dy;
+      m92Animate(el,[{transform:`translate(${fromX}px,${fromY}px) ${transform==='none'?'':transform}${emerging?' scale(.22)':''}`,opacity:emerging?0:opacity},{transform,opacity:opacityTo}],emerging?520:260,emerging?90+index*45:0);
+    });
+  }
+  function m95Brief(dialog,kind,alreadyOpen){
+    if(kind==='roadmap'){m92Animate(alreadyOpen?dialog.querySelector('.m67-main'):dialog,[{opacity:alreadyOpen?.65:.9},{opacity:1}],alreadyOpen?180:100);return;}
+    const content=dialog.querySelector(kind==='strategy'?'.m82-board':'.m67-main');
+    if(alreadyOpen){m92Animate(content,[{opacity:.88},{opacity:1}],160);return;}
+    const delay=kind==='strategy'?40:0;
+    // Quiet surface reveal, followed by the reading order. No layout changes or blur.
+    const strategy=kind==='strategy';
+    if(strategy){
+      const target=dialog.getBoundingClientRect(),source=dialog._m97Source;
+      const dx=source?source.left+source.width/2-target.left-target.width/2:0;
+      const dy=source?source.top+source.height/2-target.top-target.height/2:0;
+      const scale=source?Math.max(.12,Math.min(.45,source.width/target.width)):.22;
+      dialog.style.setProperty('transform-origin','50% 50%','important');
+      // Grow the surface from the card; text enters after the surface is readable.
+      m92Animate(dialog,[{opacity:.35,transform:`translate(${dx}px,${dy}px) scale(${scale})`,borderRadius:'28px'},{opacity:1,transform:'translate(0,0) scale(1)',borderRadius:'22px'}],680,delay);
+    }else{
+      m92Animate(dialog,[{opacity:0,transform:'translateY(5px) scale(.987)'},{opacity:1,transform:'translate(0,0) scale(1)'}],340,delay);
+    }
+    const selectors=kind==='strategy'?['.m77-heading','.m82-objective','.m82-tactics','.m82-kpis','.m82-source']:['.m67-month-head','.m67-month-objective','.m67-tactics','.m67-outcomes'];
+    selectors.forEach((selector,i)=>m92Animate(dialog.querySelector(selector),[{opacity:0,transform:kind==='strategy'?'translateY(12px)':'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],kind==='strategy'?320:270,delay+(kind==='strategy'?290:70)+i*(kind==='strategy'?55:35)));
+  }
+  function m92Dismiss(el,done){
+    const frames=el.id==='roiRoadmapPopover'?[{opacity:1},{opacity:0}]:[{opacity:1,transform:'scale(1)'},{opacity:0,transform:'scale(.992)'}];
+    const a=m92Animate(el,frames,140);
+    if(a)a.finished.then(done,()=>{});else done();
+  }
   function m73OpenCanvas(canvas,host,trigger){
     host._m73ReturnY=window.scrollY;
     const bounds=host.getBoundingClientRect(),origin=trigger?.getBoundingClientRect();
     canvas.style.setProperty('--m73-origin',origin?`${origin.left+origin.width/2-bounds.left}px ${Math.max(0,origin.top+origin.height/2-bounds.top)}px`:'50% 50%');
     host.classList.add('m73-is-detail');canvas.show();
     canvas.querySelector('.m73-close').focus({preventScroll:true});
-    if(bounds.top<0||bounds.top>innerHeight*.5)host.scrollIntoView({block:'start',behavior:'instant'});
+    if(bounds.top>innerHeight*.8)host.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
   }
   function m73RestoreCanvas(host){
-    if(Number.isFinite(host._m73ReturnY))window.scrollTo({top:host._m73ReturnY,behavior:'instant'});
+    // Keep the current scroll position when returning to the strategy cards.
     host.classList.add('m73-return');setTimeout(()=>host.classList.remove('m73-return'),220);
   }
 
@@ -7032,15 +7139,17 @@ document.addEventListener('DOMContentLoaded',function(){
     const detail=document.getElementById('roiStrategyDetail');
     const wrap=document.getElementById('roiStrategyWrap');
     if(!host||!detail||!wrap) return;
+    const motionBefore=m92Capture(host),wasDetailOpen=detail.open;
+    if(!wasDetailOpen)detail._m97Source=motionBefore.find(item=>Number(item.el.dataset.roiStrategy)===state.strategy)?.r;
+    detail._m92Motion?.cancel();wrap.classList.remove('m76-closing');
     const closeDetails=()=>{
       if(!state.strategyOpen||wrap.classList.contains('m76-closing'))return;
       const idx=state.strategy;
       wrap.classList.add('m76-closing');
-      window.setTimeout(()=>{
-        wrap.classList.remove('m76-closing');
-        state.strategyOpen=false;renderStrategies();
+      m92Dismiss(detail,()=>{
+        wrap.classList.remove('m76-closing');state.strategyOpen=false;renderStrategies();
         host.querySelector(`[data-roi-strategy="${idx}"]`)?.focus({preventScroll:true});
-      },240);
+      });
     };
     // Keep the same seven buttons mounted so opening animates once and selection stays steady.
     if(!host.querySelector('[data-roi-box]')){
@@ -7119,9 +7228,12 @@ document.addEventListener('DOMContentLoaded',function(){
       detail.querySelector('.m54-dialog-close').addEventListener('click',e=>{e.stopPropagation();closeDetails();});
       detail.querySelector('[data-roi-detail-title]').addEventListener('click',e=>{e.stopPropagation();closeDetails();});
       if(!detail.open)m73OpenCanvas(detail,wrap,host.querySelector(`[data-roi-strategy="${state.strategy}"]`));
+      // Keep the drawer still; let the selected card lead into the brief reveal.
+      m95Brief(detail,'strategy',wasDetailOpen);
     }else{
       const wasOpen=detail.open;if(wasOpen)detail.close();wrap.classList.remove('m73-is-detail');detail.innerHTML='';if(wasOpen)m73RestoreCanvas(wrap);
     }
+    m92Flip(motionBefore);
   }
 
   function mixHex(a,b,t){
@@ -7132,12 +7244,29 @@ document.addEventListener('DOMContentLoaded',function(){
     return '#'+[r,g,bl].map(v=>v.toString(16).padStart(2,'0')).join('');
   }
 
-  const m88CarBody = `<ellipse cx="0" cy="2" rx="17" ry="24" fill="#3b2524" opacity=".18"/><g stroke="#57212a" stroke-width="1.2"><rect x="-14" y="-15" width="5" height="9" rx="2" fill="#372d2c"/><rect x="9" y="-15" width="5" height="9" rx="2" fill="#372d2c"/><rect x="-14" y="9" width="5" height="9" rx="2" fill="#372d2c"/><rect x="9" y="9" width="5" height="9" rx="2" fill="#372d2c"/><path d="M-11-18Q-10-24 0-24Q10-24 11-18L12 17Q12 23 0 23Q-12 23-12 17Z" fill="#8b303b"/><path d="M-8-10L-6-15H6L8-10V-5H-8Z" fill="#f2d29c"/><rect x="-7" y="-3" width="14" height="14" rx="4" fill="#fff5df"/><path d="M-7 13H7L8 17H-8Z" fill="#e0b77b"/><path d="M-8-20H-4M4-20H8" stroke="#ffecc0" stroke-width="3"/><path d="M-7 21H-4M4 21H7" stroke="#d6956b" stroke-width="2"/></g>`;
+  const m88CarBody = `<title>Porsche 911 inspired roadmap car</title><ellipse cx="0" cy="3" rx="18" ry="29" fill="#3b2524" opacity=".18"/><g stroke-linejoin="round" stroke-linecap="round">
+<path d="M-16-17h5v11h-5zM11-17h5v11h-5zM-17 9h6v12h-6zM11 9h6v12h-6z" fill="#292a2c" stroke="#17181a" stroke-width="1"/>
+<path d="M-10-25Q0-30 10-25Q14-23 14-13L12-3Q12 5 15 12L15 22Q14 27 0 28Q-14 27-15 22L-15 12Q-12 5-12-3L-14-13Q-14-23-10-25Z" fill="#8b303b" stroke="#e7bd7b" stroke-width="1.1"/>
+<path d="M-9-22Q0-26 9-22L7-13H-7Z" fill="#a84a50" stroke="#c17b6a" stroke-width=".7"/>
+<path d="M-11-19a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0-6.8 0M4.2-19a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0-6.8 0" fill="#fff3cf" stroke="#d6ad6b" stroke-width="1"/>
+<path d="M-8-9Q0-13 8-9L7-2H-7Z" fill="#263c43" stroke="#e9c997" stroke-width=".7"/>
+<path d="M-7-1Q0-3 7-1L7 10Q0 13-7 10Z" fill="#a94b50" stroke="#d6977e" stroke-width=".65"/>
+<path d="M-8 12Q0 15 8 12L10 18H-10Z" fill="#263c43" stroke="#e9c997" stroke-width=".7"/>
+<path d="M-11-5L-10 10M11-5L10 10" fill="none" stroke="#e4b998" stroke-width=".65"/>
+<path d="M-15-5h-3v3h4M15-5h3v3h-4" fill="#8b303b" stroke="#e7bd7b" stroke-width=".8"/>
+<path d="M-14 21H14V24H-14Z" fill="#5d202c" stroke="#e7bd7b" stroke-width=".9"/>
+<path d="M-11 25H11" fill="none" stroke="#ff8278" stroke-width="1.4"/>
+<path d="M-6 19H6M-5 17H5" fill="none" stroke="#dcbba0" stroke-width=".65"/>
+<path d="M-1-15h2v2l-1 1-1-1z" fill="#e2bf78" stroke="#6c3031" stroke-width=".3"/>
+</g>`;
   const m88Journey={length:null,frame:0,routeFrame:0,month:0,routeMonth:0,moving:false};
   const m88Reduced=()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function m88Svg(tag,attrs){const el=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attrs||{}).forEach(([k,v])=>el.setAttribute(k,v));return el;}
   function m88PaintCar(car){car.querySelectorAll('path').forEach(p=>{p.style.fill=p.getAttribute('fill')||'none';p.style.stroke=p.getAttribute('stroke')||(p.getAttribute('fill')==='#8b303b'?'#f2d29c':'#57212a');p.style.strokeWidth=p.getAttribute('stroke-width')||'1.2';});}
-  function m88Nearest(path,x,y){const total=path.getTotalLength();let best=0,distance=Infinity;for(let n=0;n<=700;n++){const at=n/700*total,p=path.getPointAtLength(at),d=(p.x-x)**2+(p.y-y)**2;if(d<distance){distance=d;best=at;}}return best;}
+  const m92Paths=new WeakMap();
+  function m92Path(path){let data=m92Paths.get(path);if(data)return data;const total=path.getTotalLength(),points=Array.from({length:1025},(_,i)=>path.getPointAtLength(i/1024*total));data={total,points};m92Paths.set(path,data);return data;}
+  function m92Point(path,length){const {total,points}=m92Path(path),n=Math.max(0,Math.min(1024,length/total*1024)),i=Math.min(1023,Math.floor(n)),t=n-i;return {x:points[i].x+(points[i+1].x-points[i].x)*t,y:points[i].y+(points[i+1].y-points[i].y)*t};}
+  function m88Nearest(path,x,y){const {total,points}=m92Path(path);let best=0,distance=Infinity;points.forEach((p,n)=>{const d=(p.x-x)**2+(p.y-y)**2;if(d<distance){distance=d;best=n/1024*total;}});return best;}
   function m88MainTrack(){
     const svg=document.querySelector('#roiRoad .m51-road-map');if(!svg)return null;
     let path=svg.querySelector('.m88-drive-path');
@@ -7146,36 +7275,36 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   function m88MainTarget(track,i){const stop=track.svg.querySelector(`[data-roi-month="${i}"]>ellipse`);return m88Nearest(track.path,Number(stop.getAttribute('cx')),Number(stop.getAttribute('cy')));}
   function m88PlaceMain(track,length,direction=1){
-    const p=track.path.getPointAtLength(length),a=track.path.getPointAtLength(Math.max(0,length-3)),b=track.path.getPointAtLength(Math.min(track.path.getTotalLength(),length+3));const angle=Math.atan2((b.y-a.y)*direction,(b.x-a.x)*direction)*180/Math.PI+90,scale=.33+Math.max(0,Math.min(1,p.y/700))*.78;
-    track.car.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${angle}) scale(${scale})`);track.car.dataset.progress=String(length);
+    const p=m92Point(track.path,length),a=m92Point(track.path,Math.max(0,length-3)),b=m92Point(track.path,Math.min(m92Path(track.path).total,length+3));const angle=Math.atan2((b.y-a.y)*direction,(b.x-a.x)*direction)*180/Math.PI+90,scale=.33+Math.max(0,Math.min(1,p.y/700))*.78;
+    const old=track.car._m92Angle??angle,delta=((angle-old+540)%360)-180,heading=m88Reduced()?angle:old+delta*.3;track.car._m92Angle=heading;track.car.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${heading}) scale(${scale})`);track.car.dataset.progress=String(length);
   }
   function m88CancelDrive(){cancelAnimationFrame(m88Journey.frame);m88Journey.moving=false;const host=document.getElementById('roiRoad');host?.classList.remove('m88-driving');host?.querySelectorAll('.m88-destination').forEach(el=>el.classList.remove('m88-destination'));}
   function m88DriveToMonth(i,onArrival){
     const track=m88MainTrack();if(!track){onArrival?.();return;}
-    m88CancelDrive();const start=m88Journey.length??m88MainTarget(track,m88Journey.month),end=m88MainTarget(track,i),distance=Math.abs(end-start),direction=end>=start?1:-1,duration=m88Reduced()?0:Math.min(1350,450+distance*.7),host=document.getElementById('roiRoad');m88Journey.month=i;
+    m88CancelDrive();const start=m88Journey.length??m88MainTarget(track,m88Journey.month),end=m88MainTarget(track,i),distance=Math.abs(end-start),direction=end>=start?1:-1,duration=m88Reduced()?0:Math.min(950,320+distance*.45),host=document.getElementById('roiRoad');m88Journey.month=i;
     host.querySelector('.m88-car-status').textContent=`Travelling to Month ${i}`;host.querySelectorAll(`[data-roi-month="${i}"]`).forEach(el=>el.classList.add('m88-destination'));host.classList.add('m88-driving');m88Journey.moving=true;
     const finish=()=>{m88Journey.length=end;m88PlaceMain(track,end,direction);m88CancelDrive();host.querySelector('.m88-car-status').textContent=`At Month ${i}`;onArrival?.();};
     if(!duration||distance<2){finish();return;}
-    const began=performance.now();const tick=now=>{const t=Math.min(1,(now-began)/duration),ease=t<.5?2*t*t:1-((-2*t+2)**2)/2;m88Journey.length=start+(end-start)*ease;m88PlaceMain(track,m88Journey.length,direction);if(t<1)m88Journey.frame=requestAnimationFrame(tick);else finish();};m88Journey.frame=requestAnimationFrame(tick);
+    const began=performance.now();const tick=now=>{const t=Math.min(1,(now-began)/duration),ease=t*t*t*(t*(t*6-15)+10);m88Journey.length=start+(end-start)*ease;m88PlaceMain(track,m88Journey.length,direction);if(t<1)m88Journey.frame=requestAnimationFrame(tick);else finish();};m88Journey.frame=requestAnimationFrame(tick);
   }
-  function m88RouteCar(i){
+  function m88RouteCar(i,onArrival,onProgress){
     const nav=document.querySelector('#roiRoadmapPopover .m67-route');if(!nav)return;
-    cancelAnimationFrame(m88Journey.routeFrame);const route=nav.querySelector('svg'),path=route.querySelector('path'),car=m88Svg('g',{class:'m88-detail-car','aria-hidden':'true'});car.innerHTML=m88CarBody;m88PaintCar(car);route.append(car);
-    const lane=m88Svg('svg',{class:'m88-mobile-car-lane',viewBox:'0 0 500 24','aria-hidden':'true'});lane.innerHTML='<path d="M50 12H450" fill="none" stroke="#d9b57b" stroke-opacity=".3" stroke-dasharray="3 6"/>';const small=m88Svg('g');small.innerHTML=m88CarBody;m88PaintCar(small);lane.append(small);nav.append(lane);
-    const previous=m88Journey.routeMonth;const xs=[29,43,26,42,29],target=n=>Math.max(0,m88Nearest(path,xs[n],31+n*72)+(n===0?23:-23));const start=target(previous),end=target(i),mobileFrom=50+previous*100,mobileTo=50+i*100;m88Journey.routeMonth=i;
-    const place=t=>{const at=start+(end-start)*t,p=path.getPointAtLength(at),a=path.getPointAtLength(Math.max(0,at-2)),b=path.getPointAtLength(Math.min(path.getTotalLength(),at+2)),angle=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI+(i<previous?90:-90);car.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${angle}) scale(.5)`);small.setAttribute('transform',`translate(${mobileFrom+(mobileTo-mobileFrom)*t} 12) rotate(${i<previous?-90:90}) scale(.85)`);};
-    const began=performance.now(),duration=m88Reduced()||previous===i?0:650;const tick=now=>{const t=duration?Math.min(1,(now-began)/duration):1;place(t*t*(3-2*t));if(t<1)m88Journey.routeFrame=requestAnimationFrame(tick);};tick(began);
+    cancelAnimationFrame(m88Journey.routeFrame);const route=nav.querySelector('svg'),path=route.querySelector('path'),car=route.querySelector('.m88-detail-car')||m88Svg('g',{class:'m88-detail-car','aria-hidden':'true'});car.innerHTML=m88CarBody;m88PaintCar(car);route.append(car);
+    nav.querySelector('.m88-mobile-car-lane')?.remove();const lane=m88Svg('svg',{class:'m88-mobile-car-lane',viewBox:'0 0 500 24','aria-hidden':'true'});lane.innerHTML='<path d="M50 12H450" fill="none" stroke="#d9b57b" stroke-opacity=".3" stroke-dasharray="3 6"/>';const small=m88Svg('g');small.innerHTML=m88CarBody;m88PaintCar(small);lane.append(small);nav.append(lane);
+    const previous=m88Journey.routeMonth;const xs=[29,43,26,42,29],target=n=>Math.max(0,m88Nearest(path,xs[n],31+n*72)+(n===0?23:-23));const start=m88Journey.routeAt??target(previous),end=target(i),mobileFrom=m88Journey.mobileAt??(50+previous*100),mobileTo=50+i*100;m88Journey.routeMonth=i;
+    const place=t=>{const at=start+(end-start)*t,p=m92Point(path,at),a=m92Point(path,Math.max(0,at-2)),b=m92Point(path,Math.min(m92Path(path).total,at+2)),angle=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI+(i<previous?90:-90);m88Journey.routeAt=at;m88Journey.mobileAt=mobileFrom+(mobileTo-mobileFrom)*t;car.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${angle}) scale(.5)`);small.setAttribute('transform',`translate(${mobileFrom+(mobileTo-mobileFrom)*t} 12) rotate(${i<previous?-90:90}) scale(.85)`);};
+    const began=performance.now(),duration=m88Reduced()||Math.abs(end-start)<.5?0:560;const tick=now=>{const t=duration?Math.min(1,(now-began)/duration):1;place(t*t*(3-2*t));onProgress?.(t);if(t<1)m88Journey.routeFrame=requestAnimationFrame(tick);else onArrival?.();};tick(began);
   }
   function m88SyncRoadCars(){
     const track=m88MainTrack();if(track&&!m88Journey.moving){if(m88Journey.length===null)m88Journey.length=m88MainTarget(track,m88Journey.month);m88PlaceMain(track,m88Journey.length);track.svg.parentNode.querySelector('.m88-car-status').textContent=`At Month ${m88Journey.month}`;}
-    if(state.month!==null){m88RouteCar(state.month);if(m88Journey.month!==state.month)m88DriveToMonth(state.month);}
+    if(state.month!==null){m88RouteCar(state.month);if(m88Journey.month!==state.month){m88Journey.month=state.month;m88Journey.length=m88MainTarget(track,state.month);m88PlaceMain(track,m88Journey.length);}}
   }
 
   function closeRoadmapDetails(){
     if(state.month===null)return;
     const i=state.month,host=document.getElementById('roiRoad');
-    state.month=null;renderRoadmap();
-    host?.querySelector(`[data-roi-month="${i}"]`)?.focus({preventScroll:true});
+    const dialog=host?.querySelector('#roiRoadmapPopover');if(dialog?._m92Closing)return;dialog._m92Closing=true;cancelAnimationFrame(m88Journey.routeFrame);dialog._m102Token=(dialog._m102Token||0)+1;dialog._m102Pending=false;
+    m92Dismiss(dialog,()=>{dialog._m92Closing=false;state.month=null;renderRoadmap();host?.querySelector(`[data-roi-month="${i}"]`)?.focus({preventScroll:true});});
   }
 
   function renderRoadmap(){
@@ -7226,6 +7355,8 @@ document.addEventListener('DOMContentLoaded',function(){
     host.querySelectorAll('[data-roi-month]').forEach(el=>{const active=Number(el.dataset.roiMonth)===state.month;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));el.setAttribute('aria-expanded',String(active));});
     const dialog=host.querySelector('#roiRoadmapPopover');
     const detail=state.month!==null?roadmap[state.month]:null;
+    const wasRoadOpen=dialog.open,oldCover=dialog.querySelector('.m67-road-cover'),roadScroll=dialog.scrollTop,mainScroll=dialog.querySelector('.m67-main')?.scrollTop||0;
+    dialog._m92Motion?.cancel();dialog._m92Closing=false;
     if(detail){
       dialog.innerHTML=`<div class="m67-brief m67-road-brief">
         <aside class="m67-cover m67-road-cover"><span class="m67-brand">SERASÉ<span>Execution roadmap</span></span><span class="m67-route-heading">Month 0–4</span>
@@ -7237,18 +7368,35 @@ document.addEventListener('DOMContentLoaded',function(){
           <section class="m67-tactics"><span class="m67-section-label">Key Activities</span><ol class="m67-list" data-month-content="activities">${briefItems(detail.activities,';','li')}</ol></section>
           <div class="m67-outcomes"><section class="m67-primary-kpis"><span class="m67-section-label">Primary KPIs</span><p data-month-content="kpi">${briefEscape(detail.kpi)}</p></section><section class="m67-revenue"><span class="m67-section-label">Revenue KPI</span><p data-month-content="revenue">${briefEscape(detail.revenue)}</p></section></div>
         </div></div>`;
-      dialog.querySelectorAll('[data-m67-month]').forEach(btn=>btn.addEventListener('click',()=>{
-        const i=Number(btn.dataset.m67Month);if(i===state.month)return;state.month=i;renderRoadmap();dialog.scrollTop=0;
-        dialog.querySelector(`[data-m67-month="${i}"]`)?.focus({preventScroll:true});
-      }));
+      if(oldCover){dialog.querySelector('.m67-road-cover').replaceWith(oldCover);oldCover.querySelectorAll('[data-m67-month]').forEach(btn=>btn.setAttribute('aria-current',Number(btn.dataset.m67Month)===state.month?'step':'false'));}
+      dialog.querySelectorAll('[data-m67-month]').forEach(btn=>btn.onclick=()=>{
+        const i=Number(btn.dataset.m67Month);if(i===state.month&&!dialog._m102Pending)return;
+        const token=(dialog._m102Token||0)+1;dialog._m102Token=token;dialog._m102Pending=true;
+        const main=dialog.querySelector('.m67-main');main.setAttribute('aria-busy','true');
+        main.classList.add('m103-travelling');
+        let status=main.querySelector('.m103-travel-status');
+        if(!status){status=document.createElement('div');status.className='m103-travel-status';status.setAttribute('role','status');status.innerHTML='<span class="m103-travel-label"></span>';main.append(status);}
+        status.querySelector('.m103-travel-label').textContent=`Driving to ${roadmap[i].month} · ${roadmap[i].phase}…`;
+
+        dialog.querySelectorAll('[data-m67-month]').forEach(el=>el.setAttribute('aria-current',Number(el.dataset.m67Month)===i?'step':'false'));
+        m88RouteCar(i,()=>{
+          if(!dialog.open||dialog._m92Closing||dialog._m102Token!==token)return;
+          dialog._m102Pending=false;state.month=i;renderRoadmap();
+          dialog.querySelector(`[data-m67-month="${i}"]`)?.focus({preventScroll:true});
+        });
+      });
       dialog.querySelector('.m54-dialog-close').addEventListener('click',e=>{e.stopPropagation();closeRoadmapDetails();});
       dialog.querySelector('[data-roi-month-title]').addEventListener('click',e=>{e.stopPropagation();closeRoadmapDetails();});
-      if(!dialog.open){dialog.showModal();dialog.scrollTop=0;}
+      if(!dialog.open){dialog.showModal();dialog.scrollTop=0;}else{dialog.scrollTop=roadScroll;dialog.querySelector('.m67-main').scrollTop=mainScroll;}
+      // Arrival leads straight into a stationary brief; month changes never flash blank.
+      m95Brief(dialog,'roadmap',wasRoadOpen);
       document.documentElement.classList.add('m54-strategy-modal-open');
     }else{
       if(dialog.open)dialog.close();dialog.innerHTML='';
       if(!document.querySelector('dialog[open]'))document.documentElement.classList.remove('m54-strategy-modal-open');
     }
+    if(detail&&!wasRoadOpen){m88Journey.routeMonth=state.month;m88Journey.routeAt=null;m88Journey.mobileAt=null;}
+    if(!detail){cancelAnimationFrame(m88Journey.routeFrame);dialog._m102Token=(dialog._m102Token||0)+1;dialog._m102Pending=false;}
     m88SyncRoadCars();
     document.dispatchEvent(new CustomEvent('serase:roadmap-change'));
   }
