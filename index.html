@@ -3,7 +3,7 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="serase-build" content="marketing-funnel-old-vs-new-v62-2026-10-02">
+<meta name="serase-build" content="costing-budgeting-new-2026-10-08">
 <title>Serase Costing &amp; Budgeting Dashboard</title>
 <meta name="serase-marketing-build" content="v107-consistent-marketing-numbering">
 <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -2155,6 +2155,11 @@ body[data-view] #costingAnalysisSection{display:none;}
     .pricing-intro-grid{grid-template-columns:1fr;}
   }
 
+  /* The host below is full-bleed at width:100vw, and 100vw counts the vertical scrollbar, so it starts half a
+     scrollbar left of the page and ends half a scrollbar (about 8 px) past its right edge, which adds a sideways
+     scrollbar. Clipping the page sideways in this view only removes that sliver; the host's own right padding
+     is 3vw, so no content sits there. */
+  body[data-view="pricing"]{overflow-x:clip;}
   #pricingAnalysisSection{overflow:visible;}
   .pricing-analysis-host{
     width:100vw;
@@ -3187,7 +3192,6 @@ body[data-view] #costingAnalysisSection{display:none;}
 }
 
 </style>
-<meta name="serase-build" content="serase-brand-roadmap-pushout-v19-2026-09-30">
 
 <style>
   /* v21 · Budget Allocation — de-duplicated management view */
@@ -6443,7 +6447,7 @@ window.publishSeraseEkycQuote=function(provider,quote){
             <span class="m23-outline-badge">Illustrative management scenario</span>
             <div class="m23-budget-metrics" aria-label="Marketing budget status">
               <div class="budget-total-metric"><label id="budgetTotalLabel" for="roiHubEnvelope">RM500K marketing envelope</label><div class="budget-total-edit"><button type="button" id="budgetTotalEdit" aria-label="Edit total marketing budget" aria-controls="roiHubEnvelope"><strong id="roiBudgetEnvelope">RM 500,000</strong><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m16 3 5 5-12 12-6 1 1-6Z"/><path d="m14 5 5 5"/></svg></button><input id="roiHubEnvelope" type="number" min="1" step="1" value="500000" aria-labelledby="budgetTotalLabel" hidden></div></div>
-              <div><span>TOTAL</span><strong id="roiBudgetAllocated">RM 490,000</strong><small id="roiBudgetPct">98.0%</small></div>
+              <div><span>TOTAL</span><strong id="roiBudgetAllocated">RM 490,000</strong><small id="roiBudgetPct">98.0%</small><small id="roiBudgetOver" style="display:none"></small></div>
               <div><span>Contingency</span><strong id="roiBudgetRemaining">RM 10,000</strong></div>
             </div>
           </div>
@@ -7539,6 +7543,9 @@ document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('roiBudgetRemaining').textContent=money0(env-allocated);
     document.getElementById('roiBudgetRemaining').style.color=(env-allocated)<0?'var(--red)':'var(--ink)';
     document.getElementById('roiBudgetPct').textContent='';
+    const over=allocated-env, overEl=document.getElementById('roiBudgetOver');
+    overEl.textContent=over>0?`Over the envelope by ${money0(over)}`:'';
+    overEl.style.display=over>0?'':'none';
     
   }
 
@@ -7657,8 +7664,7 @@ document.addEventListener('DOMContentLoaded',function(){
     if(g&&g.nextElementSibling) cpv=num(g.nextElementSibling.textContent);
     const each=tr=>{const o=tr&&tr.querySelector('td[data-label="Output"]'); const m=o&&o.textContent.match(/\(RM\s*([\d.,]+)\s*each\)/i); return m?parseFloat(m[1].replace(/,/g,'')):null;};
     const metaPerReg=each(rowCell('#m69MetaPanel','Registrations'));
-    const metaPerPayer=each(rowCell('#m69MetaPanel','Purchase retargeting'));
-    const next={eventLaunch:ev,kolFee,costPerVerified:cpv,metaPerReg,metaPerPayer,
+    const next={eventLaunch:ev,kolFee,costPerVerified:cpv,metaPerReg,
                 mix:{select:Number(state.mixSelect)||0,elite:Number(state.mixElite)||0,signature:Number(state.mixSignature)||0}};
     const changed=JSON.stringify(next)!==JSON.stringify(window.seraseMarketingBudget);
     window.seraseMarketingBudget=Object.freeze(next);
@@ -8102,6 +8108,7 @@ label.radio.on .n,.payopt.on label.radio .n{background:rgba(15,118,110,.09);colo
 .hint{font-family:var(--sans);font-size:10.5px;color:#7B8A99;padding-top:2px}
 .drawer .dh .cap{font-family:var(--sans);font-size:10.5px;font-weight:750;letter-spacing:.06em}
 .drawer .dh .arppu{font-family:var(--sans);font-size:11.5px}
+.drawer .dh .mixwarn{color:#7A4C12;font-weight:650;margin-left:6px}
 .ladbtns .lb{font-family:var(--sans);font-weight:650}
 details.fold>summary,details.notes summary{font-family:var(--sans);font-size:10.5px;font-weight:750;letter-spacing:.055em}
 @media(max-width:1180px){.subtitle{display:none}}
@@ -8266,7 +8273,7 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
   <div class="bar">
     <button class="tog" id="tog" aria-controls="side" aria-expanded="false">☰ Assumptions</button>
     <div class="titlewrap"><h1>Pricing Analysis</h1><div class="subtitle">Change one assumption at a time and see how it affects investment, revenue and ROI.</div></div>
-    <div class="basis">36-month scenario · model v4<br><span id="basisRev"></span></div>
+    <div class="basis">36-month scenario · channel model<br><span id="basisRev"></span></div>
   </div>
 
 
@@ -8308,7 +8315,7 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
 
   <div class="ctl wide">
     <h3><span class="stepno">4</span> Which channels bring users, and how do they convert?</h3>
-    <div class="note">Each channel brings its own users: starting registered users, monthly growth, and three funnel steps (registered to verified, verified to active MAU, MAU to paying). Switch a channel off and both its users and its cost go. KOL is a one-off cohort: its creators each bring a set number of registrations, once. Churn is shared (step 7).</div>
+    <div class="note">Each channel brings its own users: new registrations a month (Google Ads, Meta, Organic), their monthly growth, and three funnel steps (registered to verified, verified to active MAU, MAU to paying). Launch and KOL are one-off cohorts: the launch brings a set number of registrations at the event, and each KOL creator brings a set number, once. Switch a channel off and both its users and its cost go. The eKYC contract and the fixed front-end belong to no channel, so they stay. Churn is shared (step 7).</div>
     <div class="chgrid" id="chanGrid"></div>
     <div class="note" id="volNote"></div>
     <div class="note" id="mktNote"></div>
@@ -8410,7 +8417,7 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
   <div class="drawer" id="priceDrawer">
     <div class="dh" id="priceHead">
       <span class="cap">Pricing options · <span id="termCap">monthly</span></span>
-      <span class="arppu">Avg. revenue / paying user <b id="arppu">RM49.21</b> <span id="arppuDelta"></span></span>
+      <span class="arppu">Avg. revenue / paying user <b id="arppu">RM49.21</b> <span id="arppuDelta"></span> <span class="mixwarn" id="mixWarn"></span></span>
       <span class="chev" id="priceChev">Hide ▲</span>
     </div>
     <div class="dw"><div class="db">
@@ -8463,11 +8470,19 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
       <li><b>Success rate multiplies collection only.</b> Failed charges lose revenue and cost
         nothing; churn is unaffected on either channel, as the model has no dunning or
         expired-card attrition. Optimistic.</li>
-      <li><b>eKYC costs are linked to 1. E-KYC Provider.</b> Year 1 uses its selected Year 1 total; Years 2 and 3 each use its Year 2+ total. All include the source SST and selected Innov8tif add-ons. Annual budgets are allocated evenly across 12 months. The selected monthly transaction volume or annual credit block is held constant; additional usage or top-ups are not automatically purchased for the growth scenario.</li>
+      <li><b>eKYC is priced on the modelled verifications, at the rates in 1. E-KYC Provider.</b> WISE Plan 1 is billed
+        month by month: one band rate on the whole month's volume (not progressive), a 100-transaction minimum, RM18,000 setup
+        in year 1 and RM5,000 a year after. WISE Plan 2 and Innov8tif are prepaid: each year the model buys the cheapest mix
+        of the quoted blocks or credit packs that covers that year's verifications, never less than the option selected in
+        tab 1. <b>That more than one can be bought is an assumption</b>: the quotes do not say, and Innov8tif's reload terms
+        are TBC in tab 1. Prepaid purchases are spread evenly over the year's 12 months and unused quota is not carried into
+        the next year. Innov8tif's optional add-ons stay flat as quoted. All include SST. Tab 1's own monthly-volume field and
+        its flat Year 1 / Year 2+ totals remain a stand-alone scenario and no longer set this page's cost. Until 8 Oct 2026
+        eKYC was that flat quote, which understated it as volume grew.</li>
       <li><b>Excludes all headcount.</b> A team of six is RM1.5–2.0m over three years.</li>
       <li><b>The funnel follows the channel boxes in step 4 only.</b> No other control changes
-        registrations, verifications or MAU. eKYC budgets follow the settings in 1. E-KYC
-        Provider and do not scale with volume. <b>The launch cost is the Event Launch line of
+        registrations, verifications or MAU. eKYC is priced on the verifications of every
+        included channel together. <b>The launch cost is the Event Launch line of
         3.4's budget structure. KOL is 3.5's KOL fee × the creators set in its box, and those creators also set its users, Google Ads
         is 3.5's cost per verified user, and Meta is 3.5's RM8 per sign-up</b>; all follow those
         tabs. The RM394,250 Pixel Pro quote in full is not modelled here.</li>
@@ -8480,22 +8495,29 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
         opposite. CAC and payback move only slightly. Until 8 Oct 2026 conversion was re-solved
         at every churn, which pinned year-end subscribers and left churn unable to move revenue.
         Not a measured rate.</li>
-      <li><b>Each channel has its own users.</b> Starting registered users, growth and three
-        funnel rates (registered to verified, verified to active MAU, MAU to paying) are set per
-        channel, each flat across the three years. Model v4 had one pool of 15,000 users growing
-        12 / 10 / 8% a month, with funnel rates of 40 to 70%, 55 to 62% and 5 to 10% by year.
-        <b>The channel defaults are placeholders</b> (Launch 900, Google Ads 800, Meta 667,
-        Organic 300 starting users; 55% / 60% / 8% funnel), except Meta's 667 starting sign-ups,
-        which come from 3.5. KOL has no seed or growth of its own: each creator brings 900
-        registrations once (3.5's KOL funnel), so 12 creators give a 10,800 cohort that does not
-        grow, matching its one-off fee. Launch is a one-off cohort too (growth 0). Each paid
-        channel is costed only on its own users, so switching one off removes its users and its
-        cost, and nothing is charged twice. Churn is one rate shared by every channel. Paying
-        subscribers are solved to each channel's MAU → paying rate at every year end, at 20% churn.</li>
+      <li><b>Each channel has its own users.</b> Google Ads, Meta and Organic take new
+        registrations a month, with a monthly growth rate on that figure (0 by default); Launch and
+        KOL are one-off cohorts. The three funnel rates (registered to verified, verified to active
+        MAU, MAU to paying) are set per channel, each flat across the three years. Model v4 had one
+        pool of 15,000 users growing 12 / 10 / 8% a month, with funnel rates of 40 to 70%, 55 to 62%
+        and 5 to 10% by year. <b>The channel defaults are placeholders</b> (Launch 900 once, Google
+        Ads 800, Meta 667, Organic 300 a month; 55% / 60% / 8% funnel), except Meta's 667 sign-ups a
+        month, which comes from 3.5. KOL has no seed or growth of its own: each creator brings 900
+        registrations once (3.5's KOL funnel), so 12 creators give a 10,800 cohort that does not grow,
+        matching its one-off fee. Until 8 Oct 2026 these inputs were starting stocks of registered
+        users, so month 1 took the whole seed at once. Each paid channel is costed only on its own
+        users, so switching one off removes its users and its cost, and nothing is charged twice.
+        Churn is one rate shared by every channel. Paying subscribers are solved to each channel's
+        MAU → paying rate at every year end, at 20% churn.</li>
+      <li id="scaleNote"><b>3.5's plan and this page's funnel are separate.</b> 3.5's illustration buys
+        5,000 paid subscribers for RM500K; this page's placeholder funnel gives far fewer new payers in
+        the same period, and neither is an input to the other. 3.5's 5,000 subscribers and 8% churn are
+        not read here.</li>
       <li><b>The subscription mix is read from 3.5</b> (default 50 / 30 / 20 Select / Elite /
         Signature; the page used 68 / 27 / 5 before 8 Oct 2026). Blended ARPPU is that mix on
         this page's price ladders and billing terms, so it is not 3.5's RM37.90, which uses
-        monthly prices only.</li>
+        monthly prices only. If 3.5's mix does not total 100%, 3.5 shows no ARPU, but this page scales the
+        shares to 100% and says so beside the average revenue per paying user.</li>
       
       <li><b>Servicing past 50,000 MAU is extrapolated, not priced.</b> The AWS v2.0 estimate
         stops at a 50,000-MAU anchor. <span id="cvExtrap">The model reaches 170,692, so <b>13 of 36 months and
@@ -8503,6 +8525,9 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
         10k–50k segment, out to 3.41× the last anchor.</span> The source makes no claim there.
         <b>The low end of every AWS band is used throughout</b> and the high end is not offered
         on this page — at 50,000 MAU the estimate itself spans USD 5,440 to 20,280.</li>
+      <li><b>Servicing uses its own copy of tab 2's figures.</b> The AWS v2.0 tiers, the USD 84.04 a month
+        front-end and the USD/MYR rate of 4.09 are copied into this page, not read from 2. AWS
+        Infrastructure Cost, so changing the FX rate or a tier there does not move servicing here.</li>
       <li><b>The fixed front-end is added on top of the AWS v2.0 range, and they overlap.</b>
         Servicing is the v2.0 figure plus USD 84.04/month. The costing dashboard's own
         engineering review notes that v2.0 already includes CloudFront and CloudWatch, which
@@ -8521,8 +8546,8 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
         assumes competitors price their terms the way we price ours. They may not.</li>
     </ul>
     <div style="margin-top:10px;font-family:var(--mono);font-size:10.5px">
-      Engine: serase_v4.py · serase_v4_combos.json · Pixel Pro Quote 0088 · WISE / Innov8tif
-      proposals · AWS Cost Estimate v2.0. Built 9 Sep 2026.
+      Engine: this page's own five-channel model (equations in Serase_Dynamical_System_v2.pdf) · Pixel Pro
+      Quote 0088 · WISE / Innov8tif proposals · AWS Cost Estimate v2.0. Model last changed 8 Oct 2026.
     </div>
   </details>
 </main>
@@ -8530,7 +8555,7 @@ main{height:auto!important;max-height:none!important;min-height:0!important;min-
 <div class="tip" id="tip"></div>
 </div></script>
       <script type="text/plain" id="pricingAnalysisLogic">"use strict";
-/* ============================ MODEL — port of serase_v4.py ==================== */
+/* ============================ MODEL — five channels, one funnel each ==================== */
 /* The funnel is built per channel (CHANNELS, below), each with its own starting registered users,
    monthly growth and flat funnel rates. Only churn (DELTA) is shared. Model v4 had one pool:
    R0 = 15,000, growth 12 / 10 / 8%, registered -> verified 40 / 55 / 70%, verified -> MAU
@@ -8544,6 +8569,7 @@ const FX=4.09, SST=0.08, W=52/12, BETA=0.01;
 /* The tier mix is read from 3.5's revenue model (default 50 / 30 / 20) by syncMarketingMix(). It was
    68 / 27 / 5 until 2026-10-08. The keys also list the three tiers, so the object is mutated, not replaced. */
 const TIER_MIX={Select:0.50,Elite:0.30,Signature:0.20};
+let MIX_TOTAL=100;                       /* 3.5's mix as entered, so a total other than 100 can be flagged */
 const TERM_MIX={wk:0.45,mo:0.40,q:0.15};
 const LADDERS={
   current:{Select:[9.90,19.90,44.90],Elite:[19.90,39.90,89.90],Signature:[39.90,79.90,179.90]},
@@ -8556,7 +8582,7 @@ const ANCHORS=[[1000,340,560,100,400],[5000,690,1900,300,1200],
                [10000,1240,4280,600,3000],[50000,5440,20280,3000,15000]];
 const FIXED_USD=84.04;
 
-const EKYC_LABEL={wise1:"WISE Plan 1 · linked quote",wise2:"WISE Plan 2 · linked quote",innov:"Innov8tif EMAS · linked quote"};
+const EKYC_LABEL={wise1:"WISE Plan 1 · priced on volume",wise2:"WISE Plan 2 · priced on volume",innov:"Innov8tif EMAS · priced on volume"};
 /* RM150,000 is Marketing's default for that line; it is only the fallback if the Marketing
    script has not published yet. */
 /* ---- what 3. Marketing publishes (window.seraseMarketingBudget). The numbers after || are
@@ -8583,6 +8609,7 @@ function metaPerReg(){                   /* 3.5: Meta cost per sign-up, RM */
 function syncMarketingMix(){             /* 3.5: Select / Elite / Signature shares, normalised */
   const m=mktPub().mix; if(!m) return;
   const t=(+m.select||0)+(+m.elite||0)+(+m.signature||0);
+  MIX_TOTAL=t;
   if(t>0){ TIER_MIX.Select=m.select/t; TIER_MIX.Elite=m.elite/t; TIER_MIX.Signature=m.signature/t; }
 }
 const fmtK=v=>v===0 ? "0" : v%1000===0 ? (v/1000)+"k" : Math.round(v).toLocaleString("en-MY");
@@ -8593,15 +8620,17 @@ function linkedEkycQuote(provider){
 }
 
 /* One channel's funnel: registered -> verified -> active (MAU) -> paying.
-   p = {r0, g, nu, al} (flat rates); c = paid conversion of unconverted MAU, by year;
+   p = {n0, g, once, nu, al}: n0 = new registrations in month 1, growing g a month, or n0 in month 1 only
+   when once (a one-off cohort: Launch, KOL). nu, al are flat rates. Registered users R accumulate the
+   sign-ups. c = paid conversion of unconverted MAU, by year;
    dl = monthly churn by year (the slider's, unless the caller calibrates at the reference). */
 function buildCh(p,c,dl){
   dl = dl || DELTA;
   const rows=[]; let Rp=0,Sp=0,Ip=0;
   for(let t=1;t<=36;t++){
     const y=Math.floor((t-1)/12);
-    const R = t===1 ? p.r0 : Rp*(1+p.g);
-    const N = t===1 ? R : R-Rp;
+    const N = p.once ? (t===1 ? p.n0 : 0) : p.n0*Math.pow(1+p.g,t-1);   /* new registrations this month */
+    const R = Rp+N;
     const J = N*p.nu;
     const bk = BETA*Math.max(0,Rp-Ip);
     const I = Math.min(Ip+J+bk, R);
@@ -8639,20 +8668,25 @@ const CHANNELS=[
 ];
 /* Starting values are placeholders, all five on. Meta's 667 sign-ups a month and KOL's 900
    registrations per creator are the scenario figures in 3.5; the rest are chosen to be sensible.
-   Launch growth is 0: the event is a one-off cohort. KOL is a one-off cohort too: kr registrations per
-   creator, once, times the creators in its box, with no growth, because its fee is also paid once. Until
-   2026-10-08 it was a 900-user seed growing 10% a month whatever the creators slider said. */
+   Google Ads, Meta and Organic take new registrations A MONTH, growing g a month (0 by default).
+   Launch and KOL are one-off cohorts, because their fees are paid once: Launch brings n0 registrations at
+   the event, KOL brings kr per creator, times the creators in its box, and neither grows.
+   Until 2026-10-08 these inputs were starting STOCKS of registered users, so month 1 took the whole seed
+   at once (a spike, then a trough) and Meta's "667 a month" was a one-off 667. */
 const CH_DEFAULTS={
-  launch:  {on:true, r0:900, g:0.00, nu:0.55, al:0.60, pi:0.08},
-  google:  {on:true, r0:800, g:0.10, nu:0.55, al:0.60, pi:0.08},
-  meta:    {on:true, r0:667, g:0.10, nu:0.55, al:0.60, pi:0.08},
-  kol:     {on:true, kr:900,          nu:0.55, al:0.60, pi:0.08},
-  organic: {on:true, r0:300, g:0.05, nu:0.55, al:0.60, pi:0.08}
+  launch:  {on:true, n0:900,         nu:0.55, al:0.60, pi:0.08},
+  google:  {on:true, n0:800, g:0.00, nu:0.55, al:0.60, pi:0.08},
+  meta:    {on:true, n0:667, g:0.00, nu:0.55, al:0.60, pi:0.08},
+  kol:     {on:true, kr:900,         nu:0.55, al:0.60, pi:0.08},
+  organic: {on:true, n0:300, g:0.00, nu:0.55, al:0.60, pi:0.08}
 };
-/* What the model run sees for a channel. KOL's seed is creators x registrations per creator, and it does not grow. */
+/* What the model run sees for a channel: Launch and KOL are one-off cohorts (KOL's is creators x registrations
+   per creator), the rest are monthly flows. */
 function chParams(k){
   const p=S.ch[k];
-  return k==="kol" ? Object.assign({},p,{r0:S.creators*p.kr, g:0}) : p;
+  if(k==="kol")    return Object.assign({},p,{n0:S.creators*p.kr, g:0, once:true});
+  if(k==="launch") return Object.assign({},p,{g:0, once:true});
+  return Object.assign({},p,{once:false});
 }
 /* Every included channel, solved and built; rows are summed across channels. lam scales every
    channel's MAU -> paying rate (the "adjust subscribers" solver). */
@@ -8688,21 +8722,70 @@ function arppu(lad){
   }
   return A;
 }
+/* ---- eKYC priced on the modelled verifications (8 Oct 2026; it was a flat quote before) ----
+   q[t] = billable verifications in month t (J + back-book). Each plan's rate structure comes from tab 1
+   through the quote bridge (quote.plan), so tab 1 stays the single source for the vendors' prices.
+   - WISE Plan 1, postpaid: month by month, one band rate on the whole month's volume, floored at the minimum.
+   - WISE Plan 2 (blocks) and Innov8tif (credit packs), prepaid: each year buys the cheapest mix of the quoted
+     options that covers that year's verifications, and never less than the option selected in tab 1. That more
+     than one can be bought is an assumption: the quotes do not say, and Innov8tif's reload terms are TBC.
+   The annual purchase is spread evenly over the year's 12 months, as the flat quote was. Innov8tif's add-ons
+   stay flat as quoted (they are already incl. SST). With no plan on the quote it falls back to the flat totals. */
+function ekycBand(pl,b){ for(const [cap,r] of pl.bands) if(b<=cap) return r; return pl.bands[pl.bands.length-1][1]; }
+function coverCost(vol, opts, selCap){
+  const g=opts.reduce((a,o)=>{ let x=a,y=o.cap; while(y){ [x,y]=[y,x%y]; } return x; },0);   /* gcd of the pack sizes */
+  const need=Math.max(vol,selCap), K=Math.max(1,Math.ceil(need/g-1e-9));
+  const dp=[0], pick=[null];
+  for(let k=1;k<=K;k++){
+    let best=Infinity, bi=-1;
+    opts.forEach((o,j)=>{ const c=dp[Math.max(0,k-Math.round(o.cap/g))]+o.fee; if(c<best-1e-9){ best=c; bi=j; } });
+    dp.push(best); pick.push(bi);
+  }
+  const mix={}; let k=K;
+  while(k>0){ const o=opts[pick[k]]; mix[o.cap]=(mix[o.cap]||0)+1; k-=Math.round(o.cap/g); }
+  return {fee:dp[K], mix};
+}
+function ekycBasis(quote,buys){      /* one line saying how the plan was priced */
+  const pl=quote.plan; if(!pl||!buys&&pl.kind!=="postpaid") return quote.basis;
+  const nf=n=>n.toLocaleString("en-MY");
+  if(pl.kind==="postpaid")
+    return "Postpaid: one band rate on each month's verifications, minimum "+nf(pl.minTxn)+" a month, RM"+nf(pl.setup)+" setup in year 1 and RM"+nf(pl.support)+" a year after.";
+  const unit=pl.kind==="prepaid" ? "block" : "credit pack";
+  const txt=buys.map((mix,y)=>"Y"+(y+1)+" "+Object.keys(mix).map(Number).sort((a,b)=>b-a).map(c=>mix[c]+" × "+nf(c)).join(" + ")).join(" · ");
+  return "Buys the cheapest mix of quoted "+unit+"s each year, never below tab 1's selection: "+txt+".";
+}
+function ekycSeries(provider,q){
+  const quote=linkedEkycQuote(provider), pl=quote.plan, m=new Array(36).fill(0), buys=[];
+  if(!pl){ for(let i=0;i<36;i++) m[i]=(i<12?quote.y1:quote.y2)/12; return {m,buys:null}; }
+  const k=1+pl.sst;
+  if(pl.kind==="postpaid"){
+    for(let i=0;i<36;i++){ const b=Math.max(q[i],pl.minTxn); m[i]=(b*ekycBand(pl,b)+(i<12?pl.setup:pl.support)/12)*k; }
+    return {m,buys:null};
+  }
+  const opts = pl.kind==="prepaid" ? pl.blocks : pl.packs;
+  for(let y=0;y<3;y++){
+    let V=0; for(let i=12*y;i<12*y+12;i++) V+=q[i];
+    const c=coverCost(V,opts,pl.selectedCap);
+    const fixed = pl.kind==="prepaid" ? (y===0?pl.setup:pl.support) : pl.cloud+(y===0?pl.impl:0);
+    const add = pl.kind==="credits" ? (y===0?pl.addY1:pl.addY2) : 0;
+    for(let i=12*y;i<12*y+12;i++) m[i]=((c.fee+fixed)*k+add)/12;
+    buys.push(c.mix);
+  }
+  return {m,buys};
+}
 function costStreams(per, rows, ekyc){
-  const ek=[], mkt=[], meta=[], serv=[];
+  const mkt=[], meta=[], serv=[];
   const g=per.google, m=per.meta;
+  const ekS=ekycSeries(ekyc, rows.map(r=>r.J+r.bk)), ek=ekS.m;
   for(let i=0;i<36;i++){
     const r=rows[i], y=r.y-1;
-    const quote=linkedEkycQuote(ekyc);
-    // Source totals already include SST, setup/renewal and selected add-ons.
-    ek.push((y===0?quote.y1:quote.y2)/12);
     mkt.push(g ? cpaRm()*g.rows[i].J : 0);           /* Google Ads: cost per verified user x ITS verifications */
     meta.push(m ? metaPerReg()*m.rows[i].N : 0);     /* Meta: cost per new registration x ITS sign-ups */
     serv.push((interp(r.L,1)+FIXED_USD)*FX);
   }
   const launch = per.launch ? eventLaunchBudget() : 0;   /* the 3.4 budget line, when the channel is on */
   const kol = per.kol ? kolBudget() : 0;                  /* 3.5 fee x creators; lands with the launch at week 0 */
-  return {ek,mkt,meta,serv,launch,kol};
+  return {ek,mkt,meta,serv,launch,kol,ekBuys:ekS.buys};
 }
 function cumulative(rows, cs, A, netFactor){
   const cc=[cs.launch+cs.kol], cr=[0];
@@ -8865,6 +8948,7 @@ function compute(){
 
   const yrCh=(k,f)=>[1,2,3].map(y=>per[k] ? per[k].rows.filter(r=>r.y===y).reduce((a,r)=>a+f(r),0) : 0);
   return {rows,per,A,netFactor,cs,cum,totCost,totRev,roi,beW,holdM,solved,
+          q:rows.map(r=>r.J+r.bk),            /* billable verifications by month: the volume eKYC is priced on */
           vc,cac,contribPM,payback,life,
           rev,gross,ekY,mktY,metaY,servY,launchY,kolY,costY,
           subsEoy:[1,2,3].map(y=>rows[12*y-1].S), grossNew:yr(r=>r.G),
@@ -9312,20 +9396,28 @@ function layoutMarks(){
 }
 
 /* ============================ CHANNELS ==================== */
-const CH_SLIDERS=[
-  /* step 1, not 50: Meta's 667 is not a multiple of 50, so the slider used to sit at 650 while the model used 667 */
-  {f:"r0", label:"Starting registered users", min:0,    max:5000, step:1,     show:v=>fmt(v)},
-  {f:"g",  label:"Monthly growth",            min:0,    max:0.20, step:0.005, show:v=>(v*100).toFixed(1).replace(/\.0$/,"")+"%"},
+const FUNNEL_SLIDERS=[
   {f:"nu", label:"Registered → verified",     min:0.10, max:1,    step:0.01,  show:v=>Math.round(v*100)+"%"},
   {f:"al", label:"Verified → active (MAU)",   min:0.10, max:1,    step:0.01,  show:v=>Math.round(v*100)+"%"},
   {f:"pi", label:"MAU → paying",              min:0.01, max:0.30, step:0.005, show:v=>(v*100).toFixed(1).replace(/\.0$/,"")+"%"}
 ];
-/* KOL has no seed or growth slider: each creator brings kr registrations once (see chParams). Its other three are the same. */
+/* Google Ads, Meta and Organic: new registrations a month and their monthly growth. Step 1 so that Meta's 667 is representable. */
+const CH_SLIDERS=[
+  {f:"n0", label:"New registrations a month", min:0, max:5000, step:1,     show:v=>fmt(v)},
+  {f:"g",  label:"Monthly growth of sign-ups", min:0, max:0.20, step:0.005, show:v=>(v*100).toFixed(1).replace(/\.0$/,"")+"%"},
+  ...FUNNEL_SLIDERS
+];
+/* Launch is a one-off cohort: registrations at the event, once, no growth (see chParams). */
+const LAUNCH_SLIDERS=[
+  {f:"n0", label:"Registrations at the launch (once)", min:0, max:5000, step:1, show:v=>fmt(v)},
+  ...FUNNEL_SLIDERS
+];
+/* KOL has no seed or growth slider: each creator brings kr registrations once (see chParams). */
 const KOL_SLIDERS=[
   {f:"kr", label:"Registrations per creator (once)", min:0, max:3000, step:10, show:v=>fmt(v)},
-  CH_SLIDERS[2], CH_SLIDERS[3], CH_SLIDERS[4]
+  ...FUNNEL_SLIDERS
 ];
-const slidersFor=k=>k==="kol" ? KOL_SLIDERS : CH_SLIDERS;
+const slidersFor=k=>k==="kol" ? KOL_SLIDERS : k==="launch" ? LAUNCH_SLIDERS : CH_SLIDERS;
 function buildChannels(){
   document.getElementById("chanGrid").innerHTML=CHANNELS.map(d=>{
     const p=S.ch[d.k];
@@ -9334,8 +9426,8 @@ function buildChannels(){
         <span class="t">${d.name}</span><span class="n" id="ch_${d.k}_tag"></span></label>
       <div class="srrow" id="ch_${d.k}_sub">
         <div class="note" id="ch_${d.k}_src"></div>
-        <button type="button" class="chhide" id="ch_${d.k}_hide" aria-expanded="true" aria-controls="ch_${d.k}_det"><span>Hide controls</span><span aria-hidden="true">▲</span></button>
-        <div class="chdet" id="ch_${d.k}_det"><div class="chdet-in">
+        <button type="button" class="chhide" id="ch_${d.k}_hide" aria-expanded="false" aria-controls="ch_${d.k}_det"><span>Show controls</span><span aria-hidden="true">▼</span></button>
+        <div class="chdet shut" id="ch_${d.k}_det"><div class="chdet-in">
         ${d.k==="kol" ? `<div class="rowlbl"><span>Creators</span><b id="creatorsVal">${S.creators}</b></div>
           <input type="range" id="creatorsRg" min="1" max="60" step="1" value="${S.creators}">` : ``}
         ${slidersFor(d.k).map(sl=>`<div class="rowlbl"><span>${sl.label}</span><b id="ch_${d.k}_${sl.f}V"></b></div>
@@ -9387,8 +9479,8 @@ function updateChannelUI(M){
   const on=CHANNELS.filter(d=>S.ch[d.k].on);
   mno.className = on.length===0 ? "note bad" : "note";
   mno.innerHTML = on.length===0
-    ? `No channel is included, so there are no users and no revenue. <b>Switch at least one on.</b>`
-    : `Included: ${on.map(d=>d.name.split(" (")[0]).join(", ")}. Each paid channel is costed on its own users only. eKYC is a flat quote from 1. E-KYC Provider and does not follow volume.`;
+    ? `No channel is included, so there are no users and no revenue. Only the eKYC contract and the fixed front-end are costed, because they belong to no channel. <b>Switch at least one on.</b>`
+    : `Included: ${on.map(d=>d.name.split(" (")[0]).join(", ")}. Each paid channel is costed on its own users only. eKYC is priced on all included channels' verifications together, at the rates in 1. E-KYC Provider.`;
 }
 
 /* ============================ RENDER ==================== */
@@ -9470,16 +9562,18 @@ function render(){
     ? `DCB · revenue share 70% × ${(S.srDcb*100).toFixed(0)}% success`
     : `Modern Payment Methods · revenue share 90% × ${(S.srCard*100).toFixed(0)}% success`;
 
+  /* each plan shown at its cost on the modelled verifications (3 years, incl. SST), not at tab 1's flat scenario */
+  const ekYr=a=>[0,1,2].map(y=>a.slice(12*y,12*y+12).reduce((x,z)=>x+z,0));
   document.querySelectorAll('input[name="ekyc"]').forEach(input=>{
-    const quote=linkedEkycQuote(input.value),amount=input.closest('label').querySelector('.n');
-    amount.textContent='Y1 '+money(quote.y1);
-    amount.title='Year 1 '+money(quote.y1)+' · Year 2+ '+money(quote.y2)+' · includes SST';
+    const amount=input.closest('label').querySelector('.n'), yy=ekYr(ekycSeries(input.value,M.q).m);
+    amount.textContent='3 yr '+money(yy[0]+yy[1]+yy[2]);
+    amount.title='On the modelled verifications: Year 1 '+money(yy[0])+' · Year 2 '+money(yy[1])+' · Year 3 '+money(yy[2])+' · includes SST';
   });
   const quote=linkedEkycQuote(S.ekyc),en=document.getElementById("ekycNote");
   en.className='note';en.replaceChildren();
-  const totals=realDocument.createElement('strong');totals.textContent='Y1 '+money(quote.y1)+' · Y2+ '+money(quote.y2);en.append(totals);
-  const basis=realDocument.createElement('div');basis.textContent=quote.basis;en.append(basis);
-  const source=realDocument.createElement('div');source.textContent='Linked to 1. E-KYC Provider · includes SST';en.append(source);
+  const totals=realDocument.createElement('strong');totals.textContent='Y1 '+money(M.ekY[0])+' · Y2 '+money(M.ekY[1])+' · Y3 '+money(M.ekY[2]);en.append(totals);
+  const basis=realDocument.createElement('div');basis.textContent=ekycBasis(quote,M.cs.ekBuys);en.append(basis);
+  const source=realDocument.createElement('div');source.textContent='Priced on the modelled verifications, at the rates in 1. E-KYC Provider · includes SST';en.append(source);
   updateChannelUI(M);
   document.getElementById("churnVal").textContent=Math.round(S.churn*100)+"%";
   document.getElementById("churnNote").textContent=
@@ -9489,6 +9583,11 @@ function render(){
   document.getElementById("volNote").textContent=
     "All included channels together: "+fmt(M.rows[35].R)+" registered users by month 36, MAU peaks at "+
     fmt(maxL)+", and "+fmt(M.rows[35].S)+" are paying at month 36.";
+  /* the scale gap against 3.5, kept live: its illustration buys 5,000 paid subscribers for RM500K */
+  const newPay4=M.rows.slice(0,4).reduce((a,r)=>a+r.G,0), newPay36=M.rows.reduce((a,r)=>a+r.G,0);
+  document.getElementById("scaleNote").innerHTML="<b>3.5's plan and this page's funnel are separate.</b> 3.5's illustration buys "+
+    "5,000 paid subscribers for RM500K. With these inputs this page signs "+fmt(newPay4)+" new payers in months 1 to 4 and "+
+    fmt(newPay36)+" in 36 months. Neither is an input to the other: 3.5's 5,000 subscribers and 8% churn are not read here.";
   /* caveat 8, kept live: how much of the servicing line sits past the 50,000-MAU anchor */
   const servTot=M.cs.serv.reduce((a,v)=>a+v,0);
   const servAbove=M.cs.serv.reduce((a,v,i)=>a+(M.rows[i].L>50000?v:0),0);
@@ -9549,6 +9648,9 @@ function render(){
   document.getElementById("arppu").textContent="RM"+rm(M.A);
   document.getElementById("arppuDelta").textContent =
     Math.abs(d)<0.05 ? "" : `(${d>0?"+":""}${d.toFixed(0)}%)`;
+  document.getElementById("mixWarn").textContent = Math.abs(MIX_TOTAL-100)<1e-8 ? "" : MIX_TOTAL>0
+    ? `3.5's mix totals ${+MIX_TOTAL.toFixed(4)}%, scaled to 100% here`
+    : "3.5's mix totals 0%, the last non-zero mix is kept here";
 
   drawChart(M);
 
@@ -9814,12 +9916,23 @@ sizeDrawer();</script>
   // ---------------- WISE Postpaid Monthly Scenario Calculator ----------------
   const wiseMonthlyTxnEl = document.getElementById('wiseMonthlyTxn');
 
+  /* The postpaid rate structure, in one place: tab 1 prices its scenario from it, and tab 4 reads it from
+     the quote bridge to price the modelled verifications month by month. One band rate applies to the whole
+     month's volume (not progressive); billing is floored at minTxn. 1e12 stands for "no upper limit". */
+  const WISE_POSTPAID_PLAN = {
+    kind:'postpaid', setup:18000, support:5000, minTxn:100, sst:0.08,
+    bands:[[500,3.00],[1000,2.80],[1500,2.50],[4000,2.10],[1e12,1.80]]
+  };
   function wisePostpaidRate(txn){
-    if (txn <= 500) return { rate: 3.00, label: '1–500 @ RM3.00' };
-    if (txn <= 1000) return { rate: 2.80, label: '501–1,000 @ RM2.80' };
-    if (txn <= 1500) return { rate: 2.50, label: '1,001–1,500 @ RM2.50' };
-    if (txn <= 4000) return { rate: 2.10, label: '1,501–4,000 @ RM2.10' };
-    return { rate: 1.80, label: '>4,000 @ RM1.80' };
+    const bands = WISE_POSTPAID_PLAN.bands, nf = n => n.toLocaleString('en-MY');
+    for (let i = 0; i < bands.length; i++){
+      const [cap, rate] = bands[i];
+      if (txn <= cap){
+        const lo = i === 0 ? 1 : bands[i-1][0] + 1;
+        const label = i === bands.length - 1 ? `>${nf(bands[i-1][0])} @ RM${rate.toFixed(2)}` : `${nf(lo)}–${nf(cap)} @ RM${rate.toFixed(2)}`;
+        return { rate, label };
+      }
+    }
   }
 
   // ---------------- WISE Prepaid Transaction Block Calculator ----------------
@@ -9856,7 +9969,10 @@ sizeDrawer();</script>
     document.getElementById('wisePrepaidY1Gross').textContent = fmtRM(costs.y1Gross);
     document.getElementById('wisePrepaidY2Net').textContent = fmtRM(costs.y2Net);
     document.getElementById('wisePrepaidY2Gross').textContent = fmtRM(costs.y2Gross);
-    window.publishSeraseEkycQuote('wise2',{y1:costs.y1Gross,y2:costs.y2Gross,basis:`${costs.transactions.toLocaleString('en-MY')} transactions/year · selected prepaid block`});
+    /* the quoted blocks and the one selected, so tab 4 can buy the cheapest mix that covers each year's volume */
+    const prepaidPlan = {kind:'prepaid', setup:18000, support:5000, sst:0.08, selectedCap:costs.transactions,
+      blocks:Object.values(wisePrepaidData).map(b => ({cap:b.transactions, fee:b.packagePrice}))};
+    window.publishSeraseEkycQuote('wise2',{y1:costs.y1Gross,y2:costs.y2Gross,plan:prepaidPlan,basis:`${costs.transactions.toLocaleString('en-MY')} transactions/year · selected prepaid block`});
     document.getElementById('wisePrepaidFormula').textContent = `Effective blended cost if all ${costs.transactions.toLocaleString('en-MY')} transactions are used: Y1 RM${fmtRM(costs.y1Gross)} ÷ ${costs.transactions.toLocaleString('en-MY')} = RM${(costs.y1Gross / costs.transactions).toFixed(2)}/txn; Y2 RM${fmtRM(costs.y2Gross)} ÷ ${costs.transactions.toLocaleString('en-MY')} = RM${(costs.y2Gross / costs.transactions).toFixed(2)}/txn. Vendor unit rate = RM${costs.unitRate.toFixed(2)}/txn before setup/support and SST.`;
   }
 
@@ -9864,12 +9980,6 @@ sizeDrawer();</script>
     wisePrepaidTierEl.addEventListener('change', () => {
       try { localStorage.setItem('wise-prepaid-tier', wisePrepaidTierEl.value); } catch(err){}
       renderWisePrepaid();
-      const totalWise2Tier = document.getElementById('totalWise2Tier');
-      if (totalWise2Tier) {
-        totalWise2Tier.value = wisePrepaidTierEl.value;
-        try { localStorage.setItem('total-cost-wise2-tier', totalWise2Tier.value); } catch(err){}
-        renderTotalCost();
-      }
     });
   }
 
@@ -9907,7 +10017,7 @@ sizeDrawer();</script>
     document.getElementById('wiseY1Gross').textContent = fmtRM(y1Gross);
     document.getElementById('wiseY2Net').textContent = fmtRM(y2Net);
     document.getElementById('wiseY2Gross').textContent = fmtRM(y2Gross);
-    window.publishSeraseEkycQuote('wise1',{y1:y1Gross,y2:y2Gross,basis:`${actual.toLocaleString('en-MY')} transactions/month · ${tier.label}${actual<100?' · 100 minimum billed':''}`});
+    window.publishSeraseEkycQuote('wise1',{y1:y1Gross,y2:y2Gross,plan:WISE_POSTPAID_PLAN,basis:`${actual.toLocaleString('en-MY')} transactions/month · ${tier.label}${actual<100?' · 100 minimum billed':''}`});
   }
 
   if (wiseMonthlyTxnEl) wiseMonthlyTxnEl.addEventListener('input', renderWisePostpaid);
@@ -9975,17 +10085,22 @@ sizeDrawer();</script>
     document.getElementById('kpiInfra').textContent = `RM ${monthlyLowText} – RM ${monthlyHighText}`;
     document.getElementById('kpiInfraSub').textContent = `${formatUsdRange(combinedLowUSD,combinedHighUSD)} USD / month · Front-End Fixed + AWS v2.0 Scale Range`;
     document.getElementById('kpiInfraLabel').textContent = `AWS Infra (${currentMau.toUpperCase()} MAU)`;
-    const totalAwsTierEl = document.getElementById('totalAwsTier');
-    if (totalAwsTierEl) totalAwsTierEl.value = currentMau;
   }
 
   // FX Rate dynamic changes listener
+  // Only a rate inside the field's own limits (3.00 to 6.00) is applied. Anything else leaves the rate in use,
+  // and when the entry is committed the field goes back to that rate, so the text and the model agree.
+  const FX_MIN = 3, FX_MAX = 6;
   fxInputEl.addEventListener('input', e => {
     const val = parseFloat(e.target.value);
-    if (!isNaN(val) && val > 0) {
+    if (!isNaN(val) && val >= FX_MIN && val <= FX_MAX) {
       fxRate = val;
       renderMau();
     }
+  });
+  fxInputEl.addEventListener('change', () => {
+    const val = parseFloat(fxInputEl.value);
+    if (isNaN(val) || val < FX_MIN || val > FX_MAX) fxInputEl.value = fxRate.toFixed(2);
   });
 
   document.getElementById('tierGrid').addEventListener('click', e => {
@@ -10318,7 +10433,10 @@ sizeDrawer();</script>
     document.getElementById('innovOptionalY2Gross').textContent = money(opt.y2Gross);
     document.getElementById('innovUpdatedY1Gross').textContent = money(s.y1Gross + opt.y1Gross);
     document.getElementById('innovUpdatedY2Gross').textContent = money(s.y2Gross + opt.y2Gross);
-    window.publishSeraseEkycQuote('innov',{y1:s.y1Gross+opt.y1Gross,y2:s.y2Gross+opt.y2Gross,basis:`${whole(s.volume)} credits/year${opt.labels.length?' · '+opt.labels.join(' + '):' · no add-ons'}`});
+    /* the quoted credit packs and the one selected; add-ons stay flat as quoted (already incl. SST) */
+    const creditPlan = {kind:'credits', cloud:5000, impl:19000, sst:0.08, selectedCap:s.volume,
+      packs:Object.values(scenarios).map(p => ({cap:p.volume, fee:p.credit})), addY1:opt.y1Gross, addY2:opt.y2Gross};
+    window.publishSeraseEkycQuote('innov',{y1:s.y1Gross+opt.y1Gross,y2:s.y2Gross+opt.y2Gross,plan:creditPlan,basis:`${whole(s.volume)} credits/year${opt.labels.length?' · '+opt.labels.join(' + '):' · no add-ons'}`});
     document.getElementById('innovSelectedOptionalLabel').innerHTML = opt.summaries && opt.summaries.length
       ? `<div class="innov-option-summary-list">${opt.summaries.map(item => `<div class="innov-option-summary-item">${item}</div>`).join('')}</div>`
       : '<span class="innov-option-none">None selected</span>';
@@ -10327,13 +10445,6 @@ sizeDrawer();</script>
     saveState();
 
     try { localStorage.setItem('total-cost-innov-tier', select.value); } catch(err){}
-    if(syncTotal){
-      const totalSelect = document.getElementById('totalInnovTier');
-      if(totalSelect && totalSelect.value !== select.value){
-        totalSelect.value = select.value;
-      }
-      if(totalSelect) totalSelect.dispatchEvent(new Event('change', {bubbles:true}));
-    }
   }
 
   try {
@@ -10355,15 +10466,6 @@ sizeDrawer();</script>
     render(true);
   });
 
-  const totalSelect = document.getElementById('totalInnovTier');
-  if(totalSelect){
-    totalSelect.addEventListener('change', function(){
-      if(scenarios[totalSelect.value] && select.value !== totalSelect.value){
-        select.value = totalSelect.value;
-        render(false);
-      }
-    });
-  }
   let innovInitialized = false;
   window.ensureInnov8tifInitialized = function(){
     if (innovInitialized) return;
