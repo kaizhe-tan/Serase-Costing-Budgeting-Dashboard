@@ -5923,7 +5923,7 @@ body[data-view="overview"] #ekyc-strategy,body[data-view="overview"] #infra,body
 .ov-scenario small{display:block;margin-top:4px;font:10px/1.5 'Inter',Arial,sans-serif;color:#92735F;}
 .ov-scenario .ov-choice{display:grid;place-items:center;width:21px;height:21px;border:1px solid #D9C7B2;border-radius:50%;color:transparent;font-size:12px;flex:none;}
 .ov-scenario[aria-selected="true"] .ov-choice{background:var(--ov-accent);border-color:var(--ov-accent);color:#FFF9EF;}
-.ov-map-card{padding:21px 24px 16px;border:1px solid var(--ov-line);border-radius:17px;background:linear-gradient(135deg,#FFFDF9,#FBF5EC);box-shadow:0 8px 24px #6F332D05;}
+.ov-map-card{margin-top:20px;padding:21px 24px 16px;border:1px solid var(--ov-line);border-radius:17px;background:linear-gradient(135deg,#FFFDF9,#FBF5EC);box-shadow:0 8px 24px #6F332D05;}
 .ov-map-head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .ov-map-head h3{margin:0;font:600 17px/1.4 'Fraunces',Georgia,serif;color:var(--ov-ink);}
 .ov-legend{display:flex;gap:16px;align-items:center;font-size:9px;color:var(--ov-muted);}
@@ -5944,7 +5944,7 @@ body[data-view="overview"] #ekyc-strategy,body[data-view="overview"] #infra,body
 #ovFlow .ov-stage-label{fill:#AA8B72;font:500 9px 'IBM Plex Mono',monospace;letter-spacing:1px;text-transform:uppercase;}
 .ov-route{padding-top:12px;border-top:1px solid #E7DACC;font:10px/1.7 'Inter',Arial,sans-serif;color:var(--ov-muted);}
 .ov-route strong{font-weight:600;color:var(--ov-accent);}
-.ov-results-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:20px 1px 10px;font:10px/1.5 'Inter',Arial,sans-serif;color:var(--ov-muted);}
+.ov-results-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 1px 10px;font:10px/1.5 'Inter',Arial,sans-serif;color:var(--ov-muted);}
 .ov-results-head strong{font-weight:600;letter-spacing:.04em;color:#825242;}
 .ov-results-head span{text-align:right;}
 .ov-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;}
@@ -5993,7 +5993,6 @@ body[data-view="overview"] #ekyc-strategy,body[data-view="overview"] #infra,body
     <button type="button" role="tab" class="ov-scenario" data-ov-scenario="2" id="ovScenario2" aria-selected="false" aria-controls="ovScenarioContent" tabindex="-1"><span><strong>Scenario 2</strong><small>App · Other payment methods</small></span><span class="ov-choice" aria-hidden="true">✓</span></button>
   </div>
   <div id="ovScenarioContent" role="tabpanel" aria-labelledby="ovScenario1">
-    <div class="ov-map-card"><div class="ov-map-head"><h3>Business flow</h3><div class="ov-legend"><span><i aria-hidden="true"></i>Selected route</span><span><i aria-hidden="true"></i>Full network</span></div></div><svg id="ovFlow" role="img" aria-label="Complete business flow: Launch to Digital Marketing; Paid and Organic to Landing Page or App; Organic connection labelled Social, Internal / Affiliate; Payment to DCB or Other"></svg><div class="ov-route" id="ovRoute" aria-live="polite"></div></div>
     <div class="ov-results-head"><strong>Results from Pricing Analysis</strong><span id="ovResultBasis">Year 1 · Monthly · Google Ads</span></div>
     <div class="ov-results" aria-label="Selected scenario financial results">
       <button type="button" class="ov-result" data-ov-pricing="cost" aria-label="View Cost in 4. Pricing Analysis"><span class="ov-metric-label">Cost</span><strong class="ov-value" id="ovCost">—</strong><small>Total cost for the selected period</small></button>
@@ -6001,6 +6000,7 @@ body[data-view="overview"] #ekyc-strategy,body[data-view="overview"] #infra,body
       <button type="button" class="ov-result" data-ov-pricing="roi" aria-label="View ROI in 4. Pricing Analysis"><span class="ov-metric-label">ROI</span><strong class="ov-value" id="ovRoi">—</strong><small>Revenue ÷ cost · 100% is breakeven</small></button>
     </div>
     <p class="ov-sync-note" id="ovSyncNote">Linked to the assumptions in 4. Pricing Analysis.</p>
+    <div class="ov-map-card"><div class="ov-map-head"><h3>Business flow</h3><div class="ov-legend"><span><i aria-hidden="true"></i>Selected route</span><span><i aria-hidden="true"></i>Full network</span></div></div><svg id="ovFlow" role="img" aria-label="Complete business flow: Launch to Digital Marketing; Paid and Organic to Landing Page or App; Organic connection labelled Social, Internal / Affiliate; Payment to DCB or Other"></svg><div class="ov-route" id="ovRoute" aria-live="polite"></div></div>
   </div>
 </section>
 
